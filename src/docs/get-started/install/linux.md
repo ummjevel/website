@@ -3,7 +3,7 @@ title: Linux install
 description: How to install on Linux.
 short-title: Linux
 next:
-  title: Set up an editor
+  title: 에디터 설정
   path: /docs/get-started/editor
 ---
 
