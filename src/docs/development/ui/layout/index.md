@@ -52,22 +52,18 @@ Flutter 앱 내에서 볼 수 있는 이미지, 아이콘 그리고 글자 모�
 {% asset ui/layout/sample-flutter-layout.png class="mw-100" alt="Node tree" %}
 {:.text-center}
 
-Most of this should look as you might expect, but you might be wondering
-about the containers (shown in pink). [Container][] is a widget class that allows
-you to customize its child widget. Use a `Container` when you want to
-add padding, margins, borders, or background color, to name some of its
-capabilities.
+대부분이 예상대로 보이지만, (분홍색으로 표시된)container가 뭔지 궁금하실겁니다.
+[Container][]는 자식 widget을 커스터마이징할 수 있는 widget class인데요.
+여백, 간격, 테두리 또는 배경색을 추가하고 싶을 때 `Container`를 사용해서 기능을 지정할 수 있습니다.
 
-In this example, each [Text][] widget is placed in a `Container` to add margins.
-The entire [Row][] is also placed in a `Container` to add padding around the
-row.
+이 예제에서, 각 [Text][] widget은 간격 추가를 위해 `Container` 안에 놓였습니다.
+마찬가지로 [Row][] 전체도 주변에 여백을 추가하기 위해 `Container` 안에 배치되었습니다.
 
-The rest of the UI in this example is controlled by properties.
-Set an [Icon][]'s color using its `color` property.
-Use the `Text.style` property to set the font, its color, weight, and so on.
-Columns and rows have properties that allow you to specify how their
-children are aligned vertically or horizontally, and how much space
-the children should occupy.
+이 예제의 나머지 UI는 속성에 의해 제어되는데요.
+[Icon][]의 색상은 `color` 속성을 이용해 설정했습니다.
+폰트, 색상, 굵기 등을 설정하기 위해서는 `Text.style` 속성을 사용하십시오.
+Column과 Row에는 자식들을 세로 혹은 가로로 정렬하는 방법과
+자식들이 차지해야 하는 공간을 지정할 수 있는 속성이 있습니다.
 
 ## Lay out a widget
 
