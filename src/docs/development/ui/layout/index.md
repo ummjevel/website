@@ -1,7 +1,7 @@
 ---
-title: Layouts in Flutter
+title: Flutter Layout
 short-title: Layout
-description: Learn how Flutter's layout mechanism works and how to build a layout.
+description: Flutter Layout의 메커니즘과 Layout을 만드는 방법에 대해 배워봅시다.
 diff2html: true
 ---
 
@@ -18,13 +18,13 @@ diff2html: true
 {{site.alert.secondary}}
   <h4 class="no_toc">What's the point?</h4>
 
-  * Widgets are classes used to build UIs.
-  * Widgets are used for both layout and UI elements.
-  * Compose simple widgets to build complex widgets.
+  * Widget은 UI를 만들기 위해 사용하는 Class입니다.
+  * Widget은 Layout과 UI 요소 양쪽에 모두 사용됩니다.
+  * 단순한 Widget들을 구성하여 복잡한 Widget들을 만드세요.
 {{site.alert.end}}
 
-The core of Flutter's layout mechanism is widgets. In Flutter, almost
-everything is a widget&mdash;even layout models are widgets.
+The core of Flutter's layout mechanism is widgets.
+In Flutter, almost everything is a widget&mdash;even layout models are widgets.
 The images, icons, and text that you see in a Flutter app  are all widgets.
 But things you don't see are also widgets, such as the rows, columns,
 and grids that arrange, constrain, and align the visible widgets.
