@@ -1120,43 +1120,41 @@ and trailing icons. `ListTile` is most commonly used in [Card][] or
 
 ## Videos
 
-The following videos, part of the [Flutter in
-Focus](https://www.youtube.com/watch?v=wgTBLj7rMPM&list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2)
-series, explain Stateless and Stateful widgets.
+다음 비디오들은 [Flutter in Focus](https://www.youtube.com/watch?v=wgTBLj7rMPM&list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2)
+시리즈의 일부로, Stateless 및 Stateful widget에 대해서 설명합니다.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wE7khGHVkYY?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <iframe width="560" height="315" src="https://www.youtube.com/embed/AqCMFXEmf3w?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-[Flutter in Focus playlist](https://www.youtube.com/watch?v=wgTBLj7rMPM&list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2)
+[Flutter in Focus 재생 목록](https://www.youtube.com/watch?v=wgTBLj7rMPM&list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2)
 
 ---
 
-Each episode of the [Widget of the Week
-series](https://www.youtube.com/playlist?list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG)
-focuses on a widget. Several of them includes layout widgets.
+[Widget of the Week 시리즈](https://www.youtube.com/playlist?list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG)의
+각 에피소드는 widget에 중점을 둡니다.
+그 중에서 몇 가지는 layout widget을 포함합니다.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/b_sQ9bMltGU?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 [Flutter Widget of the Week playlist](https://www.youtube.com/watch?v=yI-8QHpGIP4&index=5&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG)
 
 ## Other resources
 
-The following resources may help when writing layout code.
+다음 자료들은 layout 코드를 작성할 때 도움이 될 겁니다.
 
 * [Layout tutorial](/docs/development/ui/layout/tutorial)
-: Learn how to build a layout.
+: Layout을 만드는 방법을 배워보세요.
 * [Widget Overview](/docs/development/ui/widgets)
-: Describes many of the widgets available in Flutter.
+: Flutter에서 사용 가능한 여러 widget들을 설명합니다.
 * [HTML/CSS Analogs in Flutter](/docs/get-started/flutter-for/web-devs)
-: For those familiar with web programming, this page maps HTML/CSS functionality
-  to Flutter features.
+: 웹 프로그래밍에 익숙한 사용자들을 위해, 이 페이지에서는 HTML/CSS 기능을 Flutter 기능에 매핑합니다.
 * [Flutter Gallery][]
-: Demo app showcasing many Material Design widgets and other Flutter features.
+: 수많은 Material Design widget들과 그 외의 Flutter 기능들을 선보이는 데모입니다.
 * [Flutter API documentation]({{api}})
-: Reference documentation for all of the Flutter libraries.
+: 모든 Flutter 라이브러리에 대한 참고 문서입니다.
 * [Dealing with Box Constraints in Flutter](/docs/development/ui/layout/box-constraints)
-: Discusses how widgets are constrained by their render boxes.
+: Widget이 어떻게 렌더링 상자에 의해 제약받는지 설명합니다.
 * [Adding Assets and Images in Flutter](/docs/development/ui/assets-and-images)
-: Explains how to add images and other assets to your app's package.
+: 앱 패키지에 이미지와 에셋들을 추가하는 방법에 대해 설명합니다.
 * [Zero to One with Flutter]({{site.medium}}/@mravn/zero-to-one-with-flutter-43b13fd7b354)
-: One person's experience writing his first Flutter app.
+: 처음 Flutter 앱을 작성한 사람의 경험담입니다.
 
 [build()]: {{api}}/widgets/StatelessWidget/build.html
 [Card]: {{api}}/material/Card-class.html
