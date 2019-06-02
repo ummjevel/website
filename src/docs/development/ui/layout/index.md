@@ -14,21 +14,21 @@ diff2html: true
 <style>dl, dd { margin-bottom: 0; }</style>
 
 {{site.alert.secondary}}
-  <h4 class="no_toc">What's the point?</h4>
+  <h4 class="no_toc">이 글의 핵심은?</h4>
 
-  * Widget은 UI를 만들기 위해 사용하는 Class입니다.
-  * Widget은 Layout과 UI 요소 양쪽에 모두 사용됩니다.
-  * 단순한 Widget들을 구성하여 복잡한 Widget들을 만드세요.
+  * Widget은 UI를 만들기 위해 사용하는 class입니다.
+  * Widget은 layout과 UI 요소 양쪽에 모두 사용됩니다.
+  * 단순한 widget들을 구성하여 복잡한 widget들을 만드세요.
 {{site.alert.end}}
 
-The core of Flutter's layout mechanism is widgets.
-In Flutter, almost everything is a widget&mdash;even layout models are widgets.
-The images, icons, and text that you see in a Flutter app  are all widgets.
-But things you don't see are also widgets, such as the rows, columns,
-and grids that arrange, constrain, and align the visible widgets.
+Flutter Layout 메커니즘의 핵심은 widget입니다.
+Flutter에선, 거의 모든 것이 widget이고 심지어 layout 모델도 widget이죠.
+Flutter 앱 내에서 볼 수 있는 이미지, 아이콘 그리고 글자 모두 widget입니다.
+하지만 row, column 그리고 grid 같이 볼 수 없는 widget들도 있는데요.
+이들은 보이는 widget들을 제어하고, 제한하며, 정렬시켜줍니다.
 
-You create a layout by composing widgets to build more complex widgets.
-For example, the first screenshot below shows 3 icons with a label under each one:
+보다 복잡한 widget을 만들기 위해 widget을 구성하여 layout을 생성하세요.
+예를 들어, 아래 첫 번째 스크린샷은 각각 아래에 lable이 있는 icon 3개를 보여줍니다.
 
 <div class="row mb-4">
   <div class="col-12 text-center">
@@ -37,18 +37,17 @@ For example, the first screenshot below shows 3 icons with a label under each on
   </div>
 </div>
 
-The second screenshot displays the visual layout, showing a row of
-3 columns where each column contains an icon and a label.
+두 번째 스크린샷은 시각적 layout을 표시하는데,
+각각 icon과 label이 포함된 열 3개가 있는 행을 보여줍니다.
 
 {{site.alert.note}}
-  Most of the screenshots in this tutorial are displayed with
-  `debugPaintSizeEnabled` set to true so you can see the visual layout.
-  For more information, see
-  [Visual debugging](/docs/testing/debugging#visual-debugging), a section in
-  [Debugging Flutter apps](/docs/testing/debugging).
+  이 튜토리얼의 대부분의 스크린샷은 `debugPaintSizeEnabled`가
+  true로 설정된 상태로 표시되므로 시각적 layout을 볼 수 있습니다.
+  보다 자세한 정보는, [Debugging Flutter apps](/docs/testing/debugging) 안에 있는
+  [Visual debugging](/docs/testing/debugging#visual-debugging) 섹션을 봐주세요.
 {{site.alert.end}}
 
-Here's a diagram of the widget tree for this UI:
+다음은 해당 UI에 대한 widget tree 다이어그램입니다.
 
 {% asset ui/layout/sample-flutter-layout.png class="mw-100" alt="Node tree" %}
 {:.text-center}
