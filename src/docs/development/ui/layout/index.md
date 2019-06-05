@@ -22,13 +22,13 @@ diff2html: true
 {{site.alert.end}}
 
 Flutter Layout 메커니즘의 핵심은 widget입니다.
-Flutter에선, 거의 모든 것이 widget이고 심지어 layout 모델도 widget이죠.
-Flutter 앱 내에서 볼 수 있는 이미지, 아이콘 그리고 글자 모두 widget입니다.
-하지만 row, column 그리고 grid 같이 볼 수 없는 widget들도 있는데요.
+Flutter에서는 거의 모든 것이 widget이고 심지어 layout 모델도 widget이죠.
+Flutter 앱 내에서 볼 수 있는 이미지, 아이콘, 글자 모두 widget입니다.
+하지만 row, column, grid 같이 볼 수 없는 widget들도 있는데요.
 이들은 보이는 widget들을 제어하고, 제한하며, 정렬시켜줍니다.
 
-보다 복잡한 widget을 만들기 위해 widget을 구성하여 layout을 생성하세요.
-예를 들어, 아래 첫 번째 스크린샷은 각각 아래에 lable이 있는 icon 3개를 보여줍니다.
+더 복잡한 widget들을 만들기 위해 widget들을 구성하여 layout을 생성하세요.
+예를 들어, 아래 첫 번째 스크린샷은 각각 아래에 레이블이 있는 아이콘 3개를 보여줍니다.
 
 <div class="row mb-4">
   <div class="col-12 text-center">
@@ -38,12 +38,12 @@ Flutter 앱 내에서 볼 수 있는 이미지, 아이콘 그리고 글자 모�
 </div>
 
 두 번째 스크린샷은 시각적 layout을 표시하는데,
-각각 icon과 label이 포함된 열 3개가 있는 행을 보여줍니다.
+각각 아이콘과 레이블이 포함된 열 3개가 있는 행을 보여줍니다.
 
 {{site.alert.note}}
-  이 튜토리얼의 대부분의 스크린샷은 `debugPaintSizeEnabled`가
+  이 튜토리얼 내 대부분의 스크린샷은 `debugPaintSizeEnabled`가
   true로 설정된 상태로 표시되므로 시각적 layout을 볼 수 있습니다.
-  보다 자세한 정보는, [Debugging Flutter apps](/docs/testing/debugging) 안에 있는
+  더 자세한 정보는, [Debugging Flutter apps](/docs/testing/debugging) 안에 있는
   [Visual debugging](/docs/testing/debugging#visual-debugging) 섹션을 봐주세요.
 {{site.alert.end}}
 
@@ -53,15 +53,15 @@ Flutter 앱 내에서 볼 수 있는 이미지, 아이콘 그리고 글자 모�
 {:.text-center}
 
 대부분이 예상대로 보이지만, (분홍색으로 표시된)container가 뭔지 궁금하실겁니다.
-[Container][]는 자식 widget을 커스터마이징할 수 있는 widget class인데요.
-여백, 간격, 테두리 또는 배경색을 추가하고 싶을 때 `Container`를 사용해서 기능을 지정할 수 있습니다.
+[Container][]는 자식 widget들을 커스터마이징할 수 있는 widget class인데요.
+여백, 간격, 테두리 또는 배경색을 추가하고 싶을 때 `Container`를 사용할 수 있습니다.
 
-이 예제에서, 각 [Text][] widget은 간격 추가를 위해 `Container` 안에 놓였습니다.
-마찬가지로 [Row][] 전체도 주변에 여백을 추가하기 위해 `Container` 안에 배치되었습니다.
+이 예제에서, 각 [Text][] widget은 간격 추가를 위해 `Container` 안에 배치되었고,
+마찬가지로 [Row][] 전체를 감싸는 여백을 추가하기 위해 `Container` 안에 배치되었습니다.
 
-이 예제의 나머지 UI는 속성에 의해 제어되는데요.
+이 예제의 나머지 UI는 속성에 의해 제어됩니다.
 [Icon][]의 색상은 `color` 속성을 이용해 설정했습니다.
-폰트, 색상, 굵기 등을 설정하기 위해서는 `Text.style` 속성을 사용하십시오.
+폰트, 색상, 굵기 등을 설정하기 위해서는 `Text.style` 속성을 사용하세요.
 Column과 Row에는 자식들을 세로 혹은 가로로 정렬하는 방법과
 자식들이 차지해야 하는 공간을 지정할 수 있는 속성이 있습니다.
 
