@@ -1,7 +1,7 @@
 ---
-title: Layouts in Flutter
-short-title: Layout
-description: Learn how Flutter's layout mechanism works and how to build a layout.
+title: Flutter 레이아웃
+short-title: 레이아웃
+description: Flutter 레이아웃의 메커니즘과 레이아웃을 만드는 방법에 대해 배워봅시다.
 diff2html: true
 ---
 
@@ -14,21 +14,21 @@ diff2html: true
 <style>dl, dd { margin-bottom: 0; }</style>
 
 {{site.alert.secondary}}
-  <h4 class="no_toc">What's the point?</h4>
+  <h4 class="no_toc">이 글의 핵심은?</h4>
 
-  * Widgets are classes used to build UIs.
-  * Widgets are used for both layout and UI elements.
-  * Compose simple widgets to build complex widgets.
+  * 위젯은 UI를 만들기 위해 사용하는 class입니다.
+  * 위젯은 레이아웃과 UI 요소 양쪽에 모두 사용됩니다.
+  * 단순한 위젯들을 구성하여 복잡한 위젯들을 만드세요.
 {{site.alert.end}}
 
-The core of Flutter's layout mechanism is widgets. In Flutter, almost
-everything is a widget&mdash;even layout models are widgets.
-The images, icons, and text that you see in a Flutter app  are all widgets.
-But things you don't see are also widgets, such as the rows, columns,
-and grids that arrange, constrain, and align the visible widgets.
+Flutter 레이아웃 메커니즘의 핵심은 위젯입니다.
+Flutter에서는 거의 모든 것이 위젯이고 심지어 레이아웃 모델도 위젯이죠.
+Flutter 앱 내에서 볼 수 있는 이미지, 아이콘, 글자 모두 위젯입니다.
+하지만 row, column, grid 같이 볼 수 없는 위젯들도 있는데요.
+이들은 보이는 위젯들을 제어하고, 제한하며, 정렬시켜줍니다.
 
-You create a layout by composing widgets to build more complex widgets.
-For example, the first screenshot below shows 3 icons with a label under each one:
+더 복잡한 위젯들을 만들기 위해 위젯들을 구성하여 레이아웃을 생성하세요.
+예를 들어, 아래 첫 번째 스크린샷은 각각 아래에 레이블이 있는 아이콘 3개를 보여줍니다.
 
 <div class="row mb-4">
   <div class="col-12 text-center">
@@ -37,38 +37,33 @@ For example, the first screenshot below shows 3 icons with a label under each on
   </div>
 </div>
 
-The second screenshot displays the visual layout, showing a row of
-3 columns where each column contains an icon and a label.
+두 번째 스크린샷은 시각적 레이아웃을 표시하는데,
+각각 아이콘과 레이블이 포함된 열 3개가 있는 행을 보여줍니다.
 
 {{site.alert.note}}
-  Most of the screenshots in this tutorial are displayed with
-  `debugPaintSizeEnabled` set to true so you can see the visual layout.
-  For more information, see
-  [Visual debugging](/docs/testing/debugging#visual-debugging), a section in
-  [Debugging Flutter apps](/docs/testing/debugging).
+  이 튜토리얼 내 대부분의 스크린샷은 `debugPaintSizeEnabled`가
+  true로 설정된 상태로 표시되므로 시각적 레이아웃을 볼 수 있습니다.
+  더 자세한 정보는, [Debugging Flutter apps](/docs/testing/debugging) 안에 있는
+  [Visual debugging](/docs/testing/debugging#visual-debugging) 섹션을 봐주세요.
 {{site.alert.end}}
 
-Here's a diagram of the widget tree for this UI:
+다음은 해당 UI에 대한 위젯 트리 다이어그램입니다.
 
 {% asset ui/layout/sample-flutter-layout.png class="mw-100" alt="Node tree" %}
 {:.text-center}
 
-Most of this should look as you might expect, but you might be wondering
-about the containers (shown in pink). [Container][] is a widget class that allows
-you to customize its child widget. Use a `Container` when you want to
-add padding, margins, borders, or background color, to name some of its
-capabilities.
+대부분이 예상대로 보이지만, (분홍색으로 표시된)container가 뭔지 궁금하실겁니다.
+[Container][]는 자식 위젯들을 커스터마이징할 수 있는 위젯 클래스인데요.
+여백, 간격, 테두리 또는 배경색을 추가하고 싶을 때 `Container`를 사용할 수 있습니다.
 
-In this example, each [Text][] widget is placed in a `Container` to add margins.
-The entire [Row][] is also placed in a `Container` to add padding around the
-row.
+이 예제에서, 각 [Text][] 위젯은 간격 추가를 위해 `Container` 안에 배치되었고,
+마찬가지로 [Row][] 전체를 감싸는 여백을 추가하기 위해 `Container` 안에 배치되었습니다.
 
-The rest of the UI in this example is controlled by properties.
-Set an [Icon][]'s color using its `color` property.
-Use the `Text.style` property to set the font, its color, weight, and so on.
-Columns and rows have properties that allow you to specify how their
-children are aligned vertically or horizontally, and how much space
-the children should occupy.
+이 예제의 나머지 UI는 속성에 의해 제어됩니다.
+[Icon][]의 색상은 `color` 속성을 이용해 설정했습니다.
+폰트, 색상, 굵기 등을 설정하기 위해서는 `Text.style` 속성을 사용하세요.
+Column과 Row에는 자식들을 세로 혹은 가로로 정렬하는 방법과
+자식들이 차지해야 하는 공간을 지정할 수 있는 속성이 있습니다.
 
 ## Lay out a widget
 
@@ -1125,43 +1120,41 @@ and trailing icons. `ListTile` is most commonly used in [Card][] or
 
 ## Videos
 
-The following videos, part of the [Flutter in
-Focus](https://www.youtube.com/watch?v=wgTBLj7rMPM&list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2)
-series, explain Stateless and Stateful widgets.
+다음 비디오들은 [Flutter in Focus](https://www.youtube.com/watch?v=wgTBLj7rMPM&list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2)
+시리즈의 일부로, Stateless 및 Stateful 위젯에 대해서 설명합니다.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wE7khGHVkYY?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <iframe width="560" height="315" src="https://www.youtube.com/embed/AqCMFXEmf3w?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-[Flutter in Focus playlist](https://www.youtube.com/watch?v=wgTBLj7rMPM&list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2)
+[Flutter in Focus 재생 목록](https://www.youtube.com/watch?v=wgTBLj7rMPM&list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2)
 
 ---
 
-Each episode of the [Widget of the Week
-series](https://www.youtube.com/playlist?list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG)
-focuses on a widget. Several of them includes layout widgets.
+[Widget of the Week 시리즈](https://www.youtube.com/playlist?list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG)의
+각 에피소드는 위젯에 중점을 둡니다.
+그 중에서 몇 가지는 레이아웃 위젯을 포함합니다.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/b_sQ9bMltGU?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 [Flutter Widget of the Week playlist](https://www.youtube.com/watch?v=yI-8QHpGIP4&index=5&list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG)
 
 ## Other resources
 
-The following resources may help when writing layout code.
+레이아웃 코드를 작성할 때 도움이 될 수 있는 자료들입니다.
 
 * [Layout tutorial](/docs/development/ui/layout/tutorial)
-: Learn how to build a layout.
+: 레이아웃 만드는 방법을 배워보세요.
 * [Widget Overview](/docs/development/ui/widgets)
-: Describes many of the widgets available in Flutter.
+: Flutter에서 사용 가능한 여러 위젯들을 설명합니다.
 * [HTML/CSS Analogs in Flutter](/docs/get-started/flutter-for/web-devs)
-: For those familiar with web programming, this page maps HTML/CSS functionality
-  to Flutter features.
+: 웹 프로그래밍에 익숙한 사용자들을 위해, 이 페이지에서는 HTML/CSS 기능을 Flutter 기능에 매핑합니다.
 * [Flutter Gallery][]
-: Demo app showcasing many Material Design widgets and other Flutter features.
+: 수많은 Material Design 위젯들과 그 외의 Flutter 기능들을 선보이는 데모입니다.
 * [Flutter API documentation]({{api}})
-: Reference documentation for all of the Flutter libraries.
+: 모든 Flutter 라이브러리에 대한 참고 문서입니다.
 * [Dealing with Box Constraints in Flutter](/docs/development/ui/layout/box-constraints)
-: Discusses how widgets are constrained by their render boxes.
+: 위젯이 어떻게 렌더링 상자에 의해 제약받는지 설명합니다.
 * [Adding Assets and Images in Flutter](/docs/development/ui/assets-and-images)
-: Explains how to add images and other assets to your app's package.
+: 앱 패키지에 이미지와 에셋들을 추가하는 방법에 대해 설명합니다.
 * [Zero to One with Flutter]({{site.medium}}/@mravn/zero-to-one-with-flutter-43b13fd7b354)
-: One person's experience writing his first Flutter app.
+: 처음 Flutter 앱을 작성한 사람의 경험담입니다.
 
 [build()]: {{api}}/widgets/StatelessWidget/build.html
 [Card]: {{api}}/material/Card-class.html
