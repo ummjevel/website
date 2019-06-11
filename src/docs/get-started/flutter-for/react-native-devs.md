@@ -859,9 +859,9 @@ class _MyCanvasState extends State<MyCanvas> {
 
 ### 위젯을 사용하여 레이아웃 속성을 정의하는 방법은?
 
-React Native에서, 대부분의 레이아웃은 특정 컴포넌트에 전달된 props로 속성을 정의할 수 있습니다. 
-예를 들어, `View` 컴포넌트의 `style` prop을 사용해서 flexbox 속성을 지정할 수 있습니다.
-컴포넌트들을 열로 배열하려면, 
+React Native에서 대부분의 레이아웃은 특정 컴포넌트에 전달된 props로 속성을 정의할 수 있습니다. 
+예를 들어 `View` 컴포넌트의 `style` prop을 사용해서 flexbox 속성을 지정할 수 있습니다.
+컴포넌트들을 열로 배열하려면 
 props를 아래와 같이 지정해주면 됩니다:
 `flexDirection: “column”`.
 
@@ -877,8 +877,8 @@ props를 아래와 같이 지정해주면 됩니다:
 >
 ```
 
-Flutter에서, 레이아웃을 제공하기 위해 설계된 특별한 위젯으로 
-컨트롤 위젯 및 스타일 속성을 결합하여 레이아웃을 정의합니다.
+Flutter에서는 컨트롤 위젯 및 스타일 속성을 결합하여 특별히 설계한 위젯을 통해서 
+레이아웃을 정의합니다.
 
 예를 들어, 
 [Column]({{site.api}}/flutter/widgets/Column-class.html) 및
@@ -1027,7 +1027,7 @@ React Native는 아이콘을 지원하지 않기 때문에 서드 파티 라이�
 
 Flutter에서는 머티리얼 라이브러리를 import 하면 다양한 
 [머티리얼 아이콘]({{site.api}}/flutter/material/Icons-class.html)과  
-[컬러]({{site.api}}/flutter/material/Colors-class.html) 또한 함께 가져옵니.
+[컬러]({{site.api}}/flutter/material/Colors-class.html) 또한 함께 가져옵니다.
 
 <!-- skip -->
 ```dart
@@ -1059,7 +1059,7 @@ dependencies:
 머터리얼 디자인의 [color palette]({{site.material}}/guidelines/style/color.html)에 
 해당하는 색상을 제공합니다.
 
-아래 예제는 기본 색을 `blue`으로, 
+아래 예제는 기본 색을 `blue`로, 
 텍스트 선택을 `red`로 설정하는 예제입니다.
 
 <!-- skip -->
@@ -1138,7 +1138,7 @@ Flutter에서 앱의 상태를 관리하기 위해서는, State 객체와 함께
 
 ### The StatelessWidget
 
-Flutter에서 `StatelessWidget` 상태 변화가 필요 
+Flutter에서 `StatelessWidget`은 상태 변화가 필요 
 없는(관리할 내부 상태가 없음) 위젯입니다.
 
 Stateless 위젯은 
@@ -1179,7 +1179,7 @@ class MyStatelessWidget extends StatelessWidget {
 
 이전 예제에서, `final` 표시가 있는 `text`를 전달하는 
 `MyStatelessWidget`을 생성자로 사용했습니다. 이 클래스는 `StatelessWidget`을 확장하고, 
-불변 데이터가 들어있습니다.
+불변 데이터를 포함하고 있습니다.
 
 상태가 없는 위젯의 `build` 메서드는 보통 3가지 상황에서만 
 호출됩니다.
@@ -1202,7 +1202,7 @@ class MyStatelessWidget extends StatelessWidget {
 상태가 변경 될 때 즉시 상태를 알리는 것은 위젯을 구현하는 사람의 책임입니다.
 위젯이 동적으로 변화하는 경우 `StatefulWidget`을 사용하세요.
 예를 들어, form에 타이핑을 하거나 slider를 움직여서 위젯의 상태가 변할 수 있습니다. 
-또는, 시간이 지남에 따라 변경될 수도 있습니다 — 데이터 피드가 UI를 업데이트 할 수 있음.
+또는, 시간이 지남에 따라 변경될 수도 있습니다(데이터 피드가 UI를 업데이트 할 수 있습니다).
 
 [Checkbox]({{site.api}}/flutter/material/Checkbox-class.html),
 [Radio]({{site.api}}/flutter/material/Radio-class.html),
