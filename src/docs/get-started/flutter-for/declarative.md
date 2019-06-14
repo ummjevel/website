@@ -1,37 +1,33 @@
 ---
-title: 선언적 UI 소개
-short-title: 선언적 UI
-description: Explains the difference between a declarative and imperative programming style.
+title: 선언형 UI 소개
+short-title: 선언형 UI
+description: 선언형과 명령형 프로그래밍 방식의 차이를 설명한다.
 ---
 
-_This introduction describes the conceptual difference between the
-declaractive style used by Flutter, and the imperative style used by
-many other UI frameworks._
+_이번 소개에서는 Flutter에서 사용하는 선언형 방식과 다른 많은 UI 프레임워크에서 사용하는
+명령형 방식의 개념적인 차이를 설명한다._
 
-## Why a declarative UI?
+## 왜 선언형 UI 인가?
 
-Frameworks from Win32 to web to Android and iOS typically use an imperative
-style of UI programming. This may be the style you’re most familiar
-with&mdash;where you manually construct a full-functioned UI entity,
-such as a UIView or equivalent, and later mutate it using methods and
-setters when the UI changes.
+Win32 프레임워크부터 웹을 거쳐 Android, iOS 까지 일반적으로 명령형 방식의 UI 프로그래밍을
+사용했다. UIView 등과 같이 완전한 기능의 UI 개체를 일일이 구성하고, 나중에 UI가 바뀌면
+메소드와 setter들을 이용해 변경하는, 아마도 당신에게 아주 친숙한 방식일 것이다.
 
-In order to lighten the burden on developers from having to program how to
-transition between various UI states, Flutter, by contrast,
-lets the developer describe the current UI state and leaves the
-transitioning to the framework.
+다양한 UI 상태들 사이의 전이를 어떻게 프로그래밍할 것인지에 대한 개발자들의 부담을 덜기위해,
+플러터는 대조적으로, 개발자들이 현재의 UI 상태만 묘사하고 그 전이는 프레임워크에
+맡기도록 했다.
 
-This, however, requires a slight shift in thinking for how to manipulate UI.
+어쨌거나 이것은, 어떻게 UI를 조작하는지에 대해 약간의 사고 전환을 필요로 한다.
 
-## How to change UI in a declarative framework
+## 선언형 프레임워크를 이용한 UI를 바꾸기
 
-Consider a simplified example below:
+아래의 간단한 예제를 살펴보자:
 
 <img src="/images/declarativeUIchanges.png" alt="View B (contained by view A) morphs from containing two views, c1 and c2, to containing only view c3">
 
-In the imperative style, you would typically go to ViewB’s owner
-and retrieve the instance `b` using selectors or with `findViewById` or similar,
-and invoke mutations on it (and implicitly invalidate it). For example:
+명령형 방식에서는, ViewB의 소유자로 가서, selector 혹은 `findViewById`같은 것들로
+인스턴스 `b`를 찾고, 변화를 적용한다. (그리고 암묵적으로 뷰가 변경되었음을 표시한다.)
+예를 들면:
 
 ```java
 // Imperative style
@@ -41,13 +37,12 @@ ViewC c3 = new ViewC(...)
 b.add(c3)
 ```
 
-You may also need to replicate this configuration in the constructor of
-ViewB since the source of truth for the UI may outlive instance `b` itself.
+또한, 인스턴스 `b` 자신 보다 오래 지속되는 `b`의 원본 데이터를 ViewB의 생성자내에 복제해야
+할 것이다.
 
-In the declarative style, view configurations (such as Flutter’s Widgets)
-are immutable and are only lightweight "blueprints". To change the UI,
-a Widget triggers a rebuild on itself (most commonly by calling `setState()`
-on StatefulWidgets in Flutter) and constructs a new Widget subtree.
+선언형 방식에서는, (Flutter의 위젯 같은)뷰 설정은 불변이고, 단지 간단한 청사진일 뿐이다.
+UI를 바꾸기 위해, 위젯이 자신의 재빌드를 유발하고(대부분의 경우 Flutter StatefulWidgets
+의 `setState()`를 호출) 새로운 위젯 하위 트리를 구성한다.
 
 <!-- skip -->
 ```dart
@@ -58,11 +53,8 @@ return ViewB(
 )
 ```
 
-Here, rather than mutating an old instance `b` when the UI changes,
-Flutter constructs new Widget instances. The framework manages many of the
-responsibilities of a traditional UI object (such as maintaining the
-state of the layout) behind the scenes with RenderObjects.
-RenderObjects persist between frames and Flutter’s lightweight Widgets
-tell the framework to mutate the RenderObjects between states.
-The Flutter framework handles the rest.
-
+여기서 UI가 변경될 때 기존 인스턴스 `b`를 변경하는 대신, Flutter는 새로운 위젯을 구성한다.
+프레임워크는 RenderObjects를 사용하여 (레이아웃의 상태를 유지하는)기존 UI 개체의 많은 책임
+를 관리한다. RenderObjects는 지속적으로 프레임을 유지하고, Flutter의 경량 위젯은
+RenderObjects 상태를 변경 시키도록 프레임워크에 지시한다.
+Flutter 프레임워크가 나머지를 처리한다.
