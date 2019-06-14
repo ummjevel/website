@@ -3,7 +3,7 @@ title: iOS 앱 출시 준비하기
 short-title: iOS
 ---
 
-이 가이드는 [앱스토어][appstore]와 [TestFlight][testflight]에 Flutter 앱을 출시하는 단계를 제공합니다.
+이 문서는 [앱스토어][appstore]와 [TestFlight][testflight]에 Flutter 앱을 출시하는 방법을 단계별로 제공합니다.
 
 다트 코드 난독화에 대한 정보를 얻고 싶다면, [Obfuscating Dart Code]({{site.github}}/flutter/flutter/wiki/Obfuscating-Dart-Code)를 참조하세요.
 
@@ -11,13 +11,13 @@ short-title: iOS
 
 앱을 배포하기 전에 애플의 [App Store 심사 지침][appreview]을 충족하는지 확인하세요. 
 
-앱스토어에 앱을 등록하기 위해서는 [Apple Developer Program][devprogram]에 가입해야 합니다. 더 다양한 맴버십 옵션을 확인하려면 [멤버십 선택하기][devprogram_membership]에서 볼 수 있습니다.  
+앱스토어에 앱을 등록하기 위해서는 [Apple Developer Program][devprogram]에 가입해야 합니다. 더 다양한 맴버십 옵션은 [멤버십 선택하기][devprogram_membership]에서 볼 수 있습니다.  
 
 ## App Store Connect에서 앱 등록하기
 
-[App Store Connect][appstoreconnect] (또는 iTunes Connect)는 앱의 라이프 사이클을 관리할 수 있는 곳입니다. 앱의 이름과 설명을 정하고 스크린샷을 추가하고 가격을 설정하여 앱스토어와 TestFlight에 출시를 관리하세요.
+[App Store Connect][appstoreconnect] (또는 iTunes Connect)는 앱의 라이프 사이클을 관리할 수 있는 곳입니다. 앱의 이름과 설명을 정하고 스크린샷을 추가하고 가격을 설정하여 앱스토어와 TestFlight에 출시를 관리하게 됩니다.
 
-앱을 등록할때는 고유 번들 ID 등록과 App Store Connect에 애플리케이션 레코드 생성을 하는 두 단계가 포함됩니다.
+앱을 등록할때는 고유 번들 ID 등록과 App Store Connect에 애플리케이션 레코드 생성의 두 단계가 포함됩니다.
 
 App Store Connect에 관한 자세한 내용은 [App Store Connect][appstoreconnect_guide]를 확인하세요.
 
@@ -46,8 +46,7 @@ App Store Connect에 관한 자세한 내용은 [App Store Connect][appstoreconn
 
 ## Xcode 프로젝트 설정하기
 
-여기서는 Xcode에서 가장 중요한 설정하는 법을 소개합니다. 자세한 절차 및 설명은 [앱 배포 준비하기]
-                                                [distributionguide_config]를 참조하세요.
+여기서는 Xcode에서 가장 중요한 설정하는 법을 소개합니다. 자세한 절차 및 설명은 [앱 배포 준비하기][distributionguide_config]를 참조하세요.
 
 Xcode에서 설정으로 이동합니다.
 
@@ -59,7 +58,7 @@ Xcode에서 설정으로 이동합니다.
 
 Identity 설정에서
 
-  * `Display Name:` 홈스크린등에 표시될 앱의 이름입니다.
+  * `Display Name:` 홈 스크린 등에 표시될 앱의 이름입니다.
   * `Bundle Identifier:` App Store Connect에서 등록한 번들 ID입니다.
 
 Signing 설정에서
@@ -69,7 +68,7 @@ Signing 설정에서
 
 Deployment Info 설정에서
 
-  * `Deployment Target:` 앱이 지원할 최소 iOS 버전을 선택합니다. 참고로 Flutter는 iOS 8.0 이상을 지원합니다. 만일 iOS 8에서 사용할 수 없는 API를 사용한다면 이 설정을 업데이트하세요.    
+  * `Deployment Target:` 앱이 지원할 최소 iOS 버전을 선택합니다. 참고로 Flutter는 iOS 8.0 이상을 지원합니다. 만일 iOS 8에서 사용할 수 없는 Objective-C나 Swift 코드로 된 API를 사용한다면 이 설정을 적합하게 수정하세요.    
 
 General 탭에서의 설정은 다음과 유사해야 합니다.
 
@@ -89,7 +88,7 @@ Flutter 앱을 만들면 기본 아이콘이 생성됩니다. 이 단계에서�
 
 여기서는 빌드 아카이브를 생성하여 App Store Connect에 빌드를 업로드 합니다.
 
-개발 중에 *디버그* 빌드로 빌딩, 디버깅, 테스트를 수행하셨을 겁니다. 앱 스토어나 TestFlight에서 사용자에게 앱을 사용하게 할 준비가 되면 *릴리즈* 빌드로 준비해야 합니다.
+개발 중에 *디버그* 빌드로 빌드, 디버깅, 테스트를 수행하셨을 겁니다. 앱 스토어나 TestFlight에서 사용자에게 앱을 사용하게 할 준비가 되면 *릴리즈* 빌드로 준비해야 합니다.
 
 명령 줄 인터페이스에서 애플리케이션 디렉토리로 이동한 뒤 다음을 실행하세요.
 
@@ -129,7 +128,7 @@ TestFlight를 통해 내부나 외부 테스터에게 자신의 앱을 푸시할
 
 ## 앱스토어에 앱 배포하기
 
-앱을 배포할 준비가 되었다면 릴리즈 하기 위한 단계롤 진행하세요. 
+앱을 배포할 준비가 되었다면 아래 단계를 따라 앱을 검토하고 배포하세요. 
 
 1. [App Store Connect][appstoreconnect_login]의 앱 상세 페이지의 좌측 사이드바에서 **가격 및 사용 가능 여부**를 선택하여 들어갑니다. 그런 뒤에 필요한 정보를 입력하고 저장합니다.    
 1. 좌측 사이드바에서 상태를 선택합니다. 만일 앱을 처음 출시할 경우 **1.0 제출 준비 중** 상태가 됩니다. 그런 뒤 필요한 정보를 입력합니다.    
