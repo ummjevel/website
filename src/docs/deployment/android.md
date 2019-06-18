@@ -196,51 +196,40 @@ android {
 
 Google Play 스토어 앱 출시에 대한 자세한 내용은 [Google Play 출시 문서][play]에서 확인하세요.
 
-## Building a release app bundle
+## release 앱 번들 빌드하기
 
-This section describes how to build a release app bundle. If you completed
-the signing steps in the previous section, the release bundle will be signed.
+어떻게 release 앱 번들을 빌드하는지 소개합니다. 위 단락의 서명하기를 완료했다면, release 번들도 서명될 것입니다.
 
-From the command line:
+터미널에서 실행:
 
-1. Enter `cd <app dir>`. (Replace `<app, dir>` with your application's directory.)
-1. Run `flutter build appbundle`. (Running `flutter build` defaults to a release build.)
-1. To generate a different variant of bundle, you can enter
+1. `cd <app dir>` 입력. (당신의 앱 디렉토리로 `<app, dir>` 를 변경하세요.)
+1. `flutter build appbundle` 실행. (`flutter build` 실행은 기본적으로 release 빌드 입니다.)
+1. 다른 플래폼의 번들을 생성하려면, 아래 명령어를 입력하세요.
    <nobr>`flutter build appbundle --release --target-platform=android-arm`.</nobr>
-   This generates a bundle for android-arm.
+   android-arm용 번들을 생성합니다.
 
-The release bundle for your app is created at
+release 번들은 아래 디렉토리에 생성됩니다.
 `<app dir>/build/app/outputs/bundle/release/app.aab`.
 
 {{site.alert.note}}
-  As of this writing, the app bundle command only generates **armeabi-v7a**
-  compatible libs. Follow [Issue 18494][Issue 18494] for more information.
+  언급했듯이, 앱 번들 명령어는 오직 **armeabi-v7a**호환 라이브러리만 생성합니다.
+  더 많은 정보를 확인하시려면 [Issue 18494][Issue 18494]를 참고하세요.
 {{site.alert.end}} 
 
-## Testing an app Bundle
+## 앱 번들 테스트하기
 
-An app bundle can be tested in multiple ways. This section describes a couple
-ways in which to test an app bundle.
+다양한 방식으로 앱 번들을 테스트 할 수 있습니다. 이번에는 두가지 방식의 앱 번들 테스트 하는 방법을 소개합니다.
 
-### Offline using the bundle tool
+### 번들 도구를 이용한 오프라인 테스트
 
-1. If you have done so already, download `bundletool` from the
-[GitHub repository](https://github.com/google/bundletool).
-1. [Generate a set of
-APKs](https://developer.android.com/studio/command-line/bundletool#generate_apks)
-from your app bundle.
-1. [Deploy the
-APKs](https://developer.android.com/studio/command-line/bundletool#deploy_with_bundletool)
-to connected devices.
+1. 앱 번들을 이미 완료했다면, [GitHub 저장소](https://github.com/google/bundletool)에서 `bundletool`을 다운받습니다.
+1. 앱 번들로부터 [APK 세트 생성하기](https://developer.android.com/studio/command-line/bundletool#generate_apks).
+1. 연결된 기기로 [APK 배포하기](https://developer.android.com/studio/command-line/bundletool#deploy_with_bundletool)
 
-### Online using Google Play
+### 구글 플레이를 이용한 온라인 테스트
 
-1. Upload your bundle to Google Play to test it. You can use the internal
-test track, or the alpha or beta channels to test the bundle before releasing
-it in production.
-2. Follow [these steps to upload your
-bundle](https://developer.android.com/studio/publish/upload-bundle)
-to the Play Store.
+1. 테스트 할 번들을 구글 플레이에 업로드합니다. 내부 테스트 트랙을 사용하거나, 알파 혹은 베타 채널을 이용해 프로덕션 배포전 테스트도 가능합니다.
+1. 플레이 스토어에 올리기 위해 [번들 올리는 방법](https://developer.android.com/studio/publish/upload-bundle)을 참고하세요.
 
 [manifest]: {{site.android-dev}}/guide/topics/manifest/manifest-intro
 [manifesttag]: {{site.android-dev}}/guide/topics/manifest/manifest-element
