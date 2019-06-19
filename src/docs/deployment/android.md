@@ -204,7 +204,7 @@ Google Play 스토어 앱 출시에 대한 자세한 내용은 [Google Play 출�
 
 1. `cd <app dir>` 입력. (당신의 앱 디렉토리로 `<app, dir>` 를 변경하세요.)
 1. `flutter build appbundle` 실행. (`flutter build` 실행은 기본적으로 release 빌드 입니다.)
-1. 다른 플래폼의 번들을 생성하려면, 아래 명령어를 입력하세요.
+1. 다른 플랫폼의 번들을 생성하려면, 아래 명령어를 입력하세요.
    <nobr>`flutter build appbundle --release --target-platform=android-arm`.</nobr>
    android-arm용 번들을 생성합니다.
 
