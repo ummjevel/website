@@ -573,7 +573,7 @@ Flutter 프로젝트를 새롭게 만들면, 아래와 같은 디렉토리 구�
 ┬
 └ projectname
   ┬
-  ├ android      - 안드로이드 관련 파일 포함.
+  ├ android      - Android 관련 파일 포함.
   ├ build        - iOS 및 Android 빌드 파일 저장.
   ├ ios          - iOS 관련 파일 포함.
   ├ lib          - 외부에서 접근할 수 있는 Dart 소스 파일 포함.
@@ -855,14 +855,14 @@ class _MyCanvasState extends State<MyCanvas> {
 
 {% include android-ios-figure-pair.md image="react-native/canvas.png" alt="Canvas" class="border" %}
 
-## Layouts
+## 레이아웃
 
-### How do I use widgets to define layout properties?
+### 위젯을 사용하여 레이아웃 속성을 정의하는 방법은?
 
-In React Native, most of the layout can be done with the props that are passed
-to a specific component. For example, you could use the `style` prop on the
-`View` component in order to specify the flexbox properties. To arrange your
-components in a column, you would specify a prop such as:
+React Native에서 대부분의 레이아웃은 특정 컴포넌트에 전달된 props로 속성을 정의할 수 있습니다. 
+예를 들어 `View` 컴포넌트의 `style` prop을 사용해서 flexbox 속성을 지정할 수 있습니다.
+컴포넌트들을 열로 배열하려면 
+props를 아래와 같이 지정해주면 됩니다:
 `flexDirection: “column”`.
 
 ```js
@@ -877,17 +877,17 @@ components in a column, you would specify a prop such as:
 >
 ```
 
-In Flutter, the layout is primarily defined by widgets specifically designed to
- provide layout, combined with control widgets and their style properties.
+Flutter에서는 컨트롤 위젯 및 스타일 속성을 결합하여 특별히 설계한 위젯을 통해서 
+레이아웃을 정의합니다.
 
-For example, the
-[Column]({{site.api}}/flutter/widgets/Column-class.html) and
-[Row]({{site.api}}/flutter/widgets/Row-class.html) widgets
-take an array of children and align them vertically and horizontally respectively.
-A [Container]({{site.api}}/flutter/widgets/Container-class.html)
-widget takes a combination of layout and styling properties, and a
-[`Center`]({{site.api}}/flutter/widgets/Center-class.html) widget centers
-its child widgets.
+예를 들어, 
+[Column]({{site.api}}/flutter/widgets/Column-class.html) 및
+[Row]({{site.api}}/flutter/widgets/Row-class.html) 위젯은
+자식 배열을 가지고, 그 배열을 각각 수직 혹은 수평으로 정렬합니다.
+[Container]({{site.api}}/flutter/widgets/Container-class.html)
+위젯은 레이아웃과 스타일링 속성을 조합하고
+[`Center`]({{site.api}}/flutter/widgets/Center-class.html) 위젯은 자식 위젯을
+중앙에 위치시킵니다.
 
 <!-- skip -->
 ```dart
@@ -915,26 +915,26 @@ Center(
 )
 ```
 
-Flutter provides a variety of layout widgets in its core widget library.
-For example, [`Padding`]({{site.api}}/flutter/widgets/Padding-class.html),
-[`Align`]({{site.api}}/flutter/widgets/Align-class.html),
-and [`Stack`]({{site.api}}/flutter/widgets/Stack-class.html).
+Flutter는 기본 위젯 라이브러리에서 다양한 레이아웃 위젯을 제공합니다.
+예를 들어, [`Padding`]({{site.api}}/flutter/widgets/Padding-class.html),
+[`Align`]({{site.api}}/flutter/widgets/Align-class.html), 
+[`Stack`]({{site.api}}/flutter/widgets/Stack-class.html)과 같은 핵심 위젯을 제공합니다.
 
-For a complete list, see [Layout Widgets](/docs/development/ui/widgets/layout).
+전체 리스트를 원하시면 [레이아웃 위젯](/docs/development/ui/widgets/layout)를 참조하세요.
 
 {% include android-ios-figure-pair.md image="react-native/basic-layout.gif" alt="Layout" class="border" %}
 
-### How do I layer widgets?
+### 위젯을 겹쳐 쌓아올리는 방법은?
 
-In React Native, components can be layered using `absolute` positioning.
+React Native에서는 `absolute` 포지션을 사용하여 컴포넌트를 겹치게 할 수 있습니다.
 
-Flutter uses the
-[`Stack`]({{site.api}}/flutter/widgets/Stack-class.html)
-widget to arrange children widgets in layers.
-The widgets can entirely or partially overlap the base widget.
+Flutter에서는
+[`Stack`]({{site.api}}/flutter/widgets/Stack-class.html) 위젯을 사용하여
+자식 위젯들을 겹치게 할 수 있습니다.
+위젯이 전체적으로 또는 부분적으로 기본 위젯과 겹치게 할 수 있습니다.
 
-The `Stack` widget positions its children relative to the edges of its box.
-This class is useful if you simply want to overlap several children widgets.
+`Stack` 위젯은 상자의 가장자리를 기준으로 자식들을 배치합니다.
+이 클래스는 여러 자식 위젯을 간단하게 쌓아올리려고 할 때 유용합니다.
 
 <!-- skip -->
 ```dart
@@ -956,21 +956,22 @@ Stack(
 )
 ```
 
-The previous example uses `Stack` to overlay a Container (that displays its `Text`
-on a translucent black background) on top of a `CircleAvatar`. The Stack offsets
-the text using the alignment property and Alignment coordinates.
+위 예제는 `Stack`을 사용하여 `CircleAvatar` 위에
+Container(반투명 검정 배경을 가진 `Text`를 보여주고 있음)를 쌓아올립니다.
+Stack은 정렬 속성과 정렬 좌표를 사용하여 
+텍스트의 간격을 조정합니다. 
 
 {% include android-ios-figure-pair.md image="react-native/stack.png" alt="Stack" class="border" %}
 
-For more information, see the
-[Stack]({{site.api}}/flutter/widgets/Stack-class.html) class documentation.
+더 많은 정보를 원하시면, 
+[Stack]({{site.api}}/flutter/widgets/Stack-class.html) 클래스 문서를 참조하세요.
 
-## Styling
+## 스타일링
 
-### How do I style my components?
+### 컴포넌트를 꾸미는 방법은?
 
-In React Native, inline styling and `stylesheets.create` are used to style
-components.
+React Native에서는 인라인 스타일링과 `stylesheets.create`를 사용하여 
+컴포넌트를 꾸밉니다.
 
 ```js
 // React Native
@@ -990,10 +991,10 @@ const styles = StyleSheet.create({
 });
 ```
 
-In Flutter, a `Text` widget can take a `TextStyle` class for its style property.
-If you want to use the same text style in multiple places, you can create a
-[`TextStyle`]({{site.api}}/flutter/dart-ui/TextStyle-class.html)
-class and use it for multiple `Text` widgets.
+Flutter에서 `Text` 위젯은 style 속성에 `TextStyle` 클래스를 사용할 수 있습니다.
+여러 곳에서 같은 텍스트 스타일을 사용하고 싶다면, 
+[`TextStyle`]({{site.api}}/flutter/dart-ui/TextStyle-class.html) 클래스를
+여러 `Text` 위젯에 사용할 수 있습니다.
 
 <!-- skip -->
 ```dart
@@ -1020,30 +1021,30 @@ Center(
 
 {% include android-ios-figure-pair.md image="react-native/flutterstyling.gif" alt="Styling" class="border" %}
 
-### How do I use `Icons` and `Colors`?
+### `Icons`와 `Colors`를 사용하는 방법은?
 
-React Native doesn't include support for icons so third party libraries are used.
+React Native는 아이콘을 지원하지 않기 때문에 서드 파티 라이브러리가 사용됩니다.
 
-In Flutter, importing the Material library also pulls in the rich set of
-[Material icons]({{site.api}}/flutter/material/Icons-class.html)
-and [colors]({{site.api}}/flutter/material/Colors-class.html).
+Flutter에서는 머티리얼 라이브러리를 import 하면 다양한 
+[머티리얼 아이콘]({{site.api}}/flutter/material/Icons-class.html)과  
+[컬러]({{site.api}}/flutter/material/Colors-class.html) 또한 함께 가져옵니다.
 
 <!-- skip -->
 ```dart
 Icon(Icons.lightbulb_outline, color: Colors.redAccent)
 ```
 
-When using the `Icons` class, make sure to set `uses-material-design: true` in
-the project's `pubspec.yaml` file. This ensures that
-the `MaterialIcons` font, which displays the icons, is included in your app.
+`Icons` 클래스를 사용할 때, 프로젝트의 `pubspec.yaml` 파일에 
+`uses-material-design: true`로 설정 되어 있는지 확인하세요. 
+이렇게 하면 아이콘을 표시하는 `MaterialIcons` 글꼴이 앱에 포함되도록 할 수 있습니다.
 {% prettify dart %}
 name: my_awesome_application
 flutter: [[highlight]]uses-material-design: true[[/highlight]]
 {% endprettify %}
 
-Flutter's [Cupertino (iOS-style)](/docs/development/ui/widgets/cupertino) package provides high
-fidelity widgets for the current iOS design language. To use the `CupertinoIcons`
-font, add a dependency for `cupertino_icons` in your project's  `pubspec.yaml` file.
+Flutter의 [쿠퍼티노 (iOS-style)](/docs/development/ui/widgets/cupertino) 패키지는 
+현재 iOS 디자인 언어를 잘 준수하는 위젯을 제공합니다. `CupertinoIcons`을 사용하기 위해서는 
+프로젝트의 `pubspec.yaml` 파일에 `cupertino_icons` 의존성을 추가해야 합니다.
 
 ```yaml
 name: my_awesome_application
@@ -1051,15 +1052,15 @@ dependencies:
   cupertino_icons: ^0.1.0
 ```
 
-To globally customize the colors and styles of components, use `ThemeData`
-to specify default colors for various aspects of the theme. Set the theme
-property in `MaterialApp` to the `ThemeData` object. The
-[`Colors`]({{site.api}}/flutter/material/Colors-class.html)
-class provides colors from the Material Design [color
-palette]({{site.material}}/guidelines/style/color.html).
+컴포넌트 전체적인 색과 스타일을 지정하고 싶다면, 
+`ThemeData`을 사용해서 테마의 다양한 측에 기본 색상을 지정하세요. 
+`MaterialApp`에서 theme 속성에 `ThemeData` 객체를 설정하세요.
+[`Colors`]({{site.api}}/flutter/material/Colors-class.html) 클래스는 
+머터리얼 디자인의 [color palette]({{site.material}}/guidelines/style/color.html)에 
+해당하는 색상을 제공합니다.
 
-The following example sets the primary swatch to `blue` and the text
-selection to `red`.
+아래 예제는 기본 색을 `blue`로, 
+텍스트 선택을 `red`로 설정하는 예제입니다.
 
 <!-- skip -->
 {% prettify dart %}
@@ -1078,17 +1079,17 @@ class SampleApp extends StatelessWidget {
 }
 {% endprettify %}
 
-### How do I add style themes?
+### 스타일 테마를 추가하는 방법은?
 
-In React Native, common themes are defined for components in stylesheets and
-then used in components.
+React Native에서, 컴포넌트 공통 테마는 stylesheets에 정의한 후 
+컴포넌트에 사용합니다.
 
-In Flutter, create uniform styling for almost everything by defining the
- styling in the
-[`ThemeData`]({{site.api}}/flutter/material/ThemeData-class.html)
-class and passing it to the theme property in the
-[`MaterialApp`]({{site.api}}/flutter/material/MaterialApp-class.html)
-widget.
+Flutter에서는 
+[`ThemeData`]({{site.api}}/flutter/material/ThemeData-class.html) 클래스에 
+스타일을 정의하고 
+[`MaterialApp`]({{site.api}}/flutter/material/MaterialApp-class.html) 위젯의 
+테마 속성에 전달함으로써 
+거의 모든 곳에 균일한 스타일을 적용할 수 있습니다.
 
 <!-- skip -->
 ```dart
@@ -1104,10 +1105,10 @@ widget.
   }
 ```
 
-A `Theme` can be applied even without using the `MaterialApp` widget. The
-[`Theme`]({{site.api}}/flutter/material/Theme-class.html)
-widget takes a `ThemeData` in its `data` parameter and applies the
-`ThemeData` to all of its children widgets.
+`Theme`는 `MaterialApp` 위젯을 사용하지 않고도 적용될 수 있습니다. 
+[`Theme`]({{site.api}}/flutter/material/Theme-class.html) 위젯은 
+`data` 매개 변수에서 `ThemeData`를 가져와 
+모든 자식 위젯에 `ThemeData`를 적용합니다.
 
 <!-- skip -->
 ```dart
@@ -1127,30 +1128,30 @@ widget takes a `ThemeData` in its `data` parameter and applies the
   }
 ```
 
-## State Management
+## 상태 관리
 
-State is information that can be read synchronously when a widget is built
-or information that might change during the lifetime of a widget.
-To manage app state in Flutter, use a
-[StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html)
-paired with a State object.
+상태(State)는 위젯이 빌드될 때 동기적으로 읽을 수 있는 정보이고,
+위젯의 수명 동안 변경될 수 있는 정보입니다.
+Flutter에서 앱의 상태를 관리하기 위해서는, State 객체와 함께 
+[StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html)을 
+사용하세요.
 
 ### The StatelessWidget
 
-A `StatelessWidget` in Flutter is a widget that doesn't require a state
-change&mdash;it has no internal state to manage.
+Flutter에서 `StatelessWidget`은 상태 변화가 필요 
+없는(관리할 내부 상태가 없음) 위젯입니다.
 
-Stateless widgets are useful when the part of the user interface you are
-describing does not depend on anything other than the configuration information
-in the object itself and the
-[`BuildContext`]({{site.api}}/flutter/widgets/BuildContext-class.html)
-in which the widget is inflated.
+Stateless 위젯은 
+묘사하려는 UI의 일부분이  
+객체의 자체적인 구성 정보나 위젯의 
+[`BuildContext`]({{site.api}}/flutter/widgets/BuildContext-class.html) 
+이외의 것에 의존하지 않을 때 유용합니다.
 
 [AboutDialog]({{site.api}}/flutter/material/AboutDialog-class.html),
 [CircleAvatar]({{site.api}}/flutter/material/CircleAvatar-class.html),
-and [Text]({{site.api}}/flutter/widgets/Text-class.html) are examples
-of stateless widgets which subclass
-[StatelessWidget]({{site.api}}/flutter/widgets/StatelessWidget-class.html).
+[Text]({{site.api}}/flutter/widgets/Text-class.html)가
+[StatelessWidget]({{site.api}}/flutter/widgets/StatelessWidget-class.html)의
+하위 클래스인 상태가 없는 위젯의 예시입니다.
 
 
 <!-- skip -->
@@ -1176,46 +1177,44 @@ class MyStatelessWidget extends StatelessWidget {
 }
 ```
 
-In the previous example, you used the constructor of the `MyStatelessWidget` class
-to pass the `text`, which is marked as `final`. This class extends
- `StatelessWidget`&mdash;it contains immutable data.
+이전 예제에서, `final` 표시가 있는 `text`를 전달하는 
+`MyStatelessWidget`을 생성자로 사용했습니다. 이 클래스는 `StatelessWidget`을 확장하고, 
+불변 데이터를 포함하고 있습니다.
 
-The `build` method of a stateless widget is typically called in only three
- situations:
+상태가 없는 위젯의 `build` 메서드는 보통 3가지 상황에서만 
+호출됩니다.
 
-* When the widget is inserted into a tree
-* When the widget's parent changes its configuration
-* When an
-  [`InheritedWidget`]({{site.api}}/flutter/widgets/InheritedWidget-class.html)
-  it depends on, changes
+* 위젯이 트리에 추가될 때
+* 위젯의 부모가 설정이 변경됐을 때
+* 사용하고 있는 
+  [`InheritedWidget`]({{site.api}}/flutter/widgets/InheritedWidget-class.html)이
+  변경될 때
 
 ### The StatefulWidget
 
-A [StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html)
-is a widget that changes state. Use the `setState` method to manage the
-state changes for a `StatefulWidget`. A call to `setState` tells the Flutter
-framework that something has changed in a state, which causes an app to
-rerun the `build` method so that the app can reflect the change.
+[StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html)은 
+상태가 변경되는 위젯입니다. `setState` 메서드를 사용하여 `StatefulWidget`의 
+상태를 변경하세요. `setState`를 호출하면 Flutter 프레임워크에게 상태가 변경되었다고 알려주고,
+그러면 앱이 `build` 메서드를 다시 실행하여 변경 사항을 반영할 수 있게 됩니다.
 
-State is information that can be read synchronously when a widget is built and
-might change during the lifetime of the widget. It's the responsibility of the
-widget implementer to ensure that the state is promptly notified when the state
-changes. Use `StatefulWidget` when a widget can change dynamically.
-For example, the state of the widget changes by typing into a form,
-or moving a slider. Or, it can change over time—perhaps a data feed updates the UI.
+상태는 위젯이 빌드 될 때 동기적으로 읽을 수 있는 정보이고, 
+위젯의 생명 주기 동안 변경 될 수 있습니다. 
+상태가 변경 될 때 즉시 상태를 알리는 것은 위젯을 구현하는 사람의 책임입니다.
+위젯이 동적으로 변화하는 경우 `StatefulWidget`을 사용하세요.
+예를 들어, form에 타이핑을 하거나 slider를 움직여서 위젯의 상태가 변할 수 있습니다. 
+또는, 시간이 지남에 따라 변경될 수도 있습니다(데이터 피드가 UI를 업데이트 할 수 있습니다).
 
 [Checkbox]({{site.api}}/flutter/material/Checkbox-class.html),
 [Radio]({{site.api}}/flutter/material/Radio-class.html),
 [Slider]({{site.api}}/flutter/material/Slider-class.html),
 [InkWell]({{site.api}}/flutter/material/InkWell-class.html),
 [Form]({{site.api}}/flutter/widgets/Form-class.html),
-and [TextField]({{site.api}}/flutter/material/TextField-class.html)
-are examples of stateful widgets, that subclass
-[StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html).
+[TextField]({{site.api}}/flutter/material/TextField-class.html)는
+[StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html)의
+하위클래스인 상태가 있는 위젯의 예시입니다.
 
-The following example declares a `StatefulWidget` which requires a `createState()`
-method. This method creates the state object that manages the widget's state,
-`_MyStatefulWidgetState`.
+아래 예시는 `createState()` 메서드를 필요로 하는 `StatefulWidget`을 선언하는 예시입니다.
+이 메서드는 위젯의 상태를 관리하는 상태 객체 `_MyStatefulWidgetState`를 생성합니다.
 
 <!-- skip -->
 ```dart
@@ -1228,10 +1227,10 @@ class MyStatefulWidget extends StatefulWidget {
 }
 ```
 
-The following state class, `_MyStatefulWidgetState`, implements the `build()`
-method for the widget. When the state changes, for example, when the user toggles
-the button, `setState` is called with the new toggle value. This causes the
-framework to rebuild this widget in the UI.
+아래 상태 클래스 `_MyStatefulWidgetState`는 위젯의 `build()` 메서드를 구현합니다. 
+상태가 바뀌면(예를 들어, 사용자가 버튼을 누르면), 
+`setState`가 새로운 toggle 값과 함께 호출됩니다.
+이렇게 하면 프레임워크가 UI 위젯을 다시 빌드합니다.
 
 <!-- skip -->
 ```dart
@@ -1288,44 +1287,44 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 }
 ```
 
-### What are the StatefulWidget and StatelessWidget best practices?
+### StatefulWidget 및 StatelessWidget의 모범 사례는?
 
-Here are a few things to consider when designing your widget.
+위젯을 설계할 때 고려해야 할 몇 가지 사항이 있습니다.
 
-#### 1. Determine whether a widget should be a StatefulWidget or a StatelessWidget
+#### 1. 위젯이 StatefulWidget인지 StatelessWidget인지 결정하세요.
 
 
-In Flutter, widgets are either Stateful or Stateless—depending on whether
-they depend on a state change.
+Flutter에서, 위젯은 상태 변화에 의존적인지에 따라 
+Stateful이거나 Stateless입니다.
 
-* If a widget changes—the user interacts with it or a data feed interrupts
-  the UI, then it’s Stateful.
-* If a widget is final or immutable, then it's Stateless.
+* 위젯이 변화한다면(사용자 인터렉션이 있거나 데이터로부터 UI 변경이 있다면), 
+  Stateful을 사용해야 합니다.
+* 위젯이 final이거나 immutable이면, Stateless를 사용해야 합니다.
 
-#### 2. Determine which object manages the widget’s state (for a StatefulWidget)
+#### 2. 어떤 객체가 위젯의 상태를 관리하는지 결정하세요. (StatefulWidget의 경우)
 
-In Flutter, there are three primary ways to manage state:
+Flutter에서 상태를 관리하는 3가지 주된 방법이 있습니다.
 
-* The widget manages its own state
-* The parent widget manages the widget’s state
-* A mix-and-match approach
+* 위젯이 자신의 상태를 관리
+* 부모 위젯이 상태를 관리
+* 혼합하여 관리
 
-When deciding which approach to use, consider the following principles:
+어떤 접근 방식을 사용할 것인지 결정할 때, 아래 원칙을 고려하세요.
 
-* If the state in question is user data, for example the checked or unchecked
-  mode of a checkbox, or the position of a slider, then the state is best managed
-  by the parent widget.
-* If the state in question is aesthetic, for example an animation, then the
-  widget itself best manages the state.
-* When in doubt, let the parent widget manage the child widget's state.
+* 해당 상태가 사용자 데이터라면(예를 들어, 슬라이더 위치 
+  혹은 체크박스의 선택과 취소) 
+  상태를 상위 위젯에서 관리하는 것이 가장 좋습니다.
+* 해당 상태가 보이는 것과 깊다면(예를 들어, 애니메이션)
+  해당 위젯이 상태를 제일 잘 관리할 수 있습니다.
+* 잘 모르겠을 때는 부모 위젯이 자식 위젯의 상태를 관리하게 하세요.
 
-#### 3. Subclass StatefulWidget and State
+#### 3. StatefulWidget의 하위 클래스 및 State
 
-The `MyStatefulWidget` class manages its own state—it extends
-`StatefulWidget`, it overrides the `createState()` method to create the State
-object, and the framework calls `createState()` to build the widget. In this
-example, `createState()` creates an instance of `_MyStatefulWidgetState`, which
-is implemented in the next best practice.
+`MyStatefulWidget` 클래스는 자신의 상태를 관리합니다. 이 클래스는
+`StatefulWidget`를 상속 받고, `createState()` 메서드를 오버라이드하여 
+State 객체를 만듭니다. 그리고 프레임워크는 `createState()`를 호출하여 위젯을 빌드합니다.
+이 예제에서, `createState()`는 다음 모범 사례에서 구현되는
+`_MyStatefulWidgetState`의 인스턴스를 만듭니다.
 
 <!-- skip -->
 ```dart
@@ -1346,9 +1345,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 }
 ```
 
-#### 4. Add the StatefulWidget into the widget tree
+#### 4. StatefulWidget을 위젯 트리에 추가하세요.
 
-Add your custom `StatefulWidget` to the widget tree in the app’s build method.
+직접 만든 `StatefulWidget`을 앱의 빌드 메서드에 있는 위젯 트리에 추가하세요.
 
 <!-- skip -->
 ```dart
