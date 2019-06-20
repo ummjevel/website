@@ -11,17 +11,11 @@ Flutter 어플리케이션의 디버그를 위한 다양한 툴과 기능을 소
 
 ## The Dart Analyzer
 
-Before running your applications, test your code with `flutter analyze`. This
-tool (which is a wrapper around the `dartanalyzer` tool) analyzes your code
-and helps you find possible mistakes. If you're using a
-[Flutter enabled IDE/editor](/docs/get-started/editor/),
-this is already happening for you.
+어플리케이션을 실행하기 전에 `flutter analyze` 를 통해 테스트를 합니다. `dartanalyzer` 툴에 기반한 이 툴은 코드를 분석하고, 실수를 찾도록 돕습니다. [Flutter enabled IDE/editor](/docs/get-started/editor/) 를 사용한다면, 개발자가 별도로 실행하지 않아도 IDE가 실행해줍니다.
 
-The Dart analyzer makes heavy use of type annotations that you put in
-your code to help track problems down. You are encouraged to use them
-everywhere (avoiding `var`, untyped arguments, untyped list literals,
-etc) as this is the quickest and least painful way of tracking down
-problems.
+The Dart Analyzer는 문제를 추적하기 위해 여러분이 코드에 넣어둔 타입 어노테이션을 
+이용합니다. 문제를 추적하기 위한 가장 빠르고 덜 고통스러운 방법이니만큼 모든 곳에서
+var 선언,  타입 없는 인수, 타입 없는 배열 문법 등의 사용을 피하는 것을 권장합니다.
 
 ## Dart Observatory (statement-level single-stepping debugger and profiler)
 
