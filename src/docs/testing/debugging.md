@@ -1,13 +1,12 @@
 ---
-title: Debugging Flutter apps
+title: Flutter 앱 디버깅하기
 ---
 
-There are a wide variety of tools and features to help debug Flutter
-applications.
+Flutter 어플리케이션의 디버그를 위한 다양한 툴과 기능을 소개합니다.
 
 {{site.alert.note}}
-  If your app's UI isn't running as smoothly as you expect,
-  check out [Flutter Performance Profiling](ui-performance).
+  여러분의 앱이 기대한만큼 부드럽게 동작하지 않는다면,
+  [Flutter Performance Profiling](ui-performance)를 살펴보세요.
 {{site.alert.end}}
 
 ## The Dart Analyzer
