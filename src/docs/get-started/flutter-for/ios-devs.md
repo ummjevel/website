@@ -1,30 +1,24 @@
 ---
-title: Flutter for iOS developers
-description: Learn how to apply iOS developer knowledge when building Flutter apps.
+title: iOS 개발자를 위한 Flutter
+description: Flutter 앱을 만들 때 iOS 개발 지식을 활용하는 방법을 배워보세요.
 ---
 
-This document is for iOS developers looking to apply their existing iOS
-knowledge to build mobile apps with Flutter. If you understand the
-fundamentals of the iOS framework then you can use this document as a
-way to get started learning Flutter development.
+Flutter로 모바일 앱을 만들 때 자신의 지식을 활용하려는 iOS 개발자들을 위한 문서입니다.
+iOS 프레임워크의 원리를 이해한다면, 이 문서를 통해 Flutter 개발을 배우기 시작할 수 있어요.
 
-Before diving into this doc, you may want to watch a 15-minute video from
-the [Flutter Youtube channel](https://www.youtube.com/flutterdev) about
-the Cupertino package.
+본격적으로 뛰어들기 전에 [Flutter Youtube 채널](https://www.youtube.com/flutterdev)에서
+15분 분량의 Cupertino 패키지 비디오를 시청해보세요.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3PdUaidHc-E?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Your iOS knowledge and skill set are highly valuable when building with
-Flutter, because Flutter relies on the mobile operating system for numerous
-capabilities and configurations. Flutter is a new way to build UIs for mobile,
-but it has a plugin system to communicate with iOS (and Android) for non-UI
-tasks. If you're an expert in iOS development, you don't have to relearn
-everything to use Flutter.
+iOS 지식과 기술셋은 Flutter 개발에 큰 도움이 되는데, Flutter는 모바일 운영체제의
+여러 기능 및 구성과 관련이 있기 때문입니다. Flutter는 모바일을 위한 UI 새로운 제작 방법이지만,
+iOS(그리고 안드로이드)의 UI가 아닌 작업들과 통신하기 위한 플러그인 시스템도 가지고 있습니다.
+당신이 iOS 개발 전문가라면, Flutter를 사용하는 모든 방법을 다시 배울 필요는 없습니다.
 
-Flutter also already makes a number of adaptations in the framework for you 
-when running on iOS. For a list, see [Platform adaptations](/docs/resources/platform-adaptations).
+Flutter는 이미 iOS에 동작시키기 위한 수 많은 어댑터들 만들었습니다. 목록은
+[플랫폼 어댑터](/docs/resources/platform-adaptations)에서 확인하세요.
 
-This document can be used as a cookbook by jumping around and finding questions
-that are most relevant to your needs.
+이 문서는 필요한 질문을 찾거나 훑어보는 용도의 설명서로 사용될 수 있습니다.
 
 ## Views
 
