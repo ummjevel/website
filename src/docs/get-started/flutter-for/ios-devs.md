@@ -20,48 +20,43 @@ Flutter는 이미 iOS에 동작시키기 위한 수 많은 어댑터들 만들�
 
 이 문서는 필요한 질문을 찾거나 훑어보는 용도의 설명서로 사용될 수 있습니다.
 
-## Views
+## View
 
-### What is the equivalent of a `UIView` in Flutter?
+### Flutter의 `UIView`는 어떤 것 일까요?
 
 {{site.alert.secondary}}
-How is react-style, or _declarative_, programming different than the
-traditional imperative style?
-For a comparison, see [Introduction to declarative
-UI](/docs/get-started/flutter-for/declarative).
+반응형 혹은 _선언형_ 프로그래밍과 기존 명령형 프로그래밍은 어떤 차이가 있을까요?
+비교를 위해 [명령형 UI 프로그래밍 소개](/docs/get-started/flutter-for/declarative)
+살펴보세요.
 {{site.alert.end}}
 
-On iOS, most of what you create in the UI is done using view objects, which are
-instances of the `UIView` class. These can act as containers for other `UIView`
-classes, which form your layout.
+iOS에서, UI를 만드는 것의 대부분은 `UIView` 클래스의 인스턴스인 뷰 개체를 사용합니다.
+다른 `UIView`의 컨테이너 역할을 할 수 있고, 레이아웃을 구성합니다.
 
-In Flutter, the rough equivalent to a `UIView` is a `Widget`. Widgets don't map
-exactly to iOS views, but while you're getting acquainted with how Flutter works
-you can think of them as "the way you declare and construct UI".
+Flutter 에서는, `UIView`와 대략적으로 같은 것이 `위젯(Widget)`입니다. 위젯이 정확하게 iOS 뷰와
+같지는 않지만, Flutter가 어떻게 동작하는지 익히는 동안 위젯을 `UI를 선언하고 구성하는 방법`으로
+여길 수 있습니다.
 
-However, these have a few differences to a `UIView`. To start, widgets have a
-different lifespan: they are immutable and only exist until they need to be
-changed. Whenever widgets or their state change, Flutter’s framework creates
-a new tree of widget instances. In comparison, an iOS view is not recreated when
-it changes, but rather it's a mutable entity that is drawn once and doesn't
-redraw until it is invalidated using `setNeedsDisplay()`.
+그러나, `UIView`와는 몇가지 다른 점들이 있습니다. 우선, 위젯은 다른 수명을 가지고 있습니다. 위젯은
+불변이며 변화가 생기기 전까지만 존재합니다. 위젯 혹은 위젯의 상태가 변하면, Flutter 프레임워크가
+새로운 위젯 인스턴트 트리를 생성합니다. 비교해보자면, iOS 뷰는 상태가 변해도 재생성 되지 않습니다.
+더 자세히 말하자면, iOS 뷰는 변할 수 있는 개체(mutable entity)이고, 한 번 그려진 뒤,
+`setNeedsDisplay()`를 사용하여 무효화 하는 방식으로 다시 그릴 수 있습니다.
 
-Furthermore, unlike `UIView`, Flutter’s widgets are lightweight, in part due
-to their immutability. Because they aren't views themselves, and aren't directly
-drawing anything, but rather are a description of the UI and its semantics
-that get "inflated" into actual view objects under the hood.
+더 나아가 `UIView`와 다르게, Flutter의 위젯은 불변성 덕분에 가볍습니다. 왜냐하면 위젯 스스로는
+뷰가 아니고, 직접적으로 그리는 것도 없습니다. 다만 위젯은 UI의 설명이자 문법이고, 내부적으로 실제 뷰에
+"부풀어 오르게" 됩니다.
 
-Flutter includes the [Material Components]({{site.material}}/develop/flutter/)
-library. These are widgets that implement the
-[Material Design guidelines]({{site.material}}/design/). Material Design is a
-flexible design system [optimized for all
-platforms]({{site.material}}/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines),
-including iOS.
+Flutter는 [머티어리얼 구성요소]({{site.material}}/develop/flutter/)라이브러리를
+포함하고 있습니다. 이 위젯들은 [머티어리얼 디자인 가이드라인]({{site.material}}/design/)
+대로 구현되었습니다. Material Design은 유연한 디자인 시스템이고 iOS를 포함한
+[모든 플랫폼에 최적화]({{site.material}}/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines),
+되어있습니다.
 
-But Flutter is flexible and expressive enough to implement any design language.
-On iOS, you can use the [Cupertino widgets](/docs/development/ui/widgets/cupertino)
-to produce an interface that looks like
-[Apple's iOS design language](https://developer.apple.com/design/resources).
+Flutter는 다른 디자인을 구현하기에도 충분히 유연하고 표현력있습니다. iOS 에서,
+[쿠퍼티노 위젯](/docs/development/ui/widgets/cupertino)을 사용하여
+[애플의 iOS 디자인 가이드](https://developer.apple.com/design/resources)처럼 보이도록
+인터페이스를 구성할 수 있습니다.
 
 ### How do I update `Widget`s?
 
