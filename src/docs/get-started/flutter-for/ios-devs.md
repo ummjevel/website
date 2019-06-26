@@ -58,42 +58,36 @@ Flutter는 다른 디자인을 구현하기에도 충분히 유연하고 표현�
 [애플의 iOS 디자인 가이드](https://developer.apple.com/design/resources)처럼 보이도록
 인터페이스를 구성할 수 있습니다.
 
-### How do I update `Widget`s?
+### 위젯 업데이트 하기
 
-To update your views on iOS, you directly mutate them. In Flutter, widgets are
-immutable and not updated directly. Instead, you have to manipulate the
-widget’s state.
+iOS에서 뷰를 업데이트 하기 위해서는 뷰를 직접 다뤄야 합니다. Flutter에서는 위젯이 불변이고
+직접 수정할 수 없습니다. 대신, 위젯의 상태를 다뤄 수정할 수 있습니다.
 
-This is where the concept of Stateful vs Stateless widgets
-comes in. A `StatelessWidget` is just what it sounds like&mdash;a widget with no
-state attached.
+이 지점에서 Stateful과 Stateless 위젯 컨셉이 필요합니다. `StatelessWidget`은 마치
+상태가 없는 위젯 처럼 들리죠.
 
-`StatelessWidgets` are useful when the part of the user interface you are
-describing does not depend on anything other than the initial configuration
-information in the widget.
+`StatelessWidgets`은 위젯의 초기 설정 정보 이외의 것과는 무관한 유저 인터페이스를 묘사하는데
+용이합니다.
 
-For example, in iOS, this is similar to placing a `UIImageView` with
-your logo as the `image`. If the logo is not changing during runtime,
-use a `StatelessWidget` in Flutter.
+예를 들어, iOS 에서는, `image`로 로고가 들어간 `UIImageView`이 비슷합니다. 실행하는 동안
+로고가 변하지 않는다면, Flutter에서는 `StatelessWidget`를 사용하면 됩니다. 
 
-If you want to dynamically change the UI based on data received after making an
-HTTP call, use a `StatefulWidget`. After the HTTP call has
-completed, tell the Flutter framework that the widget’s `State` is
-updated, so it can update the UI.
+HTTP 호출를 통해 받은 데이터로 UI를 동적으로 변경하고 싶다면, `StatefulWidget`를 사용하세요.
+HTTP 호출이 완료된 후, 위젯의 `State`가 업데이트 되었음을 Flutter 프레임워크에게 알리면,
+UI가 업데이트 됩니다.
 
-The important difference between stateless and
-stateful widgets is that `StatefulWidget`s have a `State` object that stores
-state data and carries it over across tree rebuilds, so it's not lost.
+Stateless와 Stateful 위젯 간의 중요한 차이는, `StatefulWidget`는 상태 데이터를 저장하고
+재구성되는 위젯 트리를 가진 `State`가 있기 떄문에 상태가 손실되지 않는다는 점입니다.
 
-If you are in doubt, remember this rule: if a widget changes outside of
-the `build` method (because of runtime user interactions, for example), it’s stateful.
-If the widget never changes, once built, it's stateless.
-However, even if a widget is stateful, the containing parent widget can still
-be stateless if it isn’t itself reacting to those changes (or other inputs).
+이해가 잘 안된다면, 이 규칙을 기억하세요: 위젯이 `build` 메소드 외부에서 변경되면(예, 런타임
+유저 상호작용의 경우) Stateful 입니다.
+상태가 한번 구성되고 더 이상 변하지 않는다면 Stateless 입니다.
+그런데, `StatefulWidget`일 지라도, 다른 변화(혹은 입력)에 반응하지 않는다면 이것을 가지고
+있는 부모 위젯은 `StatelessWidget`일 수도 있습니다.
 
-The following example shows how to use a `StatelessWidget`. A common
-`StatelessWidget` is the `Text` widget. If you look at the implementation of
-the `Text` widget you'll find it subclasses `StatelessWidget`.
+아래 예제를 보고 `StatelessWidget`을 어떻게 사용하는지 살펴보세요. 일반적인
+`StatelessWidget`인 `Text` 위젯 입니다. `Text` 위젯의 구현을 살펴보면
+`StatelessWidget`의 자식클래스임을 찾을 수 있습니다.
 
 {% prettify dart %}
 Text(
@@ -102,17 +96,15 @@ Text(
 );
 {% endprettify %}
 
-If you look at the code above, you might notice that the `Text` widget
-carries no explicit state with it. It renders what is passed in its
-constructors and nothing more.
+위 코드를 살펴보면, `Text` 위젯이 아무 명시적인 상태도 전달하지 않는다는 것을 확인
+할 수 있다. 생성자에 전달된 값으로만 만들어질 뿐이다. 
 
-But, what if you want to make "I Like Flutter" change dynamically, for example
-when clicking a `FloatingActionButton`?
+하지만, "나는 Flutter가 좋아"라고 `FloatingActionButton`를 눌렀을 때 변경하려면
+어떻게 해야할까?
 
-To achieve this, wrap the `Text` widget in a `StatefulWidget` and
-update it when the user clicks the button.
+`Text` 위젯을 `StatefulWidget`으로 감싸고 유저가 버튼을 눌렀을 때 갱신하면 된다.
 
-For example:
+예시:
 
 {% prettify dart %}
 class SampleApp extends StatelessWidget {
