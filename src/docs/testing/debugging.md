@@ -15,7 +15,7 @@ Flutter 어플리케이션의 디버그를 위한 다양한 툴과 기능을 소
 
 The Dart Analyzer는 문제를 추적하기 위해 여러분이 코드에 넣어둔 타입 어노테이션을 
 이용합니다. 문제를 추적하기 위한 가장 빠르고 덜 고통스러운 방법이니만큼 모든 곳에서
-var 선언,  타입 없는 인수, 타입 없는 배열 문법 등의 사용을 피하는 것을 권장합니다.
+`var` 선언,  타입 없는 인수, 타입 없는 배열 문법 등의 사용을 자제하는 것이 좋습니다.
 
 ## Dart Observatory (statement-level single-stepping debugger and profiler)
 
