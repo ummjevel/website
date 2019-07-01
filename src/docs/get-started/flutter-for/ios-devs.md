@@ -154,14 +154,12 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### How do I lay out my widgets? Where is my Storyboard?
+### 어떻게 위젯의 레이아웃을 구성할까요? 스토리보드는 어
 
-In iOS, you might use a Storyboard file to organize your views and set
-constraints, or you might set your constraints programmatically in your view
-controllers. In Flutter, declare your layout in code by composing
-a widget tree.
+iOS에서, 뷰를 구성하고 뷰의 제약 설정하는데 아마도 스토리보드를 사용할 겁니다. 아니면, 그냥 코드로
+작성했을 수도 있죠. Flutter에서는 코드상에 위젯 트리를 구성하여 레이아웃을 정의합니다.
 
-The following example shows how to display a simple widget with padding:
+아래는 패딩을 포함하는 간단한 위젯의 예시입니다:
 
 {% prettify dart %}
 @override
@@ -183,11 +181,10 @@ Widget build(BuildContext context) {
 }
 {% endprettify %}
 
-You can add padding to any widget, which mimics the functionality of
-constraints in iOS.
+어떤 위젯에나 패딩을 넣어 iOS에서의 뷰 제약을 흉내낼 수 있습니다.
 
-You can view the layouts that Flutter has to offer in the [widget
-catalog](/docs/development/ui/widgets/layout).
+Flutter가 제안하는 레이아웃들을 [위젯 카탈로그](/docs/development/ui/widgets/layout)
+에서 살펴보세요.
 
 ### How do I add or remove a component from my layout?
 
