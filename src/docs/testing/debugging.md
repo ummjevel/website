@@ -19,22 +19,15 @@ The Dart Analyzer는 문제를 추적하기 위해 여러분이 코드에 넣어
 
 ## Dart Observatory (statement-level single-stepping debugger and profiler)
 
-If you started your application using `flutter run`, then,
-while it is running, you can open the Web page at the Observatory URL printed
-to the console (e.g., `Observatory listening on http://127.0.0.1:8100/`), to
-connect to your application directly with a statement-level single-stepping
-debugger. If you're using a [Flutter enabled IDE/editor](/docs/get-started/editor/),
-you can also debug your application using its built-in debugger.
+콘솔에서 `flutter run` 명령어로 어플리케이션을 실행하면, 출력되는 Observatory URL
+(예: `Observatory listening on http://127.0.0.1:8100/`)을 통해 웹 페이지에서 
+statement-level single-stepping 방식의 디버거에 어플리케이션을 직접 연결할 수 있습니다.
+Flutter enabled IDE/editor](/docs/get-started/editor/)를 사용한다면 built-in 디버그를 사용할 수도 있습니다.
 
-Observatory also supports profiling, examining the heap, etc. For more
-information on Observatory, see
-[Observatory's documentation](https://dart-lang.github.io/observatory/).
+Observatory는 프로파일링, 힙 메모리 검사등을 지원합니다. 더 많은 정보를 원하신다면 [Observatory's documentation](https://dart-lang.github.io/observatory/)를 살펴보시기 바랍니다.
 
-If you use Observatory for profiling, make sure to run your
-application in profile mode, by passing `--profile` to the `flutter
-run` command. Otherwise, the main thing that appears on your
-profile is the debug asserts verifying the framework's various
-invariants (see "Debug mode assertions" below).
+Observatory로 프로파일링을 실행하기 위해서는 `flutter run` 명령어에 `--profile` 옵션을 
+추가해서 어플리케이션을 프로파일 모드로 실행해야 합니다. 그렇지 않으면, 프로파일에는 프레임워크의 다양한 불변성을 검증하는 디버그 assert가 나타납니다(하단의 "Debug mode assertion"을 살펴보세요).
 
 ### `debugger()` statement
 
