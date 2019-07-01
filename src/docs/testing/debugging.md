@@ -31,13 +31,11 @@ Observatory로 프로파일링을 실행하기 위해서는 `flutter run` 명령
 
 ### `debugger()` statement
 
-When using the Dart Observatory (or another Dart debugger integrated into
-a Flutter enabled IDE/editor), you can insert programmatic breakpoints
-using the `debugger()` statement. To use this, you have to put `import
-'dart:developer';` at the top of the relevant file.
+Dart Observatory 혹은 Flutter를 지원하는 IDE, 편집기에서 사용하는 Dart 디버거를 사용하는 경우,
+`debugger()`문을 이용하여 코드 형태로 브레이크포인트를 지정할 수 있습니다.
+이 기능을 사용하려면 관련한 파일의 최상단에 `import 'dart:developer';`를 넣어두어야 합니다.
 
-The `debugger()` statement takes an optional `when` argument which you
-can specify to only break when a certain condition is true, as in:
+`debugger()`문에 다음과 같이 `when` 인수를 사용하여 특정 조건이 true일 때 브레이크를 걸 수도 있습니다.
 
 <!-- import 'dart:developer'; -->
 <!-- skip -->
