@@ -186,16 +186,14 @@ Widget build(BuildContext context) {
 Flutter가 제안하는 레이아웃들을 [위젯 카탈로그](/docs/development/ui/widgets/layout)
 에서 살펴보세요.
 
-### How do I add or remove a component from my layout?
+### 레이아웃에 컴포넌트를 추가하고 제거하기
 
-In iOS, you call `addSubview()` on the parent, or `removeFromSuperview()`
-on a child view to dynamically add or remove child views. In Flutter, because
-widgets are immutable there is no direct equivalent to `addSubview()`.
-Instead, you can pass a function to the parent that returns a widget, and
-control that child's creation with a boolean flag.
+iOS 에서는 부모 뷰에서 `addSubview()`나 `removeFromSuperview()`를 호출하여 자식 뷰를 동적으로
+추가하고 제거할 수 있습니다. Flutter 에서 위젯은 불변이기 때문에 `addSubview()`와 동일한 방법은
+없습니다. 대신에, 함수를 호출함으로써 자식 위젯을 리턴하는 부모 위젯이, boolean 값에 따라 자식 위젯들을
+생성하거나 제거하도록 제어할 수 있습니다.
 
-The following example shows how to toggle between two widgets when the user clicks
-the `FloatingActionButton`:
+아래는 유저가 `FloatingActionButton`을 클릭할 때, 두 위젯이 토글되는 것을 보여주는 예제입니다:
 
 {% prettify dart %}
 class SampleApp extends StatelessWidget {
