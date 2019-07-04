@@ -1472,13 +1472,13 @@ AsyncStorage.getItem("counterkey").then(value => {
 });
 ```
 
-Flutter에서는 키-값 데이터를 읽고 쓰기 위해서 앱 내에서 전역에서 지속되는  
+Flutter에서는 키-값 데이터를 읽고 쓰기 위해서 앱 내 전역에서 지속되는  
 [`shared_preferences`]({{site.github}}/flutter/plugins/tree/master/packages/shared_preferences)
-플러그인을 사용합니다. `shared_preferences` 플러그인은 간단한 데이터를 저장할 수 있는 
-지속성있는 저장소를 제공하기 위해 iOS에선 `NSUserDefaults`, 
+플러그인을 사용합니다. `shared_preferences` 플러그인은 간단한 데이터를 지속성있게 
+저장할 수 있는 저장소를 제공하기 위해 iOS에선 `NSUserDefaults`, 
 안드로이드에선 `SharedPreferences`를 감싸고 있습니다.
 플러그인을 사용하기 위해 `shared_preferences`를 
-`pubspec.yaml` 파일에 의존성에 추가한 다음 Dart 파일에서 import 하세요 
+`pubspec.yaml` 파일의 의존성에 추가한 다음 Dart 파일에서 import 하세요 
 
 ```yaml
 dependencies:
