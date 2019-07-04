@@ -1371,9 +1371,9 @@ class MyStatelessWidget extends StatelessWidget {
 
 ## Props
 
-React Native에서 대부분의 컴포넌트는 `props`라고 하는 매개변수나 속성을 사용해 
+React Native에서 대부분의 컴포넌트는 매개변수나 속성을 `props`로 전달하여 
 커스터마이징할 수 있습니다. 
-이 매개변수는 `this.props`를 사용하여 자식 컴포넌트에서 접근할 수 있습니다.  
+자식 컴포넌트에서 `this.props`를 사용해 매개변수에 접근할 수 있습니다.  
 
 ```js
 // React Native
@@ -1411,8 +1411,8 @@ class App extends React.Component {
 }
 ```
 
-Flutter에서 지역 변수나 함수를 매개변수가 있는 생성자를 
-통해 받은 속성과 함께 `final`로 지정합니다.
+Flutter에서는 매개변수가 있는 생성자에서 받은 속성을
+`final`로 표시된 지역 변수나 함수에 할당합니다.
 
 <!-- skip -->
 ```dart
@@ -1451,12 +1451,12 @@ CustomCard(
 
 ## 로컬 저장소
 
-아주 많은 데이터가 필요하지 않고 구조화가 필요하지 않다면, 
+아주 많은 데이터나 구조화가 필요하지 않다면, 
 키-값 쌍 형태의 저장소인 `shared_preferences`로
 기본 타입(booleans, floats, ints, longs, strings)
 데이터를 읽고 쓸 수 있습니다.
 
-### 앱에 전역적인 키-값 쌍을 지속성있게 저장하려면 방법?
+### 앱에 전역적인 키-값 쌍을 지속성있게 저장하는 방법은?
 
 React Native에서는 `AsyncStorage`의 
 `setItem`과 `getItem` 함수를 사용하여 앱 전역에 걸쳐 
@@ -1472,13 +1472,13 @@ AsyncStorage.getItem("counterkey").then(value => {
 });
 ```
 
-Flutter에서는 키-값 데이터를 읽고 쓰기 위해서 앱 내에서 지속성있고 전역적인 
+Flutter에서는 키-값 데이터를 읽고 쓰기 위해서 앱 내에서 전역에서 지속되는  
 [`shared_preferences`]({{site.github}}/flutter/plugins/tree/master/packages/shared_preferences)
-플러그인을 사용합니다. `shared_preferences` 플러그인은 간단한 데이터에 대해
+플러그인을 사용합니다. `shared_preferences` 플러그인은 간단한 데이터를 저장할 수 있는 
 지속성있는 저장소를 제공하기 위해 iOS에선 `NSUserDefaults`, 
 안드로이드에선 `SharedPreferences`를 감싸고 있습니다.
 플러그인을 사용하기 위해 `shared_preferences`를 
-`pubspec.yaml` 파일에 디펜던시로 넣은 다음 Dart 파일에서 import 하세요 
+`pubspec.yaml` 파일에 의존성에 추가한 다음 Dart 파일에서 import 하세요 
 
 ```yaml
 dependencies:
