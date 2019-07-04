@@ -3,19 +3,19 @@ title: iOS 개발자를 위한 Flutter
 description: Flutter 앱을 만들 때 iOS 개발 지식을 활용하는 방법을 배워보세요.
 ---
 
-Flutter로 모바일 앱을 만들 때 자신의 지식을 활용하려는 iOS 개발자들을 위한 문서입니다.
-iOS 프레임워크의 원리를 이해한다면, 이 문서를 통해 Flutter 개발을 배우기 시작할 수 있어요.
+Flutter로 모바일 앱을 만들 때 자신의 iOS 지식을 활용하려는 개발자들을 위한 문서입니다.
+iOS 프레임워크의 기초를 이해한다면, 이 문서를 통해 Flutter 개발을 배우기 시작할 수 있습니다.
 
 본격적으로 뛰어들기 전에 [Flutter Youtube 채널](https://www.youtube.com/flutterdev)에서
-15분 분량의 Cupertino 패키지 비디오를 시청해보세요.
+15분 분량의 Cupertino 패키지에 대한 비디오를 시청해보세요.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3PdUaidHc-E?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-iOS 지식과 기술셋은 Flutter 개발에 큰 도움이 되는데, Flutter는 모바일 운영체제의
-여러 기능 및 구성과 관련이 있기 때문입니다. Flutter는 모바일을 위한 UI 새로운 제작 방법이지만,
+Flutter는 다양한 기능과 구성을 위해 모바일 운영 체재를 사용하므로, iOS 지식과 스킬 셋은
+Flutter 앱을 만들 때 많은 도움이 됩니다. Flutter는 모바일을 위한 UI 새로운 제작 방법이지만,
 iOS(그리고 안드로이드)의 UI가 아닌 작업들과 통신하기 위한 플러그인 시스템도 가지고 있습니다.
 당신이 iOS 개발 전문가라면, Flutter를 사용하는 모든 방법을 다시 배울 필요는 없습니다.
 
-Flutter는 이미 iOS에 동작시키기 위한 수 많은 어댑터들 만들었습니다. 목록은
+Flutter는 이미 iOS에 동작시키기 위한 수 많은 어댑터(Adaptation)들을 만들었습니다. 목록은
 [플랫폼 어댑터](/docs/resources/platform-adaptations)에서 확인하세요.
 
 이 문서는 필요한 질문을 찾거나 훑어보는 용도의 설명서로 사용될 수 있습니다.
@@ -25,7 +25,7 @@ Flutter는 이미 iOS에 동작시키기 위한 수 많은 어댑터들 만들�
 ### Flutter의 `UIView`는 어떤 것 일까요?
 
 {{site.alert.secondary}}
-반응형 혹은 _선언형_ 프로그래밍과 기존 명령형 프로그래밍은 어떤 차이가 있을까요?
+React 스타일 혹은 _선언형_ 프로그래밍과 기존 명령형 프로그래밍은 어떤 차이가 있을까요?
 비교를 위해 [명령형 UI 프로그래밍 소개](/docs/get-started/flutter-for/declarative)
 살펴보세요.
 {{site.alert.end}}
@@ -33,7 +33,7 @@ Flutter는 이미 iOS에 동작시키기 위한 수 많은 어댑터들 만들�
 iOS에서, UI를 만드는 것의 대부분은 `UIView` 클래스의 인스턴스인 뷰 개체를 사용합니다.
 다른 `UIView`의 컨테이너 역할을 할 수 있고, 레이아웃을 구성합니다.
 
-Flutter 에서는, `UIView`와 대략적으로 같은 것이 `위젯(Widget)`입니다. 위젯이 정확하게 iOS 뷰와
+Flutter 에서는, `UIView`와 유사한 것이 `위젯(Widget)`입니다. 위젯이 정확하게 iOS 뷰와
 같지는 않지만, Flutter가 어떻게 동작하는지 익히는 동안 위젯을 `UI를 선언하고 구성하는 방법`으로
 여길 수 있습니다.
 
@@ -47,16 +47,16 @@ Flutter 에서는, `UIView`와 대략적으로 같은 것이 `위젯(Widget)`입
 뷰가 아니고, 직접적으로 그리는 것도 없습니다. 다만 위젯은 UI의 설명이자 문법이고, 내부적으로 실제 뷰에
 "부풀어 오르게" 됩니다.
 
-Flutter는 [머티어리얼 구성요소]({{site.material}}/develop/flutter/)라이브러리를
-포함하고 있습니다. 이 위젯들은 [머티어리얼 디자인 가이드라인]({{site.material}}/design/)
+Flutter는 [Material 컴포넌트]({{site.material}}/develop/flutter/)라이브러리를
+포함하고 있습니다. 이 위젯들은 [Material 디자인 가이드라인]({{site.material}}/design/)
 대로 구현되었습니다. Material Design은 유연한 디자인 시스템이고 iOS를 포함한
 [모든 플랫폼에 최적화]({{site.material}}/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines),
 되어있습니다.
 
 Flutter는 다른 디자인을 구현하기에도 충분히 유연하고 표현력있습니다. iOS 에서,
-[쿠퍼티노 위젯](/docs/development/ui/widgets/cupertino)을 사용하여
-[애플의 iOS 디자인 가이드](https://developer.apple.com/design/resources)처럼 보이도록
-인터페이스를 구성할 수 있습니다.
+[Cupertino 위젯](/docs/development/ui/widgets/cupertino)을 사용하여
+[애플의 iOS 디자인 가이드](https://developer.apple.com/design/resources)에서 소개하는
+것처럼 보이도록 인터페이스를 구성할 수 있습니다.
 
 ### 위젯 업데이트 하기
 
@@ -154,12 +154,12 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### 어떻게 위젯의 레이아웃을 구성할까요? 스토리보드는 어
+### 어떻게 위젯의 레이아웃을 구성할까요? 스토리보드는 어디있죠?
 
-iOS에서, 뷰를 구성하고 뷰의 제약 설정하는데 아마도 스토리보드를 사용할 겁니다. 아니면, 그냥 코드로
+iOS에서, 뷰를 구성하고 제약사항을 설정하는 데 아마도 스토리보드를 사용할 겁니다. 아니면, 그냥 코드로
 작성했을 수도 있죠. Flutter에서는 코드상에 위젯 트리를 구성하여 레이아웃을 정의합니다.
 
-아래는 패딩을 포함하는 간단한 위젯의 예시입니다:
+아래는 padding을 포함하는 간단한 위젯의 예시입니다:
 
 {% prettify dart %}
 @override
@@ -181,17 +181,17 @@ Widget build(BuildContext context) {
 }
 {% endprettify %}
 
-어떤 위젯에나 패딩을 넣어 iOS에서의 뷰 제약을 흉내낼 수 있습니다.
+어떤 위젯에나 padding을 넣어 iOS에서의 뷰 제약을 흉내낼 수 있습니다.
 
 Flutter가 제안하는 레이아웃들을 [위젯 카탈로그](/docs/development/ui/widgets/layout)
 에서 살펴보세요.
 
 ### 레이아웃에 컴포넌트를 추가하고 제거하기
 
-iOS 에서는 부모 뷰에서 `addSubview()`나 `removeFromSuperview()`를 호출하여 자식 뷰를 동적으로
-추가하고 제거할 수 있습니다. Flutter 에서 위젯은 불변이기 때문에 `addSubview()`와 동일한 방법은
-없습니다. 대신에, 함수를 호출함으로써 자식 위젯을 리턴하는 부모 위젯이, boolean 값에 따라 자식 위젯들을
-생성하거나 제거하도록 제어할 수 있습니다.
+iOS 에서는 부모 뷰에서 `addSubview()`나 `removeFromSuperview()`를 호출하여 자식 뷰를
+동적으로 추가하고 제거할 수 있습니다. Flutter 에서 위젯은 불변이기 때문에 `addSubview()`와
+동일한 방법은 없습니다. 대신 위젯을 반환하는 부모에서 함수를 전달할 수 있으며, boolean 값에
+따라 자식의 생성을 제어할 수 있습니다.
 
 아래는 유저가 `FloatingActionButton`을 클릭할 때, 두 위젯이 토글되는 것을 보여주는 예제입니다:
 
