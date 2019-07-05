@@ -25,7 +25,7 @@ Flutter는 이미 iOS에 동작시키기 위한 수 많은 어댑터(Adaptation)
 ### Flutter의 `UIView`는 어떤 것 일까요?
 
 {{site.alert.secondary}}
-React 스타일 혹은 _선언형_ 프로그래밍과 기존 명령형 프로그래밍은 어떤 차이가 있을까요?
+react-style 혹은 _선언형_ 프로그래밍과 기존 명령형 프로그래밍은 어떤 차이가 있을까요?
 비교를 위해 [명령형 UI 프로그래밍 소개](/docs/get-started/flutter-for/declarative)
 살펴보세요.
 {{site.alert.end}}
