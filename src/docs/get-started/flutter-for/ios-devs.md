@@ -4,7 +4,7 @@ description: Flutter 앱을 만들 때 iOS 개발 지식을 활용하는 방법�
 ---
 
 Flutter로 모바일 앱을 만들 때 자신의 iOS 지식을 활용하려는 개발자들을 위한 문서입니다.
-iOS 프레임워크의 기초를 이해한다면, 이 문서를 통해 Flutter 개발을 배우기 시작할 수 있습니다.
+iOS 프레임워크의 기초를 이해하고 있다면, 이 문서를 통해 Flutter 개발 학습을 시작할 수 있습니다.
 
 본격적으로 뛰어들기 전에 [Flutter Youtube 채널](https://www.youtube.com/flutterdev)에서
 15분 분량의 Cupertino 패키지에 대한 비디오를 시청해보세요.
@@ -13,7 +13,7 @@ iOS 프레임워크의 기초를 이해한다면, 이 문서를 통해 Flutter �
 Flutter는 다양한 기능과 구성을 위해 모바일 운영 체재를 사용하므로, iOS 지식과 스킬 셋은
 Flutter 앱을 만들 때 많은 도움이 됩니다. Flutter는 모바일을 위한 UI 새로운 제작 방법이지만,
 iOS(그리고 안드로이드)의 UI가 아닌 작업들과 통신하기 위한 플러그인 시스템도 가지고 있습니다.
-당신이 iOS 개발 전문가라면, Flutter를 사용하는 모든 방법을 다시 배울 필요는 없습니다.
+당신이 iOS 개발 전문가라면, Flutter를 사용하기 위해 모든 걸 다시 배울 필요는 없습니다.
 
 Flutter는 이미 iOS에 동작시키기 위한 수 많은 어댑터(Adaptation)들을 만들었습니다. 목록은
 [플랫폼 어댑터](/docs/resources/platform-adaptations)에서 확인하세요.
@@ -33,8 +33,8 @@ React 스타일 혹은 _선언형_ 프로그래밍과 기존 명령형 프로그
 iOS에서, UI를 만드는 것의 대부분은 `UIView` 클래스의 인스턴스인 뷰 개체를 사용합니다.
 다른 `UIView`의 컨테이너 역할을 할 수 있고, 레이아웃을 구성합니다.
 
-Flutter 에서는, `UIView`와 유사한 것이 `위젯(Widget)`입니다. 위젯이 정확하게 iOS 뷰와
-같지는 않지만, Flutter가 어떻게 동작하는지 익히는 동안 위젯을 `UI를 선언하고 구성하는 방법`으로
+Flutter 에서는 `위젯(Widget)`이 `UIView`와 유사합니다. 위젯이 정확하게 iOS 뷰와
+같지는 않지만, Flutter가 어떻게 동작하는지 익히는 동안 위젯을 "UI를 선언하고 구성하는 방법"으로
 여길 수 있습니다.
 
 그러나, `UIView`와는 몇가지 다른 점들이 있습니다. 우선, 위젯은 다른 수명을 가지고 있습니다. 위젯은
@@ -97,12 +97,12 @@ Text(
 {% endprettify %}
 
 위 코드를 살펴보면, `Text` 위젯이 아무 명시적인 상태도 전달하지 않는다는 것을 확인
-할 수 있다. 생성자에 전달된 값으로만 만들어질 뿐이다. 
+할 수 있습니다. 생성자에 전달된 값으로만 만들어질 뿐입니다. 
 
-하지만, "나는 Flutter가 좋아"라고 `FloatingActionButton`를 눌렀을 때 변경하려면
-어떻게 해야할까?
+하지만, `FloatingActionButton`를 눌렀을 때 "I Like Flutter"가 동적으로 변경되게 하고 싶으면
+어떻게 해야할까요?
 
-`Text` 위젯을 `StatefulWidget`으로 감싸고 유저가 버튼을 눌렀을 때 갱신하면 된다.
+`Text` 위젯을 `StatefulWidget`으로 감싸고 유저가 버튼을 눌렀을 때 갱신하면 됩니다.
 
 예시:
 
@@ -188,10 +188,10 @@ Flutter가 제안하는 레이아웃들을 [위젯 카탈로그](/docs/developme
 
 ### 레이아웃에 컴포넌트를 추가하고 제거하기
 
-iOS 에서는 부모 뷰에서 `addSubview()`나 `removeFromSuperview()`를 호출하여 자식 뷰를
-동적으로 추가하고 제거할 수 있습니다. Flutter 에서 위젯은 불변이기 때문에 `addSubview()`와
-동일한 방법은 없습니다. 대신 위젯을 반환하는 부모에서 함수를 전달할 수 있으며, boolean 값에
-따라 자식의 생성을 제어할 수 있습니다.
+iOS 에서는 부모 뷰에서 `addSubview()`를 호출하거나 뷰 뷰에서 `removeFromSuperview()`를
+호출하여 자식 뷰를 동적으로 추가하고 제거할 수 있습니다. Flutter 에서 위젯은 불변이기 때문에
+`addSubview()`와 동일한 방법은 없습니다. 대신 위젯을 반환하는 부모에서 함수를 전달할 수 있으며,
+boolean 값에 따라 자식의 생성을 제어할 수 있습니다.
 
 아래는 유저가 `FloatingActionButton`을 클릭할 때, 두 위젯이 토글되는 것을 보여주는 예제입니다:
 
