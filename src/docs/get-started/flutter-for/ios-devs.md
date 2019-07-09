@@ -188,7 +188,7 @@ Flutter가 제안하는 레이아웃들을 [위젯 카탈로그](/docs/developme
 
 ### 레이아웃에 컴포넌트를 추가하고 제거하기
 
-iOS 에서는 부모 뷰에서 `addSubview()`를 호출하거나 뷰 뷰에서 `removeFromSuperview()`를
+iOS 에서는 부모 뷰에서 `addSubview()`를 호출하거나 자식 뷰에서 `removeFromSuperview()`를
 호출하여 자식 뷰를 동적으로 추가하고 제거할 수 있습니다. Flutter 에서 위젯은 불변이기 때문에
 `addSubview()`와 동일한 방법은 없습니다. 대신 위젯을 반환하는 부모에서 함수를 전달할 수 있으며,
 boolean 값에 따라 자식의 생성을 제어할 수 있습니다.
