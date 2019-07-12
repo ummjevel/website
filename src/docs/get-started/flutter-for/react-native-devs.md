@@ -1371,9 +1371,9 @@ class MyStatelessWidget extends StatelessWidget {
 
 ## Props
 
-In React Native, most components can be customized when they are created with
-different parameters or properties, called `props`. These
-parameters can be used in a child component using `this.props`.
+React Native에서 대부분의 컴포넌트는 매개변수나 속성을 `props`로 전달하여 
+커스터마이징할 수 있습니다. 
+자식 컴포넌트에서 `this.props`를 사용해 매개변수에 접근할 수 있습니다.  
 
 ```js
 // React Native
@@ -1411,8 +1411,8 @@ class App extends React.Component {
 }
 ```
 
-In Flutter, you assign a local variable or function marked `final` with the
- property received in the parameterized constructor.
+Flutter에서는 매개변수가 있는 생성자에서 받은 속성을
+`final`로 표시된 지역 변수나 함수에 할당합니다.
 
 <!-- skip -->
 ```dart
@@ -1449,18 +1449,18 @@ CustomCard(
 
 {% include android-ios-figure-pair.md image="react-native/modular.png" alt="Cards" class="border" %}
 
-## Local storage
+## 로컬 저장소
 
-If you don't need to store a lot of data and it doesn't require
-structure, you can use `shared_preferences` which allows you to
-read and write persistent key-value pairs of primitive data
-types: booleans, floats, ints, longs, and strings.
+아주 많은 데이터나 구조화가 필요하지 않다면, 
+키-값 쌍 형태의 저장소인 `shared_preferences`로
+기본 타입(booleans, floats, ints, longs, strings)
+데이터를 읽고 쓸 수 있습니다.
 
-### How do I store persistent key-value pairs that are global to the app?
+### 앱에 전역적인 키-값 쌍을 지속성있게 저장하는 방법은?
 
-In React Native, you use the `setItem` and `getItem` functions of the
-`AsyncStorage` component to store and retrieve data that is persistent and
-global to the app.
+React Native에서는 `AsyncStorage`의 
+`setItem`과 `getItem` 함수를 사용하여 앱 전역에 걸쳐 
+지속성있게 데이터를 저장하고 다시 찾아옵니다.  
 
 ```js
 // React Native
@@ -1472,13 +1472,13 @@ AsyncStorage.getItem("counterkey").then(value => {
 });
 ```
 
-In Flutter, use the
+Flutter에서는 키-값 데이터를 읽고 쓰기 위해서 앱 내 전역에서 지속되는  
 [`shared_preferences`]({{site.github}}/flutter/plugins/tree/master/packages/shared_preferences)
-plugin to store and retrieve key-value data that is persistent and global
-to the app. The `shared_preferences` plugin wraps `NSUserDefaults` on iOS
-and `SharedPreferences` on Android, providing a persistent store for simple data.
-To use the plugin, add `shared_preferences` as a dependency in the `pubspec.yaml`
-file then import the package in your Dart file.
+플러그인을 사용합니다. `shared_preferences` 플러그인은 간단한 데이터를 지속성있게 
+저장할 수 있는 저장소를 제공하기 위해 iOS에선 `NSUserDefaults`, 
+안드로이드에선 `SharedPreferences`를 감싸고 있습니다.
+플러그인을 사용하기 위해 `shared_preferences`를 
+`pubspec.yaml` 파일의 의존성에 추가한 다음 Dart 파일에서 import 하세요 
 
 ```yaml
 dependencies:
@@ -1493,12 +1493,12 @@ dependencies:
 import 'package:shared_preferences/shared_preferences.dart';
 ```
 
-To implement persistent data, use the setter methods provided by the
-`SharedPreferences` class. Setter methods are available for various primitive
-types, such as `setInt`, `setBool`, and `setString`. To read data, use the
-appropriate getter method provided by the `SharedPreferences` class. For each
-setter there is a corresponding getter method, for example, `getInt`, `getBool`,
-and `getString`.
+지속성있는 데이터 저장을 구현하려면 `SharedPreferences` 클래스의
+setter 메서드를 사용하세요.
+Setter 메서드는 `setInt`, `setBool`, `setString`과 같은 방식으로
+다양한 기본형 타입에서 사용 가능합니다.
+데이터를 읽으려면 `SharedPreferences` 클래스의 getter 메서드를 사용하세요.
+각 setter에 상응하는 getter가 `getInt`, `getBool`, `getString`와 같은 형태로 존재합니다.
 
 
 <!-- skip -->
