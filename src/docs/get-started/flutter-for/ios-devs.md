@@ -356,7 +356,7 @@ class _MyFadeTest extends State<MyFadeTest> with TickerProviderStateMixin {
 
 iOS에서는 `CoreGraphics`를 사용해 선과 도형들을 그립니다. Flutter 에서는 그리기에 사용되는
 `Canvas` 클래스 기반의 다른 두가지 API가 있습니다. `CustomPaint`와 `CustomPainter`
-입니다. 이중 `CustomPainter`가 당신의 알고리즘을 캔버스에 그리는 것을 구현합니다. 당신의 알고리즘당신의 알고리즘
+입니다. 이중 `CustomPainter`가 당신의 알고리즘이 캔버스에 그려지도록 하는 일을 구현합니다.
 
 Flutter의 중요한 그리기 도구를 구현하는 방법을 배우시려면, 아래 Collin씨의 답변을 살펴보세요.
 [StackOverflow][].
