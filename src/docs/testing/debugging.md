@@ -1,57 +1,41 @@
 ---
-title: Debugging Flutter apps
+title: Flutter 앱 디버깅하기
 ---
 
-There are a wide variety of tools and features to help debug Flutter
-applications.
+Flutter 어플리케이션의 디버그를 위한 다양한 툴과 기능을 소개합니다.
 
 {{site.alert.note}}
-  If your app's UI isn't running as smoothly as you expect,
-  check out [Flutter Performance Profiling](ui-performance).
+  여러분의 앱이 기대한만큼 부드럽게 동작하지 않는다면,
+  [Flutter Performance Profiling](ui-performance)를 살펴보세요.
 {{site.alert.end}}
 
 ## The Dart Analyzer
 
-Before running your applications, test your code with `flutter analyze`. This
-tool (which is a wrapper around the `dartanalyzer` tool) analyzes your code
-and helps you find possible mistakes. If you're using a
-[Flutter enabled IDE/editor](/docs/get-started/editor/),
-this is already happening for you.
+어플리케이션을 실행하기 전에 `flutter analyze` 를 통해 테스트를 합니다. `dartanalyzer` 툴에 기반한 이 툴은 코드를 분석하고, 실수를 찾도록 돕습니다. [Flutter enabled IDE/editor](/docs/get-started/editor/) 를 사용한다면, 개발자가 별도로 실행하지 않아도 IDE가 실행해줍니다.
 
-The Dart analyzer makes heavy use of type annotations that you put in
-your code to help track problems down. You are encouraged to use them
-everywhere (avoiding `var`, untyped arguments, untyped list literals,
-etc) as this is the quickest and least painful way of tracking down
-problems.
+The Dart Analyzer는 문제를 추적하기 위해 여러분이 코드에 넣어둔 타입 어노테이션을 
+이용합니다. 문제를 추적하기 위한 가장 빠르고 덜 고통스러운 방법이니만큼 모든 곳에서
+`var` 선언,  타입 없는 인수, 타입 없는 배열 문법 등의 사용을 자제하는 것이 좋습니다.
 
 ## Dart Observatory (statement-level single-stepping debugger and profiler)
 
-If you started your application using `flutter run`, then,
-while it is running, you can open the Web page at the Observatory URL printed
-to the console (e.g., `Observatory listening on http://127.0.0.1:8100/`), to
-connect to your application directly with a statement-level single-stepping
-debugger. If you're using a [Flutter enabled IDE/editor](/docs/get-started/editor/),
-you can also debug your application using its built-in debugger.
+콘솔에서 `flutter run` 명령어로 어플리케이션을 실행하면, 출력되는 Observatory URL
+(예: `Observatory listening on http://127.0.0.1:8100/`)을 통해 웹 페이지에서 
+statement-level single-stepping 방식의 디버거에 어플리케이션을 직접 연결할 수 있습니다.
+Flutter enabled IDE/editor](/docs/get-started/editor/)를 사용한다면 built-in 디버그를 사용할 수도 있습니다.
 
-Observatory also supports profiling, examining the heap, etc. For more
-information on Observatory, see
-[Observatory's documentation](https://dart-lang.github.io/observatory/).
+Observatory는 프로파일링, 힙 메모리 검사등을 지원합니다. 더 많은 정보를 원하신다면 [Observatory's documentation](https://dart-lang.github.io/observatory/)를 살펴보시기 바랍니다.
 
-If you use Observatory for profiling, make sure to run your
-application in profile mode, by passing `--profile` to the `flutter
-run` command. Otherwise, the main thing that appears on your
-profile is the debug asserts verifying the framework's various
-invariants (see "Debug mode assertions" below).
+Observatory로 프로파일링을 실행하기 위해서는 `flutter run` 명령어에 `--profile` 옵션을 
+추가해서 어플리케이션을 프로파일 모드로 실행해야 합니다. 그렇지 않으면, 프로파일에는 프레임워크의 다양한 불변성을 검증하는 디버그 assert가 나타납니다(하단의 "Debug mode assertion"을 살펴보세요).
 
 ### `debugger()` statement
 
-When using the Dart Observatory (or another Dart debugger integrated into
-a Flutter enabled IDE/editor), you can insert programmatic breakpoints
-using the `debugger()` statement. To use this, you have to put `import
-'dart:developer';` at the top of the relevant file.
+Dart Observatory 혹은 Flutter를 지원하는 IDE, 편집기에서 사용하는 Dart 디버거를 사용하는 경우,
+`debugger()`문을 이용하여 코드 형태로 브레이크포인트를 지정할 수 있습니다.
+이 기능을 사용하려면 관련한 파일의 최상단에 `import 'dart:developer';`를 넣어두어야 합니다.
 
-The `debugger()` statement takes an optional `when` argument which you
-can specify to only break when a certain condition is true, as in:
+`debugger()`문에 다음과 같이 `when` 인수를 사용하여 특정 조건이 true일 때 브레이크를 걸 수도 있습니다.
 
 <!-- import 'dart:developer'; -->
 <!-- skip -->
