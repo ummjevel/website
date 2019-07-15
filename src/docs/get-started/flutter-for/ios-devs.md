@@ -391,14 +391,13 @@ For more information, see
 the [Animations tutorial][],
 and the [Animations overview][].
 
-### How do I draw to the screen?
+### 화면을 그리는 방법
 
-On iOS, you use `CoreGraphics` to draw lines and shapes to the
-screen. Flutter has a different API based on the `Canvas` class, with two
-other classes that help you draw: `CustomPaint` and `CustomPainter`, the
-latter of which implements your algorithm to draw to the canvas.
+iOS에서는 `CoreGraphics`를 사용해 선과 도형들을 그립니다. Flutter 에서는 그리기에 사용되는
+`Canvas` 클래스 기반의 다른 두가지 API가 있습니다. `CustomPaint`와 `CustomPainter`
+입니다. 이중 `CustomPainter`가 당신의 알고리즘을 캔버스에 그리는 것을 구현합니다. 당신의 알고리즘당신의 알고리즘
 
-To learn how to implement a signature painter in Flutter, see Collin's answer on
+Flutter의 중요한 그리기 도구를 구현하는 방법을 배우시려면, 아래 Collin씨의 답변을 살펴보세요.
 [StackOverflow][].
 
 [StackOverflow]: {{site.so}}/questions/46241071/create-signature-area-for-mobile-app-in-dart-flutter
