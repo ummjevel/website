@@ -1,40 +1,40 @@
 ---
-title: Flutter for React Native developers
-description: Learn how to apply React Native developer knowledge when building Flutter apps.
+title: React Native 개발자를 위한 Flutter
+description: React Native 개발자가 Flutter 앱을 만들 때 기존 지식을 활용하는 방법을 배워봅시다.
 ---
 
-This document is for React Native (RN) developers looking to apply their
-existing RN knowledge to build mobile apps with Flutter. If you understand
-the fundamentals of the RN framework then you can use this document as a
-way to get started learning Flutter development.
+이 문서는기존 React Native 지식을 활용하여
+Flutter로 모바일 앱을 만들려는 React Native(RN) 개발자를 위한 문서입니다.
+RN 프레임워크의 핵심을 이해하고 있다면
+이 문서를 Flutter 개발을 시작하는 방안으로 사용하실 수 있습니다.
 
-This document can be used as a cookbook by jumping around and finding
-questions that are most relevant to your needs.
+필요한 부분에 가장 적합한 질문을 찾아내는 방식으로 이 문서를 
+요리책(cookbook)처럼 활용하실 수도 있습니다.
 
 
-## Introduction to Dart for JavaScript Developers
+## 자바스크립트 개발자를 위한 Dart 소개
 
-Like React Native, Flutter uses reactive-style views. However, while RN
-transpiles to native widgets, Flutter compiles all the way to native code.
-Flutter controls each pixel on the screen, which avoids performance problems
-caused by the need for a JavaScript bridge.
+React Native처럼, Flutter는 reactive-style 뷰를 사용합니다.
+하지만, 네이티브 위젯으로 변환(transpile)하는 RN과 달리, 
+Flutter는 모든 것을 네이티브 코드로 직접 컴파일합니다.
+Flutter는 화면의 각 픽셀을 직접 제어하기 때문에, 자바스크립트 브리지로 인한 성능 문제가 발생하지 않습니다. 
 
-Dart is an easy language to learn and offers the following features:
+Dart는 아래와 같은 기능을 제공하는 배우기 쉬운 언어입니다:
 
-* Provides an open-source, scalable programming language for building web,
-  server, and mobile apps.
-* Provides an object-oriented, single inheritance language that uses a C-style
-  syntax that is AOT-compiled into native.
-* Transcompiles optionally into JavaScript.
-* Supports interfaces and abstract classes.
+* 웹, 서버, 모바일 앱 개발이 가능한 확장성 있는 
+  오픈 소스 프로그래밍 언어 제공
+* AOT를 통해 네이티브로 컴파일되는 C 방식의 구문을 사용하는 
+  객체 지향 단일 상속 언어를 제공 
+* 자바스크립트로 변환(transcompile) 가능
+* 인터페이스와 추상 클래스 지원
 
-A few examples of the differences between JavaScript and Dart are described
-below.
+아래에 자바스크립트와 Dart의 몇 가지 차이점에 관한 
+예시가 적혀있습니다.
 
-### Entry point
+### 진입점
 
-JavaScript doesn't have a pre-defined entry
-function&mdash;you define the entry point.
+자바스크립트에는 진입점 역할을 하는 함수가 미리 정의되어 있지 않습니다.
+진입점을 직접 지정합니다.
 
 ```js
 // JavaScript
@@ -42,8 +42,8 @@ function startHere() {
   // Can be used as entry point
 }
 ```
-In Dart, every app must have a top-level `main()` function that serves as the
-entry point to the app.
+Dart에서는 최상단에 앱의 진입점인 `main()` 함수가 
+반드시 있어야 합니다.
 
 <!-- skip -->
 ```dart
@@ -52,11 +52,11 @@ main() {
 }
 ```
 
-Try it out in [DartPad]({{site.dartpad}}/0df636e00f348bdec2bc1c8ebc7daeb1).
+[DartPad]({{site.dartpad}}/0df636e00f348bdec2bc1c8ebc7daeb1)에서 실행해보세요.
 
-### Printing to the console
+### 콘솔에 출력하기
 
-To print to the console in Dart, use `print()`.
+`print()`를 사용하여 Dart 콘솔에 출력해보세요.
 
 ```js
 // JavaScript
@@ -69,23 +69,22 @@ console.log('Hello world!');
 print('Hello world!');
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/cf9e652f77636224d3e37d96dcf238e5).
+[DartPad]({{site.dartpad}}/cf9e652f77636224d3e37d96dcf238e5)에서 
+실행해보세요.
 
-### Variables
+### 변수
 
-Dart is type safe&mdash;it uses a combination of static type checking
-and runtime checks to ensure that a variable’s value always matches
-the variable’s static type. Although types are mandatory,
-some type annotations are optional because
-Dart performs type inference.
+Dart는 타입 검사를 하는(type safe) 언어입니다. 
+Dart는 정적 타입 검사와 런타임 타입 검사를 동시에 사용하여, 
+변수의 값이 변수의 정적 타입과 항상 일치하는지 검사합니다.
+타입이 필수이긴 하지만, Dart가 타입 추론을 하기 때문에 일부 타입 표기는 생략해도 됩니다.
 
-#### Creating and assigning variables
+#### 변수 생성 및 할당
 
-In JavaScript, variables cannot be typed.
+자바스크립트에서는, 변수의 타입을 선언할 수 없습니다.
 
-In [Dart]({{site.dart-site}}/dart-2), variables must either be explicitly
-typed or the type system must infer the proper type automatically.
+[Dart]({{site.dart-site}}/dart-2)에서는, 명시적으로 변수의 타입을 선언하거나   
+타입 시스템이 자동으로 적절한 변수의 타입을 추론할 수 있어야 합니다.
 
 ```js
 // JavaScript
@@ -95,24 +94,23 @@ var name = 'JavaScript';
 <!-- skip -->
 ```dart
 // Dart
-String name = 'dart'; // Explicitly typed as a string.
-var otherName = 'Dart'; // Inferred string.
-// Both are acceptable in Dart.
+String name = 'dart'; // 명시적으로 문자열 타입 선언.
+var otherName = 'Dart'; // 문자열 타입으로 추론.
+// Dart에서는 두 방법 다 가능.
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/3f4625c16e05eec396d6046883739612).
+[DartPad]({{site.dartpad}}/3f4625c16e05eec396d6046883739612)에서 시도해보세요.
 
-For more information, see [Dart's Type
-System]({{site.dart-site}}/guides/language/sound-dart).
+더 많은 정보를 원하시면, [Dart의 타입 시스템]({{site.dart-site}}/guides/language/sound-dart)를
+참조하세요.
 
-#### Default value
+#### 기본값
 
-In JavaScript, uninitialized variables are `undefined`.
+자바스크립트에서 초기화하지 않은 변수는 `undefined`입니다.
 
-In Dart, uninitialized variables have an initial value of `null`.
-Because numbers are objects in Dart, even uninitialized variables with
-numeric types have the value `null`.
+Dart에서 초기화하지 않은 변수는 `null` 값을 가집니다.
+Dart에선 숫자도 객체이기 때문에, 
+초기화하지 않은 숫자 타입 변수도 `null` 값을 가집니다. 
 
 ```js
 // JavaScript
@@ -126,15 +124,16 @@ var name; // == null
 int x; // == null
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/57ec21faa8b6fe2326ffd74e9781a2c7).
+[DartPad]({{site.dartpad}}/57ec21faa8b6fe2326ffd74e9781a2c7)에서 
+시도해보세요.
 
-For more information, see the documentation on
-[variables]({{site.dart-site}}/guides/language/language-tour#variables).
+더 많은 정보를 원하시면, 
+[변수]({{site.dart-site}}/guides/language/language-tour#variables)를
+참조하세요.
 
-### Checking for null or zero
+### null 또는 0 체크
 
-In JavaScript, values of 1 or any non-null objects are treated as true.
+자바스크립트는 1이나 null이 아닌 객체도 true로 취급합니다.
 
 ```js
 // JavaScript
@@ -147,7 +146,7 @@ if (!zero) {
   console.log('0 is treated as false');
 }
 ```
-In Dart, only the boolean value `true` is treated as true.
+Dart는 boolean 값 `true`만 true로 취급합니다.
 
 <!-- skip -->
 ```dart
@@ -162,13 +161,13 @@ if (zero == 0) {
 }
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/c85038ad677963cb6dc943eb1a0b72e6).
+[DartPad]({{site.dartpad}}/c85038ad677963cb6dc943eb1a0b72e6)에서 
+시도해보세요.
 
-### Functions
+### 함수
 
-Dart and JavaScript functions are generally similar.
-The primary difference is the declaration.
+Dart와 자바스크립트 함수는 대체로 유사합니다. 
+주된 차이점은 선언입니다.
 
 ```js
 // JavaScript
@@ -189,22 +188,22 @@ bool fn() {
 }
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/5454e8bfadf3000179d19b9bc6be9918).
+[DartPad]({{site.dartpad}}/5454e8bfadf3000179d19b9bc6be9918)에서 
+시도해보세요.
 
-For more information, see the documentation on
-[functions]({{site.dart-site}}/guides/language/language-tour#functions).
+더 많은 정보를 원하시면, 
+[함수]({{site.dart-site}}/guides/language/language-tour#functions)를 참조하세요.
 
-### Asynchronous programming
+### 비동기 프로그래밍
 
 #### Futures
 
-Like JavaScript, Dart supports single-threaded execution. In JavaScript,
-the Promise object represents the eventual completion (or failure)
-of an asynchronous operation and its resulting value.
+자바스크립트와 마찬가지로 Dart도 단일 스레드 실행을 지원합니다. 
+자바스크립트에서 Promise 객체는 
+비동기 작업의 최종 완료 (또는 실패)와 결과 값을 나타냅니다.
 
-Dart uses [`Future`]({{site.dart-site}}/tutorials/language/futures)
-objects to handle this.
+Dart는 이러한 비동기 처리를 위해서 
+[`Future`]({{site.dart-site}}/tutorials/language/futures) 객체를 사용합니다.
 
 ```js
 // JavaScript
@@ -256,15 +255,15 @@ main() {
 }
 ```
 
-For more information, see the documentation on
-[Futures]({{site.dart-site}}/tutorials/language/futures).
+더 많은 정보를 원하시면, 
+[Futures]({{site.dart-site}}/tutorials/language/futures)를 참조하세요.
 
-#### `async` and `await`
+#### `async`와 `await`
 
-The `async` function declaration defines an asynchronous function.
+`async` 함수 선언으로 비동기 함수를 정의합니다.
 
-In JavaScript, the `async` function returns a `Promise`.
-The `await` operator is used to wait for a `Promise`.
+자바스크립트에서는 `async` 함수가 `Promise`를 반환합니다.
+`await` 연산자는 `Promise`를 기다리기 위해서 사용합니다다.
 
 ```js
 // JavaScript
@@ -291,9 +290,9 @@ async function main() {
 main();
 ```
 
-In Dart, an `async` function returns a `Future`,
-and the body of the function is scheduled for execution later.
-The `await` operator is used to wait for a `Future`.
+Dart에서는 `async` 함수가 `Future`를 반환하고, 
+함수의 구현된 내용은 나중에 실행되도록 예약됩니다.
+`await` 연산자는 `Future`를 기다리기 위해서 사용됩니다.
 
 <!-- skip -->
 ```dart
@@ -321,53 +320,53 @@ main() async {
 }
 ```
 
-For more information, see the documentation for [async and await][].
+더 많은 정보를 원하시면, [`async`와 `await`][]을 참조하세요.
 
-## The basics
+## 기본
 
-### How do I create a Flutter app?
+### Flutter 앱을 만드는 방법은?
 
-To create an app using React Native,
-you would run `create-react-native-app` from the command line.
+React Native로 앱을 만드려면 커멘드라인에서 
+`create-react-native-app`을 실행하면 됩니다.
 
 {% prettify %}
 $ create-react-native-app <projectname>
 {% endprettify%}
 
-To create an app in Flutter, do one of the following:
+Flutter에서 앱을 만들기 위해서는, 아래 방법 중 하나를 수행하면 됩니다:
 
-* Use an IDE with the Flutter and Dart plugins installed.
-* Use the `flutter create` command from the command line. Make sure that the
-  Flutter SDK is in your PATH.
+* Flutter와 Dart 플러그인이 설치된 IDE를 이용하세요.
+* 커멘드라인에서 `flutter create` 명령을 실행하세요.
+  Flutter SDK가 PATH에 들어있는지 확인이 필요합니다. 
 
 {% prettify %}
 $ flutter create <projectname>
 {% endprettify%}
 
-For more information, see [Getting Started](/docs/get-started), which
-walks you through creating a button-click counter app. Creating a Flutter
-project builds all the files that you need to run a sample app on both Android
-and iOS devices.
+더 많은 정보를 원하시면, [시작하기](/docs/get-started)를 참조하세요. 
+버튼 클릭으로 카운터를 조정하는 앱을 만드는 과정을 안내 받을 수 있습니다.
+Flutter 프로젝트를 만들 때 
+Android 및 iOS 기기에서 샘플 앱을 실행하는 데 필요한 모든 파일이 생성됩니다.
 
-### How do I run my app?
+### 앱을 실행하는 방법은?
 
-In React Native, you would run `npm run` or `yarn run` from the project
-directory.
+React Native를 사용할 때는, 프로젝트 디렉토리에서 
+`npm run`이나 `yarn run`으로 앱을 실행했을 것입니다.
 
-You can run Flutter apps in a couple of ways:
+Flutter apps를 실행하는 몇가지 방법이 있습니다:
 
-* Use the "run" option in an IDE with the Flutter and Dart plugins.
-* Use `flutter run` from the project's root directory.
+* Flutter와 Dart 플러그인이 설치된 IDE에서 "run"을 실행하세요. 
+* 프로젝트 최상위 디렉토리에서 `flutter run`을 사용하세요.
 
-Your app runs on a connected device, the iOS simulator,
-or the Android emulator.
+앱이 연결된 기기나, iOS 시뮬레이터 
+혹은 Android 에뮬레이터에서 실행될 것입니다.
 
-For more information, see the Flutter [Getting Started](/docs/get-started)
-documentation.
+더 많은 정보를 원하시면, Flutter [시작하기](/docs/get-started)를 
+참조하세요.
 
-### How do I import widgets?
+### 위젯을 import 하는 방법은?
 
-In React Native, you need to import each required component.
+React Native에서는 필요한 모든 컴포넌트를 각각 import 해야 합니다.
 
 ```js
 //React Native
@@ -375,11 +374,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 ```
 
-In Flutter, to use widgets from the Material Design library,
-import the `material.dart` package. To use iOS style widgets,
-import the Cupertino library. To use a more basic widget set,
-import the Widgets library.
-Or, you can write your own widget library and import that.
+Flutter에서는 머티리얼 디자인 라이브러리에서 위젯을 사용하기 위해 
+`material.dart` 패키지를 import 합니다. 
+iOS 스타일 위젯을 사용하기 위해 쿠퍼티노 라이브러리를 import 합니다. 
+더 많은 기본 위젯을 사용하고 싶다면, 위젯 라이브러리를 import 합니다. 
+아니면 직접 위젯 라이브러리를 작성하여 import 할 수도 있습니다.
 
 <!-- skip -->
 ```dart
@@ -388,15 +387,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/my_widgets.dart';
 ```
-Whichever widget package you import, Dart pulls in only the widgets that are
- used in your app.
+어떤 위젯 패키지를 import 하건, 
+Dart는 앱에서 사용되는 위젯만 가져옵니다.
 
-For more information, see the [Flutter Widgets Catalog](/docs/development/ui/widgets).
+더 많은 정보를 원하시면, [Flutter 위젯 카탈로그](/docs/development/ui/widgets)를 참조하세요.
 
-### What is the equivalent of the React Native "Hello world!" app in Flutter?
+### Flutter에서 React Native "Hello world!" 앱과 동일한 것은?
 
-In React Native, the `HelloWorldApp` class extends `React.Component` and
-implements the render method by returning a view component.
+React Native에서는 `HelloWorldApp`이 `React.Component`를 상속 받고 
+render 메서드가 view 컴포넌트를 반환하도록 구현합니다.
 
 ```js
 // React Native
@@ -423,10 +422,10 @@ const styles = StyleSheet.create({
 });
 ```
 
-In Flutter, you can create an identical "Hello world!" app using the
-`Center` and `Text` widgets from the core widget library.
-The `Center` widget becomes the root of the widget tree and has one child,
-the `Text` widget.
+Flutter에서는, 기본 위젯 라이브러리의 `Center`와 `Text` 위젯을 활용하여 
+"Hello world!" 앱과 동일한 것을 만들 수 있습니다. 
+`Center` 위젯을 최상위 위젯으로 하고, 
+자식으로 `Text` 위젯을 넣으면 됩니다. 
 
 <!-- skip -->
 ```dart
@@ -446,34 +445,34 @@ void main() {
 
 ```
 
-The following images show the Android and iOS UI for the basic Flutter
-"Hello world!" app.
+아래 이미지는 기본 Flutter "Hello world!" 앱의 
+Android와 iOS 화면을 보여줍니다. 
 
 {% include android-ios-figure-pair.md image="react-native/hello-world-basic.png" alt="Hello world app" class="border" %}
 
-Now that you've seen the most basic Flutter app, the next section shows how to
-take advantage of Flutter's rich widget libraries to create a modern, polished
-app.
+이제 가장 기본적인 Flutter 앱을 봤고, 
+다음 섹션에서는 Flutter의 풍부한 위젯 라이브러리를 활용하여 
+현대적이고 세련된 앱을 만드는 방법을 확인할 수 있습니다.  
 
-### How do I use widgets and nest them to form a widget tree?
+### 위젯을 사용하고 위젯 트리를 형성하는 방법은?
 
-In Flutter, almost everything is a widget.
+Flutter에서는 거의 모든 것이 위젯입니다.
 
-Widgets are the basic building blocks of an app's user interface. You compose
-widgets into a hierarchy, called a widget tree. Each widget nests inside a
-parent widget and inherits properties from its parent. Even the application
-object itself is a widget. There is no separate “application” object. Instead,
-the root widget serves this role.
+위젯은 앱 UI의 기본 구성 요소 입니다.
+위젯을 위젯 트리라고 불리는 계층 구조로 조합합니다. 
+각각의 위젯은 부모 위젯 내부에 들어가게 되고, 부모로부터 속성을 상속 받습니다.
+앱 객체 자체도 위젯입니다.
+별도의 “application” 객체는 없습니다.
+대신, 최상위 위젯이 그 역할을 담당합니다. 
 
-A widget can define:
+위젯을 아래와 같이 정의할 수 있습니다:
 
-* A structural element—like a button or menu
-* A stylistic element—like a font or color scheme
-* An aspect of layout—like padding or alignment
+* 버튼이나 메뉴와 같은 구조적 요소
+* 글꼴이나 색 구성표와 같은 문체 요소
+* 레이아웃과 같은 패딩 또는 정렬의 한 측면
 
-The following example shows the "Hello world!" app using widgets from the
-Material library. In this example, the widget tree is nested inside the
-`MaterialApp` root widget.
+아래 예제는 머티리얼 라이브러리의 위젯을 활용한 "Hello world!" 앱입니다.
+이 예제에서 위젯 트리는 `MaterialApp` 위젯 내부에 위치하게 됩니다. 
 
 
 <!-- skip -->
@@ -503,35 +502,33 @@ class MyApp extends StatelessWidget {
 ```
 
 
-The following images show "Hello world!" built from Material Design widgets.
-You get more functionality for free than in the basic "Hello world!" app.
+아래 이미지는 머티리얼 디자인 위젯으로 만든 "Hello world!"입니다. 
+기본적인 "Hello world!"보다 좀 더 많은 기능을 자유롭게 이용할 수 있습니다.
 
 {% include android-ios-figure-pair.md image="react-native/hello-world.png" alt="Hello world app" %}
 
-When writing an app, you'll use two types of widgets:
-[StatelessWidget]({{site.api}}/flutter/widgets/StatelessWidget-class.html) or
+앱을 작성할 때, 2가지 종류의 위젯을 사용하게 될겁니다:
+[StatelessWidget]({{site.api}}/flutter/widgets/StatelessWidget-class.html) 또는
  [StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html).
-A StatelessWidget is just what it sounds like&mdash;a
- widget with no state. A StatelessWidget is created once, and never changes its
-  appearance. A StatefulWidget dynamically changes state based on data
-   received, or user input.
+StatelessWidget은 위젯인데 상태가 없는 위젯입니다. 
+StatelessWidget은 한 번 만들어지고 절대 변하지 않습니다. 
+StatefulWidget은 사용자 입력이나 
+데이터 수신이 있으면 상태를 동적으로 변경합니다.
 
-The important difference between stateless and stateful widgets is that
- StatefulWidgets have a State object that stores state data and carries it over
-  across tree rebuilds, so it's not lost.
+상태가 없는 위젯과 상태가 있는 위젯의 중요한 차이점은 
+StatefulWidgets이 상태 데이터를 저장하고 그것을 트리 재구성을 통해 전달하는 State 객체가 있고,
+그렇기 때문에 손실되지 않는다는 점입니다. 
 
-In simple or basic apps it's easy to nest widgets, but as the code base gets
-larger and the app becomes complex, you should break deeply nested widgets into
-functions that return the widget or smaller classes. Creating separate functions
-and widgets allows you to reuse the components within the app.
+간단하거나 기본적인 앱에서 위젯을 감싸는 것은 쉽지만,
+코드 베이스가 점차 커지고 앱이 복잡해지면, 
+너무 많이 감싸져 있는 위젯을 함수로 빼거나 작은 클래스로 분리해야 합니다.
+분리된 함수를 만들면 위젯을 앱 내에서 재사용할 수 있게 됩니다. 
 
-### How do I create reusable components?
+### 재사용 가능한 컴포넌트를 만드는 방법은?
 
-In React Native,
-you would define a class to create a reusable component and then use
-`props` methods to set or return properties and values of the selected elements.
-In the example below, the `CustomCard` class is defined and then used inside a
-parent class.
+React Native에서는 재사용 가능한 컴포넌트를 만들기 위해 클래스를 정의한 다음 
+`props` 메서드를 사용하여 선택한 요소의 속성과 값을 설정하거나 반환합니다. 
+아래 예제에서 `CustomCard` 클래스를 정의하고, 부모 클래스 안에서 사용합니다. 
 
 ```js
 // React Native
@@ -553,9 +550,9 @@ class CustomCard extends React.Component {
 <CustomCard onPress={this.onPress} index={item.key} />
 ```
 
-In Flutter, define a class to create a custom widget and then reuse the
-widget. You can also define and call a function that returns a reusable widget
-as shown in the `build` function in the following example.
+Flutter에서는 커스텀 위젯을 만들기 위해 클래스를 정의하면 그 위젯을 재사용할 수 있습니다.
+또는 아래 예제와 같은 `build` 함수에서 
+재사용 가능한 위젯을 정의하고 호출할 수 있습니다.
 
 {% prettify dart %}
 
@@ -594,25 +591,25 @@ CustomCard(
 
 {% endprettify %}
 
-In the previous example, the constructor for the `CustomCard` class uses Dart's curly brace syntax `{ }` to indicate named [optional
-parameters]({{site.dart-site}}/guides/language/language-tour#optional-parameters).
+이전 예제에서는 `CustomCard` 클래스의 생성자가
+[optional parameters]({{site.dart-site}}/guides/language/language-tour#optional-parameters)를
+표현하기 위해 Dart의 중괄호 구문 `{ }`을 사용했습니다.
 
-To require these fields, either remove the curly braces from the constructor, or
-add `@required` to the constructor.
+이 필드를 필수로 만들고 싶다면, 
+생성자에서 중괄호를 지우거나 `@required`를 추가하면 됩니다.  
 
 
-
-The following screenshots show an example of the reusable CustomCard class.
+다음 스크린샷은 재사용할 수 있는 CustomCard 클래스의 예를 보여줍니다.
 
 {% include android-ios-figure-pair.md image="react-native/custom-cards.png" alt="Custom cards" class="border" %}
 
 
-## Project structure and resources
+## 프로젝트 구조 및 리소스
 
-### Where do I start writing the code?
+### 어디서부터 코드 작성을 시작해야 하나요?
 
-Start with the `main.dart` file. It's autogenerated when you create a
-Flutter app.
+`main.dart` 파일에서 시작하세요.
+Flutter 앱을 만들면 `main.dart`가 자동 생성됩니다.  
 
 <!-- skip -->
 ```dart
@@ -622,45 +619,44 @@ void main(){
 }
 ```
 
-In Flutter, the entry point file is `’projectname’/lib/main.dart` and execution
-starts from the `main` function.
+Flutter에서 진입점은 `’projectname’/lib/main.dart` 파일이고, 
+`main` 함수부터 실행을 시작합니다.  
 
-### How are files structured in a Flutter app?
+### Flutter 앱에서 파일은 어떻게 구성되어 있습니까?
 
-When you create a new Flutter project, it builds the following directory structure. You can customize it later, but this is where you start.
+Flutter 프로젝트를 새롭게 만들면, 아래와 같은 디렉토리 구조가 생성됩니다.
+나중에 구조를 변경할 수는 있지만, 일단은 아래와 같은 상태에서 시작합니다. 
 
 ```
 ┬
 └ projectname
   ┬
-  ├ android      - Contains Android-specific files.
-  ├ build        - Stores iOS and Android build files.
-  ├ ios          - Contains iOS-specific files.
-  ├ lib          - Contains externally accessible Dart source files.
+  ├ android      - Android 관련 파일 포함.
+  ├ build        - iOS 및 Android 빌드 파일 저장.
+  ├ ios          - iOS 관련 파일 포함.
+  ├ lib          - 외부에서 접근할 수 있는 Dart 소스 파일 포함.
     ┬
-    └ src        - Contains additional source files.
-    └ main.dart  - The Flutter entry point and the start of a new app.
-                   This is generated automatically when you create a Flutter
-                    project.
-                   It's where you start writing your Dart code.
-  ├ test         - Contains automated test files.
-  └ pubspec.yaml - Contains the metadata for the Flutter app.
-                   This is equivalent to the package.json file in React Native.
+    └ src        - 추가적인 소스 파일 포함.
+    └ main.dart  - Flutter 진입점이며 새로운 앱의 시작.
+                   Flutter 프로젝트를 만들 때 자동으로 생성.
+                   Dart코드 작성을 시작하는 부분임.
+  ├ test         - 자동화 테스트 파일 포함.
+  └ pubspec.yaml - Flutter 앱의 메타데이터 포함.
+                   React Native의 package.json 파일과 동일함.
 ```
 
-### Where do I put my resources and assets and how do I use them?
+### 리소스와 asset은 어디에 위치 시키고, 어떻게 사용하나요?
 
-A Flutter resource or asset is a file that is bundled and deployed
-with your app and is accessible at runtime.
-Flutter apps can include the following asset types:
-
-* Static data such as JSON files
-* Configuration files
-* Icons and images (JPEG, PNG, GIF, Animated GIF, WebP, Animated WebP, BMP,
+Flutter 리소스 또는 asset은 앱과 함께 묶여서 
+배포되며 런타임에 접근할 수 있는 파일입니다. 
+Flutter 앱은 아래와 같은 asset 유형을 포함할 수 있습니다:
+* JSON 파일 같은 정적 데이터
+* 설정 파일
+* 아이콘과 이미지 (JPEG, PNG, GIF, Animated GIF, WebP, Animated WebP, BMP,
   and WBMP)
 
-Flutter uses the `pubspec.yaml` file, located at the root of your project, to
-identify assets required by an app.
+Flutter는 프로젝트 최상위에 위치한 
+`pubspec.yaml` 파일을 사용하여 앱에 필요한 assets을 식별합니다.
 
 ```yaml
 flutter:
@@ -669,68 +665,68 @@ flutter:
     - assets/background.png
 ```
 
-The `assets` subsection specifies files that should be included with the app.
-Each asset is identified by an explicit path relative to the `pubspec.yaml`
-file, where the asset file is located. The order in which the assets are
-declared does not matter. The actual directory used (`assets` in this case) does
-not matter. However, while assets can be placed in any app directory, it's a
-best practice to place them in the `assets` directory.
+`assets` 부분은 앱에 포함시켜야하는 파일을 지정합니다.
+각 asset은 `pubspec.yaml`에 명시된 상대 경로에 의해서
+ asset 파일이 어디에 있는지 구분됩니다.
+asset이 정의된 순서는 중요하지 않습니다.
+실제 디렉토리 이름(위 경우에는 `assets`)도 중요하지 않습니다. 
+어떤 디렉토리에도 asset을 배치할 수는 있지만, `assets` 디렉토리에 배치하기를 권합니다.
 
-During a build, Flutter places assets into a special archive called the *asset
-bundle*, which apps read from at runtime. When an asset’s path is specified in
-the assets section of `pubspec.yaml`, the build process looks for any files with
-the same name in adjacent subdirectories. These files are also included in the
-asset bundle along with the specified asset. Flutter uses asset variants when
-choosing resolution-appropriate images for your app.
+빌드 중, Flutter는 런타임 때에 앱이 읽어올 *asset bundle*이라 불리는 
+특수한 아카이브에 asset을 저장합니다.
+`pubspec.yaml`에 asset의 경로가 지정되면, 빌드 프로세스는 인접한 디렉토리에서 같은 이름의 파일을 찾습니다. 
+이 파일들은 지정된 asset과 함께 asset bundle에도 포함됩니다. 
+Flutter는 앱에 적합한 해상도의 이미지를 선택할 때 
+asset variants를 사용합니다.
 
-In React Native, you would add a static image by placing the image file in a
-source code directory and referencing it.
+React Native에서는 이미지 파일을 소스 코드 디렉토리에 놓은 뒤 
+경로를 지정하여 정적 이미지를 추가할 수 있습니다.
 
 ```js
 <Image source={require('./my-icon.png')} />
 ```
 
-In Flutter, add a static image to your app using the `AssetImage` class in a
-widget’s build method.
+Flutter에서는 위젯의 build 메서드 안에서 `AssetImage` 클래스를 사용하여 
+정적 이미지를 추가할 수 있습니다.
 
 <!-- skip -->
 ```dart
 image: AssetImage('assets/background.png'),
 ```
 
-For more information, see [Adding Assets and Images in
-Flutter](/docs/development/ui/assets-and-images).
+더 많은 정보를 원하시면 [Flutter에서 
+Asset과 이미지 파일 추가하기](/docs/development/ui/assets-and-images)를 참조하세요.
 
-### How do I load images over a network?
+### 네트워크를 통해 이미지를 가져오는 방법은?
 
-In React Native, you would specify the `uri` in the `source` prop of the `Image`
-component and also provide the size if needed.
+React Native에서는 `Image` 컴포넌트의 `source` 속성에서 `uri`을 지정하고, 
+필요하다면 크기도 지정합니다.
 
-In Flutter, use the `Image.network` constructor to include an image from a URL.
+Flutter에서는 `Image.network` 생성자를 사용하여 해당 URL에서 이미지를 가져옵니다.
 
 <!-- skip -->
 ```dart
 // Flutter
 body: Image.network(
-          'https://flutter.io/images/owl.jpg',
+          'https://flutter-io.kr/images/owl.jpg',
 ```
 
-### How do I install packages and package plugins?
+### 패키지와 패키지 플러그인을 설치하는 방법은?
 
-Flutter supports using shared packages contributed by other developers to the
-Flutter and Dart ecosystems. This allows you to quickly build your app without
-having to develop everything from scratch. Packages that contain
-platform-specific code are known as package plugins.
+Flutter에서 Flutter와 Dart 생태계의 
+다른 개발자들이 만든 공유 패키지를 사용할 수 있습니다.
+이를 통해 일일이 모든 것을 개발할 필요없이 빠르게 앱을 개발할 수 있습니다.
+패키지 플러그인은 플랫폼별 코드가 포함된 패키지입니다.
 
-In React Native, you would use `yarn add {package-name}` or `npm install --save
-{package-name}` to install packages from the command line.
+React Native에서는 커멘드라인 `yarn add {package-name}`나 
+`npm install --save {package-name}` 명령을 사용해서 패키지를 설치합니다. 
 
-In Flutter, install a package using the following instructions:
+Flutter에서는 아래와 같은 방법으로 패키지를 설치합니다:
 
-1. Add the package name and version to the `pubspec.yaml` dependencies section.
-The example below shows how to add the `google_sign_in` Dart package to the
-`pubspec.yaml` file. Check your spaces when working in the YAML file because
-**white space matters**!
+1. `pubspec.yaml`의 dependencies 부분에 패키지 이름과 버전을 추가합니다. 
+아래 예제는 `pubspec.yaml` 파일에 `google_sign_in` Dart 패키지를 
+추가하는 방법을 보여줍니다. 
+**공백이 문제가 될 수 있기 때문에** YAML file의 공백을 잘 확인하세요! 
 
 ```yaml
 dependencies:
@@ -739,74 +735,78 @@ dependencies:
   google_sign_in: ^3.0.3
 ```
 
-2. Install the package from the command line by using `flutter pub get`.
-   If using an IDE, it often runs `flutter pub get` for you, or it might
-   prompt you to do so.
-3. Import the package into your app code as shown below:
+2. 커멘드라인에서 `flutter pub get`을 사용해서 패키지를 설치하세요.
+   IDE를 이용하고 있으면, IDE가 종종 `flutter pub get`을 실행해주거나, 
+   실행하도록 유도할 것입니다.
+3. 아래 코드와 같은 패키지를 import 하세요:
 
 <!-- skip -->
 ```dart
 import 'package:flutter/cupertino.dart';
 ```
 
-For more information, see [Using
-Packages](/docs/development/packages-and-plugins/using-packages) and
-[Developing Packages &
-Plugins](/docs/development/packages-and-plugins/developing-packages).
+더 많은 정보를 원하시면, 
+[패키지 사용하기](/docs/development/packages-and-plugins/using-packages)와
+[패키지 & 플러그인 개발](/docs/development/packages-and-plugins/developing-packages)를
+참조하세요.
 
-You can find many packages shared by Flutter developers in the [Flutter
-Packages]({{site.pub}}/flutter/) section of
-the [Pub site]({{site.pub}}).
+[Pub site]({{site.pub}})의 
+[Flutter Packages]({{site.pub}}/flutter/) 섹션에서
+Flutter 개발자들이 공유한 많은 패키지를 만날 수 있습니다.
 
-## Flutter widgets
+## Flutter 위젯
 
-In Flutter, you build your UI out of widgets that describe what their view
-should look like given their current configuration and state.
+Flutter에서는 UI를 만들 때 현재 상태와 설정에 따라 어떻게 보일지에 대한 
+정보를 담고 있는 위젯을 사용합니다.
 
-Widgets are often composed of many small, single-purpose widgets that are nested
-to produce powerful effects. For example, the Container widget consists of
-several widgets responsible for layout, painting, positioning, and sizing.
-Specifically, the `Container` widget includes the `LimitedBox`,
-`ConstrainedBox`, `Align`, `Padding`, `DecoratedBox`, and `Transform` widgets.
-Rather than subclassing `Container` to produce a customized effect, you can
-compose these and other simple widgets in new and unique ways.
+위젯은 종종 강력한 효과를 내기 위해 
+다수의 중첩된 작은 단일 목적의 위젯으로 구성됩니다.
+예를 들어, Container 위젯은 레이아웃, 그리기, 위치, 크기를 담당하는 여러 위젯으로 구성됩니다.
+구체적으로 말하자면, `Container` 위젯은 `LimitedBox`와 `ConstrainedBox`, 
+`Align`, `Padding`, `DecoratedBox`, `Transform` 위젯을 포함하고 있습니다.
+원하는 효과를 내기 위해 `Container` 를 서브클래스로 만드는 대신, 
+여러 심플한 위젯들을 새롭고 독특한 방식으로 구성할 수 있습니다.
 
-The `Center` widget is another example of how you can control the layout. To
-center a widget, wrap it in a `Center` widget and then use layout
-widgets for alignment, row, columns, and grids. These layout widgets do not have
-a visual representation of their own. Instead, their sole purpose is to control
-some aspect of another widget’s layout. To understand why a widget renders in a
-certain way, it’s often helpful to inspect the neighboring widgets.
+`Center` 위젯은 레이아웃을 어떻게 조절할 수 있는지를 보여주는 또 다른 예입니다.
+위젯을 가운데 정렬 하기 위해, `Center` 위젯으로 감싼 다음
+정렬, 행, 그리드를 배치하는 위젯을 사용하세요.
+이러한 배치 위젯은 시각적으로 자기 자신을 나타내지는 않습니다.
+대신, 그것들의 유일한 목적은 다른 위젯 레이아웃을 제어하는 것입니다.
+왜 위젯이 이런 방식으로 그려지는지 이해하기 위해,
+인접한 위젯을 조사하는 것이 종종 도움이 됩니다.
 
-For more information, see the [Flutter Technical
-Overview](/docs/resources/technical-overview).
+더 많은 정보는
+[Flutter 기술 개요](/docs/resources/technical-overview)를
+참조하세요.
 
-For more information about the core widgets from the Widgets package, see
-[Flutter Basic Widgets](/docs/development/ui/widgets/basics), the
-[Flutter Widget Catalog](/docs/development/ui/widgets), or the
-[Flutter Widget Index](/docs/reference/widgets).
+위젯 패키지의 핵심 위젯에 대한 자세한 정보는, 
+[Flutter 기본 위젯](/docs/development/ui/widgets/basics), 
+[Flutter 위젯 카탈로그](/docs/development/ui/widgets), 
+[Flutter 위젯 색인](/docs/reference/widgets)을 
+참조하세요.
 
 ## Views
 
-### What is the equivalent of the `View` container?
+### `View` 컨테이너와 동일한 것은?
 
-In React Native, `View` is a container that supports layout with `Flexbox`,
-style, touch handling, and accessibility controls.
+React Native에서는 `View`가 컨테이너이고, `Flexbox`를 이용한 레이아웃, 
+스타일, 터치 핸들링, 접근성 제어를 지원합니다.
 
-In Flutter, you can use the core layout widgets in the Widgets library, such
-as  [Container]({{site.api}}/flutter/widgets/Container-class.html),
+Flutter에서는 
+[Container]({{site.api}}/flutter/widgets/Container-class.html)나
 [Column]({{site.api}}/flutter/widgets/Column-class.html),
 [Row]({{site.api}}/flutter/widgets/Row-class.html),
-and [Center]({{site.api}}/flutter/widgets/Center-class.html).
+[Center]({{site.api}}/flutter/widgets/Center-class.html) 같은
+위젯 라이브러리의 핵심 레이아웃 위젯을 사용할 수 있습니다.
 
-For more information, see the [Layout Widgets](/docs/development/ui/widgets/layout) catalog.
+더 많은 정보를 원하시면, [레이아웃 위젯](/docs/development/ui/widgets/layout) 카탈로그를 참조하세요.
 
-### What is the equivalent of `FlatList` or `SectionList`?
+### `FlatList`나 `SectionList`와 동일한 것은?
 
-A `List` is a scrollable list of components arranged vertically.
+`List`는 수직으로 배열된 구성 요소의 스크롤 가능한 목록입니다.
 
-In React Native, `FlatList` or `SectionList` are used to render simple or
-sectioned lists.
+React Native에서는 `FlatList` 혹은 `SectionList`를 사용하여 
+단순 목록 혹은 섹션 목록을 그립니다.
 
 ```js
 // React Native
@@ -816,13 +816,13 @@ sectioned lists.
 />
 ```
 
-[`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)
-is Flutter's most commonly used scrolling widget. The default constructor
-takes an explicit list of children.
-[`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)
-is most appropriate for a small number of widgets. For a large or infinite list,
-use `ListView.builder`, which builds its children on demand and only builds
-those children that are visible.
+[`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)는 
+가장 많이 사용되는 스크롤 위젯입니다.
+`ListView`는 기본 생성자를 통해 명시적으로 자식 목록을 받습니다. 
+[`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)는
+목록의 수가 적은 경우에 가장 적합합니다.
+무거운 목록이거나 무한 스크롤 목록일 때는, `ListView.builder`를 사용하세요. 
+자식들을 필요할 때만 빌드하고, 자식들이 화면에 나타내야 할 자식들만 빌드합니다. 
 
 
 <!-- skip -->
@@ -841,13 +841,13 @@ ListView.builder(
 
 {% include android-ios-figure-pair.md image="react-native/flatlist.gif" alt="Flat list" class="border" %}
 
-To learn how to implement an infinite scrolling list, see the
-[Write Your First Flutter App,
-Part 1]({{site.codelabs}}/codelabs/first-flutter-app-pt1) codelab.
+무한 스크롤을 만드는 방법을 배우고 싶다면, 
+[첫 Flutter 앱 만들기, part 1]({{site.codelabs}}/codelabs/first-flutter-app-pt1) 코드랩을
+참조하세요.
 
-### How do I use a Canvas to draw or paint?
+### Canvas를 사용하여 그리거나 색을 입히는 방법은?
 
-In React Native, canvas components aren't present so third party libraries like `react-native-canvas` are used.
+React Native에서는 캔버스 컴포넌트가 없기 때문에, `react-native-canvas` 같은 서드 파티 라이브러리를 사용합니다. 
 
 ```js
 // React Native
@@ -868,15 +868,15 @@ render() {
   );
 }
 ```
-In Flutter, you can use the
-[`CustomPaint`]({{site.api}}/flutter/widgets/CustomPaint-class.html)
-and [`CustomPainter`]({{site.api}}/flutter/rendering/CustomPainter-class.html)
-classes to draw to the canvas.
+Flutter에서는 
+[`CustomPaint`]({{site.api}}/flutter/widgets/CustomPaint-class.html)와
+[`CustomPainter`]({{site.api}}/flutter/rendering/CustomPainter-class.html) 클래스를
+사용하여 캔버스에 그릴 수 있습니다.
 
-The following example shows how to draw during the paint phase using the
-`CustomPaint` widget. It implements the abstract class, CustomPainter,
-and passes it to CustomPaint's painter property. CustomPaint subclasses
-must implement the `paint` and `shouldRepaint` methods.
+아래 예시는 `CustomPaint` 위젯을 사용해서 페인트 단계에서 그리는 방법을 보여줍니다.
+추상 클래스인 CustomPainter를 구현하고, 
+이를 CustomPaint의 painter 속성에 전달합니다.
+CustomPaint 서브 클래스는 `paint`와 `shouldRepaint`를 꼭 구현해야 합니다.
 
 <!-- skip -->
 ```dart
@@ -912,14 +912,14 @@ class _MyCanvasState extends State<MyCanvas> {
 
 {% include android-ios-figure-pair.md image="react-native/canvas.png" alt="Canvas" class="border" %}
 
-## Layouts
+## 레이아웃
 
-### How do I use widgets to define layout properties?
+### 위젯을 사용하여 레이아웃 속성을 정의하는 방법은?
 
-In React Native, most of the layout can be done with the props that are passed
-to a specific component. For example, you could use the `style` prop on the
-`View` component in order to specify the flexbox properties. To arrange your
-components in a column, you would specify a prop such as:
+React Native에서 대부분의 레이아웃은 특정 컴포넌트에 전달된 props로 속성을 정의할 수 있습니다. 
+예를 들어 `View` 컴포넌트의 `style` prop을 사용해서 flexbox 속성을 지정할 수 있습니다.
+컴포넌트들을 열로 배열하려면 
+props를 아래와 같이 지정해주면 됩니다:
 `flexDirection: “column”`.
 
 ```js
@@ -934,17 +934,17 @@ components in a column, you would specify a prop such as:
 >
 ```
 
-In Flutter, the layout is primarily defined by widgets specifically designed to
- provide layout, combined with control widgets and their style properties.
+Flutter에서는 컨트롤 위젯 및 스타일 속성을 결합하여 특별히 설계한 위젯을 통해서 
+레이아웃을 정의합니다.
 
-For example, the
-[Column]({{site.api}}/flutter/widgets/Column-class.html) and
-[Row]({{site.api}}/flutter/widgets/Row-class.html) widgets
-take an array of children and align them vertically and horizontally respectively.
-A [Container]({{site.api}}/flutter/widgets/Container-class.html)
-widget takes a combination of layout and styling properties, and a
-[`Center`]({{site.api}}/flutter/widgets/Center-class.html) widget centers
-its child widgets.
+예를 들어, 
+[Column]({{site.api}}/flutter/widgets/Column-class.html) 및
+[Row]({{site.api}}/flutter/widgets/Row-class.html) 위젯은
+자식 배열을 가지고, 그 배열을 각각 수직 혹은 수평으로 정렬합니다.
+[Container]({{site.api}}/flutter/widgets/Container-class.html)
+위젯은 레이아웃과 스타일링 속성을 조합하고
+[`Center`]({{site.api}}/flutter/widgets/Center-class.html) 위젯은 자식 위젯을
+중앙에 위치시킵니다.
 
 <!-- skip -->
 ```dart
@@ -972,26 +972,26 @@ Center(
 )
 ```
 
-Flutter provides a variety of layout widgets in its core widget library.
-For example, [`Padding`]({{site.api}}/flutter/widgets/Padding-class.html),
-[`Align`]({{site.api}}/flutter/widgets/Align-class.html),
-and [`Stack`]({{site.api}}/flutter/widgets/Stack-class.html).
+Flutter는 기본 위젯 라이브러리에서 다양한 레이아웃 위젯을 제공합니다.
+예를 들어, [`Padding`]({{site.api}}/flutter/widgets/Padding-class.html),
+[`Align`]({{site.api}}/flutter/widgets/Align-class.html), 
+[`Stack`]({{site.api}}/flutter/widgets/Stack-class.html)과 같은 핵심 위젯을 제공합니다.
 
-For a complete list, see [Layout Widgets](/docs/development/ui/widgets/layout).
+전체 리스트를 원하시면 [레이아웃 위젯](/docs/development/ui/widgets/layout)를 참조하세요.
 
 {% include android-ios-figure-pair.md image="react-native/basic-layout.gif" alt="Layout" class="border" %}
 
-### How do I layer widgets?
+### 위젯을 겹쳐 쌓아올리는 방법은?
 
-In React Native, components can be layered using `absolute` positioning.
+React Native에서는 `absolute` 포지션을 사용하여 컴포넌트를 겹치게 할 수 있습니다.
 
-Flutter uses the
-[`Stack`]({{site.api}}/flutter/widgets/Stack-class.html)
-widget to arrange children widgets in layers.
-The widgets can entirely or partially overlap the base widget.
+Flutter에서는
+[`Stack`]({{site.api}}/flutter/widgets/Stack-class.html) 위젯을 사용하여
+자식 위젯들을 겹치게 할 수 있습니다.
+위젯이 전체적으로 또는 부분적으로 기본 위젯과 겹치게 할 수 있습니다.
 
-The `Stack` widget positions its children relative to the edges of its box.
-This class is useful if you simply want to overlap several children widgets.
+`Stack` 위젯은 상자의 가장자리를 기준으로 자식들을 배치합니다.
+이 클래스는 여러 자식 위젯을 간단하게 쌓아올리려고 할 때 유용합니다.
 
 <!-- skip -->
 ```dart
@@ -1013,21 +1013,22 @@ Stack(
 )
 ```
 
-The previous example uses `Stack` to overlay a Container (that displays its `Text`
-on a translucent black background) on top of a `CircleAvatar`. The Stack offsets
-the text using the alignment property and Alignment coordinates.
+위 예제는 `Stack`을 사용하여 `CircleAvatar` 위에
+Container(반투명 검정 배경을 가진 `Text`를 보여주고 있음)를 쌓아올립니다.
+Stack은 정렬 속성과 정렬 좌표를 사용하여 
+텍스트의 간격을 조정합니다. 
 
 {% include android-ios-figure-pair.md image="react-native/stack.png" alt="Stack" class="border" %}
 
-For more information, see the
-[Stack]({{site.api}}/flutter/widgets/Stack-class.html) class documentation.
+더 많은 정보를 원하시면, 
+[Stack]({{site.api}}/flutter/widgets/Stack-class.html) 클래스 문서를 참조하세요.
 
-## Styling
+## 스타일링
 
-### How do I style my components?
+### 컴포넌트를 꾸미는 방법은?
 
-In React Native, inline styling and `stylesheets.create` are used to style
-components.
+React Native에서는 인라인 스타일링과 `stylesheets.create`를 사용하여 
+컴포넌트를 꾸밉니다.
 
 ```js
 // React Native
@@ -1047,10 +1048,10 @@ const styles = StyleSheet.create({
 });
 ```
 
-In Flutter, a `Text` widget can take a `TextStyle` class for its style property.
-If you want to use the same text style in multiple places, you can create a
-[`TextStyle`]({{site.api}}/flutter/dart-ui/TextStyle-class.html)
-class and use it for multiple `Text` widgets.
+Flutter에서 `Text` 위젯은 style 속성에 `TextStyle` 클래스를 사용할 수 있습니다.
+여러 곳에서 같은 텍스트 스타일을 사용하고 싶다면, 
+[`TextStyle`]({{site.api}}/flutter/dart-ui/TextStyle-class.html) 클래스를
+여러 `Text` 위젯에 사용할 수 있습니다.
 
 <!-- skip -->
 ```dart
@@ -1077,30 +1078,30 @@ Center(
 
 {% include android-ios-figure-pair.md image="react-native/flutterstyling.gif" alt="Styling" class="border" %}
 
-### How do I use `Icons` and `Colors`?
+### `Icons`와 `Colors`를 사용하는 방법은?
 
-React Native doesn't include support for icons so third party libraries are used.
+React Native는 아이콘을 지원하지 않기 때문에 서드 파티 라이브러리가 사용됩니다.
 
-In Flutter, importing the Material library also pulls in the rich set of
-[Material icons]({{site.api}}/flutter/material/Icons-class.html)
-and [colors]({{site.api}}/flutter/material/Colors-class.html).
+Flutter에서는 머티리얼 라이브러리를 import 하면 다양한 
+[머티리얼 아이콘]({{site.api}}/flutter/material/Icons-class.html)과  
+[컬러]({{site.api}}/flutter/material/Colors-class.html) 또한 함께 가져옵니다.
 
 <!-- skip -->
 ```dart
 Icon(Icons.lightbulb_outline, color: Colors.redAccent)
 ```
 
-When using the `Icons` class, make sure to set `uses-material-design: true` in
-the project's `pubspec.yaml` file. This ensures that
-the `MaterialIcons` font, which displays the icons, is included in your app.
+`Icons` 클래스를 사용할 때, 프로젝트의 `pubspec.yaml` 파일에 
+`uses-material-design: true`로 설정 되어 있는지 확인하세요. 
+이렇게 하면 아이콘을 표시하는 `MaterialIcons` 글꼴이 앱에 포함되도록 할 수 있습니다.
 {% prettify dart %}
 name: my_awesome_application
 flutter: [[highlight]]uses-material-design: true[[/highlight]]
 {% endprettify %}
 
-Flutter's [Cupertino (iOS-style)](/docs/development/ui/widgets/cupertino) package provides high
-fidelity widgets for the current iOS design language. To use the `CupertinoIcons`
-font, add a dependency for `cupertino_icons` in your project's  `pubspec.yaml` file.
+Flutter의 [쿠퍼티노 (iOS-style)](/docs/development/ui/widgets/cupertino) 패키지는 
+현재 iOS 디자인 언어를 잘 준수하는 위젯을 제공합니다. `CupertinoIcons`을 사용하기 위해서는 
+프로젝트의 `pubspec.yaml` 파일에 `cupertino_icons` 의존성을 추가해야 합니다.
 
 ```yaml
 name: my_awesome_application
@@ -1108,15 +1109,15 @@ dependencies:
   cupertino_icons: ^0.1.0
 ```
 
-To globally customize the colors and styles of components, use `ThemeData`
-to specify default colors for various aspects of the theme. Set the theme
-property in `MaterialApp` to the `ThemeData` object. The
-[`Colors`]({{site.api}}/flutter/material/Colors-class.html)
-class provides colors from the Material Design [color
-palette]({{site.material}}/guidelines/style/color.html).
+컴포넌트 전체적인 색과 스타일을 지정하고 싶다면, 
+`ThemeData`을 사용해서 테마의 다양한 측에 기본 색상을 지정하세요. 
+`MaterialApp`에서 theme 속성에 `ThemeData` 객체를 설정하세요.
+[`Colors`]({{site.api}}/flutter/material/Colors-class.html) 클래스는 
+머터리얼 디자인의 [color palette]({{site.material}}/guidelines/style/color.html)에 
+해당하는 색상을 제공합니다.
 
-The following example sets the primary swatch to `blue` and the text
-selection to `red`.
+아래 예제는 기본 색을 `blue`로, 
+텍스트 선택을 `red`로 설정하는 예제입니다.
 
 <!-- skip -->
 {% prettify dart %}
@@ -1135,17 +1136,17 @@ class SampleApp extends StatelessWidget {
 }
 {% endprettify %}
 
-### How do I add style themes?
+### 스타일 테마를 추가하는 방법은?
 
-In React Native, common themes are defined for components in stylesheets and
-then used in components.
+React Native에서, 컴포넌트 공통 테마는 stylesheets에 정의한 후 
+컴포넌트에 사용합니다.
 
-In Flutter, create uniform styling for almost everything by defining the
- styling in the
-[`ThemeData`]({{site.api}}/flutter/material/ThemeData-class.html)
-class and passing it to the theme property in the
-[`MaterialApp`]({{site.api}}/flutter/material/MaterialApp-class.html)
-widget.
+Flutter에서는 
+[`ThemeData`]({{site.api}}/flutter/material/ThemeData-class.html) 클래스에 
+스타일을 정의하고 
+[`MaterialApp`]({{site.api}}/flutter/material/MaterialApp-class.html) 위젯의 
+테마 속성에 전달함으로써 
+거의 모든 곳에 균일한 스타일을 적용할 수 있습니다.
 
 <!-- skip -->
 ```dart
@@ -1161,10 +1162,10 @@ widget.
   }
 ```
 
-A `Theme` can be applied even without using the `MaterialApp` widget. The
-[`Theme`]({{site.api}}/flutter/material/Theme-class.html)
-widget takes a `ThemeData` in its `data` parameter and applies the
-`ThemeData` to all of its children widgets.
+`Theme`는 `MaterialApp` 위젯을 사용하지 않고도 적용될 수 있습니다. 
+[`Theme`]({{site.api}}/flutter/material/Theme-class.html) 위젯은 
+`data` 매개 변수에서 `ThemeData`를 가져와 
+모든 자식 위젯에 `ThemeData`를 적용합니다.
 
 <!-- skip -->
 ```dart
@@ -1184,33 +1185,33 @@ widget takes a `ThemeData` in its `data` parameter and applies the
   }
 ```
 
-## State management
+## 상태 관리
 
-State is information that can be read synchronously when a widget is built
-or information that might change during the lifetime of a widget.
-To manage app state in Flutter, use a
-[StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html)
-paired with a State object.
+상태(State)는 위젯이 빌드될 때 동기적으로 읽을 수 있는 정보이고,
+위젯의 수명 동안 변경될 수 있는 정보입니다.
+Flutter에서 앱의 상태를 관리하기 위해서는, State 객체와 함께 
+[StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html)을 
+사용하세요.
 
-For more information on ways to approach managing state in Flutter,
-see [State management][].
+Flutter 상태 관리 방법에 대한 더 자세한 정보는
+[State management][]를 참조하세요.
 
 ### The StatelessWidget
 
-A `StatelessWidget` in Flutter is a widget that doesn't require a state
-change&mdash;it has no internal state to manage.
+Flutter에서 `StatelessWidget`은 상태 변화가 필요 
+없는(관리할 내부 상태가 없음) 위젯입니다.
 
-Stateless widgets are useful when the part of the user interface you are
-describing does not depend on anything other than the configuration information
-in the object itself and the
-[`BuildContext`]({{site.api}}/flutter/widgets/BuildContext-class.html)
-in which the widget is inflated.
+Stateless 위젯은 
+묘사하려는 UI의 일부분이  
+객체의 자체적인 구성 정보나 위젯의 
+[`BuildContext`]({{site.api}}/flutter/widgets/BuildContext-class.html) 
+이외의 것에 의존하지 않을 때 유용합니다.
 
 [AboutDialog]({{site.api}}/flutter/material/AboutDialog-class.html),
 [CircleAvatar]({{site.api}}/flutter/material/CircleAvatar-class.html),
-and [Text]({{site.api}}/flutter/widgets/Text-class.html) are examples
-of stateless widgets which subclass
-[StatelessWidget]({{site.api}}/flutter/widgets/StatelessWidget-class.html).
+[Text]({{site.api}}/flutter/widgets/Text-class.html)가
+[StatelessWidget]({{site.api}}/flutter/widgets/StatelessWidget-class.html)의
+하위 클래스인 상태가 없는 위젯의 예시입니다.
 
 
 <!-- skip -->
@@ -1236,46 +1237,44 @@ class MyStatelessWidget extends StatelessWidget {
 }
 ```
 
-In the previous example, you used the constructor of the `MyStatelessWidget`
-class to pass the `text`, which is marked as `final`. This class extends
- `StatelessWidget`&mdash;it contains immutable data.
+이전 예제에서, `final` 표시가 있는 `text`를 전달하는 
+`MyStatelessWidget`을 생성자로 사용했습니다. 이 클래스는 `StatelessWidget`을 확장하고, 
+불변 데이터를 포함하고 있습니다.
 
-The `build` method of a stateless widget is typically called in only three
- situations:
+상태가 없는 위젯의 `build` 메서드는 보통 3가지 상황에서만 
+호출됩니다.
 
-* When the widget is inserted into a tree
-* When the widget's parent changes its configuration
-* When an
-  [`InheritedWidget`]({{site.api}}/flutter/widgets/InheritedWidget-class.html)
-  it depends on, changes
+* 위젯이 트리에 추가될 때
+* 위젯의 부모가 설정이 변경됐을 때
+* 사용하고 있는 
+  [`InheritedWidget`]({{site.api}}/flutter/widgets/InheritedWidget-class.html)이
+  변경될 때
 
 ### The StatefulWidget
 
-A [StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html)
-is a widget that changes state. Use the `setState` method to manage the
-state changes for a `StatefulWidget`. A call to `setState` tells the Flutter
-framework that something has changed in a state, which causes an app to
-rerun the `build` method so that the app can reflect the change.
+[StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html)은 
+상태가 변경되는 위젯입니다. `setState` 메서드를 사용하여 `StatefulWidget`의 
+상태를 변경하세요. `setState`를 호출하면 Flutter 프레임워크에게 상태가 변경되었다고 알려주고,
+그러면 앱이 `build` 메서드를 다시 실행하여 변경 사항을 반영할 수 있게 됩니다.
 
-State is information that can be read synchronously when a widget is built and
-might change during the lifetime of the widget. It's the responsibility of the
-widget implementer to ensure that the state is promptly notified when the state
-changes. Use `StatefulWidget` when a widget can change dynamically.
-For example, the state of the widget changes by typing into a form,
-or moving a slider. Or, it can change over time—perhaps a data feed updates the UI.
+상태는 위젯이 빌드 될 때 동기적으로 읽을 수 있는 정보이고, 
+위젯의 생명 주기 동안 변경 될 수 있습니다. 
+상태가 변경 될 때 즉시 상태를 알리는 것은 위젯을 구현하는 사람의 책임입니다.
+위젯이 동적으로 변화하는 경우 `StatefulWidget`을 사용하세요.
+예를 들어, form에 타이핑을 하거나 slider를 움직여서 위젯의 상태가 변할 수 있습니다. 
+또는, 시간이 지남에 따라 변경될 수도 있습니다(데이터 피드가 UI를 업데이트 할 수 있습니다).
 
 [Checkbox]({{site.api}}/flutter/material/Checkbox-class.html),
 [Radio]({{site.api}}/flutter/material/Radio-class.html),
 [Slider]({{site.api}}/flutter/material/Slider-class.html),
 [InkWell]({{site.api}}/flutter/material/InkWell-class.html),
 [Form]({{site.api}}/flutter/widgets/Form-class.html),
-and [TextField]({{site.api}}/flutter/material/TextField-class.html)
-are examples of stateful widgets, that subclass
-[StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html).
+[TextField]({{site.api}}/flutter/material/TextField-class.html)는
+[StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html)의
+하위클래스인 상태가 있는 위젯의 예시입니다.
 
-The following example declares a `StatefulWidget` which requires a `createState()`
-method. This method creates the state object that manages the widget's state,
-`_MyStatefulWidgetState`.
+아래 예시는 `createState()` 메서드를 필요로 하는 `StatefulWidget`을 선언하는 예시입니다.
+이 메서드는 위젯의 상태를 관리하는 상태 객체 `_MyStatefulWidgetState`를 생성합니다.
 
 <!-- skip -->
 ```dart
@@ -1288,10 +1287,10 @@ class MyStatefulWidget extends StatefulWidget {
 }
 ```
 
-The following state class, `_MyStatefulWidgetState`, implements the `build()`
-method for the widget. When the state changes, for example, when the user toggles
-the button, `setState` is called with the new toggle value. This causes the
-framework to rebuild this widget in the UI.
+아래 상태 클래스 `_MyStatefulWidgetState`는 위젯의 `build()` 메서드를 구현합니다. 
+상태가 바뀌면(예를 들어, 사용자가 버튼을 누르면), 
+`setState`가 새로운 toggle 값과 함께 호출됩니다.
+이렇게 하면 프레임워크가 UI 위젯을 다시 빌드합니다.
 
 <!-- skip -->
 ```dart
@@ -1348,44 +1347,44 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 }
 ```
 
-### What are the StatefulWidget and StatelessWidget best practices?
+### StatefulWidget 및 StatelessWidget의 모범 사례는?
 
-Here are a few things to consider when designing your widget.
+위젯을 설계할 때 고려해야 할 몇 가지 사항이 있습니다.
 
-#### 1. Determine whether a widget should be a StatefulWidget or a StatelessWidget
+#### 1. 위젯이 StatefulWidget인지 StatelessWidget인지 결정하세요.
 
 
-In Flutter, widgets are either Stateful or Stateless—depending on whether
-they depend on a state change.
+Flutter에서, 위젯은 상태 변화에 의존적인지에 따라 
+Stateful이거나 Stateless입니다.
 
-* If a widget changes—the user interacts with it or a data feed interrupts
-  the UI, then it’s Stateful.
-* If a widget is final or immutable, then it's Stateless.
+* 위젯이 변화한다면(사용자 인터렉션이 있거나 데이터로부터 UI 변경이 있다면), 
+  Stateful을 사용해야 합니다.
+* 위젯이 final이거나 immutable이면, Stateless를 사용해야 합니다.
 
-#### 2. Determine which object manages the widget’s state (for a StatefulWidget)
+#### 2. 어떤 객체가 위젯의 상태를 관리하는지 결정하세요. (StatefulWidget의 경우)
 
-In Flutter, there are three primary ways to manage state:
+Flutter에서 상태를 관리하는 3가지 주된 방법이 있습니다.
 
-* The widget manages its own state
-* The parent widget manages the widget’s state
-* A mix-and-match approach
+* 위젯이 자신의 상태를 관리
+* 부모 위젯이 상태를 관리
+* 혼합하여 관리
 
-When deciding which approach to use, consider the following principles:
+어떤 접근 방식을 사용할 것인지 결정할 때, 아래 원칙을 고려하세요.
 
-* If the state in question is user data, for example the checked or unchecked
-  mode of a checkbox, or the position of a slider, then the state is best managed
-  by the parent widget.
-* If the state in question is aesthetic, for example an animation, then the
-  widget itself best manages the state.
-* When in doubt, let the parent widget manage the child widget's state.
+* 해당 상태가 사용자 데이터라면(예를 들어, 슬라이더 위치 
+  혹은 체크박스의 선택과 취소) 
+  상태를 상위 위젯에서 관리하는 것이 가장 좋습니다.
+* 해당 상태가 보이는 것과 깊다면(예를 들어, 애니메이션)
+  해당 위젯이 상태를 제일 잘 관리할 수 있습니다.
+* 잘 모르겠을 때는 부모 위젯이 자식 위젯의 상태를 관리하게 하세요.
 
-#### 3. Subclass StatefulWidget and State
+#### 3. StatefulWidget의 하위 클래스 및 State
 
-The `MyStatefulWidget` class manages its own state—it extends
-`StatefulWidget`, it overrides the `createState()` method to create the State
-object, and the framework calls `createState()` to build the widget. In this
-example, `createState()` creates an instance of `_MyStatefulWidgetState`, which
-is implemented in the next best practice.
+`MyStatefulWidget` 클래스는 자신의 상태를 관리합니다. 이 클래스는
+`StatefulWidget`를 상속 받고, `createState()` 메서드를 오버라이드하여 
+State 객체를 만듭니다. 그리고 프레임워크는 `createState()`를 호출하여 위젯을 빌드합니다.
+이 예제에서, `createState()`는 다음 모범 사례에서 구현되는
+`_MyStatefulWidgetState`의 인스턴스를 만듭니다.
 
 <!-- skip -->
 ```dart
@@ -1406,9 +1405,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 }
 ```
 
-#### 4. Add the StatefulWidget into the widget tree
+#### 4. StatefulWidget을 위젯 트리에 추가하세요.
 
-Add your custom `StatefulWidget` to the widget tree in the app’s build method.
+직접 만든 `StatefulWidget`을 앱의 빌드 메서드에 있는 위젯 트리에 추가하세요.
 
 <!-- skip -->
 ```dart
@@ -1432,9 +1431,9 @@ class MyStatelessWidget extends StatelessWidget {
 
 ## Props
 
-In React Native, most components can be customized when they are created with
-different parameters or properties, called `props`. These
-parameters can be used in a child component using `this.props`.
+React Native에서 대부분의 컴포넌트는 매개변수나 속성을 `props`로 전달하여 
+커스터마이징할 수 있습니다. 
+자식 컴포넌트에서 `this.props`를 사용해 매개변수에 접근할 수 있습니다.  
 
 ```js
 // React Native
@@ -1472,8 +1471,8 @@ class App extends React.Component {
 }
 ```
 
-In Flutter, you assign a local variable or function marked `final` with the
- property received in the parameterized constructor.
+Flutter에서는 매개변수가 있는 생성자에서 받은 속성을
+`final`로 표시된 지역 변수나 함수에 할당합니다.
 
 <!-- skip -->
 ```dart
@@ -1510,18 +1509,18 @@ CustomCard(
 
 {% include android-ios-figure-pair.md image="react-native/modular.png" alt="Cards" class="border" %}
 
-## Local storage
+## 로컬 저장소
 
-If you don't need to store a lot of data and it doesn't require
-structure, you can use `shared_preferences` which allows you to
-read and write persistent key-value pairs of primitive data
-types: booleans, floats, ints, longs, and strings.
+아주 많은 데이터나 구조화가 필요하지 않다면, 
+키-값 쌍 형태의 저장소인 `shared_preferences`로
+기본 타입(booleans, floats, ints, longs, strings)
+데이터를 읽고 쓸 수 있습니다.
 
-### How do I store persistent key-value pairs that are global to the app?
+### 앱에 전역적인 키-값 쌍을 지속성있게 저장하는 방법은?
 
-In React Native, you use the `setItem` and `getItem` functions of the
-`AsyncStorage` component to store and retrieve data that is persistent and
-global to the app.
+React Native에서는 `AsyncStorage`의 
+`setItem`과 `getItem` 함수를 사용하여 앱 전역에 걸쳐 
+지속성있게 데이터를 저장하고 다시 찾아옵니다.  
 
 ```js
 // React Native
@@ -1533,13 +1532,13 @@ AsyncStorage.getItem('counterkey').then(value => {
 });
 ```
 
-In Flutter, use the
+Flutter에서는 키-값 데이터를 읽고 쓰기 위해서 앱 내 전역에서 지속되는  
 [`shared_preferences`]({{site.github}}/flutter/plugins/tree/master/packages/shared_preferences)
-plugin to store and retrieve key-value data that is persistent and global
-to the app. The `shared_preferences` plugin wraps `NSUserDefaults` on iOS
-and `SharedPreferences` on Android, providing a persistent store for simple data.
-To use the plugin, add `shared_preferences` as a dependency in the `pubspec.yaml`
-file then import the package in your Dart file.
+플러그인을 사용합니다. `shared_preferences` 플러그인은 간단한 데이터를 지속성있게 
+저장할 수 있는 저장소를 제공하기 위해 iOS에선 `NSUserDefaults`, 
+안드로이드에선 `SharedPreferences`를 감싸고 있습니다.
+플러그인을 사용하기 위해 `shared_preferences`를 
+`pubspec.yaml` 파일의 의존성에 추가한 다음 Dart 파일에서 import 하세요 
 
 ```yaml
 dependencies:
@@ -1554,12 +1553,12 @@ dependencies:
 import 'package:shared_preferences/shared_preferences.dart';
 ```
 
-To implement persistent data, use the setter methods provided by the
-`SharedPreferences` class. Setter methods are available for various primitive
-types, such as `setInt`, `setBool`, and `setString`. To read data, use the
-appropriate getter method provided by the `SharedPreferences` class. For each
-setter there is a corresponding getter method, for example, `getInt`, `getBool`,
-and `getString`.
+지속성있는 데이터 저장을 구현하려면 `SharedPreferences` 클래스의
+setter 메서드를 사용하세요.
+Setter 메서드는 `setInt`, `setBool`, `setString`과 같은 방식으로
+다양한 기본형 타입에서 사용 가능합니다.
+데이터를 읽으려면 `SharedPreferences` 클래스의 getter 메서드를 사용하세요.
+각 setter에 상응하는 getter가 `getInt`, `getBool`, `getString`와 같은 형태로 존재합니다.
 
 
 <!-- skip -->
@@ -2486,4 +2485,4 @@ corresponding Flutter widget and common widget properties.
 
 [DevTools]: /docs/development/tools/devtools
 [State management]: /docs/development/data-and-backend/state-mgmt
-[async and await]: {{site.dart-site}}/guides/language/language-tour#asynchrony-support
+[async와 await]: {{site.dart-site}}/guides/language/language-tour#asynchrony-support

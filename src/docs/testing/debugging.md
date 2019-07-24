@@ -1,10 +1,10 @@
 ---
-title: Debugging Flutter apps 
+title: Flutter 앱 디버깅하기
 description: How to debug your app using the DevTools suite.
 ---
 
-There are a wide variety of tools and features to help debug
-Flutter applications. Here are some of the available tools:
+Flutter 어플리케이션의 디버그를 위한 다양한 툴과 기능을 소개합니다.
+몇 가지 툴이 있습니다:
 
 * [DevTools][], a suite of performance and profiling
   tools that run in a browser.
@@ -62,21 +62,18 @@ You can set breakpoints directly in your IDE/editor
 in the [DevTools debugger][],
 or [programmatically][breakpoints].
 
-## The Dart analyzer
 
-If you're using a [Flutter enabled IDE/editor][],
-the Dart analyzer is already checking your code
-and looking for possible mistakes.
+## The Dart Analyzer
 
-If you run from the command line,
-test your code with `flutter analyze`.
+[Flutter enabled IDE/editor](/docs/get-started/editor/) 를 사용한다면, 
+개발자가 별도로 실행하지 않아도 IDE가 자동으로 실행하여 실수를 찾도록 돕습니다.
 
-The Dart analyzer makes heavy use of type annotations that
-you put in your code to help track problems down.
-You are encouraged to use them everywhere (avoiding `var`,
-untyped arguments, untyped list literals, and so on)
-as this is the quickest and least painful way of tracking
-down problems.
+커멘드 라인을 사용하고 있다면 
+`flutter analyze` 를 통해 테스트하세요.. 
+
+The Dart Analyzer는 문제를 추적하기 위해 여러분이 코드에 넣어둔 타입 어노테이션을 
+이용합니다. 문제를 추적하기 위한 가장 빠르고 덜 고통스러운 방법이니만큼 모든 곳에서
+`var` 선언,  타입 없는 인수, 타입 없는 배열 문법 등의 사용을 자제하는 것이 좋습니다.
 
 For more information, see [Using the Dart analyzer][].
 

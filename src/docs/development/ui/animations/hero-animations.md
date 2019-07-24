@@ -38,7 +38,7 @@ during flight.
 {{site.alert.end}}
 
 {{site.alert.secondary}}
-  **New to Flutter?**
+  **Flutter가 처음인가요?**
   This page assumes you know how to create a layout using Flutter’s
   widgets.  For more information, see [Building Layouts in
   Flutter](/docs/development/ui/layout).
