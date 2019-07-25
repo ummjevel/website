@@ -18,7 +18,7 @@ Flutter를 설치하고 실행하기 위해서는
 - **저장 공간**: 400 MB (IDE나 개발 도구 용량은 별도).
 - **도구**: Flutter는 윈도우 환경에서 아래 도구가 필요합니다.
   - [윈도우 파워셸 5.0][] 또는 그 이상 버전 (윈도우10에 내장되어 있음)
-  - [Git for Windows][] 2.x, with the 
+  - [Git for Windows][] 2.x, 
     **Use Git from the Windows Command Prompt** option.
 
      윈도우용 Git이 이미 설치되어 있다면, 
