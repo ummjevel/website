@@ -310,7 +310,7 @@ release 번들이 서명될 것입니다.
 2. 플레이 스토어에 올리기 위해 [these steps to upload your bundle][upload-bundle]을 
    참고하세요.
 
-### Build an APK
+### APK 빌드하기
 
 APK보다 앱 번들을 추천하기는 하지만, 
 아직은 앱 번들을 지원하지 않는 스토어가 있습니다.
