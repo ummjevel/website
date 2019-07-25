@@ -72,7 +72,6 @@ iOS 시뮬레이터와 Android 에뮬레이터와 같은 OS 에뮬레이터에�
 더 많은 정보를 원하시면 아래 문서를 참조하세요:
 
 * [Continuous delivery using fastlane with
-  Flutter](/docs/deployment/cd#fastlane)
 * [Travis로 Flutter 앱 테스트하기]({{site.flutter-medium}}/test-flutter-apps-on-travis-3fd5142ecd8c)
 * [Cirrus로 Flutter 앱 테스트하기](https://cirrus-ci.org/examples/#flutter)
 * [GitLab 지속적 통합
