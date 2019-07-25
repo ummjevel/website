@@ -390,7 +390,7 @@ Flutter 앱은 [armeabi-v7a][] (32-bit) 방식과 [arm64-v8a][] (64-bit) 방식�
 Android Studio에서 앱 폴더 아래에 있는 `android/` 폴더를 여세요.
 그런 다음 프로젝트 패널에 있는 **build.gradle (Module: app)**를 선택하세요.
 
-{% asset 'deployment/android/gradle-script-menu.png' alt='screenshot of gradle build script menu' %}
+{% asset 'deployment/android/gradle-script-menu.png' alt='Gradle 빌드 스크립트 메뉴의 스크린샷' %}
 
 다음으로, 빌드 variant를 선택하세요. 메인 메뉴에서 **Build > Select Build Variant**를 클릭하세요. 
 **Build Variants** 패널에서 variant를 선택하세요(debug가 기본입니다): 
