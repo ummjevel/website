@@ -395,7 +395,7 @@ Android Studio에서 앱 폴더 아래에 있는 `android/` 폴더를 여세요.
 다음으로, 빌드 variant를 선택하세요. 메인 메뉴에서 **Build > Select Build Variant**를 클릭하세요. 
 **Build Variants** 패널에서 variant를 선택하세요(debug가 기본입니다): 
 
-{% asset 'deployment/android/build-variant-menu.png' alt='screenshot of build variant menu' %}
+{% asset 'deployment/android/build-variant-menu.png' alt='빌드 변형 메뉴의 스크린샷' %}
 
 앱 폴더 안 `build/app/outputs`에
 앱 번들이나 APK 파일이 생성됩니다. 
