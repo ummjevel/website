@@ -190,7 +190,6 @@ by editing the `[project]/android/app/build.gradle` file.
        release {
            // TODO: release 빌드 버전을 위한 서명 구성을 추가하세요.
            // 현재는 `flutter run --release`가 디버그용 키로 서명되어 동작합니다.
-           // so `flutter run --release` works.
            signingConfig signingConfigs.debug
        }
    }
