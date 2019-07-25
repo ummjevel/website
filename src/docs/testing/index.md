@@ -80,6 +80,6 @@ iOS 시뮬레이터와 Android 에뮬레이터와 같은 OS 에뮬레이터에�
   (GitLab CI/CD)](https://docs.gitlab.com/ee/ci/README.html#doc-nav).
   이를 위해 `.gitlab-ci.yml` 파일을 만들고 설정할 필요가 있습니다.
   [flutter_redux library]({{site.github}}/brianegan/flutter_redux) 에서 
-  in the [flutter_redux library]({{site.github}}/brianegan/flutter_redux).
+  [예제를 찾아볼 수 있습니다](https://raw.githubusercontent.com/brianegan/flutter_redux/master/.gitlab-ci.yml).
 * [Codemagic CI/CD for Flutter](https://blog.codemagic.io/getting-started-with-codemagic/)
 * [Flutter CI/CD with Bitrise](https://devcenter.bitrise.io/getting-started/getting-started-with-flutter-apps/)
