@@ -259,8 +259,8 @@ class _SampleAppPageState extends State<SampleAppPage> {
 ### 어떻게 위젯에 애니메이션을 적용하나요?
 
 iOS 에서는 UIView의 `animate(withDuration:animations:)`를 호출해 애니메이션을
-만듭니다. Flutter에서는 애니메이션 라이브러리를 이용해 애니메이션 위젯 안에 다른 위젯들을
-감싸 사용합니다.
+만듭니다. Flutter에서는 애니메이션 라이브러리를 이용해 애니메이션 위젯(animated widget)
+안에 다른 위젯들을 감싸 사용합니다.
 
 Flutter에서는 `AnimationController`를 사용합니다. `AnimationController`는
 애니메이션의 일시정지, 탐색, 정지, 역재생이 가능한 `Animation<double>`입니다. 이것은
@@ -276,8 +276,8 @@ Flutter에서는 `AnimationController`를 사용합니다. `AnimationController`
 `FadeTransition`의 불투명도 같은 애니메이션 속성에, `Animation`을 할당할 수
 있습니다. 이런 위젯 트리를 만들 때, 컨트롤러에 애니메이션을 시작하라고 명령하세요.
 
-아래 예제는 `FloatingActionButton`을 누를 때 로고가 서서히 사라지는 예제입니다.
-로고가 사라지도록 `FadeTransition`를 어떻게 사용하는지 살펴보세요:
+아래는 `FloatingActionButton`을 누를 때 로고가 서서히 나타나도록 해주는
+`FadeTransition`을 활용한 예제입니다:
 
 {% prettify dart %}
 class SampleApp extends StatelessWidget {
