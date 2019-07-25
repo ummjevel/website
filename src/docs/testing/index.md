@@ -78,7 +78,7 @@ iOS 시뮬레이터와 Android 에뮬레이터와 같은 OS 에뮬레이터에�
 * [Test Flutter apps on Cirrus](https://cirrus-ci.org/examples/#flutter)
 * [GitLab Continuous Integration
   (GitLab CI/CD)](https://docs.gitlab.com/ee/ci/README.html#doc-nav).
-  You'll need to create and configure a `.gitlab-ci.yml` file. You can 
+  이를 위해 `.gitlab-ci.yml` 파일을 만들고 설정할 필요가 있습니다.
   [find an example](https://raw.githubusercontent.com/brianegan/flutter_redux/master/.gitlab-ci.yml)
   in the [flutter_redux library]({{site.github}}/brianegan/flutter_redux).
 * [Codemagic CI/CD for Flutter](https://blog.codemagic.io/getting-started-with-codemagic/)
