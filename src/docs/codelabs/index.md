@@ -43,7 +43,7 @@ part 2에서는 part 1에서 만든 앱을 발전시켜 봅니다.
 
 #### [Flutter로 쿠퍼티 앱을 만들기]({{site.codelabs}}/codelabs/flutter-cupertino)
 
-Shrine 쇼핑 앱(머터리얼 디자인 코드랩에서 했던)을 
+Shrine 쇼핑 앱(머티리얼 디자인 코드랩에서 했던)을 
 쿠퍼티노 페키지를 사용하여 iOS 스타일로 만들어봅니다.
 여러 탭과 네비게이션을 만들 것입니다.
 [provider](https://pub.dev/packages/provider) 패키지를 사용하여
