@@ -257,30 +257,28 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### How do I animate a widget?
+### 어떻게 위젯에 애니메이션을 적용하나요?
 
-In iOS, you create an animation by calling the
-`animate(withDuration:animations:)` method on a view. In Flutter,
-use the animation library to wrap widgets inside an animated widget.
+iOS 에서는 UIView의 `animate(withDuration:animations:)`를 호출해 애니메이션을
+만듭니다. Flutter에서는 애니메이션 라이브러리를 이용해 애니메이션 위젯(animated widget)
+안에 다른 위젯들을 감싸 사용합니다.
 
-In Flutter, use an `AnimationController`, which is an `Animation<double>`
-that can pause, seek, stop, and reverse the animation. It requires a `Ticker`
-that signals when vsync happens and produces a linear interpolation between
-0 and 1 on each frame while it's running. You then create one or more
-`Animation`s and attach them to the controller.
+Flutter에서는 `AnimationController`를 사용합니다. `AnimationController`는
+애니메이션의 일시정지, 탐색, 정지, 역재생이 가능한 `Animation<double>`입니다. 이것은
+`Ticker`를 필요로 하는데, `Ticker`는 수직동기화(vsync)가 발생할 때 신호를 보내고,
+애니메이션 실행 중 각 프레임에서 0과 1사이의 선형보간(linear interpolation)된 값을
+생성합니다. 그런 다음 하나 이상의 `Animation`을 만들고 컨트롤러에 연결합니다.
 
-For example, you might use `CurvedAnimation` to implement an animation
-along an interpolated curve. In this sense, the controller
-is the "master" source of the animation progress and the `CurvedAnimation`
-computes the curve that replaces the controller's default linear motion.
-Like widgets, animations in Flutter work with composition.
+예를 들어, `CurvedAnimation`을 사용하여 보간된 커브를 따라 애니메이션을 구현할 수
+있습니다. 이 경우, 컨트롤러는 애니메이션 진행의 "마스터" 소스이고,
+`CurvedAnimation`은 커브를 계산하여, 컨트롤러의 기본 선형 모션을 대체합니다.
+위젯과 마찬가지로, Flutter의 애니메이션은 통합되어 작동합니다.
 
-When building the widget tree you assign the `Animation` to an animated
-property of a widget, such as the opacity of a `FadeTransition`, and tell the
-controller to start the animation.
+`FadeTransition`의 불투명도 같은 애니메이션 속성에, `Animation`을 할당할 수
+있습니다. 이런 위젯 트리를 만들 때, 컨트롤러에 애니메이션을 시작하라고 명령하세요.
 
-The following example shows how to write a `FadeTransition` that
-fades the widget into a logo when you press the `FloatingActionButton`:
+아래는 `FloatingActionButton`을 누를 때 로고가 서서히 나타나도록 해주는
+`FadeTransition`을 활용한 예제입니다:
 
 {% prettify dart %}
 class SampleApp extends StatelessWidget {
@@ -350,19 +348,18 @@ class _MyFadeTest extends State<MyFadeTest> with TickerProviderStateMixin {
 }
 {% endprettify %}
 
-For more information, see
-[Animation & Motion widgets](/docs/development/ui/widgets/animation),
-the [Animations tutorial](/docs/development/ui/animations/tutorial),
-and the [Animations overview](/docs/development/ui/animations).
+더 많은 정보는
+[애니메이션과 모션 위젯](/docs/development/ui/widgets/animation),
+[애니메이션 튜토리얼](/docs/development/ui/animations/tutorial),
+[애니메이션 살펴보기](/docs/development/ui/animations)를 참고하세요.
 
-### How do I draw to the screen?
+### 화면을 그리는 방법
 
-On iOS, you use `CoreGraphics` to draw lines and shapes to the
-screen. Flutter has a different API based on the `Canvas` class, with two
-other classes that help you draw: `CustomPaint` and `CustomPainter`, the
-latter of which implements your algorithm to draw to the canvas.
+iOS에서는 `CoreGraphics`를 사용해 선과 도형들을 그립니다. Flutter 에서는 그리기에 사용되는
+`Canvas` 클래스 기반의 다른 두가지 API가 있습니다. `CustomPaint`와 `CustomPainter`
+입니다. 이중 `CustomPainter`가 당신의 알고리즘이 캔버스에 그려지도록 하는 일을 구현합니다.
 
-To learn how to implement a signature painter in Flutter, see Collin's answer on
+Flutter의 중요한 그리기 도구를 구현하는 방법을 배우시려면, 아래 Collin씨의 답변을 살펴보세요.
 [StackOverflow][].
 
 [StackOverflow]: {{site.so}}/questions/46241071/create-signature-area-for-mobile-app-in-dart-flutter
