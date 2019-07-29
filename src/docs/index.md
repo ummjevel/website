@@ -23,13 +23,55 @@ description: Flutter 문서의 랜딩 페이지
 
 ## 사이트 개편 내역
 
-**2019년 5월 7일, 구글 I/O 에디션**
+To stay on top of Flutter announcements, including breaking changes, join the
+[flutter-announce](https://groups.google.com/forum/#!forum/flutter-announce)
+Google group.
 
-[Flutter 1.5](https://developers.googleblog.com/2019/05/Flutter-io19.html)가 출시됐습니다!
+**July 9, 2019**
 
-업데이트에 관한 자세한 정보는 
-[릴리스 노트](https://github.com/flutter/flutter/wiki/Release-Notes-Flutter-1.5.4)
-또는 [릴리스 다운로드](/docs/development/tools/sdk/archive)를 참조하세요.
+Flutter 1.7 is live!
+
+더 많은 정보를 원하시면, [Flutter Medium Publication]({{site.flutter-medium}})의
+[Announcing Futter 1.7]({{site.flutter-medium}}/announcing-flutter-1-7-9cab4f34eacf)와
+[Flutter wiki]({{site.github}}//flutter/flutter/wiki)의
+[1.7.8 release
+notes]({{site.github}}/flutter/flutter/wiki/Release-Notes-Flutter-1.7.8)를
+참조하세요.
+
+이 사이트의 새롭게 개편된 문서는 아래의 업데이트를 포함합니다:  
+
+* The [Preparing an Android app for release](/docs/deployment/android)
+  page is updated to discuss how to build an Android release
+  using an app bundle, as well as how to create separate APK
+  files for both 32-bit and 64-bit devices.
+* The [DevTools](/docs/development/tools/devtools) docs are migrated
+  to flutter.dev. If you haven't tried this browser-based suite
+  of debugging, performance, memory, and inspection tools that
+  work with both Flutter and Dart apps and can be launched from
+  Android Studio/IntelliJ _and_ VS Code, please check it out!
+* The [Simple app state
+  management](/docs/development/data-and-backend/state-mgmt/simple)
+  page is updated. The example code in the page now uses the 3.0
+  release of the Provider package.
+* A new animation recipe, [Animate a page route
+  transition](/docs/cookbook/animation/page-route-animation)
+  has been added to the [Cookbook](/docs/cookbook).
+* The [Debugging](/docs/testing/debugging), 
+  [Flutter's build modes](/docs/testing/build-modes),
+  [Performance best practices](/docs/testing/best-practices), and
+  [Performance profiling](/docs/testing/ui-performance)
+  pages are updated to reflect DevTools. A
+  [Debugging apps programmatically](/docs/testing/code-debugging)
+  page has also been added.
+
+Flutter 1.7 release는 새로운 컴포넌트
+[RangeSlider]({{site.api}}/flutter/material/RangeSlider-class.html)
+를 포함합니다. 이 컴포너트는 사용자가 하한과 상한 양쪽을 선택할 수 있게 해줍니다.
+이 컴포넌트에 관해 더 많은 정보 원하시면, 혹은 이 컴포넌트를 커스터마이징 하고 싶다면,
+[Material RangeSlider in Flutter]({{site.flutter-medium}}/material-range-slider-in-flutter-a285c6e3447d)를
+참조하세요.
+
+Happy Fluttering!
 
 [What's new archive](/docs/whats-new-archive)
 

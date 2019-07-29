@@ -547,7 +547,7 @@ class ShoppingListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        onCartChanged(product, !inCart);
+        onCartChanged(product, inCart);
       },
       leading: CircleAvatar(
         backgroundColor: _getColor(context),
@@ -622,7 +622,7 @@ class _ShoppingListState extends State<ShoppingList> {
       // The framework then calls // build, below,
       // which updates the visual appearance of the app.
 
-      if (inCart)
+      if (!inCart)
         _shoppingCart.add(product);
       else
         _shoppingCart.remove(product);

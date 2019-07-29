@@ -12,10 +12,9 @@ next:
 사용자에게 두 가지 옵션을 보여주는 화면이 있다고 합시다. 사용자가 한 옵션을 선택했을 때
 그것을 첫 번째 화면에 알려주면 그에 맞는 동작을 할 수 있을 것입니다!
 
-어떻게 구현할 수있을 까요?
-[`Navigator.pop`]({{site.api}}/flutter/widgets/Navigator/pop.html)을 사용하세요!
-
-## 진행 단계
+어떻게 구현할 수 있을까요?
+[`Navigator.pop()`]({{site.api}}/flutter/widgets/Navigator/pop.html)을 
+사용하여 아래 순서로 진행하세요:
 
   1. 홈 화면을 정의합니다.
   2. 선택 창을 띄우는 버튼을 추가합니다.
@@ -25,7 +24,8 @@ next:
 
 ## 1. 홈 화면을 정의합니다.
 
-홈 화면에서는 버튼 하나를 보여줄 것입니다. 버튼을 클릭하면 선택 창을 띄울 것입니다!
+홈 화면에서는 버튼 하나를 보여줄 것입니다. 
+버튼을 클릭하면 선택 창을 띄울 것입니다!
 
 <!-- skip -->
 ```dart
@@ -45,7 +45,6 @@ class HomeScreen extends StatelessWidget {
 
 ## 2. 선택 창을 띄우는 버튼을 추가합니다.
 
-Now, we'll create our SelectionButton. Our selection button will:
 이제 SelectionButton을 만들 차례입니다. 선택 버튼은:
 
   1. 사용자가 클릭했을 때, SelectionScreen을 띄울 것입니다.
@@ -82,7 +81,8 @@ class SelectionButton extends StatelessWidget {
 이제 선택 창을 만들 차례입니다. 선택 창은 두 개의 버튼을 갖고 있으며, 사용자가 하나의
 버튼을 클릭하면 선택 창을 닫고 그 결과를 홈 화면에 알려줄 것입니다.
 
-이번 단계에서는 UI를 정의하고, 다음 단계에서 데이터를 반환하는 방법에 대해 설명하겠습니다.
+이번 단계에서는 UI를 정의합니다. 
+다음 단계에서는 데이터를 반환하는 코드를 추가합니다.
 
 ```dart
 class SelectionScreen extends StatelessWidget {
@@ -100,7 +100,7 @@ class SelectionScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: RaisedButton(
                 onPressed: () {
-                  // "Yep" 문자열과 함께 이전 화면으로 돌아갑니다.
+                  // "Yep" 문자열과 함께 이전 화면으로 돌아갑니다...
                 },
                 child: Text('Yep!'),
               ),
@@ -124,9 +124,10 @@ class SelectionScreen extends StatelessWidget {
 
 ## 4. 하나의 버튼을 클릭하면 선택 창을 닫습니다.
 
-이제 앞서 만든 두 개 버튼의 `onPressed` 콜백을 작성할 차례입니다. 첫 번째 화면으로
-데이터를 반환하기 위해, [`Navigator.pop`]({{site.api}}/flutter/widgets/Navigator/pop.html)
-메서드를 사용할 것입니다.
+이제 앞서 만든 두 개 버튼의 `onPressed()` 콜백을 수정할 차례입니다. 첫 번째 화면으로
+데이터를 반환하기 위해, [`Navigator.pop()`]({{site.api}}/flutter/widgets/Navigator/pop.html)
+메서드를 사용할 것입니다. 이 메서드 2번째 인자 `result`에 
+`Future`로 반환되는 SelectionButton의 결과를 추가합니다.
 
 `Navigator.pop`는 `result`라고 명시된 두 번째 인자를 선택적으로 받습니다. 만약
 결과 값을 인자로 제공한다면, SelectionButton의 `Future`에 실려 반환될 것입니다.
@@ -159,7 +160,8 @@ RaisedButton(
 
 ## 5. 선택된 정보를 홈 화면의 snackbar에 보여줍니다.
 
-선택 창을 띄우고 결과를 기다리고 있습니다. 이제 결과 값을 갖고 무언가 할 차례입니다.
+선택 창을 띄우고 결과를 기다리고 있습니다. 
+이제 결과 값을 갖고 무언가 할 차례입니다.
 
 이 예제에서는 결과 값을 보여줄 수 있도록 Snackbar를 띄우겠습니다. 이 작업을 하기 위해
 `SelectionButton`의 `_navigateAndDisplaySelection` 메서드를 수정할 것입니다.
@@ -271,4 +273,4 @@ class SelectionScreen extends StatelessWidget {
 }
 ```
 
-![Returning Data Demo](/images/cookbook/returning-data.gif){:.site-mobile-screenshot}
+![Returning data demo](/images/cookbook/returning-data.gif){:.site-mobile-screenshot}

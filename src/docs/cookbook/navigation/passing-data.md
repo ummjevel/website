@@ -8,14 +8,16 @@ next:
   path: /docs/cookbook/networking/fetch-data
 ---
 
-종종 새로운 화면으로 단순히 이동하는 것 뿐만 아니라 데이터를 넘겨주어야 할 필요도 
-있습니다. 예를 들어, 사용자가 선택한 아이템에 대한 정보를 같이 넘겨주고 싶은 경우입니다.
+종종 새로운 화면으로 단순히 이동하는 것 뿐만 아니라 
+데이터를 넘겨주어야 할 때도 있습니다. 
+예를 들어, 사용자가 선택한 아이템에 대한 정보를 
+같이 넘겨주고 싶은 경우가 있습니다.
 
-기억하세요: 화면은 단지 위젯입니다&trade;. 이 예제에서 Todo 리스트를 만들 것입니다.
-todo를 선택하면 새로운 화면(위젯)으로 이동하면서 선택한 todo에 대한 정보를
+기억하세요: 화면은 단지 위젯입니다. 
+이 예제에서 Todo 리스트를 만들 것입니다.
+Todo를 선택하면 새로운 화면(위젯)으로 이동하면서 선택한 todo에 대한 정보를
 보여줄 것입니다.
-
-## 진행 단계
+여기서는 아래와 같은 단계로 진행합니다:
 
   1. Todo 클래스를 정의합니다.
   2. Todo 리스트를 보여줍니다.
@@ -40,7 +42,8 @@ class Todo {
 ## 2. Todo 리스트를 보여줍니다.
 
 두 번째로, Todo 리스트를 보여줄 것입니다. 이 예제에서는 20개의 todo를 생성하고 ListView를
-사용하여 보여줄 것입니다. List에 대한 더 자세한 정보는 [`Basic List`](/docs/cookbook/lists/basic-list/)에서
+사용하여 보여줄 것입니다. List에 대한 더 자세한 정보는 
+[Use lists](/docs/cookbook/lists/basic-list)에서
 확인할 수 있습니다.
 
 ### Todo 리스트 생성하기
@@ -77,8 +80,9 @@ ListView.builder(
 이제 두 번째 화면을 만들겠습니다. 화면의 제목은 Todo의 제목을 포함하며 본문에는
 상세 설명을 보여줄 것입니다.
 
-두 번째 화면은 일반적인 `StatelssWidget`이므로, 생성자 매개변수로 `Todo`를 받을 수 있게 
-간단한 방법으로 강제하겠습니다. 그러면 주어진 Todo를 갖고 UI를 그릴 수 있습니다.
+두 번째 화면은 일반적인 `StatelssWidget`이므로, 
+생성자 매개변수로 `Todo`를 받을 수 있게 간단한 방법으로 강제하겠습니다. 
+그러면 주어진 Todo를 활용하여 UI를 그릴 수 있습니다.
 
 <!-- skip -->
 ```dart
@@ -107,11 +111,12 @@ class DetailScreen extends StatelessWidget {
 
 ## 4. 상세 화면으로 이동하면서 데이터를 전달합니다.
 
-앞서 작성한 `DetailsScreen`으로 화면 전환할 준비가 되었습니다. 본 예제에서는 사용자가
-Todo 리스트 중 하나를 선택했을 때, `DetailsScreen`으로 화면 전환하도록 할 것입니다.
+앞서 작성한 `DetailsScreen`으로 화면 전환할 준비가 되었습니다. 
+본 예제에서는 사용자가 Todo 리스트 중 하나를 선택했을 때, 
+`DetailsScreen`으로 화면 전환하도록 할 것입니다.
 그와 동시에 `DetailsScreen`에 Todo를 전달할 것입니다.
 
-이를 위해, `ListTile` 위젯에
+사용자의 탭 동작을 감지하기 위해, `ListTile` 위젯에
 [`onTap`]({{site.api}}/flutter/material/ListTile/onTap.html) 콜백을 작성할 것입니다.
 `onTap` 콜백 내에서 다시 한 번 [`Navigator.push`]({{site.api}}/flutter/widgets/Navigator/push.html)
 메서드를 사용할 것입니다.

@@ -18,11 +18,12 @@ Android의 전문가라면, Flutter를 사용하기 위해 모든 것을 다시 
 
 ## 뷰
 
-### Flutter에서 `View`와 동일한 것은?
+### Flutter에서 View와 동일한 것은?
 
 {{site.alert.secondary}}
-react-style 프로그래밍(또는 선언적 프로그래밍)이 기존 명령형 스타일과 어떻게 다를까요? 
-비교를 위해, [선언적 UI 소개](/docs/get-started/flutter-for/declarative)를 참조하세요.
+  react-style 프로그래밍(또는 _선언적_ 프로그래밍)이 
+  기존 명령형 스타일과 어떻게 다를까요? 
+  비교를 위해, [선언적 UI 소개][]를 참조하세요.
 {{site.alert.end}}
 
 Android에서, `뷰`는 화면에 나타나는 모든 것의 기반입니다. 
@@ -40,16 +41,16 @@ Flutter의 위젯은 불변하기 때문에 가볍습니다.
 위젯이 그 자체로 뷰가 아니기에 어떤 것도 직접 그리지 않고,
 대신 UI에 대한 설명이며 내부적으로 이미 "inflate"된 실제 뷰 객체 UI의 의미론(semantics)이기 때문입니다.
 
-Flutter는 [머티리얼 컴포넌트]({{site.material}}/develop/flutter/) 라이브러리를 포함합니다.
-위젯은 [머티리얼 디자인 가이드라인]({{site.material}}/design/)을 따르고 있습니다.
-머티리얼 디자인은 [모든 플랫폼에 최적화된]({{site.material}}/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines)
+Flutter는 [머티리얼 컴포넌트][] 라이브러리를 포함합니다.
+위젯은 [머티리얼 디자인 가이드라인][]을 따르고 있습니다.
+머티리얼 디자인은 [모든 플랫폼에 최적화된][]
 유연한 디자인 시스템입니다. 
 
 그러나 Flutter는 모든 디자인 언어를 적용할 수 있을만큼 유연하고 표현력이 우수합니다.
-예를 들어, iOS에서는 [쿠퍼티노(Cupertino) 위젯](/docs/development/ui/widgets/cupertino)을 적용하여
-[애플의 iOS 디자인 언어](https://developer.apple.com/design/resources/)와 유사한 인터페이스를 만들 수 있습니다.
+예를 들어, iOS에서는 [쿠퍼티노(Cupertino) 위젯][]을 적용하여
+[애플의 iOS 디자인 언어][]와 유사한 인터페이스를 만들 수 있습니다.
 
-### `Widget`을 변경하는 방법은 무엇입니까?
+### 위젯을 변경하는 방법은 무엇입니까?
 
 Android에서는 뷰를 직접 수정하여 변경사항을 적용합니다. 
 하지만 Flutter에서 `위젯`은 불변이기 때문에 직접 변경할 수 없고, 대신 위젯의 state를 변경할 수 있습니다. 
@@ -89,7 +90,8 @@ Text(
 );
 {% endprettify %}
 
-보다시피, `Text` 위젯은 생성자로 전달된 것들을 그릴 뿐이고, 그 자체에 연결된 상태 정보는 없습니다.
+보다시피, `Text` 위젯은 생성자로 전달된 것들을 그릴 뿐이고, 
+그 자체에 연결된 상태 정보는 없습니다.
 
 하지만, 예를 들어 `FloatingActionButton`을 클릭할 때 
 "I Like Flutter"를 동적으로 변경하고 싶다면 어떻게 할까요?
@@ -350,7 +352,7 @@ class _MyFadeTest extends State<MyFadeTest> with TickerProviderStateMixin {
 [애니메이션 개요](/docs/development/ui/animations)를
 참조하세요
 
-### `Canvas`를 사용하여 그리는 방법은?
+### Canvas를 사용하여 그리는 방법은?
 
 화면에 이미지와 모양을 그리기 위해 Android에서는 `Canvas`와 `Drawable`을 사용합니다.
 Flutter도 저수준(low-level) 렌더링 엔진인 Skia를 사용하기 때문에 `Canvas`와 유사한 API를 가지고 있습니다,
@@ -361,8 +363,6 @@ Flutter는 캔버스에 그리는 일을 도와주는 2개의 클래스를 가�
 `CustomPainter`는 캔버스에 어떻게 그릴지 알고리즘을 구현합니다.
 
 Flutter에 서명 그림 그리기를 구현하는 방법은 [StackOverflow][]에 있는 Collin의 답변을 참고하세요.
-
-[StackOverflow]: {{site.so}}/questions/46241071/create-signature-area-for-mobile-app-in-dart-flutter
 
 {% prettify dart %}
 import 'package:flutter/material.dart';
@@ -421,7 +421,6 @@ Android에서는
 Flutter에서는 
 [더 작은 위젯들로 구성된](/docs/resources/technical-overview#everythings-a-widget) 새로운 위젯을 만듭니다
 (상속 대신).
-
 이것은 구성물(building block)이 이미 준비되어 있는 상황에서 약간 다른 동작을 만들고 싶을 때
 (예를 들면, 새로운 레이아웃 로직을 첨가하고 싶을 때)
 Android에서 `ViewGroup`을 만드는 것과 유사합니다.
@@ -456,7 +455,7 @@ Widget build(BuildContext context) {
 
 ## Intents (인텐트)
 
-### Flutter에서 `Intent`와 동일한 것은?
+### Flutter에서 Intent와 동일한 것은?
 
 Android에서 `Intent`는 두 가지 용도로 사용됩니다:
 엑티비티 간 이동, 그리고 다른 컴포넌트와 통신할 때입니다.
@@ -508,7 +507,7 @@ Navigator.of(context).pushNamed('/b');
 (또는 [이미 있는 플러그인]({{site.pub}}/flutter/)을 활용하는 방법도 있습니다)
 
 네이티브 플랫폼 통합을 배우기 위해서는, 
-[패키지 및 플러그인 개발](/docs/development/packages-and-plugins/developing-packages)를 
+[패키지 및 플러그인 개발][] 
 참조하세요.
 
 ### 앱 외부에서 intent가 넘어올 때는 어떻게 처리해야?  
@@ -543,8 +542,10 @@ Flutter가 `MethodChannel`을 이용하여 데이터를 요청할 때까지 기�
 </activity>
 {% endprettify %}
 
-그런 다음 `MainActivity`에서 intent를 처리하고, intent에 공유된 텍스트를 추출한 후 저장해둡니다.
-처리를 시작할 준비가 되면 Flutter가 플랫폼 채널을 사용해서 데이터를 요청하고, 네이티브 쪽에서 데이터가 전송됩니다.
+그런 다음 `MainActivity`에서 intent를 처리하고, 
+intent에 공유된 텍스트를 추출한 후 저장해둡니다.
+처리를 시작할 준비가 되면 Flutter가 플랫폼 채널을 사용해서 데이터를 요청하고, 
+네이티브 쪽에서 데이터가 전송됩니다.
 
 {% prettify java %}
 package com.example.shared;
@@ -654,8 +655,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### `startActivityForResult()`와 동일한 것은?
-
+### startActivityForResult()와 동일한 것은?
 
 `Navigator` 클래스는 Flutter에서 route를 처리해주고, 스택에 푸시한 route에서 결과를 다시 얻을 때 사용됩니다.
 `push()`에서 리턴되는 `Future`를 `await`해서 이 작업을 할 수 있습니다.
@@ -666,7 +666,8 @@ class _SampleAppPageState extends State<SampleAppPage> {
 Map coordinates = await Navigator.of(context).pushNamed('/location');
 {% endprettify %}
 
-그런 다음, location route 안에서, 사용자가 위치를 선택하면 결과와 함께 스택에서 `pop`을 할 수 있습니다: 
+그런 다음, location route 안에서, 
+사용자가 위치를 선택하면 결과와 함께 스택에서 `pop`을 할 수 있습니다: 
 
 {% prettify dart %}
 Navigator.of(context).pop({"lat":43.821757,"long":-79.226392});
@@ -674,7 +675,7 @@ Navigator.of(context).pop({"lat":43.821757,"long":-79.226392});
 
 ## 비동기 UI
 
-### Flutter에서 `runOnUiThread()`와 동일한 것은?
+### Flutter에서 runOnUiThread()와 동일한 것은?
 
 Dart는 단일-스레드 실행 모델을 가지고 있고,
 `Isolate`(Dart 코드를 다른 스레드에서 실행하는 방법)와
@@ -823,8 +824,11 @@ Flutter에서는 긴 작업이나 계산 집약적인 작업을 할 때
 여러 개의 CPU 코어를 활용하기 위해 `Isolate`를 사용합니다.
 
 Isolate는 메인 메모리 힙과 메모리를 전혀 공유하지 않는 별도의 실행 스레드입니다.
-`setState()`를 호출하여 UI를 업데이트할 수 없고, 메인 스레드에서 변수에 접근할 수 없다는 뜻입니다.
-안드로이드의 스레드와 다르게, Isolate는 이름에서 파악할 수 있듯이 메모리를 공유할 수 없습니다 (예를 들면, 정적 필드 형태로).
+`setState()`를 호출하여 UI를 업데이트할 수 없고, 
+메인 스레드에서 변수에 접근할 수 없다는 뜻입니다.
+안드로이드의 스레드와 다르게, 
+Isolate는 이름에서 파악할 수 있듯이 메모리를 공유할 수 없습니다 
+(예를 들면, 정적 필드 형태로).
 
 아래 간단한 Isolate 예시는
 메인 스레드로 데이터를 다시 공유하여 UI를 업데이트하는 방법을 보여줍니다. 
@@ -834,7 +838,7 @@ loadData() async {
   ReceivePort receivePort = ReceivePort();
   await Isolate.spawn(dataLoader, receivePort.sendPort);
 
-  // The 'echo' isolate sends its SendPort as the first message
+  // The 'echo' isolate sends its SendPort as the first message.
   SendPort sendPort = await receivePort.first;
 
   List msg = await sendReceive(sendPort, "https://jsonplaceholder.typicode.com/posts");
@@ -844,7 +848,7 @@ loadData() async {
   });
 }
 
-// The entry point for the isolate
+// The entry point for the isolate.
 static dataLoader(SendPort sendPort) async {
   // Open the ReceivePort for incoming messages.
   ReceivePort port = ReceivePort();
@@ -871,7 +875,8 @@ Future sendReceive(SendPort port, msg) {
 {% endprettify %}
 
 여기서, `dataLoader()`는 별도의 실행 스레드에서 실행되는 `Isolate`입니다.
-Isolate에서 더 CPU 집약적인 작업(예를 들면, 아주 큰 JSON을 파싱하는), 
+Isolate에서 더 CPU 집약적인 
+작업(예를 들면, 아주 큰 JSON을 파싱하는 작업), 
 또는 암호화나 신호 처리 같은 계산 집약적인 작업을 수행할 수 있습니다. 
 
 아래 실행할 수 있는 전체 예제가 있습니다:
@@ -1135,14 +1140,16 @@ class _SampleAppPageState extends State<SampleAppPage> {
 
 ### 해상도별 이미지 파일은 어디에 저장하나요?
 
-안드로이드는 리소스와 asset을 별개의 항목으로 다루지만, Flutter 앱은 asset만 가지고 있습니다.
-안드로이드의 `res/drawable-*` 폴더에 있는 모든 리소스는 Flutter의 assets 폴더에 저장됩니다. 
+안드로이드는 리소스와 asset을 별개의 항목으로 다루지만, 
+Flutter 앱은 asset만 가지고 있습니다.
+안드로이드의 `res/drawable-*` 폴더에 있는 
+모든 리소스는 Flutter의 assets 폴더에 저장됩니다. 
 
 Flutter는 iOS처럼 단순한 해상도 기반 형식을 사용합니다. 
 `1.0x`, `2.0x`, `3.0x`, 혹은 다른 배율의 asset이 있을 수 있습니다.
 Flutter는 `dp`를 사용하지 않지만, 기본적으로 장비 독립적인 픽셀과 동일한 논리적 픽셀을 사용합니다.
 이른바
-[`devicePixelRatio`]({{site.api}}/flutter/dart-ui/Window/devicePixelRatio.html)
+[`devicePixelRatio`][]
 는 하나의 논리적 픽셀에서 물리적 픽셀의 비율을 나타냅니다. 
 
 안드로이드의 해상도 단위와 비교하면 아래와 같습니다:
@@ -1193,7 +1200,7 @@ assets:
 그러면 이제 `AssetImage`를 사용하여 이미지에 접근할 수 있습니다:
 
 {% prettify dart %}
-return AssetImage("images/a_dot_burr.jpeg");
+return AssetImage("images/my_icon.jpeg");
 {% endprettify %}
 
 혹은 바로 `Image` 위젯을 사용할 수도 있습니다:
@@ -1254,7 +1261,6 @@ Flutter에서는 이 두 개념 모두 `위젯`의 범주에 포함됩니다.
 [안드로이드 개발자를 위한 Flutter: Flutter에서 액티비티 UI를 디자인하는 방법]({{site.medium}}/@burhanrashid52/flutter-for-android-developers-how-to-design-activity-ui-in-flutter-4bf7b0de1e48)을
 참조하세요.
 
-
 [인텐트](#what-is-the-equivalent-of-an-intent-in-flutter) 부분에서 언급한 것처럼, 
 Flutter에서 모든 것은 위젯이기 때문에, 
 Flutter에서 화면은 `위젯`들로 표현됩니다. 
@@ -1284,8 +1290,6 @@ Flutter에서는 위와 같은 개념은 없지만,
 이 상태들의 의미에 대해 자세한 정보를 알고 싶으시다면, 
 [`AppLifecycleStatus` 문서][]를 참조하세요.
 
-[`AppLifecycleStatus` 문서]: {{site.api}}/flutter/dart-ui/AppLifecycleState-class.html
-
 눈치채셨겠지만, 아주 소수의 액티비티 생명주기만 이용가능합니다;
 `FlutterActivity`가 내부적으로 거의 모든 액티비티 생명주기를 캡처하여 Flutter 앤진으로 보내기는 하지만,
 대부분은 보호되어 있습니다.
@@ -1293,7 +1297,6 @@ Flutter가 엔진을 시작하고 중지하는 일을 처리하고,
 대부분의 경우 Flutter 측의 액티비티 생명주기를 관찰할 이유는 거의 없습니다.
 네이티브 리소스를 얻거나 배포하기 위해 생명주기를 관찰할 필요가 있다면,
 어찌됐든 네이티브 쪽에서 수행해야 할 것입니다.
-
 아래에 포함된 액티비티의 생명주기 상태를 관찰하는 방법의 예시가 있습니다:
 
 {% prettify dart %}
@@ -1345,8 +1348,10 @@ void main() {
 
 ### LinearLayout과 동일한 것은?
 
-안드로이드에서는 LinearLayout을 사용하여 수평 또는 수직의 선형으로 위젯을 배치합니다.
-Flutter에서는 Row 위젯과 Column 위젯을 사용하여 동일한 결과를 얻을 수 있습니다.
+안드로이드에서는 LinearLayout을 사용하여 
+수평 또는 수직의 선형으로 위젯을 배치합니다.
+Flutter에서는 Row 위젯과 Column 위젯을 사용하여 
+동일한 결과를 얻을 수 있습니다.
 
 두 코드 샘플이 "Row" 및 "Column" 위젯을 제외하고 같은 형태라는 것을 알 수 있습니다.
 children은 똑같고, 이 기능은 children은 같으면서도 계속 변하는 풍부한 레이아웃을 구현하기 위해 이용될 수 있습니다.
@@ -1382,7 +1387,7 @@ children은 똑같고, 이 기능은 children은 같으면서도 계속 변하�
 {% endprettify %}
 
 linear layouts에 대해 더 알고 싶다면, 커뮤니티 공헌자의 미디엄 글 
-[안드로이드 개발자를 위한 Flutter : Flutter에서 LinearLayout을 어떻게 디자인 하는가?]({{site.medium}}/@burhanrashid52/flutter-for-android-developers-how-to-design-linearlayout-in-flutter-5d819c0ddf1a)
+[안드로이드 개발자를 위한 Flutter : Flutter에서 LinearLayout을 어떻게 디자인 하는가?][]
 를 참조하세요.
 
 ### RelativeLayout과 동일한 것은?
@@ -1394,8 +1399,7 @@ Column, Row, Stack 위젯을 조합하여 RelativeLayout와 동일한 결과를 
 위젯 생성자에서 부모를 기준으로 자식을 어떻게 배치할지를 지정할 수 있습니다.
 
 Flutter에서 RelativeLayout을 작성하는 좋은 예시를 찾고 있다면, 
-[StackOverflow]({{site.so}}/questions/44396075/equivalent-of-relativelayout-in-flutter)
-에서 Collin의 답변을 참조하십시오.
+[StackOverflow][]에서 Collin의 답변을 참조하십시오.
 
 ### ScrollView와 동일한 것은?
 
@@ -2025,7 +2029,8 @@ class _SampleAppPageState extends State<SampleAppPage> {
  * 빠르게 Firebase 인증(Facebook, Google, Twitter and email)을 설정하기 위한 [`flutter_firebase_ui`]({{site.pub}}/packages/flutter_firebase_ui)
  * Firebase Cloud Firestore를 위한 [`cloud_firestore`]({{site.pub}}/packages/cloud_firestore)
 
-또한 자사 통합 플러그인로 구현이 어려운 부분이 있다면 Pub에서 Firebase관련 서드 파티 플러그인을 찾아 사용하실 수 있습니다.
+또한 자사 통합 플러그인로 구현이 어려운 부분이 있다면 Pub에서 Firebase관련 
+서드 파티 플러그인을 찾아 사용하실 수 있습니다.
 
 ### 네이티브와 직접 통합하고 싶을 때는? 
 
@@ -2058,10 +2063,8 @@ Flutter에서는 최상위 위젯에서 테마를 설정합니다.
 
 앱에서 머티리얼 컴포넌트의 이점을 살리기 위해서,
 앱의 진입점으로 최상위 위젯 `MaterialApp`을 설정할 수 있습니다.
-MaterialApp은  
-여러 일반적으로 사용되는 머티리얼 디자인 위젯을 담고 있어
-편리하게 머티리얼 디자인을 구현할 수 있도록
-도와주는 위젯입니다.  
+MaterialApp은 여러 일반적으로 사용되는 머티리얼 디자인 위젯을 담고 있어
+편리하게 머티리얼 디자인을 구현할 수 있도록 도와주는 위젯입니다.  
 MaterialApp은 WidgetsApp을 기반으로 머티리얼 특유의 기능을 추가하여 구현됐습니다.
 
 `WidgetApp`을 앱 위젯으로 사용하셔도 됩니다.
@@ -2138,6 +2141,17 @@ Flutter에서는,
 [SQFlite]({{site.pub}}/packages/sqflite) 플러그인을 활용해 
 이 기능에 접근합니다.
 
+## 디버깅
+
+### Flutter에서 내 앱을 디버그 할 때 사용할 수 있는 툴은?
+
+[DevTools][] 제품군을 활용하여 Flutter 또는 Dart 앱을 디버깅하세요. 
+
+DevTools은 프로파일링, 힙 검사, 위젯트리 조사, 로깅 진단,
+디버깅, 실행된 코드 관찰, 메모리 누수 및 메모리 조각화 디버깅을 지원합니다.
+더 많은 정보를 원하시면, 
+[DevTools][] 문서를 참조하세요.
+
 ## 알림
 
 ### 푸시 알림을 설정하는 방법은?
@@ -2146,8 +2160,25 @@ Flutter에서는,
 Firebase Cloud Messaging을 사용합니다.
 
 Flutter에서는 
-[Firebase_Messaging]({{site.github}}/flutter/plugins/tree/master/packages/firebase_messaging) 플러그인을
+[Firebase_Messaging][] 플러그인을
 활용하여 이 기능에 접근합니다.
 Firebase Cloud Messaging API에 대한 저 자세한 정보는
-[`firebase_messaging`]({{site.pub}}/packages/firebase_messaging)
+[`firebase_messaging`][]
 플러그인 문서를 참조하세요.
+
+[DevTools]: /docs/development/tools/devtools
+[Firebase Messaging]: {{site.github}}/flutter/plugins/tree/master/packages/firebase_messaging
+[firebase_messaging]: {{site.pub}}/packages/firebase_messaging
+[선언적 UI 소개]: /docs/get-started/flutter-for/declarative
+[머티리얼 컴포넌트]: {{site.material}}/develop/flutter
+[머티리얼 디자인 가이드라인]: {{site.material}}/design
+[쿠퍼티노(Cupertino) 위젯]: /docs/development/ui/widgets/cupertino
+[모든 플랫폼에 최적화된]: {{site.material}}/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines
+[애플의 iOS 디자인 언어]: https://developer.apple.com/design/resources/
+[StackOverflow]: {{site.so}}/questions/46241071/create-signature-area-for-mobile-app-in-dart-flutter
+[composing]: /docs/resources/technical-overview#everythings-a-widget
+[패키지 및 플러그인 개발]: /docs/development/packages-and-plugins/developing-packages
+[devicePixelRatio]: {{site.api}}/flutter/dart-ui/Window/devicePixelRatio.html
+[`AppLifecycleStatus` 문서]: {{site.api}}/flutter/dart-ui/AppLifecycleState-class.html
+[안드로이드 개발자를 위한 Flutter : Flutter에서 LinearLayout을 어떻게 디자인 하는가?]: {{site.medium}}/@burhanrashid52/flutter-for-android-developers-how-to-design-linearlayout-in-flutter-5d819c0ddf1a
+[StackOverflow]: {{site.so}}/questions/44396075/equivalent-of-relativelayout-in-flutter

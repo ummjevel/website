@@ -165,7 +165,7 @@ class User {
 <!-- skip -->
 ```dart
 Map userMap = jsonDecode(jsonString);
-var user = new User.fromJson(userMap);
+var user = User.fromJson(userMap);
 
 print('안녕하세요, ${user.name}님!');
 print('${user.email}으로 인증 링크를 보냈습니다.');

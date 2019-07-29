@@ -78,7 +78,7 @@ if you already have the required packages installed.
  1. Make your changes.
  1. Test your changes by serving the site locally.
     Run either **one** of these commands:
-    - `./tool/serve.sh` (can also run via `npm run clean`)
+    - `./tool/serve.sh` (can also run via `npm run start`)
 
     or
     - `bundle exec jekyll serve --incremental --watch --livereload --port 4002`
@@ -134,6 +134,14 @@ You can deploy your local edits to a personal staging site as follows
     $ npx firebase use my-foo
     Now using alias staging (<your project name>)
     ```
+ 
+ 1. Tell Firebase to execute deployment of your project:
+ 
+   ```console
+   $ npx firebase deploy
+   ```
+   
+   Your personal version of the Flutter website is now deployed to Firebase.
 
 Alternatively, you can skip the previous steps and just use the deploy script:
 
@@ -187,7 +195,7 @@ Also check out the site-shared
 [Build Status]: https://travis-ci.org/flutter/website.svg?branch=master
 [Cloning a repository]: https://help.github.com/articles/cloning-a-repository
 [Dart install]: https://dart.dev/get-dart
-[Flutter install]: /docs/get-started/install
+[Flutter install]: https://flutter.dev/docs/get-started/install
 [Flutter logo]: https://github.com/dart-lang/site-shared/blob/master/src/_assets/image/flutter/icon/64.png?raw=1
 [Firebase]: https://firebase.google.com/
 [first-timers SVG]: https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square

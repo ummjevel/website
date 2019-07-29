@@ -91,6 +91,10 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 
     <?code-excerpt "lib/main.dart" title?>
     ```dart
+    // Copyright 2018 The Flutter team. All rights reserved.
+    // Use of this source code is governed by a BSD-style license that can be
+    // found in the LICENSE file.
+
     import 'package:flutter/material.dart';
 
     void main() => runApp(MyApp());
@@ -216,7 +220,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
     ```diff
     --- step1_base/lib/main.dart
     +++ step2_use_package/lib/main.dart
-    @@ -5,6 +6,7 @@
+    @@ -9,6 +10,7 @@
      class MyApp extends StatelessWidget {
        @override
        Widget build(BuildContext context) {
@@ -224,7 +228,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
          return MaterialApp(
            title: 'Welcome to Flutter',
            home: Scaffold(
-    @@ -12,7 +14,7 @@
+    @@ -16,7 +18,7 @@
                title: Text('Welcome to Flutter'),
              ),
              body: Center(
@@ -255,6 +259,8 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 {:.no_toc}
 
 앱이 올바르게 동작하지 않는다면, 오타를 확인해보세요.
+Flutter 디버깅 툴을 사용해보고 싶다면,
+[DevTools][] 제품군과 프로파일링 툴을 확인해보세요.
 필요하다면, 아래 코드를 사용하여 다시 올바르게 동작하게 하세요. 
 
 * [pubspec.yaml]({{code-url}}/startup_namer/step2_use_package/pubspec.yaml)
@@ -334,7 +340,7 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
     ```diff
     --- step2_use_package/lib/main.dart
     +++ step3_stateful_widget/lib/main.dart
-    @@ -6,7 +6,6 @@
+    @@ -10,7 +10,6 @@
      class MyApp extends StatelessWidget {
        @override
        Widget build(BuildContext context) {
@@ -342,7 +348,7 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
          return MaterialApp(
            title: 'Welcome to Flutter',
            home: Scaffold(
-    @@ -14,8 +13,8 @@
+    @@ -18,8 +17,8 @@
                title: Text('Welcome to Flutter'),
              ),
              body: Center(
@@ -363,7 +369,7 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
 
   **Reloading...<br>
   Some program elements were changed during reload but did not run when
-  the view was reassembled; you may need to restart the app (by pressing "R")
+  the view was reassembled; you might need to restart the app (by pressing "R")
   for the changes to have an effect.**
 
   메시지가 잘못 표시된 것일 수 있지만,
@@ -374,8 +380,10 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
 ### 문제가 있나요?
 {:.no_toc}
 
-앱이 제대로 실행되지 않을 경우, 
-아래 링크에 있는 코드 활용하여 다시 올바르게 동작하게 할 수 있습니다.
+앱이 올바르게 동작하지 않는다면, 오타를 확인해보세요.
+Flutter 디버깅 툴을 사용해보고 싶다면,
+[DevTools][] 제품군과 프로파일링 툴을 확인해보세요.
+필요하다면, 아래 코드를 사용하여 다시 올바르게 동작하게 하세요. 
 
 * [lib/main.dart]({{code-url}}/startup_namer/step3_stateful_widget/lib/main.dart)
 
@@ -489,7 +497,7 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
     ```diff
     --- step3_stateful_widget/lib/main.dart
     +++ step4_infinite_list/lib/main.dart
-    @@ -6,15 +6,8 @@
+    @@ -10,15 +10,8 @@
      class MyApp extends StatelessWidget {
        @override
        Widget build(BuildContext context) {
@@ -519,8 +527,10 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
 ### 문제가 있나요?
 {:.no_toc}
 
-앱이 제대로 실행되지 않을 경우, 
-아래 링크에 있는 코드 활용하여 다시 올바르게 동작하게 할 수 있습니다.
+앱이 올바르게 동작하지 않는다면, 오타를 확인해보세요.
+Flutter 디버깅 툴을 사용해보고 싶다면,
+[DevTools][] 제품군과 프로파일링 툴을 확인해보세요.
+필요하다면, 아래 코드를 사용하여 다시 올바르게 동작하게 하세요. 
 
 * [lib/main.dart]({{code-url}}/startup_namer/step4_infinite_list/lib/main.dart)
 
@@ -554,3 +564,7 @@ iOS와 Android 모두에서 작동하는 인터랙티브한 Flutter 앱을 작�
 * 가장 좋아하는 단어를 보관하는 새로운 화면과 경로를 추가하고
   그 화면으로 이동하는 내비게이션 기능을 구현해봅니다. 
 * 테마 색을 수정하여 흰색 앱을 만들어봅니다.
+
+
+
+[DevTools]: /docs/development/tools/devtools

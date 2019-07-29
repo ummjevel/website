@@ -12,23 +12,25 @@ next:
 [shared_preferences]({{site.pub}}/packages/shared_preferences) 플러그인을 
 사용하세요.
 
-일반적으로 두 플랫폼 모두에 데이터를 저장하기 위한 네이티브 플랫폼 통합 코드를 작성해야
-합니다. 다행히도 [shared_preferences]({{site.pub-pkg}}/shared_preferences) 플러그인을
+일반적으로 iOS와 Android 두 플랫폼 모두에 데이터를 저장하기 위한 
+네이티브 플랫폼 통합 코드를 작성해야 합니다. 다행히도 
+[shared_preferences]({{site.pub-pkg}}/shared_preferences) 플러그인을
 사용하면 키-값 데이터를 디스크에 저장할 수 있습니다. 간단한 데이터 저장 기능을 제공하는
 shared preferences 플러그인은 iOS의 `NSUserDefaults`와 Android의 
 `SharedPreferences`를 감싸고 있습니다.
 
-## 진행 단계
+여기서는 아래와 같은 단계로 진행합니다:
 
-  1. 의존성 추가하기
-  2. 데이터 저장하기
-  3. 데이터 읽기
-  4. 데이터 삭제하기
+  1. 의존성 추가하기.
+  2. 데이터 저장하기.
+  3. 데이터 읽기.
+  4. 데이터 삭제하기.
 
 ## 1. 의존성 추가하기
 
 시작하기 전에 `pubspec.yaml` 파일에 
-[shared_preferences]({{site.pub-pkg}}/shared_preferences) 플러그인을 추가하겠습니다:
+[shared_preferences]({{site.pub-pkg}}/shared_preferences) 
+플러그인을 추가하세요:
 
 ```yaml
 dependencies:
@@ -70,7 +72,7 @@ final counter = prefs.getInt('counter') ?? 0;
 
 ## 4. 데이터 삭제하기
 
-`remove` 메서드를 사용하여 데이터를 삭제하세요.
+`remove()` 메서드를 사용하여 데이터를 삭제하세요.
 
 <!-- skip -->
 ```dart
@@ -81,7 +83,8 @@ prefs.remove('counter');
 
 ## 지원되는 자료형
 
-키-값 저장소를 사용하는 것은 쉽고 간편하지만, 몇가지 제약 사항이 있습니다:
+키-값 저장소를 사용하는 것은 쉽고 간편하지만, 
+몇가지 제약 사항이 있습니다:
 
 * 오직 원시 타입만 사용 가능합니다: `int`, `double`, `bool`, `string`, `stringList`
 * 대용량 데이터 저장을 위해 설계되지 않았습니다.
@@ -96,8 +99,8 @@ Android의 Shared Preferences에 대해 더 자세히 알고 싶다면, Android 
 좋은 생각입니다. 이를 위해 `shared_preferences` 라이브러리를 mocking 하는
 `MethodChannel` 객체를 생성해야 합니다.
 
-테스트 파일 `setupAll` 메서드 안에서 아래 코드를 수행하면 초깃값과 함께 
-`SharedPreferences`를 생성할 수 있습니다:
+테스트 파일 `setupAll()` 메서드 안에서 아래 코드를 수행하면 초깃값과 함께 
+`SharedPreferences`를 생성하세요:
 
 <!-- skip -->
 ```dart

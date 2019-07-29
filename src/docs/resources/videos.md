@@ -4,7 +4,7 @@ description: Available videos on various aspects of developing in Flutter.
 ---
 
 These Flutter videos, produced both internally at Google and by the
-Flutter community, may help if you are a visual learner.
+Flutter community, might help if you are a visual learner.
 
 Note that many people make Flutter videos. This page shows some that
 we like, but there are many others.
@@ -21,7 +21,7 @@ with a link to the complete playlist.
 Five-to-ten minute tutorials (more or less) on using Flutter.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wgTBLj7rMPM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-Introducing Widget of the Week<br>
+Introducing Flutter in Focus<br>
 [Flutter in Focus playlist][]
 
 ### Flutter Widget of the Week

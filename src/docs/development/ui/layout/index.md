@@ -43,8 +43,8 @@ Flutter 앱 내에서 볼 수 있는 이미지, 아이콘, 글자 모두 위젯�
 {{site.alert.note}}
   이 튜토리얼 내 대부분의 스크린샷은 `debugPaintSizeEnabled`가
   true로 설정된 상태로 표시되므로 시각적 레이아웃을 볼 수 있습니다.
-  더 자세한 정보는, [Debugging Flutter apps](/docs/testing/debugging) 안에 있는
-  [Visual debugging](/docs/testing/debugging#visual-debugging) 섹션을 봐주세요.
+  더 자세한 정보는, [Using the Flutter inspector][] 안에 있는
+  [Debugging layout issues visually][] 섹션을 봐주세요.
 {{site.alert.end}}
 
 다음은 해당 UI에 대한 위젯 트리 다이어그램입니다.
@@ -1137,7 +1137,7 @@ and trailing icons. `ListTile` is most commonly used in [Card][] or
 
 ## Other resources
 
-레이아웃 코드를 작성할 때 도움이 될 수 있는 자료들입니다.
+The following resources may help when writing layout code.
 
 * [Layout tutorial](/docs/development/ui/layout/tutorial)
 : 레이아웃 만드는 방법을 배워보세요.
@@ -1182,3 +1182,5 @@ and trailing icons. `ListTile` is most commonly used in [Card][] or
 [tutorial]: /docs/development/ui/layout/tutorial
 [widgets library]: {{api}}/widgets/widgets-library.html
 [Widget catalog]: /docs/development/ui/widgets
+[Debugging layout issues visually]: /docs/development/tools/devtools/inspector#debugging-layout-issues-visually
+[Using the Flutter inspector]: /docs/development/tools/devtools/inspector

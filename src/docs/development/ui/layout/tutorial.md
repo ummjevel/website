@@ -45,7 +45,7 @@ Flutter의 레이아웃을 다루기 전에,
     ```diff
     --- codelabs/startup_namer/step1_base/lib/main.dart
     +++ layout/base/lib/main.dart
-    @@ -6,10 +6,10 @@
+    @@ -10,10 +10,10 @@
        @override
        Widget build(BuildContext context) {
          return MaterialApp(
@@ -159,7 +159,7 @@ Widget titleSection = Container(
 ```diff
 --- ../base/lib/main.dart
 +++ step2/lib/main.dart
-@@ -8,11 +46,13 @@
+@@ -12,11 +46,13 @@
      return MaterialApp(
        title: 'Flutter layout demo',
        home: Scaffold(

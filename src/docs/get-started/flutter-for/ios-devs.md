@@ -22,7 +22,7 @@ Flutter는 이미 iOS에 동작시키기 위한 수 많은 어댑터(Adaptation)
 
 ## View
 
-### Flutter의 `UIView`는 어떤 것 일까요?
+### Flutter의 UIView는 어떤 것 일까요?
 
 {{site.alert.secondary}}
 react-style 혹은 _선언형_ 프로그래밍과 기존 명령형 프로그래밍은 어떤 차이가 있을까요?
@@ -193,7 +193,8 @@ iOS 에서는 부모 뷰에서 `addSubview()`를 호출하거나 자식 뷰에�
 `addSubview()`와 동일한 방법은 없습니다. 대신 위젯을 반환하는 부모에서 함수를 전달할 수 있으며,
 boolean 값에 따라 자식의 생성을 제어할 수 있습니다.
 
-아래는 유저가 `FloatingActionButton`을 클릭할 때, 두 위젯이 토글되는 것을 보여주는 예제입니다:
+아래는 유저가 `FloatingActionButton`을 클릭할 때, 두 위젯이 토글되는 것을 
+보여주는 예제입니다:
 
 {% prettify dart %}
 class SampleApp extends StatelessWidget {
@@ -410,7 +411,8 @@ class SignatureState extends State<Signature> {
 
 ### Where is the widget's opacity?
 
-On iOS, everything has .opacity or .alpha. In Flutter, most of the time you need to
+On iOS, everything has .opacity or .alpha.
+In Flutter, most of the time you need to
 wrap a widget in an Opacity widget to accomplish this.
 
 ### How do I build custom widgets?
@@ -1155,7 +1157,7 @@ A good place to find great packages for Flutter is the
 
 ## ViewControllers
 
-### What is the equivalent to `ViewController`s in Flutter?
+### What is the equivalent to ViewController in Flutter?
 
 In iOS, a `ViewController` represents a portion of user interface, most
 commonly used for a screen or section. These are composed together to build
@@ -1192,7 +1194,7 @@ For more details on the meaning of these states, see
 
 ## Layouts
 
-### What is the equivalent of a `UITableView` or `UICollectionView` in Flutter?
+### What is the equivalent of UITableView or UICollectionView in Flutter?
 
 In iOS, you might show a list in either a `UITableView` or a
 `UICollectionView`. In Flutter, you have a similar implementation using a
@@ -1315,7 +1317,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### How do I dynamically update a `ListView`s?
+### How do I dynamically update a ListView?
 
 In iOS, you update the data for the list view, and notify the table or
 collection view using the `reloadData` method.
@@ -1485,7 +1487,7 @@ cell you want rendered at that position.
 Finally, but most importantly, notice that the `onTap()` function
 doesn't recreate the list anymore, but instead `.add`s to it.
 
-### What is the equivalent of a `ScrollView` in Flutter?
+### What is the equivalent of a ScrollView in Flutter?
 
 In iOS, you wrap your views in a `ScrollView` that allows a user to scroll
 your content if needed.
@@ -1684,7 +1686,7 @@ class SampleApp extends StatelessWidget {
 }
 {% endprettify %}
 
-### How do I set custom fonts on my `Text` widgets?
+### How do I set custom fonts on my Text widgets?
 
 In iOS, you import any `ttf` font files into your project and create a
 reference in the `info.plist` file. In Flutter, place the font file
@@ -1718,7 +1720,7 @@ Widget build(BuildContext context) {
 }
 {% endprettify %}
 
-### How do I style my `Text` widgets?
+### How do I style my Text widgets?
 
 Along with fonts, you can customize other styling elements on a `Text` widget.
 The style parameter of a `Text` widget takes a `TextStyle` object, where you can
@@ -1969,7 +1971,7 @@ on Android or iOS.
 
 ## Databases and local storage
 
-### How do I access `UserDefaults` in Flutter?
+### How do I access UserDefault in Flutter?
 
 In iOS, you can store a collection of key-value pairs using a property list,
 known as the `UserDefaults`.
@@ -1988,6 +1990,18 @@ relate to your models.
 In Flutter, access this functionality using the
 [SQFlite]({{site.pub-pkg}}/sqflite) plugin.
 
+## Debugging
+
+### What tools can I use to debug my app in Flutter?
+
+Use the [DevTools][] suite for debugging Flutter or Dart apps.
+
+DevTools includes support for profiling, examining the heap,
+inspecting the widget tree, logging diagnostics, debugging,
+observing executed lines of code, debugging memory leaks and memory
+fragmentation. For more information, see the
+[DevTools][] documentation.
+
 ## Notifications
 
 ### How do I set up push notifications?
@@ -2001,3 +2015,6 @@ In Flutter, access this functionality using the
 For more information on using the Firebase Cloud Messaging API, see the
 [`firebase_messaging`]({{site.pub-pkg}}/firebase_messaging)
 plugin documentation.
+
+
+[DevTools]: /docs/development/tools/devtools

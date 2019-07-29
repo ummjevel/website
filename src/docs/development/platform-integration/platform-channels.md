@@ -43,6 +43,13 @@ Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고,
 메시지와 응답은 반응성 좋은 사용자 인터페이스를 위해 
 비동기적으로 전달됩니다.
 
+{{site.alert.note}} 
+  Flutter가 Dart와 메시지를 비동기로 주고 받음에도 불구하고,
+  채널 메서드를 호출할 때, 메서드를 플랫폼의 메인 스레드에서 호출해야 합니다.
+  더 자세한 사항은 [section on threading](#channels-and-platform-threading)를
+  참조하세요.
+{{site.alert.end}}
+
 클라이언트 단에서는, `MethodChannel` ([API][MethodChannel])이 메시지를 그에 상응하는
 메서드로 보낼 수 있도록 해줍니다. 플랫폼 단에서는, Android는 `MethodChannel`([API][MethodChannelAndroid]), iOS는 `FlutterMethodChannel`
 ([API][MethodChanneliOS])들이 메시지를 받는 것과 응답을 가능하게 합니다. 이 클래스들은 아주 적은
@@ -233,6 +240,7 @@ public class MainActivity extends FlutterActivity {
                 new MethodCallHandler() {
                     @Override
                     public void onMethodCall(MethodCall call, Result result) {
+                        // Note: this method is invoked on the main thread.
                         // TODO
                     }
                 });
@@ -300,6 +308,7 @@ public void onMethodCall(MethodCall call, Result result) {
 ```java
 @Override
 public void onMethodCall(MethodCall call, Result result) {
+    // Note: this method is invoked on the main thread.
     if (call.method.equals("getBatteryLevel")) {
         int batteryLevel = getBatteryLevel();
 
@@ -358,6 +367,7 @@ class MainActivity() : FlutterActivity() {
 
     GeneratedPluginRegistrant.registerWith(this)
     MethodChannel(flutterView, CHANNEL).setMethodCallHandler { call, result ->
+      // Note: this method is invoked on the main thread.
       // TODO
     }
   }
@@ -419,6 +429,7 @@ import android.os.Build.VERSION_CODES
 
 ```kotlin
     MethodChannel(flutterView, CHANNEL).setMethodCallHandler { call, result ->
+      // Note: this method is invoked on the main thread.
       if (call.method == "getBatteryLevel") {
         val batteryLevel = getBatteryLevel()
 
@@ -470,10 +481,11 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
   FlutterViewController* controller = (FlutterViewController*)self.window.rootViewController;
 
   FlutterMethodChannel* batteryChannel = [FlutterMethodChannel
-                                          methodChannelWithName:@"samples.flutter.de/battery"
+                                          methodChannelWithName:@"samples.flutter.dev/battery"
                                           binaryMessenger:controller];
 
   [batteryChannel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
+    // Note: this method is invoked on the UI thread.
     // TODO
   }];
 
@@ -510,6 +522,7 @@ iOS ObjectiveC 코드를 추가합니다. 해당 코드는
 ```objectivec
 __weak typeof(self) weakSelf = self
 [batteryChannel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
+  // Note: this method is invoked on the UI thread.
   if ([@"getBatteryLevel" isEqualToString:call.method]) {
     int batteryLevel = [weakSelf getBatteryLevel];
 
@@ -569,6 +582,7 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
                                               binaryMessenger: controller)
     batteryChannel.setMethodCallHandler({
       (call: FlutterMethodCall, result: FlutterResult) -> Void in
+      // Note: this method is invoked on the UI thread.
       // 배터리 메시지를 처리
     })
 
@@ -607,6 +621,7 @@ private func receiveBatteryLevel(result: FlutterResult) {
 ```swift
 batteryChannel.setMethodCallHandler({
   [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
+  // Note: this method is invoked on the UI thread.
   guard call.method == "getBatteryLevel" else {
     result(FlutterMethodNotImplemented)
     return
@@ -646,3 +661,67 @@ packages](/docs/development/packages-and-plugins/developing-packages#publish)를
 [BinaryCodec]: {{site.api}}/flutter/services/BinaryCodec-class.html
 [StringCodec]: {{site.api}}/flutter/services/StringCodec-class.html
 [JSONMessageCodec]: {{site.api}}/flutter/services/JSONMessageCodec-class.html
+
+## Channels and Platform Threading
+
+Invoke all channel methods on the platform's main thread when writing code on
+the platform side. On Android, this thread is sometimes called the "main
+thread", but it is technically defined as [the UI thread]. Annotate methods that
+need to be run on the UI thread with `@UiThread`. On iOS, this thread is
+officially referred to as [the main thread].
+
+[the UI thread]: https://developer.android.com/guide/components/processes-and-threads#Threads
+[the main thread]: https://developer.apple.com/documentation/uikit?language=objc
+
+### Jumping to the UI thread in Android
+
+To comply with channels' UI thread requirement, you may need to jump from a
+background thread to Android's UI thread to execute a channel method. In
+Android this is accomplished by `post()`ing a `Runnable` to Android's UI
+thread `Looper`, which will cause the `Runnable` to execute on the main thread
+at the next opportunity.
+
+In Java:
+
+```java
+new Handler(Looper.getMainLooper()).post(new Runnable() {
+  @Override
+  public void run() {
+    // Call the desired channel message here.
+  }
+});
+```
+
+In Kotlin:
+
+```kotlin
+Handler(Looper.getMainLooper()).post {
+  // Call the desired channel message here.
+}
+```
+
+### Jumping to the main thread in iOS
+
+To comply with channel's main thread requirement, you may need to jump from a
+background thread to iOS's main thread to execute a channel method. In iOS this
+is accomplished by executing a [block] on the main [dispatch queue]:
+
+In Objective-C:
+
+```objectivec
+dispatch_async(dispatch_get_main_queue(), ^{
+  // Call the desired channel message here.
+});
+```
+
+In Swift:
+
+```swift
+DispatchQueue.main.async {
+  // Call the desired channel message here.
+}
+```
+
+[block]: https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/WorkingwithBlocks/WorkingwithBlocks.html
+
+[dispatch queue]: https://developer.apple.com/documentation/dispatch/dispatchqueue

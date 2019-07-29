@@ -34,6 +34,7 @@ Dart는 아래와 같은 기능을 제공하는 배우기 쉬운 언어입니다
 ### 진입점
 
 자바스크립트에는 진입점 역할을 하는 함수가 미리 정의되어 있지 않습니다.
+진입점을 직접 지정합니다.
 
 ```js
 // JavaScript
@@ -59,7 +60,7 @@ main() {
 
 ```js
 // JavaScript
-console.log("Hello world!");
+console.log('Hello world!');
 ```
 
 <!-- skip -->
@@ -87,7 +88,7 @@ Dart는 정적 타입 검사와 런타임 타입 검사를 동시에 사용하�
 
 ```js
 // JavaScript
-var name = "JavaScript";
+var name = 'JavaScript';
 ```
 
 <!-- skip -->
@@ -138,11 +139,11 @@ int x; // == null
 // JavaScript
 var myNull = null;
 if (!myNull) {
-  console.log("null is treated as false");
+  console.log('null is treated as false');
 }
 var zero = 0;
 if (!zero) {
-  console.log("0 is treated as false");
+  console.log('0 is treated as false');
 }
 ```
 Dart는 boolean 값 `true`만 true로 취급합니다.
@@ -206,32 +207,53 @@ Dart는 이러한 비동기 처리를 위해서
 
 ```js
 // JavaScript
-_getIPAddress = () => {
-  const url="https://httpbin.org/ip";
-  return fetch(url)
-    .then(response => response.json())
-    .then(responseJson => {
-      console.log(responseJson.origin);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-};
+class Example {
+  _getIPAddress() {
+    const url = 'https://httpbin.org/ip';
+    return fetch(url)
+      .then(response => response.json())
+      .then(responseJson => {
+        const ip = responseJson.origin;
+        return ip;
+      });
+  }
+}
+
+function main() {
+  const example = new Example();
+  example
+    ._getIPAddress()
+    .then(ip => console.log(ip))
+    .catch(error => console.error(error));
+}
+
+main();
 ```
 
 <!-- skip -->
 ```dart
 // Dart
-_getIPAddress() {
-  final url = 'https://httpbin.org/ip';
-  HttpRequest.request(url).then((value) {
-      print(json.decode(value.responseText)['origin']);
-  }).catchError((error) => print(error));
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+class Example {
+  Future<String> _getIPAddress() {
+    final url = 'https://httpbin.org/ip';
+    return http.get(url).then((response) {
+      String ip = jsonDecode(response.body)['origin'];
+      return ip;
+    });
+  }
+}
+
+main() {
+  final example = new Example();
+  example
+      ._getIPAddress()
+      .then((ip) => print(ip))
+      .catchError((error) => print(error));
 }
 ```
-
-[DartPad]({{site.dartpad}}/5a0017d09b6823d0248d965b93133e2e)에서 
-시도해보세요.
 
 더 많은 정보를 원하시면, 
 [Futures]({{site.dart-site}}/tutorials/language/futures)를 참조하세요.
@@ -245,13 +267,27 @@ _getIPAddress() {
 
 ```js
 // JavaScript
-async _getIPAddress() {
-  const url="https://httpbin.org/ip";
-  const response = await fetch(url);
-  const json = await response.json();
-  const data = await json.origin;
-  console.log(data);
+class Example {
+  async function _getIPAddress() {
+    const url = 'https://httpbin.org/ip';
+    const response = await fetch(url);
+    const json = await response.json();
+    const data = await json.origin;
+    console.log(data);
+  }
 }
+
+async function main() {
+  const example = new Example();
+  try {
+    const ip = await example._getIPAddress();
+    console.log(ip);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+main();
 ```
 
 Dart에서는 `async` 함수가 `Future`를 반환하고, 
@@ -261,21 +297,33 @@ Dart에서는 `async` 함수가 `Future`를 반환하고,
 <!-- skip -->
 ```dart
 // Dart
-_getIPAddress() async {
-  final url = 'https://httpbin.org/ip';
-  var request = await HttpRequest.request(url);
-  String ip = json.decode(request.responseText)['origin'];
-  print(ip);
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+class Example {
+  Future<String> _getIPAddress() async {
+    final url = 'https://httpbin.org/ip';
+    final response = await http.get(url);
+    String ip = jsonDecode(response.body)['origin'];
+    return ip;
+  }
+}
+
+main() async {
+  final example = new Example();
+  try {
+    final ip = await example._getIPAddress();
+    print(ip);
+  } catch (error) {
+    print(error);
+  }
 }
 ```
 
-[DartPad]({{site.dartpad}}/04bb4334985107cddcd021322398c918)에서 
-시도해보세요.
-
-더 많은 정보를 원하시면, [`async`와
-`await`]({{site.dart-site}}/guides/language/language-tour#asynchrony-support)를 참조하세요.
+더 많은 정보를 원하시면, [`async`와 `await`][]을 참조하세요.
 
 ## 기본
+
 ### Flutter 앱을 만드는 방법은?
 
 React Native로 앱을 만드려면 커멘드라인에서 
@@ -287,9 +335,9 @@ $ create-react-native-app <projectname>
 
 Flutter에서 앱을 만들기 위해서는, 아래 방법 중 하나를 수행하면 됩니다:
 
+* Flutter와 Dart 플러그인이 설치된 IDE를 이용하세요.
 * 커멘드라인에서 `flutter create` 명령을 실행하세요.
   Flutter SDK가 PATH에 들어있는지 확인이 필요합니다. 
-* Flutter와 Dart 플러그인이 설치된 IDE를 이용하세요.
 
 {% prettify %}
 $ flutter create <projectname>
@@ -305,14 +353,16 @@ Android 및 iOS 기기에서 샘플 앱을 실행하는 데 필요한 모든 파
 React Native를 사용할 때는, 프로젝트 디렉토리에서 
 `npm run`이나 `yarn run`으로 앱을 실행했을 것입니다.
 
- Flutter apps를 실행하는 몇가지 방법이 있습니다:
+Flutter apps를 실행하는 몇가지 방법이 있습니다:
 
- * 프로젝트 최상위 디렉토리에서 `flutter run`을 사용하세요.
- * Flutter와 Dart 플러그인이 설치된 IDE에서 "run"을 실행하세요. 
+* Flutter와 Dart 플러그인이 설치된 IDE에서 "run"을 실행하세요. 
+* 프로젝트 최상위 디렉토리에서 `flutter run`을 사용하세요.
 
- 앱이 연결된 기기나, iOS 시뮬레이터 혹은 Android 에뮬레이터에서 실행될 것입니다.
+앱이 연결된 기기나, iOS 시뮬레이터 
+혹은 Android 에뮬레이터에서 실행될 것입니다.
 
-더 많은 정보를 원하시면, [시작하기](/docs/get-started)를 참조하세요.
+더 많은 정보를 원하시면, Flutter [시작하기](/docs/get-started)를 
+참조하세요.
 
 ### 위젯을 import 하는 방법은?
 
@@ -320,11 +370,15 @@ React Native에서는 필요한 모든 컴포넌트를 각각 import 해야 합�
 
 ```js
 //React Native
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 ```
 
-Flutter에서는 머티리얼 디자인 라이브러리에서 위젯을 사용하기 위해 `material.dart` 패키지를 import 합니다. iOS 스타일 위젯을 사용하기 위해 쿠퍼티노 라이브러리를 import 합니다. 더 많은 기본 위젯을 사용하고 싶다면, 위젯 라이브러리를 import 합니다. 아니면 직접 위젯 라이브러리를 작성하여 import 할 수도 있습니다.
+Flutter에서는 머티리얼 디자인 라이브러리에서 위젯을 사용하기 위해 
+`material.dart` 패키지를 import 합니다. 
+iOS 스타일 위젯을 사용하기 위해 쿠퍼티노 라이브러리를 import 합니다. 
+더 많은 기본 위젯을 사용하고 싶다면, 위젯 라이브러리를 import 합니다. 
+아니면 직접 위젯 라이브러리를 작성하여 import 할 수도 있습니다.
 
 <!-- skip -->
 ```dart
@@ -345,8 +399,8 @@ render 메서드가 view 컴포넌트를 반환하도록 구현합니다.
 
 ```js
 // React Native
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default class App extends React.Component {
   render() {
@@ -361,14 +415,17 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 ```
 
-Flutter에서는, 기본 위젯 라이브러리의 `Center`와 `Text` 위젯을 활용하여 "Hello world!" 앱과 동일한 것을 만들 수 있습니다. `Center` 위젯을 최상위 위젯으로 하고, 자식으로 `Text` 위젯을 넣으면 됩니다. 
+Flutter에서는, 기본 위젯 라이브러리의 `Center`와 `Text` 위젯을 활용하여 
+"Hello world!" 앱과 동일한 것을 만들 수 있습니다. 
+`Center` 위젯을 최상위 위젯으로 하고, 
+자식으로 `Text` 위젯을 넣으면 됩니다. 
 
 <!-- skip -->
 ```dart
@@ -445,7 +502,8 @@ class MyApp extends StatelessWidget {
 ```
 
 
-아래 이미지는 머티리얼 디자인 위젯으로 만든 "Hello world!"입니다. 기본적인 "Hello world!"보다 좀 더 많은 기능을 자유롭게 이용할 수 있습니다.
+아래 이미지는 머티리얼 디자인 위젯으로 만든 "Hello world!"입니다. 
+기본적인 "Hello world!"보다 좀 더 많은 기능을 자유롭게 이용할 수 있습니다.
 
 {% include android-ios-figure-pair.md image="react-native/hello-world.png" alt="Hello world app" %}
 
@@ -557,7 +615,7 @@ Flutter 앱을 만들면 `main.dart`가 자동 생성됩니다.
 ```dart
 // Dart
 void main(){
- print("Hello, this is the main function.");
+ print('Hello, this is the main function.');
 }
 ```
 
@@ -586,7 +644,6 @@ Flutter 프로젝트를 새롭게 만들면, 아래와 같은 디렉토리 구�
   └ pubspec.yaml - Flutter 앱의 메타데이터 포함.
                    React Native의 package.json 파일과 동일함.
 ```
-
 
 ### 리소스와 asset은 어디에 위치 시키고, 어떻게 사용하나요?
 
@@ -626,7 +683,7 @@ React Native에서는 이미지 파일을 소스 코드 디렉토리에 놓은 �
 경로를 지정하여 정적 이미지를 추가할 수 있습니다.
 
 ```js
-<Image source={require("./my-icon.png")} />
+<Image source={require('./my-icon.png')} />
 ```
 
 Flutter에서는 위젯의 build 메서드 안에서 `AssetImage` 클래스를 사용하여 
@@ -795,8 +852,8 @@ React Native에서는 캔버스 컴포넌트가 없기 때문에, `react-native-
 ```js
 // React Native
 handleCanvas = canvas => {
-  const ctx = canvas.getContext("2d");
-  ctx.fillStyle = "skyblue";
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'skyblue';
   ctx.beginPath();
   ctx.arc(75, 75, 50, 0, 2 * Math.PI);
   ctx.fillRect(150, 100, 300, 300);
@@ -870,9 +927,9 @@ props를 아래와 같이 지정해주면 됩니다:
 <View
   style={%raw%}{{
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-between",
-    alignItems: "center"
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   }}{%endraw%}
 >
 ```
@@ -944,7 +1001,7 @@ Stack(
   children: <Widget>[
     CircleAvatar(
       backgroundImage: NetworkImage(
-        "https://avatars3.githubusercontent.com/u/14101776?v=4"),
+        'https://avatars3.githubusercontent.com/u/14101776?v=4'),
     ),
     Container(
       decoration: BoxDecoration(
@@ -976,7 +1033,7 @@ React Native에서는 인라인 스타일링과 `stylesheets.create`를 사용�
 ```js
 // React Native
 <View style={styles.container}>
-  <Text style={%raw%}{{ fontSize: 32, color: "cyan", fontWeight: "600" }}{%endraw%}>
+  <Text style={%raw%}{{ fontSize: 32, color: 'cyan', fontWeight: '600' }}{%endraw%}>
     This is a sample text
   </Text>
 </View>
@@ -984,9 +1041,9 @@ React Native에서는 인라인 스타일링과 `stylesheets.create`를 사용�
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 ```
@@ -1136,6 +1193,9 @@ Flutter에서 앱의 상태를 관리하기 위해서는, State 객체와 함께
 [StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html)을 
 사용하세요.
 
+Flutter 상태 관리 방법에 대한 더 자세한 정보는
+[State management][]를 참조하세요.
+
 ### The StatelessWidget
 
 Flutter에서 `StatelessWidget`은 상태 변화가 필요 
@@ -1159,7 +1219,7 @@ Stateless 위젯은
 // Flutter
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyStatelessWidget(text: "StatelessWidget Example to show immutable data"));
+void main() => runApp(MyStatelessWidget(text: 'StatelessWidget Example to show immutable data'));
 
 class MyStatelessWidget extends StatelessWidget {
   final String text;
@@ -1383,7 +1443,7 @@ class CustomCard extends React.Component {
       <View>
         <Text> Card {this.props.index} </Text>
         <Button
-          title="Press"
+          title='Press'
           onPress={() => this.props.onPress(this.props.index)}
         />
       </View>
@@ -1393,7 +1453,7 @@ class CustomCard extends React.Component {
 class App extends React.Component {
 
   onPress = index => {
-    console.log("Card ", index);
+    console.log('Card ', index);
   };
 
   render() {
@@ -1464,8 +1524,8 @@ React Native에서는 `AsyncStorage`의
 
 ```js
 // React Native
-await AsyncStorage.setItem( "counterkey", json.stringify(++this.state.counter));
-AsyncStorage.getItem("counterkey").then(value => {
+await AsyncStorage.setItem( 'counterkey', json.stringify(++this.state.counter));
+AsyncStorage.getItem('counterkey').then(value => {
   if (value != null) {
     this.setState({ counter: value });
   }
@@ -1532,7 +1592,7 @@ and DrawerNavigator. Each provides a way to configure and define the screens.
 // React Native
 const MyApp = TabNavigator(
   { Home: { screen: HomeScreen }, Notifications: { screen: tabNavScreen } },
-  { tabBarOptions: { activeTintColor: "#e91e63" } }
+  { tabBarOptions: { activeTintColor: '#e91e63' } }
 );
 const SimpleApp = StackNavigator({
   Home: { screen: MyApp },
@@ -1630,7 +1690,7 @@ import { createBottomTabNavigator } from 'react-navigation';
 
 const MyApp = TabNavigator(
   { Home: { screen: HomeScreen }, Notifications: { screen: tabNavScreen } },
-  { tabBarOptions: { activeTintColor: "#e91e63" } }
+  { tabBarOptions: { activeTintColor: '#e91e63' } }
 );
 ```
 
@@ -1759,7 +1819,7 @@ Drawer(
     leading: Icon(Icons.change_history),
     title: Text('Screen2'),
     onTap: () {
-      Navigator.of(context).pushNamed("/b");
+      Navigator.of(context).pushNamed('/b');
     },
   ),
   elevation: 20.0,
@@ -1782,13 +1842,13 @@ Widget build(BuildContext context) {
         leading: Icon(Icons.change_history),
         title: Text('Screen2'),
         onTap: () {
-          Navigator.of(context).pushNamed("/b");
+          Navigator.of(context).pushNamed('/b');
         },
       ),
       elevation: 20.0,
     ),
     appBar: AppBar(
-      title: Text("Home"),
+      title: Text('Home'),
     ),
     body: Container(),
   );
@@ -1815,10 +1875,10 @@ the `Touchable` components.
 // React Native
 <TouchableOpacity
   onPress={() => {
-    console.log("Press");
+    console.log('Press');
   }}
   onLongPress={() => {
-    console.log("Long Press");
+    console.log('Long Press');
   }}
 >
   <Text>Tap or Long Press</Text>
@@ -1868,7 +1928,7 @@ to any widget by wrapping it in a
 GestureDetector(
   child: Scaffold(
     appBar: AppBar(
-      title: Text("Gestures"),
+      title: Text('Gestures'),
     ),
     body: Center(
       child: Column(
@@ -1913,7 +1973,7 @@ and then receive the response to get the data.
 ```js
 // React Native
 _getIPAddress = () => {
-  fetch("https://httpbin.org/ip")
+  fetch('https://httpbin.org/ip')
     .then(response => response.json())
     .then(responseJson => {
       this.setState({ _ipAddress: responseJson.origin });
@@ -1954,7 +2014,7 @@ _getIPAddress() async {
   var request = await httpClient.getUrl(url);
   var response = await request.close();
   var responseBody = await response.transform(utf8.decoder).join();
-  String ip = json.decode(responseBody)['origin'];
+  String ip = jsonDecode(responseBody)['origin'];
   setState(() {
     _ipAddress = ip;
   });
@@ -2002,7 +2062,7 @@ final TextEditingController _controller = TextEditingController();
 TextField(
   controller: _controller,
   decoration: InputDecoration(
-    hintText: 'Type something', labelText: "Text Field "
+    hintText: 'Type something', labelText: 'Text Field '
   ),
 ),
 RaisedButton(
@@ -2094,20 +2154,20 @@ void _submit() {
 ## Platform-specific code
 
 When building a cross-platform app, you want to re-use as much code as
-possible across platforms. However, scenarios may arise where it makes sense for
-the code to be different depending on the OS. This requires a separate
-implementation by declaring a specific platform.
+possible across platforms. However, scenarios might arise where it
+makes sense for the code to be different depending on the OS.
+This requires a separate implementation by declaring a specific platform.
 
 In React Native, the following implementation would be used:
 
 ```js
 // React Native
-if (Platform.OS === "ios") {
-  return "iOS";
-} else if (Platform.OS === "android") {
-  return "android";
+if (Platform.OS === 'ios') {
+  return 'iOS';
+} else if (Platform.OS === 'android') {
+  return 'android';
 } else {
-  return "not recognised";
+  return 'not recognised';
 }
 ```
 In Flutter, use the following implementation:
@@ -2115,22 +2175,50 @@ In Flutter, use the following implementation:
 ```dart
 // Flutter
 if (Theme.of(context).platform == TargetPlatform.iOS) {
-  return "iOS";
+  return 'iOS';
 } else if (Theme.of(context).platform == TargetPlatform.android) {
-  return "android";
+  return 'android';
 } else if (Theme.of(context).platform == TargetPlatform.fuchsia) {
-  return "fuchsia";
+  return 'fuchsia';
 } else {
-  return "not recognised ";
+  return 'not recognised ';
 }
 ```
 
 ## Debugging
 
-Before running your applications, verify your code with `flutter analyze`. The
-Flutter analyzer (which is a wrapper around the `dartanalyzer` tool) examines
-your code and helps identify possible issues. If you’re using a Flutter-enabled
-IDE, this occurs automatically.
+### What tools can I use to debug my app in Flutter?
+
+Use the [DevTools][] suite for debugging Flutter or Dart apps.
+
+DevTools includes support for profiling, examining the heap,
+inspecting the widget tree, logging diagnostics, debugging,
+observing executed lines of code, debugging memory leaks and memory
+fragmentation. For more information, see the
+[DevTools][] documentation.
+
+If you're using an IDE,
+you can debug your application using the IDE's debugger.
+
+### How do I perform a hot reload?
+
+Flutter’s Stateful Hot Reload feature helps you quickly and easily experiment,
+build UIs, add features, and fix bugs. Instead of recompiling your app
+every time you make a change, you can hot reload your app instantly.
+The app is updated to reflect your change,
+and the current state of the app is preserved.
+
+In React Native,
+the shortcut is ⌘R for the iOS Simulator and tapping R twice on
+Android emulators.
+
+In Flutter, If you are using IntelliJ IDE or Android Studio,
+you can select Save All (⌘s/ctrl-s), or you can click the
+Hot Reload button on the toolbar. If you
+are running the app at the command line using `flutter run`,
+type `r` in the Terminal window.
+You can also perform a full restart by typing `R` in the
+Terminal window.
 
 ### How do I access the in-app developer menu?
 
@@ -2156,61 +2244,6 @@ in the terminal window, or type the following shortcuts:
 | To quit| `q` ||
 {:.table.table-striped}
 </div>
-
-### How do I perform a hot reload?
-
-Flutter’s hot reload feature helps you quickly and easily experiment, build UIs,
-add features, and fix bugs. Instead of recompiling your app every time you make
-a change, you can hot reload your app instantly. The app is updated to reflect
-your change, and the current state of the app is preserved.
-
-In React Native, the shortcut is ⌘R for the iOS Simulator and tapping R twice on
-Android emulators.
-
-In Flutter, If you are using IntelliJ IDE or Android Studio, you can select Save
-All (⌘s/ctrl-s), or you can click the Hot Reload button on the toolbar. If you
-are running the app at the command line using `flutter run`, type `r` in the
-Terminal window. You can also perform a full restart by typing `R` in the
-Terminal window.
-
-### What tools can I use to debug my app in Flutter?
-
-There are several options and tools you can use when you need to debug your
-Flutter app.
-
-In addition to the Flutter analyzer, the
-[`Dart Observatory`](https://dart-lang.github.io/observatory/) is a tool used to
-profile and debug your Dart applications. If you started your application using
-`flutter run` in Terminal, you can open the web page at the Observatory URL
-printed to the terminal window, for example:  `http://127.0.0.1:8100/`.
-
-The Observatory includes support for profiling, examining the heap, observing
-executed lines of code, debugging memory leaks and memory fragmentation. For
-more information, see the
-[Observatory documentation](https://dart-lang.github.io/observatory/).
-Observatory is included for free when you download and install the Dart SDK.
-
-If you're using an IDE, you can debug your application using the IDE debugger.
-
-If you're using IntelliJ and Android Studio, you can use the Flutter Inspector.
- The Flutter Inspector makes it much easier to understand why your application
-  is rendering the way it does. It allows you to:
-* View the UI structure of your app as a tree of widgets
-* Select a point on your device or simulator and find the corresponding widget
- that rendered those pixels
-* View properties for individual widgets
-* Quickly identify layout issues and determine their cause
-
-The Flutter Inspector view can be opened from View > Tool Windows > Flutter
-Inspector. Content is shown only when an app is running.
-
-To inspect a specific widget, select the **Toggle inspect mode** action in the
-toolbar, then click on the desired widget on an attached phone or simulator. The
-widget is highlighted in your app’s UI. You’ll see the widget in the widget
-hierarchy in IntelliJ and the individual properties for that widget.
-
-For more information, see
-[Debugging Flutter Apps](/docs/testing/debugging).
 
 ## Animation
 
@@ -2371,7 +2404,7 @@ child: Dismissible(
 
 {% include android-ios-figure-pair.md image="react-native/card-swipe.gif" alt="Card swipe" class="border" %}
 
-## React Native and Flutter Widget equivalent components
+## React Native and Flutter widget equivalent components
 
 The following table lists commonly-used React Native components mapped to the
 corresponding Flutter widget and common widget properties.
@@ -2448,3 +2481,8 @@ corresponding Flutter widget and common widget properties.
 |                                                                                         | onChanged [required]                                                                                      | Called when the user selects a new value for the slider.                                                                                                                                                      |
 {:.table.table-striped}
 </div>
+
+
+[DevTools]: /docs/development/tools/devtools
+[State management]: /docs/development/data-and-backend/state-mgmt
+[async와 await]: {{site.dart-site}}/guides/language/language-tour#asynchrony-support

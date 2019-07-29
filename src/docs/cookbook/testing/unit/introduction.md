@@ -2,7 +2,7 @@
 title: 단위 테스트 소개
 short-title: 소개
 prev:
-  title: 스크롤
+  title: 스크롤 동작
   path: /docs/cookbook/testing/integration/scrolling
 next:
   title: Mockito를 사용하여 의존성들에 대해 mock 객체 생성하기
@@ -18,19 +18,18 @@ next:
 [`flutter_test`]({{site.api}}/flutter/flutter_test/flutter_test-library.html)
 패키지는 위젯 테스트를 위한 추가적인 유틸리티를 제공합니다.
 
-본 예제에서는 `test` 패키지가 제공하는 핵심 기능들을 살펴볼 것입니다.
+본 예제에서는 `test` 패키지가 제공하는 핵심 기능들을 아래와 같은 순서로 살펴볼 것입니다.
+
+  1. `test` 혹은 `flutter_test` 의존성 추가하기.
+  2. 테스트 파일 생성하기.
+  3. 테스트를 위한 클래스 생성하기.
+  4. 클래스 테스트를 위한 `test` 코드 작성하기.
+  5. 여러 테스트를 `group`으로 결합하기.
+  6. 테스트 수행하기.
+
 test 패키지에 대해 좀더 자세한 정보는 
 [test 패키지 문서]({{site.github}}/dart-lang/test/blob/master/README.md)를
 참고하세요.
-
-## 진행 단계
-
-  1. `test` 혹은 `flutter_test` 의존성 추가하기
-  2. 테스트 파일 생성하기
-  3. 테스트를 위한 클래스 생성하기
-  4. 클래스 테스트를 위한 `test` 코드 작성하기
-  5. 여러 테스트를 `group`으로 결합하기
-  6. 테스트 수행하기
 
 ## 1. test 의존성 추가하기
 

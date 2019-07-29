@@ -19,8 +19,7 @@ Jank를 피하기 위해서는, 이러한 값비싼 연산을 백그라운드에
 Android에서는, 다른 스레드에 작업을 스케줄링하는 것을 의미합니다. Flutter에서는,
 별도의 [Isolate]({{site.api}}/flutter/dart-isolate/Isolate-class.html)를 
 사용할 수 있습니다.
-
-## 진행 단계
+여기서는 아래와 같은 단계로 진행합니다:
 
   1. `http` 패키지 추가하기
   2. `http` 패키지를 사용하여 네트워크 요청 생성하기
@@ -52,8 +51,10 @@ Future<http.Response> fetchPhotos(http.Client client) async {
 }
 ```
 
-참고: 본 예제에서는 함수에 `http.Client`를 제공하고 있는데, 이로 인해 해당 함수를
-테스트하거나 다른 환경에서도 사용하기 쉬워집니다.
+{{site.alert.note}}
+  참고: 본 예제에서는 함수에 `http.Client`를 제공하고 있는데, 이로 인해 해당 함수를
+  테스트하거나 다른 환경에서도 사용하기 쉬워집니다.
+{{site.alert.end}}
 
 ## 3. json을 Photo 리스트로 파싱하여 변환하기
 
@@ -87,15 +88,15 @@ class Photo {
 
 ### 응답 결과를 Photo 리스트로 변환하기
 
-이제 `Future<List<Photo>>`를 반환하도록 `fetchPhotos` 함수를 수정하겠습니다.
+이제 `Future<List<Photo>>`를 반환하도록 `fetchPhotos()` 함수를 수정하겠습니다.
 이 작업을 하기 위해 다음의 것들이 필요합니다:
 
-  1. 응답 결과를 `List<Photo>`로 변환할 `parsePhotos` 를 생성하세요
-  2. `fetchPhotos` 함수에서 `parsePhotos` 함수를 사용하세요
+  1. 응답 결과를 `List<Photo>`로 변환할 `parsePhotos()` 를 생성하세요
+  2. `fetchPhotos()` 함수에서 `parsePhotos()` 함수를 사용하세요
 
 <!-- skip -->
 ```dart
-// 응답 결과를 List<Photo>로 변환하는 함수
+// 응답 결과를 List<Photo>로 변환하는 함수.
 List<Photo> parsePhotos(String responseBody) {
   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
 
@@ -112,14 +113,14 @@ Future<List<Photo>> fetchPhotos(http.Client client) async {
 
 ## 4. 이 작업을 별도 isolte로 옮기기
 
-만약 `fetchPhotos` 함수를 구형의 오래된 폰에서 돌려보면, 앱이 json을 파싱하고 변환하는
+만약 `fetchPhotos()` 함수를 구형의 오래된 폰에서 돌려보면, 앱이 json을 파싱하고 변환하는
 과정에서 버벅대는 것을 느낄 수도 있습니다. 이런 현상을 jank라고 부르는데 이 현상을
 개선해보겠습니다.
 
 [`compute`]({{site.api}}/flutter/foundation/compute.html) 함수를 사용하여
-파싱하고 변환하는 작업을 백그라운드 isolate으로 옮기면 됩니다. `compute` 함수는
+파싱하고 변환하는 작업을 백그라운드 isolate으로 옮기면 됩니다. `compute()` 함수는
 오래 걸리는 함수를 백그라운드 isolate에서 돌리고 그 결과를 반환합니다. 본 예제에서는
-`parsePhotos` 함수를 백그라운드에서 수행할 것입니다.
+`parsePhotos()` 함수를 백그라운드에서 수행할 것입니다.
 
 <!-- skip -->
 ```dart
@@ -127,7 +128,7 @@ Future<List<Photo>> fetchPhotos(http.Client client) async {
   final response =
       await client.get('https://jsonplaceholder.typicode.com/photos');
 
-  // compute 함수를 사용하여 parsePhotos를 별도 isolate에서 수행합니다
+  // compute 함수를 사용하여 parsePhotos를 별도 isolate에서 수행합니다.
   return compute(parsePhotos, response.body);
 }
 ```
@@ -155,11 +156,11 @@ Future<List<Photo>> fetchPhotos(http.Client client) async {
   final response =
       await client.get('https://jsonplaceholder.typicode.com/photos');
 
-  // compute 함수를 사용하여 parsePhotos를 별도 isolate에서 수행합니다
+  // compute 함수를 사용하여 parsePhotos를 별도 isolate에서 수행합니다.
   return compute(parsePhotos, response.body);
 }
 
-// 응답 결과를 List<Photo>로 변환하는 함수
+// 응답 결과를 List<Photo>로 변환하는 함수.
 List<Photo> parsePhotos(String responseBody) {
   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
 
@@ -245,4 +246,4 @@ class PhotosList extends StatelessWidget {
 }
 ```
 
-![Isolate Demo](/images/cookbook/isolate.gif){:.site-mobile-screenshot}
+![Isolate demo](/images/cookbook/isolate.gif){:.site-mobile-screenshot}

@@ -30,10 +30,10 @@ The examples assume:
   ```
 
 {{site.alert.secondary}}
-How is react-style, or _declarative_, programming different than the
-traditional imperative style?
-For a comparison, see [Introduction to declarative
-UI](/docs/get-started/flutter-for/declarative).
+ How is react-style, or _declarative_, programming different than the
+ traditional imperative style?
+ For a comparison, see [Introduction to declarative
+ UI](/docs/get-started/flutter-for/declarative).
 {{site.alert.end}}
 
 ## Performing basic layout operations
@@ -114,7 +114,9 @@ The CSS examples use the hex color equivalents to the Material color palette.
     ),
     width: 320.0,
     height: 240.0,
-[[highlight]]    color: Colors.grey[300],[[/highlight]]
+    [[highlight]]decoration: BoxDecoration(
+      color: Colors.grey[300],
+    ),[[/highlight]]
   );
 {% endprettify %}
 </div>
@@ -440,7 +442,7 @@ The gradient “angle” is based on the Alignment (x, y) values:
 * If the beginning and ending y values are equal, the gradient is horizontal
 (90° | 270°).
 
-#### Vertical Gradient
+#### Vertical gradient
 
 <div class="lefthighlight">
 {% prettify css %}
@@ -496,6 +498,7 @@ var container = Container( // grey box
 </div>
 
 #### Horizontal gradient
+
 <div class="lefthighlight">
 {% prettify css %}
 <div class="greybox">

@@ -20,15 +20,13 @@ iOS의 경우 `video_player` 플러그인은
 [`ExoPlayer`](https://google.github.io/ExoPlayer/)를 사용합니다.
 
 본 예제에서는 `video_player` 패키지를 사용하여 인터넷 영상을 스트리밍하고
-재생 및 일시 정지와 같은 기본적인 컨트롤을 해볼 것입니다.
+재생 및 일시 정지와 같은 기본적인 컨트롤을 아래와 같은 순서로 해볼 것입니다.
 
-## 진행 단계
-
-  1. `video_player` 의존성 추가하기
-  2. 앱에 권한 부여하기
-  3. `VideoPlayerController` 생성 및 초기화하기
-  4. video player 화면에 보여주기
-  5. 영상을 재생 및 일시 중지하기
+  1. `video_player` 의존성 추가하기.
+  2. 앱에 권한 부여하기.
+  3. `VideoPlayerController` 생성 및 초기화하기.
+  4. video player 화면에 보여주기.
+  5. 영상을 재생 및 일시 중지하기.
 
 ## 1. `video_player` 의존성 추가하기
 
@@ -44,8 +42,8 @@ dependencies:
 
 ## 2. 앱에 권한 부여하기
 
-다음으로, 앱이 인터넷 영상을 스트리밍하기 위해 올바른 권한을 가졌는지 확인해야 합니다.
-이를 위해, `Android`와 `ios` configuration을 수정하겠습니다.
+다음으로, `Android`와 `ios` configuration을 수정하여 
+앱이 인터넷 영상을 스트리밍하기 위해 올바른 권한을 가졌는지 확인하세요.
 
 ### Android
 
@@ -66,7 +64,7 @@ dependencies:
 
 ### iOS
 
-iOS는 아래 내용을 `<project root>/ios/Runner/Info.plist`에 파일에 추가해야 합니다.
+iOS는 아래 내용을 `<project root>/ios/Runner/Info.plist`에 파일에 추가하세요.
 
 <!-- skip -->
 ```xml
@@ -91,7 +89,7 @@ iOS는 아래 내용을 `<project root>/ios/Runner/Info.plist`에 파일에 추�
 영상을 재생하기 전에, controller를 `초기화`해야 합니다. 이 작업을 통해 영상과 연결하고
 영상 제어를 위한 준비 작업을 하게 됩니다.
 
-`VideoPlayerController`를 생성하고 초기화하려면,
+`VideoPlayerController`를 생성하고 초기화하기 위해 아래와 같이 진행하세요:
 
   1. `StatefulWidget`과 `State` 클래스를 생성하세요.
   2. `State` 클래스에 `VideoPlayerController`를 저장하기 위한 변수를 추가하세요.
@@ -143,18 +141,17 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
 ## 4. video player 화면에 보여주기
 
-이제 영상을 보여줄 차례입니다. `video_player` 플러그인은 `VideoPlayerController`에
+이제 영상을 보여주세요. `video_player` 플러그인은 `VideoPlayerController`에
 의해 초기화된 영상을 보여주기 위해
 [`VideoPlayer`]({{site.pub-api}}/video_player/latest/video_player/VideoPlayer-class.html)
 위젯을 제공합니다. 기본적으로 `VideoPlayer` 위젯은 가능한한 넓은 면적을 차지하려고 합니다.
 이러한 점은 종종 영상들이 16x9나 4x3과 같이 특정 종횡비로 표시되기 때문에 이상적이지는 않습니다.
 
-
 영상이 제대로된 비율로 보여지도록 `VideoPlayer` 위젯을 
 [`AspectRatio`]({{site.api}}/flutter/widgets/AspectRatio-class.html)
-위젯으로 감쌀 수 있습니다.
+위젯으로 감싸주세요.
 
-추가로 `_initializeVideoPlayerFuture`가 완료된 후에 `VideoPlayer`를 보여줘야 합니다.
+추가로 `_initializeVideoPlayerFuture()`가 완료된 후에 `VideoPlayer`를 보여줘야 합니다.
 `FutureBuilder`를 사용하여 초기화가 진행되는 동안 로딩 스피너를 보여줄 수 있습니다. 참고:
 컨트롤러 초기화가 영상을 재생시키지는 않습니다.
 
@@ -186,9 +183,9 @@ FutureBuilder(
 
 기본적으로 영상은 일시 중지 상태로 시작합니다. 재생을 시작하려면 `VideoPlayerController`가
 제공하는 
-[`play`]({{site.pub-api}}/video_player/latest/video_player/VideoPlayerController/play.html)
+[`play()`]({{site.pub-api}}/video_player/latest/video_player/VideoPlayerController/play.html)
 메서드를 호출하세요. 재생을 일시 중지 시키려면 
-[`pause`]({{site.pub-api}}/video_player/latest/video_player/VideoPlayerController/pause.html)
+[`pause()`]({{site.pub-api}}/video_player/latest/video_player/VideoPlayerController/pause.html)
 메서드를 호출하면 됩니다.
 
 본 예제에서는 상황에 따라 재생 혹은 일시 중지 아이콘을 보여주기 위해

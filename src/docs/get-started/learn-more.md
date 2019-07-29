@@ -29,7 +29,10 @@ prev:
 * [Flutter 해설(Cookbook)](/docs/cookbook)
 * [Dart 시작하기: Dart 언어에 대해 더 알아보기](/docs/resources/bootstrap-into-dart)
 * [Flutter API 문서]({{site.api}})
-* [Udacity의 Flutter 온라인 강의](https://www.udacity.com/course/build-native-mobile-apps-with-flutter--ud905)
+* [The Complete Flutter Developer Bootcamp Using
+  Dart](https://www.appbrewery.co/p/flutter-development-bootcamp-with-dart)
+* [Udacity의 Flutter 온라인 
+  강의](https://www.udacity.com/course/build-native-mobile-apps-with-flutter--ud905)
 
 우리의 [메일링 명단][]에서 우리에게 연락하세요. 당신의 의견을 듣고 싶습니다!
 

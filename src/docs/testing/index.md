@@ -3,7 +3,8 @@ title: Flutter 앱 테스트하기
 ---
 
 앱의 기능이 많아질수록, 수동으로 테스트하기는 더 어려워집니다.
-자동 테스트는 기능과 버그 개선 속도를 유지하여 앱을 출시하기 전에 정상적으로 작동할 수 있도록 보장해드립니다.
+자동 테스트는 기능과 버그 개선 속도를 유지하여 앱을 출시하기 전에 
+정상적으로 작동할 수 있도록 보장해드립니다.
 
 자동 테스트는 아래의 몇 가지 카테고리로 나뉩니다:
 
@@ -11,17 +12,18 @@ title: Flutter 앱 테스트하기
 - [_위젯 테스트_](#widget-tests) (다른 UI 프레임워크에서는 _컴포넌트 테스트_ 라 불립니다) 는 단일 위젯을 테스트합니다.
 - [_통합 테스트_](#integration-tests) 는 완성된 앱이나 앱의 상당 부분을 테스트합니다.
   
-일반적으로, 철저히 테스트된 앱은 코드 적용범위[(code coverage)](https://en.wikipedia.org/wiki/Code_coverage)에 의해 추적되는 많은 단위 테스트와 위젯 테스트를 가지고 있으며, 모든 중요한 사용 사례를 커버하기에 충분한 통합 테스트를 가지고 있습니다. 이러한 권고의 근거는 테스트의 종류에 따라 아래 표와 같은 상충관계가 있다는 사실에 있습니다.
+일반적으로, 철저히 테스트된 앱은 코드 적용범위
+[(code coverage)](https://en.wikipedia.org/wiki/Code_coverage)에 의해 
+추적되는 많은 단위 테스트와 위젯 테스트를 가지고 있으며, 
+모든 중요한 사용 사례를 커버하기에 충분한 통합 테스트를 가지고 있습니다. 
+이러한 권고의 근거는 테스트의 종류에 따라 아래 표와 같은 상충관계가 있다는 사실에 있습니다.
 
- 
-다음은 다른 종류의 테스트들 간의 선택에 관한 표입니다
-
-|                      | 단위   | 위젯 | 통합 |
-|----------------------|--------|--------|-------------|
-| **신뢰도**       | 낮음    | 높음 | 가장 높음     |
-| **유지 비용** | 낮음    | 높음 | 가장 높음     |
-| **의존성**     | 조금    | 높음   | 가장 높음        |
-| **실행 속도**  | 빠름  | 느림 | 가장 느림     |
+|                      | 단위   | 위젯 | 통합      |
+|----------------------|-------|-----|----------|
+| **신뢰도**             | 낮음   | 높음 | 가장 높음  |
+| **유지 비용**           | 낮음   | 높음 | 가장 높음  |
+| **의존성**             | 조금   | 높음 | 가장 높음  |
+| **실행 속도**           | 빠름   | 느림 | 가장 느림  |
 {:.table.table-striped}
 
 
@@ -66,14 +68,16 @@ iOS 시뮬레이터와 Android 에뮬레이터와 같은 OS 에뮬레이터에�
 연속 통합 (CI) 서비스는 새로운 코드 변경을 푸시할 때 당신의 테스트를 자동적으로 시행하는 것을 허용합니다.
 이는 코드 변경이 예상대로 작동하는지, 버그가 생기지 않는지에 대한 여부를 때에 맞춰 피드백합니다.
 
+다양한 연속 통합 서비스에서 테스트를 수행하는 일에 관하여 
+더 많은 정보를 원하시면 아래 문서를 참조하세요:
 
-다양한 연속 통합 서비스에 대한 테스트 실행에 대한 정보는 다음을 참조하시기 바랍니다.
-
-* [fastlane을 이용한 Flutter의 지속적인 업데이트
-  Flutter](/docs/deployment/fastlane-cd/)
-* [Travis에서 Flutter 앱 테스트하기]({{site.flutter-medium}}/test-flutter-apps-on-travis-3fd5142ecd8c)
-* [GitLab 연속 통합
+* [fastlane을 이용한 Flutter 의 지속적 배포](/docs/deployment/cd#fastlane)
+* [Travis로 Flutter 앱 테스트하기]({{site.flutter-medium}}/test-flutter-apps-on-travis-3fd5142ecd8c)
+* [Cirrus로 Flutter 앱 테스트하기](https://cirrus-ci.org/examples/#flutter)
+* [GitLab 지속적 통합
   (GitLab CI/CD)](https://docs.gitlab.com/ee/ci/README.html#doc-nav).
-  당신은 `.gitlab-ci.yml`파일을 생성하고 설정해야 할 필요가 있습니다. [예제 찾기](https://raw.githubusercontent.com/brianegan/flutter_redux/master/.gitlab-ci.yml)를 [flutter_redux library]({{site.github}}/brianegan/flutter_redux) 에서 확인할 수 있습니다.
+  이를 위해 `.gitlab-ci.yml` 파일을 만들고 설정할 필요가 있습니다.
+  [flutter_redux library]({{site.github}}/brianegan/flutter_redux) 에서 
+  [예제를 찾아볼 수 있습니다](https://raw.githubusercontent.com/brianegan/flutter_redux/master/.gitlab-ci.yml).
 * [Flutter를 위한 Codemagic CI/CD](https://blog.codemagic.io/getting-started-with-codemagic/)
-* [Bitrise의 Flutter CI/CD](https://devcenter.bitrise.io/getting-started/getting-started-with-flutter-apps/)
+* [Bitrise를 이용한 Flutter CI/CD](https://devcenter.bitrise.io/getting-started/getting-started-with-flutter-apps/)

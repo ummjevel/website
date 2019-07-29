@@ -22,7 +22,7 @@ next:
 Future<http.Response> fetchPost() {
   return http.get(
     'https://jsonplaceholder.typicode.com/posts/1',
-    // 백엔드에 Authorization 헤더를 보냅니다
+    // 백엔드에 Authorization 헤더를 보냅니다.
     headers: {HttpHeaders.authorizationHeader: "Basic your_api_token_here"},
   );
 }

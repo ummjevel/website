@@ -83,3 +83,9 @@
     UX research plan에 참여하고 Flutter 진보의 첫 자리를 차지하세요.
   logo_src: community/logo-google-forms.png
   learn_more_link: https://docs.google.com/forms/d/e/1FAIpQLSe0i4De809KXVCdljGKrjMj3lxhuzbuFKCtY5PEQPCYtGxFMg/viewform
+
+- name: Hashnode
+  description: >
+    Read and write Flutter-related posts, participate in Flutter discussions or ask questions about working with Flutter.
+  logo_src: community/logo-hashnode.png
+  learn_more_link: https://hashnode.com/n/flutter

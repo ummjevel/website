@@ -93,7 +93,7 @@ flutter:
 ... then `graphics/my_icon.png`, `graphics/background.png` and `graphics/dark/background.png` will be included.
 
 Flutter uses asset variants when choosing resolution appropriate
-images; see below. In the future, this mechanism may be extended to
+images; see below. In the future, this mechanism might be extended to
 include variants for different locales or regions, reading directions,
 etc.
 
@@ -351,7 +351,7 @@ In your Flutter project's root directory, navigate to `.../android/app/src/main/
 The various bitmap resource folders such as `mipmap-hdpi` already contain placeholder images named
 `ic_launcher.png`. Simply replace them with your desired assets respecting the recommended icon size
 per screen density as indicated by the [Android Developer
-Guide]({{site.android-dev}}/guide/practices/ui_guidelines/icon_design_launcher#size).
+Guide]({{site.android-dev}}/training/multiscreen/screendensities).
 
 ![Android icon location](/images/assets-and-images/android-icon-path.png)
 

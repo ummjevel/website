@@ -9,10 +9,11 @@ TODO: once Cookbook page navigation is in place, change the following to be an a
 Flutter의 Navigator 클래스와 다양한 route를 사용하는 방법에 대한 설명은 [Navigator 클래스의 API 설명서]({{site.api}}/flutter/widgets/Navigator-class.html)를 참조하세요.
 
 아래는 [{{page.title}} 에 대한 실습 자료 목록][cookbook]입니다.
+
 * [새로운 화면으로 이동하고, 되돌아오기](/docs/cookbook/navigation/navigation-basics)
+* [Named route로 화면 전환](/docs/cookbook/navigation/named-routes)
 * [새로운 화면으로 데이터 보내기](/docs/cookbook/navigation/passing-data)
 * [이전 화면에 데이터 반환하기](/docs/cookbook/navigation/returning-data)
-* [Named route로의 화면 전환](/docs/cookbook/navigation/named-routes)
 * [화면을 넘나드는 위젯 애니메이션](/docs/cookbook/navigation/hero-animations)
 
 [cookbook]: /docs/cookbook#navigation

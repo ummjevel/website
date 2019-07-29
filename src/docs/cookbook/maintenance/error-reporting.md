@@ -8,7 +8,8 @@ next:
   path: /docs/cookbook/navigation/hero-animations
 ---
 
-버그로부터 자유로운 앱을 만들기 위해 항상 노력하지만, 완전히 자유로울 수 없습니다.
+버그로부터 자유로운 앱을 만들기 위해 항상 노력하지만, 
+완전히 자유로울 수 없습니다.
 버그가 많은 앱은 사용자 불만을 야기하기 때문에, 앱의 사용자들이 버그를 얼마나 자주, 
 주로 어디서 발생하는지 이해하는 것은 매우 중요한 일입니다. 그렇게 해서, 
 버그의 우선 순위를 정하고 그것들을 수정해나갈 수 있습니다.
@@ -20,27 +21,30 @@ next:
 에러 추적 서비스는 사용자가 경험한 모든 에러들을 모아 그룹화합니다. 
 이를 통해 얼마나 자주 에러가 발생하고 어디서 사용자가 어려움을 겪는지 알 수 있게 됩니다.
 
-이 페이지에서는 에러 리포팅 서비스인 [Sentry](https://sentry.io/welcome/)에 에러를 리포팅하는 방법에 대해 다룹니다.
+이 페이지에서는 에러 리포팅 서비스인
+[Sentry](https://sentry.io/welcome/)에 에러를 리포팅하는 방법에 대해 다룹니다.
+아래와 같은 단계로 진행합니다:
 
 ## 진행 단계
 
-  1. Sentry로부터 DSN 얻기
-  2. Sentry 패키지 import
-  3. `SentryClient` 생성
-  4. 에러 리포팅을 위한 함수 생성
-  5. Dart 에러 catch하고 리포팅하기
-  6. Flutter 에러 catch하고 리포팅하기
+  1. Sentry로부터 DSN 얻기.
+  2. Sentry 패키지 import.
+  3. `SentryClient` 생성.
+  4. 에러 리포팅을 위한 함수 생성.
+  5. Dart 에러 catch하고 리포팅하기.
+  6. Flutter 에러 catch하고 리포팅하기.
 
 ## 1. Sentry로부터 DSN 얻기
 
-Sentry에 에러 리포팅을 하기 전에 Sentry.io 서비스에서 여러분의 앱을 식별할 수 있는 "DSN"이 필요합니다.
+Sentry에 에러 리포팅을 하기 전에 Sentry.io 서비스에서 
+여러분의 앱을 식별할 수 있는 "DSN"이 필요합니다.
 
 DSN을 얻기 위해 다음 단계를 진행하세요:
 
-  1. [Sentry 계정 생성](https://sentry.io/signup/)
-  2. 생성한 계정으로 로그인
-  3. 새로운 앱 생성
-  4. DSN 복사
+  1. [Sentry 계정 생성](https://sentry.io/signup/).
+  2. 생성한 계정으로 로그인.
+  3. 새로운 앱 생성.
+  4. DSN 복사.
 
 ## 2. Sentry 패키지 Import
 
@@ -54,7 +58,8 @@ dependencies:
 
 ## 3. `SentryClient` 생성
 
-`SentryClient`를 생성하세요. `SentryClient`는 Sentry 서비스에 에러 리포트를 보내기 위해 사용됩니다.
+`SentryClient`를 생성하세요. `SentryClient`는 Sentry 
+서비스에 에러 리포트를 보내기 위해 사용합니다.
 
 <!-- skip -->
 ```dart
@@ -85,10 +90,10 @@ bool get isInDebugMode {
 <!-- skip -->
 ```dart
 Future<void> _reportError(dynamic error, dynamic stackTrace) async {
-  // exception을 콘솔에 출력합니다
+  // exception을 콘솔에 출력합니다.
   print('Caught error: $error');
   if (isInDebugMode) {
-    // 디버그 모드에서는 전체 stacktrace를 출력합니다
+    // 디버그 모드에서는 전체 stacktrace를 출력합니다.
     print(stackTrace);
     return;
   } else {
@@ -105,10 +110,14 @@ Future<void> _reportError(dynamic error, dynamic stackTrace) async {
 
 개발 환경에 따라 에러 리포팅하는 함수를 작성했으니 이제 Dart 에러를 catch할 방법이 필요합니다.
 
-이 작업을 진행하기 위해, 커스텀 [`Zone`]({{site.api}}/flutter/dart-async/Zone-class.html)에서 앱을 실행하세요.
-Zone은 코드가 수행될 컨텍스트를 설정합니다. `onError` 함수를 제공하여 컨텍스트 내에서 발생하는 모든 에러를 편리하게 잡을 수 있게 해줍니다.
+이 작업을 진행하기 위해, 커스텀 
+[`Zone`]({{site.api}}/flutter/dart-async/Zone-class.html)에서 앱을 실행하세요.
+Zone은 코드가 수행될 컨텍스트를 설정합니다. 
+`onError()` 함수를 제공하여 컨텍스트 내에서 발생하는 
+모든 에러를 편리하게 잡을 수 있게 해줍니다.
 
-아래 코드에서는 앱을 새로운 `Zone`에서 실행하고 `onError` 콜백을 통해 모든 에러를 잡습니다.
+아래 코드에서는 앱을 새로운 `Zone`에서 실행하고 
+`onError()` 콜백을 통해 모든 에러를 잡습니다.
 
 <!-- skip -->
 ```dart
@@ -123,7 +132,8 @@ runZoned<Future<void>>(() async {
 
 ## 6. Flutter 에러 catch하고 리포팅하기
 
-Dart 에러 뿐만 아니라, Flutter도 native 코드를 호출할 때 발생할 수 있는 플랫폼 예외와 같은 에러들을 던질 수 있는데,
+Dart 에러 뿐만 아니라, Flutter도 native 코드를 
+호출할 때 발생할 수 있는 플랫폼 예외와 같은 에러들을 던질 수 있는데,
 이러한 유형의 에러들 역시 반드시 리포팅해야 합니다.
 
 Flutter 에러를 처리하기 위해서는 [`FlutterError.onError`]({{site.api}}/flutter/foundation/FlutterError/onError.html) 프로퍼티를 오버라이드 하세요.

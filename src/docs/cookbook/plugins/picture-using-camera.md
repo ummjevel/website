@@ -14,16 +14,14 @@ next:
 카메라의 프리뷰를 보여주거나 사진, 영상을 촬영을 촬영할 수 있습니다.
 
 본 예제에서는 `camera` 플러그인을 사용하여 프리뷰를 보여주고, 사진을 촬영한 뒤 결과물을 
-사용자에게 보여주는 방법을 소개합니다.
+사용자에게 보여주는 방법을 아래와 같은 순서로 소개합니다:.
 
-## 진행 단계
-
-  1. 필요한 의존성 추가하기
-  2. 이용가능한 카메라 목록 가져오기
-  3. `CameraController` 생성하고 초기화하기
-  4. `CameraPreview`를 사용하여 카메라 피드 보여주기
-  5. `CameraController`를 사용하여 사진 찍기
-  6. 촬영한 사진을 `Image` 위젯으로 보여주기
+  1. 필요한 의존성 추가하기.
+  2. 이용가능한 카메라 목록 가져오기.
+  3. `CameraController` 생성하고 초기화하기.
+  4. `CameraPreview`를 사용하여 카메라 피드 보여주기.
+  5. `CameraController`를 사용하여 사진 찍기.
+  6. 촬영한 사진을 `Image` 위젯으로 보여주기.
 
 ## 1. 필요한 의존성 추가하기
 
@@ -44,7 +42,7 @@ dependencies:
 
 ## 2. 이용가능한 카메라 목록 가져오기
 
-이제 `camera` 플러그인을 사용하여 이용가능한 카메라 목록을 받아올 수 있습니다.
+이제 `camera` 플러그인을 사용하여 이용가능한 카메라 목록을 받아오세요.
 
 <!-- skip -->
 ```dart
@@ -57,21 +55,21 @@ final firstCamera = cameras.first;
 
 ## 3. `CameraController` 생성하고 초기화하기
 
-카메라가 준비되었으면, `CameraController`를 생성하고 초기화할 차례입니다. 이 과정을 통해
-디바이스의 카메라와 연결하여 카메라를 제어하고 카메라 피드의 프리뷰를 보여줄 수 있게 됩니다. 
-
-이를 위해 다음의 과정을 수행합니다:
+카메라가 준비되었으면, 아래 단계를 따라 
+`CameraController`를 생성하고 초기화할 차례입니다. 
+이 과정을 통해 디바이스의 카메라와 연결하여 
+카메라를 제어하고 카메라 피드의 프리뷰를 보여줄 수 있게 됩니다. 
 
   1. `StatefulWidget`과 그에 상응하는 `State` 클래스를 생성합니다.
   2. `CameraController`를 저장할 변수를 `State` 클래스에 정의합니다.
-  3. `CameraController.initialize`가 반환하는 `Future`를 저장할 변수를 `State`에
-  정의합니다.
-  4. `initState` 메서드에서 컨트롤러를 생성하고 초기화합니다.
-  5. `dispose` 메서드에서 컨트롤러를 해제합니다.
+  3. `CameraController.initialize()`가 반환하는 `Future`를 저장할 변수를 `State`에
+     정의합니다.
+  4. `initState()` 메서드에서 컨트롤러를 생성하고 초기화합니다.
+  5. `dispose()` 메서드에서 컨트롤러를 해제합니다.
   
 <!-- skip -->
 ```dart
-// A screen that takes in a list of Cameras and the Directory to store images.
+// A screen that takes in a list of cameras and the Directory to store images.
 class TakePictureScreen extends StatefulWidget {
   final CameraDescription camera;
 
@@ -93,8 +91,10 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   @override
   void initState() {
     super.initState();
-    // 카메라의 현재 출력물을 보여주기 위해 CameraController를 생성합니다.
+    // 카메라의 현재 출력물을 보여주기 위해 
+    // CameraController를 생성합니다.
     _controller = CameraController(
+      // Get a specific camera from the list of available cameras.
       // 이용 가능한 카메라 목록에서 특정 카메라를 가져옵니다.
       widget.camera,
       // 적용할 해상도를 지정합니다.
@@ -120,7 +120,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 ```
 
 {{site.alert.warning}}
-만약 `CameraController`를 초기화하지 않으면, 프리뷰를 보여주거나 사진 촬영을 *할 수 없습니다.*
+  만약 `CameraController`를 초기화하지 않으면, 
+  프리뷰를 보여주거나 사진 촬영을 *할 수 없습니다.*
 {{site.alert.end}}
 
 ## 4. `CameraPreview`를 사용하여 카메라 피드 보여주기
@@ -128,13 +129,16 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 다음으로 `camera` 패키지의 `CameraPreview` 위젯을 사용하여 카메라 피드의 프리뷰를
 보여줄 것입니다.
 
-참고: 카메라를 사용하기 전에 컨트롤러의 초기화가 완료될 때까지 기다려야 합니다. 그러므로
-`CameraPreview`를 보여주기 전에 이전 단계에서 만든 `_initializeControllerFuture`가
-완료될 때까지 기다려야 합니다.
+{{site.alert.secondary}}
+  **기억하세요** 카메라를 사용하기 전에 컨트롤러의 초기화가 완료될 때까지 
+  기다려야 합니다. 그러므로 `CameraPreview`를 
+  보여주기 전에 이전 단계에서 만든 `_initializeControllerFuture()`가
+  완료될 때까지 기다려야 합니다.
+{{site.alert.end}}
 
 이를 위해 
 [`FutureBuilder`]({{site.api}}/flutter/widgets/FutureBuilder-class.html)
-사용하겠습니다.
+사용하세요.
 
 <!-- skip -->
 ```dart
@@ -147,6 +151,7 @@ FutureBuilder<void>(
       // Future가 완료되면, 프리뷰를 보여줍니다.
       return CameraPreview(_controller);
     } else {
+      // Otherwise, display a loading indicator.
       // 그렇지 않다면, 진행 표시기를 보여줍니다.
       return Center(child: CircularProgressIndicator());
     }
@@ -157,7 +162,7 @@ FutureBuilder<void>(
 ## 5. `CameraController`를 사용하여 사진 찍기
 
 `CameraController`의 
-[`takePicture`]({{site.pub-api}}/camera/latest/camera/CameraController/takePicture.html)
+[`takePicture()`]({{site.pub-api}}/camera/latest/camera/CameraController/takePicture.html)
 메서드를 사용하면 사진 촬영을 할 수 있습니다. 본 예제에서는 사용자가 눌렀을 때
 `CameraController`를 사용하여 사진 촬영을 하는 `FloatingActionButton`을 
 만들겠습니다.

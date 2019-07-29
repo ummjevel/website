@@ -4,21 +4,22 @@ short-title: Animations
 description: How to perform animations in Flutter
 ---
 
-Well-designed animations makes a UI feel more intuitive, contribute to the slick
-look and feel of a polished app, and improve the user experience. Flutter's
-animation support makes it easy to implement a variety of animation types. Many
-widgets, especially [Material widgets][], come with the standard motion effects
-defined in their design spec, but it's also possible to customize these effects.
+Well-designed animations make a UI feel more intuitive, contribute to
+the slick look and feel of a polished app, and improve the user experience.
+Flutter's animation support makes it easy to implement a variety of
+animation types. Many widgets, especially [Material widgets][],
+come with the standard motion effects defined in their design spec,
+but it's also possible to customize these effects.
 
-The following resources are a good place to start learning the Flutter animation
-framework. Each of these documents shows, step by step, how to write animation
-code.
+The following resources are a good place to start learning the Flutter
+animation framework. Each of these documents shows, step by step,
+how to write animation code.
 
 {% comment %}
 More documentation is in the works on how to implement common design
 patterns, such as shared element transitions,
 and physics-based animations.
-If you have a specific request, please
+If you have a specific request, 
 [file an issue]({{site.github}}/flutter/website/issues).
 {% endcomment -%}
 
@@ -63,8 +64,8 @@ AnimatedBuilder
 ## Animation types
 
 Animations fall into one of two categories: tween- or physics-based.
-The following sections explain what these terms mean, and points you to
-resources where you can 더 알아보기. In some cases,
+The following sections explain what these terms mean, and point you to
+resources where you can learn more. In some cases,
 the best documentation we currently have is example code in the
 Flutter gallery.
 
@@ -103,7 +104,7 @@ gestures.
 
 Most UX or motion designers find that certain animation patterns are
 used repeatedly when designing a UI. This section lists some of the commonly
-used animation patterns, and tells you where you can 더 알아보기.
+used animation patterns, and tells you where you can learn more.
 
 ### Animated list or grid
 This pattern involves animating the addition or removal of elements from a
@@ -143,8 +144,9 @@ classes.
 
 ### Staggered animation
 
-Animations that are broken into smaller motions, where some of the motion is delayed.
-The smaller animations may be sequential, or may partially or completely overlap.
+Animations that are broken into smaller motions, where some of the motion
+is delayed.  The smaller animations might be sequential,
+or might partially or completely overlap.
 
 * [Staggered Animations](/docs/development/ui/animations/staggered-animations)
 
@@ -155,7 +157,7 @@ The smaller animations may be sequential, or may partially or completely overlap
 
 ## Other resources
 
-더 알아보기 about Flutter animations at the following links:
+Learn more about Flutter animations at the following links:
 
 * [Animations: Technical Overview](/docs/development/ui/animations/overview.html)<br>
 A look at some of the major classes in the animations library,
