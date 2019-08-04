@@ -1578,12 +1578,12 @@ setState(() {
 예를 들어, 사용자가 제품 사진을 눌렀을 때 더 많은 제품 정보를 보여주는 
 제품 화면을 새로운 화면에서 띄울 수 있습니다. 
 
-Android에서는 새로운 화면은 새로운 Activitie입니다. 
-iOS에선 새로운 화면은 새로운 ViewController입니다.
-Flutter에서는 새 화면은 단지 위젯입니다!
+Android에서 새로운 화면은 새로운 Activitie입니다. 
+iOS에 새로운 화면은 새로운 ViewController입니다.
+Flutter에서 새 화면은 단지 위젯입니다!
 그리고 새로운 화면으로 이동하기 위해서는 Navigator 위젯을 사용합니다.
 
-### 화면 사이를 이동하는 방법은?
+### 어떻게 화면을 이동하나요?
 
 React Native에는 3개의 주요 네비게이터가 존재합니다: StackNavigator, TabNavigator, DrawerNavigator.
 각각의 네비게이터는 화면에 대한 설정과 정의를 제공합니다.
@@ -1677,7 +1677,7 @@ Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)
 
 머티리얼 디자인 앱에서는 
 Flutter 네비게이션으로 선택할 수 있는 탭과 drawer라는 2가지 주요 선택지가 있습니다.
-탭을 위한 공간이 충분하지 않다면, drawer가 좋은 대체제가 될 수 있습니다. 
+탭을 위한 공간이 충분하지 않다면, drawer가 좋은 대안이 될 수 있습니다. 
 
 
 #### 탭 네베게이션
@@ -1832,7 +1832,7 @@ Drawer(
 
 `Scaffold` 위젯은 Drawer를 사용할 수 있을 때 `Drawer`로 연결되는 
 IconButton을 띄워주는 `AppBar` 위젯 또한 포함하고 있습니다.
-`Scaffold`를 사용하면 자동으로 edge-swipe 동작을 했을 때 
+`Scaffold`를 사용하면 edge-swipe 동작을 했을 때 자동으로 
 `Drawer`가 나타납니다.
 
 <!-- skip -->
