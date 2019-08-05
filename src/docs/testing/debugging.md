@@ -1,67 +1,64 @@
 ---
 title: Flutter 앱 디버깅하기
-description: How to debug your app using the DevTools suite.
+description: DevTools 수트를 사용하여 앱을 디버깅하는 방법 소개.
 ---
 
-Flutter 어플리케이션의 디버그를 위한 다양한 툴과 기능을 소개합니다.
-몇 가지 툴이 있습니다:
+Flutter 어플리케이션을 디버깅하기 위해 다양한 도구와 기능이 준비되어있습니다. 그 중에서 몇 가지를 소개합니다.
 
-* [DevTools][], a suite of performance and profiling
-  tools that run in a browser.
-* [Android Studio/IntelliJ][], and [VS Code][]
-  (enabled with the Flutter and Dart plugins)
-  support a built-in source-level debugger with
-  the ability to set breakpoints, step through code,
-  and examine values.
-* [Flutter inspector][], a widget inspector available
-  in DevTools, and also directly from Android Studio
-  and IntelliJ (enabled with the Flutter plugin).
-  The inspector allows you to examine a visual
-  representation of the widget tree, inspect
-  individual widgets and their property values,
-  enable the performance overlay, and more.
+* [DevTools][], 브라우저 상에서 작동하는 퍼포먼스 체크와 프로파일링을 위한 도구들입니다.
+* [Android Studio/IntelliJ][], 그리고 [VS Code][]
+  (Flutter와 Dart 플러그인들을 활성화한 경우)
+  값 검사와, 코드 진행,
+  브레이크 포인트를 설정할 수 있는
+  소스 레벨의 디버거를 지원합니다.
+* [Flutter inspector][], DevTools에서 위젯 인스펙터를 사용할 수 있으며,
+* (Flutter 플러그인을 활성화한) 안드로이드 스튜디오와 인텔리제이에서
+* 바로 사용할 수 있습니다.
+  인스펙터를 통해 위젯 트리를 눈으로 확인할 수 있으며,
+  개별 위젯과 각각의 프로퍼티 값들,
+  퍼포먼스 오버레이 허용등의
+  기능을 사용할 수 있습니다.
 
 ## DevTools
 
-For debugging and profiling apps, DevTools might be
-the first tool you reach for. DevTools runs in a
-browser and supports a variety of features:
+DevTools는 여러분이 앱을 디버깅하고,
+프로필링하기 위해서 가장 처음 사용할 수 있는 도구입니다.
+DevTools는 브라우저상에서 다양한 기능을 지원합니다.
 
-* source-level debugger
-* widget inspector that displays a visual widget tree,
-  and "widget select" mode where you select a widget
-  in the app and it drills down to that widget in
-  the tree
-* memory profiler
-* timeline view that supports tracing, and importing
-  and exporting trace information
-* logging view
+* 소스 레벨 디버거
+* 위젯 트리를 시각화해 보여주고,
+  그리고 트리 구조에서 위젯을 드릴 다운하여
+  앱상의 위젯을 선택할 수 있는 "widget select" 모드를
+  제공하는 위젯 인스펙터
+* 메모리 프로파일러
+* 트레이싱과 트레이스 정보의 내보내기와 불러오기를
+  제공하는 타임라인 뷰
+* 로깅 뷰
 
-If you run your application in [debug mode][] or
-[profile mode][], while it's running you can open
-DevTools in the browser to connect to your app.
-DevTools doesn't work well with an app compiled to
-[release mode][], as the debugging and profiling
-information has been stripped away.
+여러분의 어플리케이션이 [debug mode][] 이나 [profile mode][]
+에서 실행되고 있다면, 브라우저에서 앱에 연결하여
+DevTools를 실행할 수 있습니다.
+[release mode][]로 컴파일한 경우에는
+디버깅과 프로파일링 정보가 제거되기 때문에
+DevTools가 제대로 동작하지 않습니다.
 
-If you use DevTools for profiling, make sure to
-run your application in [profile mode][]. Otherwise,
-the main output that appears on your profile are the
-debug asserts verifying the framework's various invariants
-(see [Debug mode assertions](#debug-mode-assertions)).
+DevTools를 프로파일링을 위해 사용하려면,
+[profile mode][]로 어플리케이션을 실행해야 합니다. 그렇지 않으면,
+프로파일링에는 프레임워크의 다양한 불변성을
+([Debug mode assertions](#debug-mode-assertions)j을 살펴보세요)
+검사하는 디버그 assert가 주로 남게 됩니다.
 
-![GIF showing DevTools features]({% asset tools/devtools/inspector.gif @path %}){:width="100%"}
+![DevTools의 기능을 소개하는 GIF]({% asset tools/devtools/inspector.gif @path %}){:width="100%"}
 
-For more information, see the
-[DevTools][] documentation.
+더 많은 정보가 필요하시면,
+[DevTools][] 문서를 살펴보세요.
 
 ## Setting breakpoints
 
-You can set breakpoints directly in your IDE/editor
-(such as [Android Studio/IntelliJ][] and [VS Code][]),
-in the [DevTools debugger][],
-or [programmatically][breakpoints].
-
+[Android Studio/IntelliJ][]나 [VS Code][] 같은
+IDE/편집기에서 [DevTools debugger][]로
+직접 브레이크 포인트를 설정하거나,
+[프로그래밍 방식][[breakpoints]으로 설정할 수 있습니다.
 
 ## The Dart Analyzer
 
@@ -75,28 +72,28 @@ The Dart Analyzer는 문제를 추적하기 위해 여러분이 코드에 넣어
 이용합니다. 문제를 추적하기 위한 가장 빠르고 덜 고통스러운 방법이니만큼 모든 곳에서
 `var` 선언,  타입 없는 인수, 타입 없는 배열 문법 등의 사용을 자제하는 것이 좋습니다.
 
-For more information, see [Using the Dart analyzer][].
+더 많은 정보가 필요하시면, [Using the Dart analyzer][]를 살펴보세요.
 
 ## Logging
 
-Another useful debugging tool is logging. 
-You set logging up [programmatically][logging]
-then view the output in the DevTools
-[logging view][], or in the console.
+로깅도 유용한 디버깅 도구입니다.
+[프로그래밍 방식으로][logging] 로깅을 설정하고
+DevTools의 [logging view][]나, 콘솔에서
+출력을 확인할 수 있습니다.
 
 ## Debugging application layers
 
-Flutter was designed with a layered architecture that includes
-widget, rendering, and painting layers. For links to more
-information and videos, see [The Framework architecture][] on the
-[GitHub wiki][], and the community article, [The Layer Cake][].
+Flutter는 위젯, 렌더링, 그리고 페인팅 레이어를 포함하는 레이어드 아키텍처로
+구현되어 있습니다. 더 많은 정보와 비디오에 대한 링크는 [GitHub wiki][]의
+[The Framework architecture][], 그리고 플러터 커뮤니티의
+[The Layer Cake][] 기사를 살펴보세요.
 
-The Flutter widget inspector provides a visual representation
-of the widget tree, but if you want a greater level of detail,
-or you want a verbose text-based dump of the widget,
-layer, or render trees, see
-[Debug flags: application layers][]
-in the [Debugging Flutter apps programatically][] page.
+Flutter 위젯 인스펙터는
+위젯 트리의 시각적 표현을 제공하지만,
+더 상세한 수준을 원하거나, 위젯, 레이어,
+혹은 렌더 트리에 대한 텍스트 기반의 덤프를 원하신다면,
+[Debugging Flutter apps programatically][] 페이지의
+[Debug flags: application layers][]를 살펴보세요.
 
 ## Debug mode assertions
 
