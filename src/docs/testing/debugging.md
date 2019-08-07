@@ -97,57 +97,57 @@ Flutter 위젯 인스펙터는
 
 ## Debug mode assertions
 
-During development, you are highly encouraged to use Flutter's
-[debug mode][]. This is the default if you use bug icon in
-Android Studio, or `flutter run` at the command line.
-Some tools support assert statements through the
-command-line flag `--enable-asserts`.
+개발 중에는 Flutter의 [debug mode][]를 사용하시는 것을
+적극 권장합니다. 안드로이드 스튜디오에서 벌레 아이콘을 사용하거나,
+커맨드 라인에서 `flutter run` 명령어를 사용하실 경우 기본 모드 입니다.
+몇 가지 도구는 커맨드 라인 플래그인 `--enable-asserts`을 통해 assert
+구문을 지원합니다.
 
-In this mode, Dart assert statements are enabled,
-and the Flutter framework evaluates the argument
-to each assert statement encountered during execution,
-throwing an exception if the result is false.
-This allows developers to enable or disable invariant
-checking, such that the associated performance cost
-is only paid during debugging sessions.
+이 모드에서는 Dart assert 구문을 사용할 수 있고,
+Flutter 프레임워크가 실행 도중에
+만나는 assert 구문을 평가하여
+결과가 false인 경우에는 예외를 던지게 됩니다.
+개발자가 불변 검사에 대해
+활성화 혹은 비활성화 할 수 있으며,
+퍼포먼스 비용은 디버깅 세션일 동안만 지불하게 됩니다.
 
-When an invariant is violated, it's reported to the
-console, with some context information to help track
-down the source of the problem.
+불변성을 위반한 경우에는,
+문제의 원인을 찾아갈 수 있도록
+일부 상황 정보를 콘솔에 출력합니다.
 
-For more information, see [Assert][] in the
-[Dart language tour][].
+더 많은 정보를 원하신다면, [Dart language tour][]에
+있는 [Assert][]를 살펴보세요.
 
 ## Debugging animations
 
-The easiest way to debug animations is to slow them down.
-The [Flutter inspector][] provides a **Slow Animations** button,
-or you can [slow the animations programmatically][].
+애니메이션을 디버그하는 가장 쉬운 방법은 동작을 느리게 하는 것입니다.
+[Flutter inspector][]는 **Slow Animations**을 제공하고 있으며,
+[slow the animations programmatically][]을 하셔도 좋습니다.
 
-For more information on debugging janky (non-smooth)
-applications, see [Flutter performance profiling][].
+응답이 없거나, 늦어지는 어플리케이션을 디버깅하는 방법에 대해서
+더 알고 싶으시다면 [Flutter performance profiling][]를 살펴보세요.
 
 ## Measuring app startup time
 
-To gather detailed information about the time it takes for your
-Flutter app to start, you can run the `flutter run` command
-with the `trace-startup` and `profile` options.
+Flutter app을 시작하는데 들어가는 시간에 대한 정보를 알고 싶다면,
+`flutter run` 명령어에 `trace-startup`
+그리고 `profile` 옵션을 추가해서 실행할 수 있습니다.
 
 ```
 $ flutter run --trace-startup --profile
 ```
 
-The trace output is saved as a JSON file called `start_up_info.json`
-under the `build` directory of your Flutter project.
-The output lists the elapsed time from app startup to these trace
-events (captured in microseconds):
+추적한 결과는 Flutter 프로젝트의 `build` 디렉토리안에
+ `start_up_info.json` JSON 파일로 저장됩니다.
+출력은 microsecond 단위로 앱의 시작 시점부터 각 추적 이벤트까지의
+경과시간을 리스트 출력합니다.
 
-+ Time to enter the Flutter engine code.
-+ Time to render the first frame of the app.
-+ Time to initialize the Flutter framework.
-+ Time to complete the Flutter framework initialization.
++ Flutter engine 코드까지 진입한 시간.
++ 앱의 첫 프레임을 렌더링하는데 걸리는 시간.
++ Flutter 프레임워크를 초기화 하기까지 걸리는 시간.
++ Flutter 프레임워크의 초기화를 완료하기 까지 걸리는 시간.
 
-For example:
+예:
 
 ```
 {
