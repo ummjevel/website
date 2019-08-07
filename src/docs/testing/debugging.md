@@ -133,7 +133,7 @@ or you can [slow the animations programmatically][].
 For more information on debugging janky (non-smooth)
 applications, see [Flutter performance profiling][].
 
-## Measuring app startup time
+## 앱 시작 시간 측정
 
 To gather detailed information about the time it takes for your
 Flutter app to start, you can run the `flutter run` command
