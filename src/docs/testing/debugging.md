@@ -118,7 +118,7 @@ Flutter 프레임워크가 실행 도중에
 더 많은 정보를 원하신다면, [Dart language tour][]에
 있는 [Assert][]를 살펴보세요.
 
-## Debugging animations
+ ## 애니메이션 디버깅하기
 
 애니메이션을 디버그하는 가장 쉬운 방법은 동작을 느리게 하는 것입니다.
 [Flutter inspector][]는 **Slow Animations**을 제공하고 있으며,
