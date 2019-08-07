@@ -1578,7 +1578,7 @@ setState(() {
 예를 들어, 사용자가 제품 사진을 눌렀을 때 더 많은 제품 정보를 보여주는 
 제품 화면을 새로운 화면에서 띄울 수 있습니다. 
 
-Android에서 새로운 화면은 새로운 Activitie입니다. 
+Android에서 새로운 화면은 새로운 Activity입니다. 
 iOS에 새로운 화면은 새로운 ViewController입니다.
 Flutter에서 새 화면은 단지 위젯입니다!
 그리고 새로운 화면으로 이동하기 위해서는 Navigator 위젯을 사용합니다.
