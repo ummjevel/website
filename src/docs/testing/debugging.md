@@ -127,7 +127,7 @@ Flutter 프레임워크가 실행 도중에
 응답이 없거나, 늦어지는 어플리케이션을 디버깅하는 방법에 대해서
 더 알고 싶으시다면 [Flutter performance profiling][]를 살펴보세요.
 
-## Measuring app startup time
+## 앱 시작 시간 측정
 
 Flutter app을 시작하는데 들어가는 시간에 대한 정보를 알고 싶다면,
 `flutter run` 명령어에 `trace-startup`
