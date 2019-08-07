@@ -1695,7 +1695,7 @@ const MyApp = TabNavigator(
 );
 ```
 
-Flutter drawer 및 탭 네비게이션을 위한 여러 특수 위젯을 제공합니다:
+Flutter는 drawer 및 탭 네비게이션을 위한 여러 특수 위젯을 제공합니다:
 * [TabController]({{site.api}}/flutter/material/TabController-class.html)&mdash;TabBar와
   TabBarView 사이에서 탭 선택을 조정.
 * [TabBar]({{site.api}}/flutter/material/TabBar-class.html)&mdash;탭의 
