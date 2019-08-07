@@ -35,7 +35,7 @@ DevTools는 브라우저상에서 다양한 기능을 지원합니다.
   제공하는 타임라인 뷰
 * 로깅 뷰
 
-여러분의 어플리케이션이 [debug mode][] 이나 [profile mode][]
+어플리케이션이 [debug mode][] 이나 [profile mode][]
 에서 실행되고 있다면, 브라우저에서 앱에 연결하여
 DevTools를 실행할 수 있습니다.
 [release mode][]로 컴파일한 경우에는
