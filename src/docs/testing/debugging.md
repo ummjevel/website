@@ -140,7 +140,7 @@ $ flutter run --trace-startup --profile
 추적한 결과는 Flutter 프로젝트의 `build` 디렉토리안에
  `start_up_info.json` JSON 파일로 저장됩니다.
 출력은 microsecond 단위로 앱의 시작 시점부터 각 추적 이벤트까지의
-경과시간을 리스트 출력합니다.
+경과시간을 리스트로 출력합니다.
 
 + Flutter engine 코드까지 진입한 시간.
 + 앱의 첫 프레임을 렌더링하는데 걸리는 시간.
