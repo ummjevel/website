@@ -55,7 +55,7 @@ debug asserts verifying the framework's various invariants
 For more information, see the
 [DevTools][] documentation.
 
-## Setting breakpoints
+## Breakpoints 설정
 
 You can set breakpoints directly in your IDE/editor
 (such as [Android Studio/IntelliJ][] and [VS Code][]),
