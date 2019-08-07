@@ -58,7 +58,7 @@ DevTools를 프로파일링을 위해 사용하려면,
 [Android Studio/IntelliJ][]나 [VS Code][] 같은
 IDE/편집기에서 [DevTools debugger][]로
 직접 브레이크 포인트를 설정하거나,
-[프로그래밍 방식][[breakpoints]으로 설정할 수 있습니다.
+[프로그래밍 방식][breakpoints]으로 설정할 수 있습니다.
 
 ## The Dart Analyzer
 
