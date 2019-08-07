@@ -45,7 +45,7 @@ DevTools가 제대로 동작하지 않습니다.
 DevTools를 프로파일링을 위해 사용하려면,
 [profile mode][]로 어플리케이션을 실행해야 합니다. 그렇지 않으면,
 프로파일링에는 프레임워크의 다양한 불변성을
-([Debug mode assertions](#debug-mode-assertions)j을 살펴보세요)
+([Debug mode assertions](#debug-mode-assertions)을 살펴보세요)
 검사하는 디버그 assert가 주로 남게 됩니다.
 
 ![DevTools의 기능을 소개하는 GIF]({% asset tools/devtools/inspector.gif @path %}){:width="100%"}
