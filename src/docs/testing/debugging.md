@@ -53,7 +53,7 @@ DevTools를 프로파일링을 위해 사용하려면,
 더 많은 정보가 필요하시면,
 [DevTools][] 문서를 살펴보세요.
 
-## Setting breakpoints
+## Breakpoints 설정
 
 [Android Studio/IntelliJ][]나 [VS Code][] 같은
 IDE/편집기에서 [DevTools debugger][]로
