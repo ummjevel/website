@@ -124,7 +124,7 @@ down the source of the problem.
 For more information, see [`Assert`][] in the
 [Dart language tour][].
 
-## Debugging animations
+ ## 애니메이션 디버깅하기
 
 The easiest way to debug animations is to slow them down.
 The [Flutter inspector][] provides a **Slow Animations** button,
