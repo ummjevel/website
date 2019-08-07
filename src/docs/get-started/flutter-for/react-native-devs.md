@@ -1680,7 +1680,7 @@ Flutter 네비게이션으로 선택할 수 있는 탭과 drawer라는 2가지 �
 탭을 위한 공간이 충분하지 않다면, drawer가 좋은 대안이 될 수 있습니다. 
 
 
-#### 탭 네베게이션
+#### 탭 네비게이션
 
 React Native에서는 `createBottomTabNavigator`와 `TabNavigation`을 사용하여 
 탭을 보여주고 탭을 이동할 수 있습니다.
