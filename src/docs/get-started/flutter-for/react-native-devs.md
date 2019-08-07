@@ -1113,7 +1113,7 @@ dependencies:
 `ThemeData`을 사용해서 테마의 다양한 측에 기본 색상을 지정하세요. 
 `MaterialApp`에서 theme 속성에 `ThemeData` 객체를 설정하세요.
 [`Colors`]({{site.api}}/flutter/material/Colors-class.html) 클래스는 
-머터리얼 디자인의 [color palette]({{site.material}}/guidelines/style/color.html)에 
+머티리얼 디자인의 [color palette]({{site.material}}/guidelines/style/color.html)에 
 해당하는 색상을 제공합니다.
 
 아래 예제는 기본 색을 `blue`로, 
@@ -1574,19 +1574,19 @@ setState(() {
 
 ## Routing
 
-Most apps contain several screens for displaying different types of information.
-For example, you might have a product screen that displays images where users
-could tap on a product image to get more information about the product on a new
-screen.
+대부분의 앱은 다양한 종류의 정보를 보여주기 위해 여러 화면을 가지고 있습니다.
+예를 들어, 사용자가 제품 사진을 눌렀을 때 더 많은 제품 정보를 보여주는 
+제품 화면을 새로운 화면에서 띄울 수 있습니다. 
 
-In Android, new screens are new Activities. In iOS, new screens are new
-ViewControllers. In Flutter, screens are just Widgets! And to navigate to new
-screens in Flutter, use the Navigator widget.
+Android에서 새로운 화면은 새로운 Activity입니다. 
+iOS에 새로운 화면은 새로운 ViewController입니다.
+Flutter에서는 새로운 화면도 위젯입니다!
+그리고 새로운 화면으로 이동하기 위해서는 Navigator 위젯을 사용합니다.
 
-### How do I navigate between screens?
+### 어떻게 화면을 이동하나요?
 
-In React Native, there are three main navigators: StackNavigator, TabNavigator,
-and DrawerNavigator. Each provides a way to configure and define the screens.
+React Native에는 3개의 주요 네비게이터가 존재합니다: StackNavigator, TabNavigator, DrawerNavigator.
+각각의 네비게이터는 화면에 대한 설정과 정의를 제공합니다.
 
 ```js
 // React Native
@@ -1608,21 +1608,23 @@ export default (MyApp1 = DrawerNavigator({
 }));
 ```
 
-In Flutter, there are two main widgets used to navigate between screens:
-* A [Route]({{site.api}}/flutter/widgets/Route-class.html)
-  is an abstraction for an app screen or page.
-* A [Navigator]({{site.api}}/flutter/widgets/Navigator-class.html)
-  is a widget that manages routes.
+Flutter에서는 화면 사이를 이동하는 데 필요한 2개의 주요 위젯이 있습니다:
+* [Route]({{site.api}}/flutter/widgets/Route-class.html)는 
+  앱의 화면 또는 페이지를 추상화 한 것입니다.
+* [Navigator]({{site.api}}/flutter/widgets/Navigator-class.html)는  
+  route를 관리하는 위젯입니다.
 
-A `Navigator` is defined as a widget that manages a set of child widgets with a
-stack discipline. The navigator manages a stack of `Route` objects and provides
-methods for managing the stack, like
-[`Navigator.push`]({{site.api}}/flutter/widgets/Navigator/push.html)
-and [`Navigator.pop`]({{site.api}}/flutter/widgets/Navigator/pop.html).
-A list of routes might be specified in the
-[`MaterialApp`]({{site.api}}/flutter/material/MaterialApp-class.html)
-widget, or they might be built on the fly, for example, in hero animations.
-The following example specifies named routes in the `MaterialApp` widget.
+`Navigator`는 스택을 사용하여 자식 위젯들을 관리하는 위젯입니다.
+네비게이터는 `Route` 객체들의 스택을 관리하고, 
+스택을 관리할 수 있는 
+[`Navigator.push`]({{site.api}}/flutter/widgets/Navigator/push.html)나
+[`Navigator.pop`]({{site.api}}/flutter/widgets/Navigator/pop.html) 같은
+메서드들을 제공합니다.
+Route의 목록은 
+[`MaterialApp`]({{site.api}}/flutter/material/MaterialApp-class.html) 
+위젯에서 지정할 수 있습니다.
+또는 hero 애니메이션에서 처럼 동적으로 만들어질 수도 있습니다. 
+아래 예제는 `MaterialApp` 위젯에서 named route를 지정하는 예제입니다. 
 
 <!-- skip -->
 ```dart
@@ -1643,28 +1645,27 @@ class NavigationApp extends StatelessWidget {
 }
 ```
 
-To navigate to a named route, the
-[of]({{site.api}}/flutter/widgets/Navigator/of.html)
-method of the `Navigator` widget is used to specify the `BuildContext`
-(a handle to the location of a widget in the widget tree).
-The name of the route is passed to the `pushNamed` function to
-navigate to the specified route.
+Named route로 이동하기 위해,
+[of]({{site.api}}/flutter/widgets/Navigator/of.html) 메서드를 사용하여
+`Navigator` 위젯의 (위젯 트리에서 위젯의 위치를 조정하는) `BuildContext`를 지정합니다.
+Route의 이름을 `pushNamed` 함수를 통해 전달하여 특정한 route로 이동합니다.
 
 <!-- skip -->
 ```dart
 Navigator.of(context).pushNamed('/a');
 ```
 
-You can also use the push method of `Navigator` which adds the given
-[`route`]({{site.api}}/flutter/widgets/Route-class.html)
-to the history of the navigator that most tightly encloses the given
-[`context`]({{site.api}}/flutter/widgets/BuildContext-class.html),
-and transitions to it. In the following example, the
+`Navigator`의 push 메서드로 주어진
+[`route`]({{site.api}}/flutter/widgets/Route-class.html)를
+가장 가까운
+[`context`]({{site.api}}/flutter/widgets/BuildContext-class.html)를 가진
+네비게이터에 추가하고 이동할 수도 있습니다.
+아래 예제에서는 
 [`MaterialPageRoute`]({{site.api}}/flutter/material/MaterialPageRoute-class.html)
-widget is a modal route that replaces the entire screen with a platform-adaptive
-transition. It takes a
-[`WidgetBuilder`]({{site.api}}/flutter/widgets/WidgetBuilder.html)
-as a required parameter.
+위젯이 플랫폼에 적합한 전환효과와 함께 전체 스크린을 modal route로 전환시킵니다.
+필수 매개변수로
+[`WidgetBuilder`]({{site.api}}/flutter/widgets/WidgetBuilder.html)를
+넣어줘야 합니다.
 
 <!-- skip -->
 ```dart
@@ -1672,17 +1673,17 @@ Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)
  => UsualNavscreen()));
 ```
 
-### How do I use tab navigation and drawer navigation?
+### 탭 네비게이션과 Drawer(서랍) 네비게이션을 사용하는 방법은?
 
-In Material Design apps, there are two primary options for Flutter navigation:
-tabs and drawers. When there is insufficient space to support tabs, drawers
-provide a good alternative.
+머티리얼 디자인 앱에서는 
+Flutter 네비게이션으로 선택할 수 있는 탭과 drawer라는 2가지 주요 선택지가 있습니다.
+탭을 위한 공간이 충분하지 않다면, drawer가 좋은 대안이 될 수 있습니다. 
 
 
-#### Tab navigation
+#### 탭 네비게이션
 
-In React Native, `createBottomTabNavigator` and `TabNavigation`  are used to
-show tabs and for tab navigation.
+React Native에서는 `createBottomTabNavigator`와 `TabNavigation`을 사용하여 
+탭을 보여주고 탭을 이동할 수 있습니다.
 
 ```js
 // React Native
@@ -1694,15 +1695,15 @@ const MyApp = TabNavigator(
 );
 ```
 
-Flutter provides several specialized widgets for drawer and tab navigation:
-* [TabController]({{site.api}}/flutter/material/TabController-class.html)&mdash;Coordinates
-  the tab selection between a TabBar and a TabBarView.
-* [TabBar]({{site.api}}/flutter/material/TabBar-class.html)&mdash;Displays
-  a horizontal row of tabs.
-* [Tab]({{site.api}}/flutter/material/Tab-class.html)&mdash;Creates
-  a material design TabBar tab.
-* [TabBarView]({{site.api}}/flutter/material/TabBarView-class.html)&mdash;Displays
-  the widget that corresponds to the currently selected tab.
+Flutter는 drawer 및 탭 네비게이션을 위한 여러 특수 위젯을 제공합니다:
+* [TabController]({{site.api}}/flutter/material/TabController-class.html)&mdash;TabBar와
+  TabBarView 사이에서 탭 선택을 조정.
+* [TabBar]({{site.api}}/flutter/material/TabBar-class.html)&mdash;탭의 
+  수평 열을 보여줌.
+* [Tab]({{site.api}}/flutter/material/Tab-class.html)&mdash;머티리얼 디자인으로 
+  TabBar 탭을 생성.
+* [TabBarView]({{site.api}}/flutter/material/TabBarView-class.html)&mdash;현재 선택된
+  탭에 맞는 위젯을 보여줌.
 
 
 <!-- skip -->
@@ -1720,31 +1721,32 @@ TabBar(
 
 ```
 
+`TabController`는 `TabBar`와 `TabBarView` 사이에서 탭 선택을 조정할 때 필요합니다.
+`TabController` 생성자의 `length` 인자는 전체 탭 개수입니다. 
+`TickerProvider`는 프레임이 상태 변화를 할 때마다 알려주기 위해 필요합니다.
+`TickerProvider`는 `vsync`입니다.
+새로운 `TabController`를 만들 때마다 
+`TabController` 생성자에 `vsync: this` 인자를 넣으세요. 
 
-A `TabController` is required to coordinate the tab selection between a `TabBar`
-and a `TabBarView`. The `TabController` constructor `length` argument is the total
-number of tabs. A `TickerProvider` is required to trigger the notification whenever
-a frame triggers a state change. The `TickerProvider` is `vsync`. Pass the
-`vsync: this` argument to the `TabController` constructor whenever you create
-a new `TabController`.
+[TickerProvider]({{site.api}}/flutter/scheduler/TickerProvider-class.html)는 
+[`Ticker`]({{site.api}}/flutter/scheduler/Ticker-class.html) 객체를 제공할 수 있는 
+클래스에 의해 구현된 인터페이스입니다.
+Tickers는 프레임이 트리거 될 때마다 알림을 받아야하는 
+모든 객체에서 사용할 수 있지만 보통은 
+[`AnimationController`]({{site.api}}/flutter/animation/AnimationController-class.html)를 
+통해 간접적으로 사용합니다.
+`AnimationControllers`는 `Ticker`를 얻기 위해 `TickerProvider`를 필요로 합니다.
+State에서 AnimationController를 만들고 있다면,
+[`TickerProviderStateMixin`]({{site.api}}/flutter/widgets/TickerProviderStateMixin-mixin.html) 또는
+[`SingleTickerProviderStateMixin`]({{site.api}}/flutter/widgets/SingleTickerProviderStateMixin-mixin.html)
+클래스를 사용하여 적절한 `TickerProvider`를 얻을 수 있습니다.
 
-The [TickerProvider]({{site.api}}/flutter/scheduler/TickerProvider-class.html)
-is an interface implemented by classes that can vend
-[`Ticker`]({{site.api}}/flutter/scheduler/Ticker-class.html)
-objects. Tickers can be used by any object that must be notified whenever a
-frame triggers, but they're most commonly used indirectly via an
-[`AnimationController`]({{site.api}}/flutter/animation/AnimationController-class.html).
-`AnimationControllers` need a `TickerProvider` to obtain their `Ticker`.
-If you are creating an AnimationController from a State, then you can use the
-[`TickerProviderStateMixin`]({{site.api}}/flutter/widgets/TickerProviderStateMixin-mixin.html)
-or [`SingleTickerProviderStateMixin`]({{site.api}}/flutter/widgets/SingleTickerProviderStateMixin-mixin.html)
-classes to obtain a suitable `TickerProvider`.
-
-The [`Scaffold`]({{site.api}}/flutter/material/Scaffold-class.html)
-widget wraps a new `TabBar` widget and creates two tabs. The `TabBarView` widget
-is passed as the `body` parameter of the `Scaffold` widget. All screens
-corresponding to the `TabBar` widget’s tabs are children to the `TabBarView`
-widget along with the same `TabController`.
+아래 [`Scaffold`]({{site.api}}/flutter/material/Scaffold-class.html) 위젯은
+새로운 `TabBar` 위젯을 감싸고 2개의 탭을 생성합니다.
+`TabBarView` 위젯은 `Scaffold` 위젯의 `body` 인자로 전달됩니다.
+`TabBar` 위젯의 탭에 해당하는 모든 화면은 
+같은 `TabController`를 가지고 있는 
+`TabBarView` 위젯의 자식들입니다.
 
 
 <!-- skip -->
@@ -1778,10 +1780,10 @@ class _NavigationHomePageState extends State<NavigationHomePage> with SingleTick
 }
 ```
 
-#### Drawer navigation
+#### Drawer(서랍) 네비게이션
 
-In React Native, import the needed react-navigation packages and then use
-`createDrawerNavigator` and `DrawerNavigation`.
+React Native에서는 react-navigation 패키지를 import 하고 
+`createDrawerNavigator`과 `DrawerNavigation`를 사용합니다.
 
 ```js
 // React Native
@@ -1795,21 +1797,23 @@ export default (MyApp1 = DrawerNavigator({
 }));
 ```
 
-In Flutter, we can use the `Drawer` widget in combination with a `Scaffold` to
-create a layout with a Material Design drawer. To add a `Drawer` to an app,
-wrap it in a `Scaffold` widget. The `Scaffold` widget provides a consistent
-visual structure to apps that follow the
-[Material Design]({{site.material}}/design) guidelines. It also supports
-special Material Design components, such as `Drawers`, `AppBars`, and `SnackBars`.
+Flutter에서는 `Drawer` 위젯을 `Scaffold`와 조합하여 
+머티리얼 디자인의 drawer를 만들 수 있습니다.
+앱에 `Drawer`를 추가하기 위해, 
+`Drawer`를 `Scaffold` 위젯으로 감싸세요.
+`Scaffold` 위젯은 [머티리얼 디자인]({{site.material}}/design) 가이드라인을 따르는 
+일관성있는 시각적 구조를 앱에 제공합니다.
+또한, `Drawers`, `AppBars`, `SnackBars`와 같은 
+특수한 머티리얼 디자인 컴포넌트를 제공하기도 합니다. 
 
-The `Drawer` widget is a Material Design panel that slides in horizontally from
-the edge of a `Scaffold` to show navigation links in an application. You can
-provide a [`Button`]({{site.api}}/flutter/material/RaisedButton-class.html),
-a [`Text`]({{site.api}}/flutter/widgets/Text-class.html) widget,
-or a list of items to display as the child to the `Drawer` widget.
-In the following example, the
+`Drawer` 위젯은 `Scaffold`의 왼쪽 혹은 오른쪽 모서리에서 슬라이드 형태로 등장하여
+앱의 네비게이션 링크들을 보여주는 머티리얼 디자인 패널입니다.
+[`Button`]({{site.api}}/flutter/material/RaisedButton-class.html)이나
+[`Text`]({{site.api}}/flutter/widgets/Text-class.html) 위젯, 
+또는 여러 아이템 목록을 `Drawer` 위젯의 자식으로 보여줄 수 있습니다.
+아래 예제에서, 
 [`ListTile`]({{site.api}}/flutter/material/ListTile-class.html)
-widget provides the navigation on tap.
+위젯은 눌렀을 때 네비게이션 동작을 수행합니다.
 
 <!-- skip -->
 ```dart
@@ -1826,10 +1830,10 @@ Drawer(
 ),
 ```
 
-The `Scaffold` widget also includes an `AppBar` widget that automatically
-displays an appropriate IconButton to show the `Drawer` when a Drawer is
-available in the `Scaffold`. The `Scaffold` automatically handles the
-edge-swipe gesture to show the `Drawer`.
+`Scaffold` 위젯은 Drawer를 사용할 수 있을 때 `Drawer`로 연결되는 
+IconButton을 띄워주는 `AppBar` 위젯 또한 포함하고 있습니다.
+`Scaffold`를 사용하면 edge-swipe 동작을 했을 때 자동으로 
+`Drawer`가 나타납니다.
 
 <!-- skip -->
 ```dart
