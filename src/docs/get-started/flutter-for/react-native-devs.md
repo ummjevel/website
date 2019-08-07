@@ -1580,7 +1580,7 @@ setState(() {
 
 Android에서 새로운 화면은 새로운 Activity입니다. 
 iOS에 새로운 화면은 새로운 ViewController입니다.
-Flutter에서 새 화면은 단지 위젯입니다!
+Flutter에서는 새로운 화면도 위젯입니다!
 그리고 새로운 화면으로 이동하기 위해서는 Navigator 위젯을 사용합니다.
 
 ### 어떻게 화면을 이동하나요?
