@@ -84,7 +84,7 @@ DevTools의 [logging view][]나, 콘솔에서
 ## Debugging application layers
 
 Flutter는 위젯, 렌더링, 그리고 페인팅 레이어를 포함하는 레이어드 아키텍처로
-구현되어 있습니다. 더 많은 정보와 비디오에 대한 링크는 [GitHub wiki][]의
+설계되어 있습니다. 더 많은 정보와 비디오에 대한 링크는 [GitHub wiki][]의
 [The Framework architecture][], 그리고 플러터 커뮤니티의
 [The Layer Cake][] 기사를 살펴보세요.
 
