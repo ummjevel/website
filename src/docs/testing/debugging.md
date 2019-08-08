@@ -158,22 +158,22 @@ $ flutter run --trace-startup --profile
 }
 ```
 
-## Tracing Dart code
+## Dart code 추적하기
 
-To perform a performance trace,
-you can use the DevTools [Timeline view][].
-The Timeline view also supports importing
-and exporting trace files. For more
-information, see the [Timeline view][] docs.
+퍼포먼스 추적을 수행하려면,
+DevTools [Timeline 뷰][]를 사용할 수 있습니다.
+Timeline 뷰는 추적 파일을 읽거나
+내보낼 수도 있습니다. 더 많은 정보는
+[Timeline 뷰][] 문서에서 살펴볼 수 있습니다.
 
-You can also
-[perform traces programmatically][],
-though these traces can't be imported
-into DevTool's Timeline view.
+DevTool의 Timeline 뷰에서
+추적 정보를 받지 못하는 경우
+[코드상에서 직접 수행][]
+할 수도 있습니다.
 
-Be sure to use run your app in [profile mode][]
-before tracing to ensure that the runtime performance
-characteristics closely matches that of your final product.
+추적을 수행하기 전에 최종 제품과 가능한 실행 성능
+특성이 유사하도록 앱이 [profile mode][]에서
+실행되고 있는지 확인하세요.
 
 ## Performance overlay
 
@@ -233,7 +233,7 @@ You might find the following docs useful:
 [Flutter enabled IDE/editor]: /docs/get-started/editor
 
 [Debugging Flutter apps programatically]: /docs/testing/code-debugging
-[perform traces programmatically]: /docs/testing/code-debugging#tracing-dart-code-performance
+[코드상에서 직접 수행]: /docs/testing/code-debugging#tracing-dart-code-performance
 [Debug flags: application layers]: /docs/testing/code-debugging#debug-flags-application-layers
 [Debug flags: performance]: /docs/testing/code-debugging#debug-flags-performance
 [slow the animations programmatically]: /docs/testing/code-debugging#debugging-animations
@@ -256,7 +256,7 @@ You might find the following docs useful:
 [Flutter inspector]: /docs/development/tools/devtools/inspector
 [DevTools debugger]: /docs/development/tools/devtools/debugger
 [logging view]: /docs/development/tools/devtools/logging
-[Timeline view]: /docs/development/tools/devtools/timeline
+[Timeline 뷰]: /docs/development/tools/devtools/timeline
 [The performance overlay]: /docs/testing/ui-performance#the-performance-overlay
 [Flutter performance profiling]: /docs/testing/ui-performance
 [overlay]: /docs/testing/code-debugging#performance-overlay
