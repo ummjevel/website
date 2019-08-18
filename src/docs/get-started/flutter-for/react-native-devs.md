@@ -1861,19 +1861,19 @@ Widget build(BuildContext context) {
 
 {% include android-ios-figure-pair.md image="react-native/navigation.gif" alt="Navigation" class="border" %}
 
-## Gesture detection and touch event handling
+## 제스처 감지와 터치 이벤트 다루기
 
-To listen for and respond to gestures, Flutter supports taps, drags, and
-scaling. The gesture system in Flutter has two separate layers. The first layer
-includes raw pointer events, which describe the location and movement of
-pointers, (such as touches, mice, and styli movements), across the screen. The
-second layer includes gestures, which describe semantic actions that consist of
-one or more pointer movements.
+제스처를 감지하고 반응하기 위해, Flutter는 탭, 드래그, 확대, 크기 조절을 지원합니다. 
+Flutter의 제스처 시스템은 2개의 층을 가지고 있습니다. 
+첫번째 층은 포인터의 위치와 움직임을 표현하는 (터치, 마우스, 스타일러스 동작) 
+원시 포인터 이벤트입니다.
+두번째 층은 하나 이상의 포인터 움직임으로 만들어진 동작을 표현하는 
+제스처입니다.  
 
-### How do I add a click or press listeners to a widget?
+### click 또는 press 리스너를 추가하는 방법은?
 
-In React Native, listeners are added to components using `PanResponder` or
-the `Touchable` components.
+React Native에서는 `PanResponder` 또는 `Touchable` 컴포넌트를 사용하여
+리스너를 추가합니다. 
 
 ```js
 // React Native
@@ -1889,9 +1889,9 @@ the `Touchable` components.
 </TouchableOpacity>
 ```
 
-For more complex gestures and combining several touches into a single gesture,
-[`PanResponder`](https://facebook.github.io/react-native/docs/panresponder.html)
-is used.
+더 복잡한 제스처와 많은 터치를 하나의 제스처로 조합할 때는,
+[`PanResponder`](https://facebook.github.io/react-native/docs/panresponder.html)를
+사용합니다.
 
 ```js
 // React Native
@@ -1921,10 +1921,10 @@ class App extends Component {
 }
 ```
 
-In Flutter, to add a click (or press) listener to a widget, use a button
-or a touchable widget that has an `onPress: field`. Or, add gesture detection
-to any widget by wrapping it in a
-[`GestureDetector`]({{site.api}}/flutter/widgets/GestureDetector-class.html).
+Flutter에서는 위젯에 click (또는 press) 리스너를 추가하기 위해
+`onPress: field`를 가지고 있는 버튼이나 터치 가능한 위젯을 사용하세요.
+또는 어떤 위젯이건 [`GestureDetector`]({{site.api}}/flutter/widgets/GestureDetector-class.html)로
+감싸서 제스처 감지를 추가하세요.
 
 <!-- skip -->
 ```dart
@@ -1957,22 +1957,22 @@ GestureDetector(
   },
 );
 ```
-For more information, including a list of Flutter `GestureDetector` callbacks,
-see the [GestureDetector class][].
+`GestureDetector` 콜백 등에 관한 더 많은 정보를 원하시면,
+[GestureDetector class][]를 참조하세요.
 
 [GestureDetector class]: {{site.api}}/flutter/widgets/GestureDetector-class.html#instance-properties
 
 {% include android-ios-figure-pair.md image="react-native/flutter-gestures.gif" alt="Gestures" class="border" %}
 
-## Making HTTP network requests
+## HTTP 네트워크 요청 만들기
 
-Fetching data from the internet is common for most apps. And in Flutter,
-the `http` package provides the simplest way to fetch data from the internet.
+대부분의 앱은 인터넷에서 데이터를 가져오는 게 일반적입니다.
+그리고 Flutter에서는 `http` 패키지가 인터넷에서 데이터를 가져오는 가장 간단한 방법을 제공합니다. 
 
-### How do I fetch data from API calls?
+### API를 호출하여 데이터를 가져오는 방법은?
 
-React Native provides the Fetch API for networking—you make a fetch request
-and then receive the response to get the data.
+React Native는 fetch를 요청하고 데이터 응답을 받는 
+네트워크 동작을 위해 Fetch API를 제공합니다. 
 
 ```js
 // React Native
@@ -1988,8 +1988,8 @@ _getIPAddress = () => {
 };
 ```
 
-Flutter uses the `http` package. To install the `http` package, add it to
-the dependencies section of our pubspec.yaml.
+Flutter는 `http` 패키지를 사용합니다. `http` 패키지를 설치하기 위해,
+pubspec.yaml의 의존성 부분에 추가하세요.
 
 ```yaml
 dependencies:
@@ -1998,16 +1998,16 @@ dependencies:
   http: <latest_version>
 ```
 
-Flutter uses the
-[`dart:io`]({{site.api}}/flutter/dart-io/dart-io-library.html)
-core HTTP support client. To create an HTTP Client, import `dart:io`.
+Flutter는 HTTP 클라이언트 지원에 
+[`dart:io`]({{site.api}}/flutter/dart-io/dart-io-library.html)를 사용합니다.
+HTTP 클라이언트를 만들기 위해 `dart:io`를 import 하세요.
 
 <!-- skip -->
 ```dart
 import 'dart:io';
 ```
 
-The client supports the following HTTP operations: GET, POST, PUT, and DELETE.
+이 클라이언트는 다음과 같은 HTTP 동작을 지원합니다: GET, POST, PUT, DELETE.
 
 <!-- skip -->
 ```dart
@@ -2029,16 +2029,17 @@ _getIPAddress() async {
 
 ## Form input
 
-Text fields allow users to type text into your app so they can be used to build
-forms, messaging apps, search experiences, and more. Flutter provides two
-core text field widgets:
-[TextField]({{site.api}}/flutter/material/TextField-class.html) and
+텍스트 필드로 사용자가 앱에 텍스트를 입력하게 하여, 
+양식, 메시징 앱, 검색 환경 등을 구축하는 데 사용할 수 있습니다.
+Flutter는 2가지 종류의 핵심 텍스트 필드 위젯을 제공합니다:
+[TextField]({{site.api}}/flutter/material/TextField-class.html)와
 [TextFormField]({{site.api}}/flutter/material/TextFormField-class.html).
 
-### How do I use text field widgets?
+### 텍스트 필드 위젯을 사용하는 방법은?
 
-In React Native, to enter text you use a `TextInput` component to show a text
-input box and then use the callback to store the value in a variable.
+React Native에서는 텍스트를 입력하기 위해
+`TextInput` 컴포넌트를 사용하여 텍스트 입력 상자를 보여주고
+콜백을 사용하여 값을 변수에 저장합니다.
 
 ```js
 // React Native
@@ -2049,14 +2050,14 @@ input box and then use the callback to store the value in a variable.
 <Button title="Submit" onPress={this.validate} />
 ```
 
-In Flutter, use the
+Flutter에서는 
 [`TextEditingController`]({{site.api}}/flutter/widgets/TextEditingController-class.html)
-class to manage a `TextField` widget. Whenever the text field is modified,
-the controller notifies its listeners.
+클래스를 사용하여 `TextField` 위젯을 관리합니다.
+이 컨트롤러는 텍스트 필드가 수정될 때마다 리스너에게 알립니다. 
 
-Listeners read the text and selection properties to learn what the user typed
-into the field. You can access the text in `TextField` by the `text` property of
-the controller.
+리스너들은 사용자가 필드에 입력한 내용을 알기 위해 
+text와 selection 속성을 읽습니다. 컨트롤러의 `text` 속성을 활용하여 
+`TextField`에 있는 텍스트에 접근할 수 있습니다.
 
 <!-- skip -->
 ```dart
@@ -2084,27 +2085,28 @@ RaisedButton(
 )
 ```
 
-In this example, when a user clicks on the submit button an alert dialog
-displays the current text entered in the text field. This is achieved using an
-[`alertDialog`]({{site.api}}/flutter/material/AlertDialog-class.html)
-widget that displays the alert message, and the text from
-the `TextField` is accessed by the `text` property of the
-[TextEditingController]({{site.api}}/flutter/widgets/TextEditingController-class.html).
+이 예제에서는 사용자가 submit 버튼을 클릭했을 때 
+현재 텍스트 필드에 입력된 텍스트를 알림창에 띄웁니다.
+경고 메시지를 표시하는 
+[`alertDialog`]({{site.api}}/flutter/material/AlertDialog-class.html) 위젯을
+사용하면 되고,  
+[TextEditingController]({{site.api}}/flutter/widgets/TextEditingController-class.html)의
+`text` 속성을 사용하여 `TextField`에서 입력된 텍스트에 접근합니다.
 
-### How do I use Form widgets?
+### Form 위젯을 사용하는 방법은?
 
-In Flutter, use the
-[`Form`]({{site.api}}/flutter/widgets/Form-class.html)
-widget where
+Flutter에서 submit 버튼과 
 [`TextFormField`]({{site.api}}/flutter/material/TextFormField-class.html)
-widgets along with the submit button are passed as children.
-The `TextFormField` widget has a parameter called
-[`onSaved`]({{site.api}}/flutter/widgets/FormField/onSaved.html)
-which takes a callback and executes when the form is saved. A `FormState`
-object is used to save, reset, or validate
-each `FormField` that is a descendant of this `Form`. To obtain the `FormState`,
-you can use  `Form.of` with a context whose ancestor is the Form, or pass a
-`GlobalKey` to the Form constructor and call `GlobalKey.currentState`.
+위젯들을 자식으로 가지는 
+[`Form`]({{site.api}}/flutter/widgets/Form-class.html)을
+사용하세요.
+`TextFormField` 위젯에는 form이 저장될 때 실행되는 콜백을 받는 
+[`onSaved`]({{site.api}}/flutter/widgets/FormField/onSaved.html)라는 매개 변수가 있습니다.
+`FormState` 객체는 `Form` 하위에 있는 각 `FormField`를 저장하고, 
+초기화하고, 검증하기 위해 사용됩니다.
+Form의 부모 context와 함께 `Form.of`를 사용하거나, 
+Form 생성자에 `GlobalKey`를 넘기고 `GlobalKey.currentState`를 호출하여 
+`FormState`를 가져올 수 있습니다.
 
 <!-- skip -->
 ```dart
@@ -2133,8 +2135,8 @@ Form(
 )
 ```
 
-The following example shows how `Form.save()` and `formKey` (which is a
-`GlobalKey`) are used to save the form on submit.
+아래 예제는 submit하여 form을 저장할 때
+`Form.save()`와 `GlobalKey`인 `formKey`가 어떻게 사용되는지를 보여줍니다.
 
 <!-- skip -->
 ```dart
