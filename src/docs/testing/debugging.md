@@ -1,67 +1,64 @@
 ---
 title: Flutter 앱 디버깅하기
-description: How to debug your app using the DevTools suite.
+description: DevTools suite를 사용하여 앱을 디버깅하는 방법 소개.
 ---
 
-Flutter 어플리케이션의 디버그를 위한 다양한 툴과 기능을 소개합니다.
-몇 가지 툴이 있습니다:
+Flutter 어플리케이션을 디버깅하기 위해 다양한 도구와 기능이 준비되어있습니다. 그 중에서 몇 가지를 소개합니다.
 
-* [DevTools][], a suite of performance and profiling
-  tools that run in a browser.
-* [Android Studio/IntelliJ][], and [VS Code][]
-  (enabled with the Flutter and Dart plugins)
-  support a built-in source-level debugger with
-  the ability to set breakpoints, step through code,
-  and examine values.
-* [Flutter inspector][], a widget inspector available
-  in DevTools, and also directly from Android Studio
-  and IntelliJ (enabled with the Flutter plugin).
-  The inspector allows you to examine a visual
-  representation of the widget tree, inspect
-  individual widgets and their property values,
-  enable the performance overlay, and more.
+* [DevTools][], 브라우저 상에서 작동하는 퍼포먼스 체크와 프로파일링을 위한 도구들입니다.
+* [Android Studio/IntelliJ][], 그리고 [VS Code][]
+  (Flutter와 Dart 플러그인들을 활성화한 경우)
+  값 검사와, 코드 진행,
+  브레이크 포인트를 설정할 수 있는
+  소스 레벨의 디버거를 지원합니다.
+* [Flutter inspector][], DevTools에서 위젯 인스펙터를 사용할 수 있으며,
+  (Flutter 플러그인이 활성화된) 안드로이드 스튜디오와 인텔리제이에서
+  바로 사용할 수 있습니다.
+  인스펙터를 통해 위젯 트리를 눈으로 확인할 수 있으며,
+  개별 위젯과 각각의 프로퍼티 값들,
+  퍼포먼스 오버레이 허용등의
+  기능을 사용할 수 있습니다.
 
 ## DevTools
 
-For debugging and profiling apps, DevTools might be
-the first tool you reach for. DevTools runs in a
-browser and supports a variety of features:
+DevTools는 여러분이 앱을 디버깅하고,
+프로필링하기 위해서 가장 처음 사용할 수 있는 도구입니다.
+DevTools는 브라우저상에서 다양한 기능을 지원합니다.
 
-* source-level debugger
-* widget inspector that displays a visual widget tree,
-  and "widget select" mode where you select a widget
-  in the app and it drills down to that widget in
-  the tree
-* memory profiler
-* timeline view that supports tracing, and importing
-  and exporting trace information
-* logging view
+* 소스 레벨 디버거
+* 위젯 트리를 시각화해 보여주고,
+  트리 구조에서 위젯을 찾아 내려가며
+  앱상의 위젯을 선택할 수 있는 "widget select" 모드를
+  제공하는 위젯 인스펙터
+* 메모리 프로파일러
+* 추적과 추적 정보의 내보내기와 불러오기를
+  제공하는 타임라인 뷰
+* 로깅 뷰
 
-If you run your application in [debug mode][] or
-[profile mode][], while it's running you can open
-DevTools in the browser to connect to your app.
-DevTools doesn't work well with an app compiled to
-[release mode][], as the debugging and profiling
-information has been stripped away.
+어플리케이션이 [debug mode][] 이나 [profile mode][]
+에서 실행되고 있다면, 브라우저에서 앱에 연결하여
+DevTools를 실행할 수 있습니다.
+[release mode][]로 컴파일한 경우에는
+디버깅과 프로파일링 정보가 제거되기 때문에
+DevTools가 제대로 동작하지 않습니다.
 
-If you use DevTools for profiling, make sure to
-run your application in [profile mode][]. Otherwise,
-the main output that appears on your profile are the
-debug asserts verifying the framework's various invariants
-(see [Debug mode assertions](#debug-mode-assertions)).
+DevTools를 프로파일링을 위해 사용하려면,
+[profile mode][]로 어플리케이션을 실행해야 합니다. 그렇지 않으면,
+프로파일링에는 프레임워크의 다양한 불변성을
+([Debug mode assertions](#debug-mode-assertions)을 살펴보세요)
+검사하는 디버그 assert가 주로 남게 됩니다.
 
-![GIF showing DevTools features]({% asset tools/devtools/inspector.gif @path %}){:width="100%"}
+![DevTools의 기능을 소개하는 GIF]({% asset tools/devtools/inspector.gif @path %}){:width="100%"}
 
-For more information, see the
-[DevTools][] documentation.
+더 많은 정보가 필요하시면,
+[DevTools][] 문서를 살펴보세요.
 
-## Setting breakpoints
+## Breakpoints 설정
 
-You can set breakpoints directly in your IDE/editor
-(such as [Android Studio/IntelliJ][] and [VS Code][]),
-in the [DevTools debugger][],
-or [programmatically][breakpoints].
-
+[Android Studio/IntelliJ][]나 [VS Code][] 같은
+IDE/편집기에서 [DevTools debugger][]로
+직접 브레이크 포인트를 설정하거나,
+[프로그래밍 방식][breakpoints]으로 설정할 수 있습니다.
 
 ## The Dart Analyzer
 
@@ -75,82 +72,82 @@ The Dart Analyzer는 문제를 추적하기 위해 여러분이 코드에 넣어
 이용합니다. 문제를 추적하기 위한 가장 빠르고 덜 고통스러운 방법이니만큼 모든 곳에서
 `var` 선언,  타입 없는 인수, 타입 없는 배열 문법 등의 사용을 자제하는 것이 좋습니다.
 
-For more information, see [Using the Dart analyzer][].
+더 많은 정보가 필요하시면, [Using the Dart analyzer][]를 살펴보세요.
 
 ## Logging
 
-Another useful debugging tool is logging. 
-You set logging up [programmatically][logging]
-then view the output in the DevTools
-[logging view][], or in the console.
+로깅도 유용한 디버깅 도구입니다.
+[프로그래밍 방식으로][logging] 로깅을 설정하고
+DevTools의 [logging view][]나, 콘솔에서
+출력을 확인할 수 있습니다.
 
 ## Debugging application layers
 
-Flutter was designed with a layered architecture that includes
-widget, rendering, and painting layers. For links to more
-information and videos, see [The Framework architecture][] on the
-[GitHub wiki][], and the community article, [The Layer Cake][].
+Flutter는 위젯, 렌더링, 그리고 페인팅 레이어를 포함하는 레이어드 아키텍처로
+설계되어 있습니다. 더 많은 정보와 비디오에 대한 링크는 [GitHub wiki][]의
+[The Framework architecture][], 그리고 플러터 커뮤니티의
+[The Layer Cake][] 기사를 살펴보세요.
 
-The Flutter widget inspector provides a visual representation
-of the widget tree, but if you want a greater level of detail,
-or you want a verbose text-based dump of the widget,
-layer, or render trees, see
-[Debug flags: application layers][]
-in the [Debugging Flutter apps programatically][] page.
+Flutter 위젯 인스펙터는
+위젯 트리의 시각적 표현을 제공하지만,
+더 상세한 수준을 원하거나, 위젯, 레이어,
+혹은 렌더 트리에 대한 텍스트 기반의 덤프를 원하신다면,
+[Debugging Flutter apps programatically][] 페이지의
+[Debug flags: application layers][]를 살펴보세요.
 
 ## Debug mode assertions
 
-During development, you are highly encouraged to use Flutter's
-[debug mode][]. This is the default if you use bug icon in
-Android Studio, or `flutter run` at the command line.
-Some tools support assert statements through the
-command-line flag `--enable-asserts`.
+개발 중에는 Flutter의 [debug mode][]를 사용하시는 것을
+적극 권장합니다. 안드로이드 스튜디오에서 벌레 모양 아이콘을 사용하거나,
+커맨드 라인에서 `flutter run` 명령어를 사용하실 경우 기본 모드 입니다.
+몇 가지 도구는 커맨드 라인 플래그인 `--enable-asserts`을 통해 assert
+구문을 지원합니다.
 
-In this mode, Dart assert statements are enabled,
-and the Flutter framework evaluates the argument
-to each assert statement encountered during execution,
-throwing an exception if the result is false.
-This allows developers to enable or disable invariant
-checking, such that the associated performance cost
-is only paid during debugging sessions.
+이 모드에서는 Dart assert 구문을 사용할 수 있고,
+Flutter 프레임워크가 실행 도중에
+만나는 assert 구문을 평가하여
+결과가 false인 경우에는 예외를 던지게 됩니다.
+개발자가 불변 검사에 대해
+활성화 혹은 비활성화 할 수 있으며,
+성능 저하는 디버깅 세션일 동안만 발생합니다.
 
-When an invariant is violated, it's reported to the
-console, with some context information to help track
-down the source of the problem.
+불변성을 위반한 경우에는,
+문제의 원인을 찾아갈 수 있도록
+일부 상황 정보를 콘솔에 출력합니다.
 
-For more information, see [Assert][] in the
-[Dart language tour][].
+더 많은 정보를 원하신다면, [Dart language tour][]에
+있는 [Assert][]를 살펴보세요.
 
-## Debugging animations
+ ## 애니메이션 디버깅하기
 
-The easiest way to debug animations is to slow them down.
-The [Flutter inspector][] provides a **Slow Animations** button,
-or you can [slow the animations programmatically][].
+애니메이션을 디버그하는 가장 쉬운 방법은 동작을 느리게 하는 것입니다.
+[Flutter inspector][]는 **Slow Animations**을 제공하고 있으며,
+[slow the animations programmatically][]을 하셔도 좋습니다.
 
-For more information on debugging janky (non-smooth)
-applications, see [Flutter performance profiling][].
+응답이 없거나, 늦어지는 어플리케이션을 디버깅하는 방법에 대해서
+더 알고 싶으시다면 [Flutter performance profiling][]를 살펴보세요.
 
-## Measuring app startup time
+## 앱 시작 시간 측정
 
-To gather detailed information about the time it takes for your
-Flutter app to start, you can run the `flutter run` command
-with the `trace-startup` and `profile` options.
+Flutter app을 시작하는데 들어가는 시간에 대한 정보를 알고 싶다면,
+`flutter run` 명령어에 `trace-startup`
+그리고 `profile` 옵션을 추가해서 실행할 수 있습니다.
 
 ```
 $ flutter run --trace-startup --profile
 ```
 
-The trace output is saved as a JSON file called `start_up_info.json`
-under the `build` directory of your Flutter project.
-The output lists the elapsed time from app startup to these trace
-events (captured in microseconds):
+추적한 결과는 Flutter 프로젝트의 `build` 디렉토리안에
+ `start_up_info.json` JSON 파일로 저장됩니다.
+출력은 microsecond 단위로 앱의 시작 시점부터 각 추적 이벤트까지의
+경과시간을 리스트로 출력합니다.
 
-+ Time to enter the Flutter engine code.
-+ Time to render the first frame of the app.
-+ Time to initialize the Flutter framework.
-+ Time to complete the Flutter framework initialization.
++ Flutter engine 코드까지 진입한 시간.
++ 앱의 첫 프레임을 렌더링하는데 걸리는 시간.
++ Flutter 프레임워크를 초기화 하기까지 걸리는 시간.
++ Flutter 프레임워크의 초기화를 완료하기 까지 걸리는 시간.
 
-For example:
+예:
 
 ```
 {
@@ -161,22 +158,22 @@ For example:
 }
 ```
 
-## Tracing Dart code
+## Dart code 추적하기
 
-To perform a performance trace,
-you can use the DevTools [Timeline view][].
-The Timeline view also supports importing
-and exporting trace files. For more
-information, see the [Timeline view][] docs.
+퍼포먼스 추적을 수행하려면,
+DevTools [Timeline 뷰][]를 사용할 수 있습니다.
+Timeline 뷰는 추적 파일을 읽거나
+내보낼 수도 있습니다. 더 많은 정보는
+[Timeline 뷰][] 문서에서 살펴볼 수 있습니다.
 
-You can also
-[perform traces programmatically][],
-though these traces can't be imported
-into DevTool's Timeline view.
+DevTool의 Timeline 뷰에서
+추적 정보를 받지 못하는 경우
+[코드상에서 직접 수행][]
+할 수도 있습니다.
 
-Be sure to use run your app in [profile mode][]
-before tracing to ensure that the runtime performance
-characteristics closely matches that of your final product.
+추적을 수행하기 전에 최종 제품과 가능한 실행 성능
+특성이 유사하도록 앱이 [profile mode][]에서
+실행되고 있는지 확인하세요.
 
 ## Performance overlay
 
@@ -236,7 +233,7 @@ You might find the following docs useful:
 [Flutter enabled IDE/editor]: /docs/get-started/editor
 
 [Debugging Flutter apps programatically]: /docs/testing/code-debugging
-[perform traces programmatically]: /docs/testing/code-debugging#tracing-dart-code-performance
+[코드상에서 직접 수행]: /docs/testing/code-debugging#tracing-dart-code-performance
 [Debug flags: application layers]: /docs/testing/code-debugging#debug-flags-application-layers
 [Debug flags: performance]: /docs/testing/code-debugging#debug-flags-performance
 [slow the animations programmatically]: /docs/testing/code-debugging#debugging-animations
@@ -259,7 +256,7 @@ You might find the following docs useful:
 [Flutter inspector]: /docs/development/tools/devtools/inspector
 [DevTools debugger]: /docs/development/tools/devtools/debugger
 [logging view]: /docs/development/tools/devtools/logging
-[Timeline view]: /docs/development/tools/devtools/timeline
+[Timeline 뷰]: /docs/development/tools/devtools/timeline
 [The performance overlay]: /docs/testing/ui-performance#the-performance-overlay
 [Flutter performance profiling]: /docs/testing/ui-performance
 [overlay]: /docs/testing/code-debugging#performance-overlay
