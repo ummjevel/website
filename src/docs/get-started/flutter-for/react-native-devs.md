@@ -1863,7 +1863,7 @@ Widget build(BuildContext context) {
 
 ## 제스처 감지와 터치 이벤트 다루기
 
-제스처를 감지하고 반응하기 위해, Flutter는 탭, 드래그, 확대, 크기 조절을 지원합니다. 
+제스처를 감지하고 반응하기 위해, Flutter는 탭, 드래그, 크기 조절을 지원합니다. 
 Flutter의 제스처 시스템은 2개의 층을 가지고 있습니다. 
 첫번째 층은 포인터의 위치와 움직임을 표현하는 (터치, 마우스, 스타일러스 동작) 
 원시 포인터 이벤트입니다.
@@ -1889,7 +1889,7 @@ React Native에서는 `PanResponder` 또는 `Touchable` 컴포넌트를 사용�
 </TouchableOpacity>
 ```
 
-더 복잡한 제스처와 많은 터치를 하나의 제스처로 조합할 때는,
+더 복잡한 제스처와 다양한 터치를 하나의 제스처로 조합할 때는,
 [`PanResponder`](https://facebook.github.io/react-native/docs/panresponder.html)를
 사용합니다.
 
