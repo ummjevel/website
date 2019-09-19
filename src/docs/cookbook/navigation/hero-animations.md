@@ -1,40 +1,38 @@
 ---
-title: Animate a widget across screens
+title: 화면을 넘나드는 위젯 애니메이션
 prev:
-  title: Report errors to a service
+  title: 서비스에 에러 보고 하기
   path: /docs/cookbook/maintenance/error-reporting
 next:
-  title: Navigate to a new screen and back
+  title: 새로운 화면으로 이동하고, 되돌아오기
   path: /docs/cookbook/navigation/navigation-basics
 ---
 
-It's often helpful to guide users through an app as they navigate from screen
-to screen. A common technique to lead users through an app is to animate a
-widget from one screen to the next. This creates a visual anchor connecting
-the two screens.
+한 화면에서 다른 화면으로 넘어갈 때, 사용자에게 어떠한 가이드를 주는 것은 종종 도움이 됩니다.
+앱에서 사용할 수 있는 일반적인 기술은 다음 화면으로 전환할 때 위젯에 애니메이션 효과를 주는 것입니다.
+이러한 방법은 두 화면을 이어주는 시각적 연결 고리를 만들어 줍니다.
 
-Use the
-[`Hero`]({{site.api}}/flutter/widgets/Hero-class.html) widget
-to animate a widget from one screen to the next.
-This recipe uses the following steps:
+한 화면에서 다음 화면으로 전환할 떄 애니메이션 효과를 주기 위해 
+[`Hero`]({{site.api}}/flutter/widgets/Hero-class.html) 위젯을 사용하세요.
+여기서는 아래와 같은 단계로 진행합니다:
 
-  1. Create two screens showing the same image.
-  2. Add a `Hero` widget to the first screen.
-  3. Add a `Hero` widget to the second screen.
+  1. 같은 이미지를 보여주는 2개의 화면을 만듭니다.
+  2. 첫 번째 화면에 `Hero` 위젯을 추가합니다.
+  3. 두 번째 화면에 `Hero` 위젯을 추가합니다.
 
-## 1. Create two screens showing the same image
+## 1. 같은 이미지를 보여주는 2개의 화면을 만듭니다.
 
-In this example, display the same image on both screens.
-Animate the image from the first screen to the second screen when
-the user taps the image. For now, create the visual structure;
-handle animations in the next steps.
+이 예제에서는 같은 이미지를 두 개의 화면 모두에 보여줄 것입니다. 
+첫 번째 화면에서 사용자가 이미지를 탭하면 두 번째 화면으로 전환되면서 애니메이션이 발생합니다.
+일단 시각적 구조를 만들고, 본격적인 
+애니메이션은 다음 단계에서 다루겠습니다.
 
 {{site.alert.note}}
-  This example builds upon the
-  [Navigate to a new screen and
-  back](/docs/cookbook/navigation/navigation-basics)
-  and [Handle taps](/docs/cookbook/gestures/handling-taps) recipes.
+  이 예제는 
+  [새로운 화면으로 이동하고, 되돌아오기](/docs/cookbook/navigation/navigation-basics)
+  와 [탭 다루기](/docs/cookbook/gestures/handling-taps) 예제를 기반으로 합니다.
 {{site.alert.end}}
+
 
 ```dart
 class MainScreen extends StatelessWidget {
@@ -77,18 +75,18 @@ class DetailScreen extends StatelessWidget {
 }
 ```
 
-## 2. Add a `Hero` widget to the first screen
+## 2. 첫 번째 화면에 `Hero` 위젯을 추가합니다.
 
-To connect the two screens together with an animation, wrap
-the `Image` widget on both screens in a `Hero` widget.
-The `Hero` widget requires two arguments:
+두 화면을 하나의 애니메이션으로 연결하기 위해,
+각 화면에 존재하는 `Image`위젯을 `Hero`위젯으로 감쌉니다. 
+`Hero` 위젯에 2개의 인자를 넘겨주어야 합니다:
 
 <dl>
   <dt>`tag`</dt>
-  <dd>An object that identifies the `Hero`.
-      It must be the same on both screens.</dd>
+  <dd>`Hero`위젯을 식별하기 위한 객체로 
+      양쪽 모두 동일한 값을 가져야 합니다.</dd>
   <dt>`child`</dt>
-  <dd>The widget to animate across screens.</dd>
+  <dd>화면 전환 시 애니메이션 효과를 적용할 위젯입니다.</dd>
 </dl>
 
 <!-- skip -->
@@ -101,14 +99,14 @@ Hero(
 );
 ```
 
-## 3. Add a `Hero` widget to the second screen
+## 3. 두 번째 화면에 `Hero` 위젯을 추가합니다.
 
-To complete the connection with the first screen,
-wrap the `Image` on the second screen with a `Hero`
-widget that has the same `tag` as the `Hero` in the first screen.
+첫 번째 화면과의 연결하기 위해, 
+두 번째 화면의 `Image`도 첫 번째 화면에 사용한 것과 동일한 `tag`를 사용한 
+`Hero` 위젯으로 감싸주어야 합니다. 
 
-After applying the `Hero` widget to the second screen,
-the animation between screens just works.
+두 번째 화면에 `Hero` 위젯을 적용하기만 하면, 
+화면 사이의 애니메이션이 동작합니다.
 
 <!-- skip -->
 ```dart
@@ -121,13 +119,12 @@ Hero(
 ```
 
 {{site.alert.note}}
-  This code is identical to what you have on the first screen.
-  As a best practice, create a reusable widget instead of
-  repeating code. This example uses identical code for both
-  widgets, for simplicity.
+  이 코드는 첫 번째 화면에 사용했던 것과 동일한 코드입니다.
+  코드를 반복하기보다는 재사용 가능한 위젯을 만들어 사용하는 게 모범 사례입니다.
+  이 예제에서는 단순화하기 위해 동일 코드를 양쪽 위젯에서 사용합니다.
 {{site.alert.end}}
-
-## Complete example
+  
+## 완성된 예제
 
 ```dart
 import 'package:flutter/material.dart';
