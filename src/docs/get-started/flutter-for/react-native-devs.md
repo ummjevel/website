@@ -1536,7 +1536,7 @@ Flutter에서는 키-값 데이터를 읽고 쓰기 위해서 앱 내 전역에�
 [`shared_preferences`]({{site.github}}/flutter/plugins/tree/master/packages/shared_preferences)
 플러그인을 사용합니다. `shared_preferences` 플러그인은 간단한 데이터를 지속성있게 
 저장할 수 있는 저장소를 제공하기 위해 iOS에선 `NSUserDefaults`, 
-안드로이드에선 `SharedPreferences`를 감싸고 있습니다.
+Android에선 `SharedPreferences`를 감싸고 있습니다.
 플러그인을 사용하기 위해 `shared_preferences`를 
 `pubspec.yaml` 파일의 의존성에 추가한 다음 Dart 파일에서 import 하세요 
 
@@ -2157,14 +2157,13 @@ void _submit() {
 
 {% include android-ios-figure-pair.md image="react-native/input-fields.gif" alt="Input" class="border" %}
 
-## Platform-specific code
+## Platform-specific 코드
 
-When building a cross-platform app, you want to re-use as much code as
-possible across platforms. However, scenarios might arise where it
-makes sense for the code to be different depending on the OS.
-This requires a separate implementation by declaring a specific platform.
+크로스 플랫폼 앱을 만들 때 여러 플랫폼에서 같은 코드를 최대한 많이 재사용하고 싶을 것입니다.
+하지만 어떤 경우에는 OS마다 다른 코드를 작성하는 게 현명할 수도 있습니다.
+그렇기 때문에 플랫폼 별로 분기 처리를 구현할 수 있어야 합니다.
 
-In React Native, the following implementation would be used:
+React Native에서는 아래와 같은 구현이 가능합니다:
 
 ```js
 // React Native
@@ -2176,7 +2175,7 @@ if (Platform.OS === 'ios') {
   return 'not recognised';
 }
 ```
-In Flutter, use the following implementation:
+Flutter에서는 아래와 같은 구현을 사용합니다:
 <!-- skip -->
 ```dart
 // Flutter
@@ -2191,94 +2190,91 @@ if (Theme.of(context).platform == TargetPlatform.iOS) {
 }
 ```
 
-## Debugging
+## 디버깅
 
-### What tools can I use to debug my app in Flutter?
+### Flutter에서 앱을 디버깅하는 데 어떤 도구를 사용할 수 있습니까?
 
-Use the [DevTools][] suite for debugging Flutter or Dart apps.
+Flutter 또는 Dart 앱 디버깅 [DevTools][]를 사용하세요.
 
-DevTools includes support for profiling, examining the heap,
-inspecting the widget tree, logging diagnostics, debugging,
-observing executed lines of code, debugging memory leaks and memory
-fragmentation. For more information, see the
-[DevTools][] documentation.
+DevTools은 프로파일링, 힙 검사, 위젯트리 조사, 로깅 진단,
+디버깅, 실행된 코드 라인 관찰, 메모리 누수 및 메모리 조각화 디버깅을 지원합니다.
+더 많은 정보를 원하시면,
+[DevTools][] 문서를 참조하세요 
 
-If you're using an IDE,
-you can debug your application using the IDE's debugger.
+IDE를 사용 중이라면,
+IDE의 디버거를 이용하여 앱을 디버깅할 수 있습니다.
 
-### How do I perform a hot reload?
+### 어떻게 hot reload를 수행할 수 있나요?
 
-Flutter’s Stateful Hot Reload feature helps you quickly and easily experiment,
-build UIs, add features, and fix bugs. Instead of recompiling your app
-every time you make a change, you can hot reload your app instantly.
-The app is updated to reflect your change,
-and the current state of the app is preserved.
+Flutter의 Stateful Hot Reload 기능은 쉽고 빠른 실험, UI 구축, 기능 추가, 버그 수정을 지원합니다.
+변경이 있을 때마다 앱을 다시 컴파일하지 않고, 
+즉각적으로 hot reload 할 수 있습니다.
+현재 state는 변경되지 않고, 
+앱은 수정 사항을 반영하여 업데이트 됩니다.
 
-In React Native,
-the shortcut is ⌘R for the iOS Simulator and tapping R twice on
-Android emulators.
+React Native에서는 
+iOS 시뮬레이터의 ⌘R 단축키를 사용하거나 Android 에뮬레이터에서 R를 두 번 눌러서 리로드합니다.
 
-In Flutter, If you are using IntelliJ IDE or Android Studio,
-you can select Save All (⌘s/ctrl-s), or you can click the
-Hot Reload button on the toolbar. If you
-are running the app at the command line using `flutter run`,
-type `r` in the Terminal window.
-You can also perform a full restart by typing `R` in the
-Terminal window.
+Flutter에서는 
+IntelliJ IDE 또는 Android Studio를 사용하는 경우 모두 저장 (⌘s/ctrl-s)을 선택하거나 
+도구 모음에서 Hot Reload 버튼을 클릭 할 수 있습니다.
+`flutter run`을 이용하여 커멘드 라인에서 앱을 실행중이시면,
+터미널 화면에서 `r`을 눌르세요.
+터미널 창에 `R`을 입력하여 전체적으로 
+재시작을 수행할 수도 있습니다.
 
-### How do I access the in-app developer menu?
+### 인앱 개발자 메뉴에 접근하는 방법은?
 
-In React Native, the developer menu can be accessed by shaking your device: ⌘D
-for the iOS Simulator or ⌘M for Android emulator.
+React Native에서는 기기를 흔들어서 개발자 메뉴에 접근할 수 있습니다.
+(iOS 시뮬레이터에서 ⌘D, Android 에뮬레이터에서 ⌘M을 눌러 접근 가능) 
 
-In Flutter, if you are using an IDE, you can use the IDE tools. If you start
-your application using `flutter run` you can also access the menu by typing `h`
-in the terminal window, or type the following shortcuts:
+Flutter에서는 IDE를 사용하고 있다면 IDE 도구를 사용할 수 있습니다. 
+`flutter run`을 사용하여 앱을 실행했다면 터미널 창에서 `h`를 눌러서 접근할 수 있습니다.
+혹은 아래와 같은 단축키를 사용할 수 있습니다:
 
 <div class="table-wrapper" markdown="1">
-| Action| Terminal Shortcut| Debug functions and properties|
+| 동작| 터미널 단축키| 디버그 함수와 속성|
 | :------- | :------: | :------ |
-| Widget hierarchy of the app| `w`| debugDumpApp()|
-| Rendering tree of the app | `t`| debugDumpRenderTree()|
-| Layers| `L`| debugDumpLayerTree()|
-| Accessibility | `S` (traversal order) or<br>`U` (inverse hit test order)|debugDumpSemantics()|
-| To toggle the widget inspector | `i` | WidgetsApp. showWidgetInspectorOverride|
-| To toggle the display of construction lines| `p` | debugPaintSizeEnabled|
-| To simulate different operating systems| `o` | defaultTargetPlatform|
-| To display the performance overlay | `P` | WidgetsApp. showPerformanceOverlay|
-| To save a screenshot to flutter. png| `s` ||
-| To quit| `q` ||
+| 앱의 위젯 계층| `w`| debugDumpApp()|
+| 앱의 렌더링 트리 | `t`| debugDumpRenderTree()|
+| 레이어| `L`| debugDumpLayerTree()|
+| 접근성 | `S` (traversal order) or<br>`U` (inverse hit test order)|debugDumpSemantics()|
+| 위젯 검사기로 전환 | `i` | WidgetsApp. showWidgetInspectorOverride|
+| 가이드 선(construction lines) 표시로 전환| `p` | debugPaintSizeEnabled|
+| 다른 운영 체제를 시뮬레이션| `o` | defaultTargetPlatform|
+| 성능 오버레이를 표시 | `P` | WidgetsApp. showPerformanceOverlay|
+| flutter.png 스크린샷 저장| `s` ||
+| 종료| `q` ||
 {:.table.table-striped}
 </div>
 
-## Animation
+## 애니메이션
 
-Well-designed animation makes a UI feel intuitive, contributes to the look and
-feel of a polished app, and improves the user experience. Flutter’s animation
-support makes it easy to implement simple and complex animations. The Flutter
-SDK includes many Material Design widgets that include standard
-motion effects and you can easily customize these effects to personalize your
-app.
+잘 설계된 애니메이션은 UI를 직관적으로 느끼게 하고, 
+앱의 모양과 느낌에 기여하며 사용자 경험을 향상시킵니다. 
+Flutter의 애니메이션은 간단하거나 복합적인 애니메이션을 쉽게 구현할 수 있도록 지원합니다.
+Flutter SDK에는 기본적인 모션 효과가 있는 머티리얼 디자인 위젯을 포함되어 있고,
+이러한 효과를 쉽게 커스터마이징하여 앱을 개인화 할 수 있습니다.
 
-In React Native, Animated APIs are used to create animations.
+React Native에서는 애니메이션 API를 사용하여 애니메이션을 만듭니다.
 
-In Flutter, use the
+Flutter에서는 
 [`Animation`]({{site.api}}/flutter/animation/Animation-class.html)
-class and the
+클래스와 
 [`AnimationController`]({{site.api}}/flutter/animation/AnimationController-class.html)
-class.  `Animation` is an abstract class that understands its current value and
-its state (completed or dismissed). The `AnimationController` class lets you
-play an animation forward or in reverse, or stop animation and set the animation
-to a specific value to customize the motion.
+클래스를 사용합니다. `Animation`은 현재 값과 상태 (완료 또는 해제)를 알고 있는 추상 클래스입니다.
+`AnimationController` 클래스를 사용하면
+애니메이션을 앞뒤로 재생하거나, 애니메이션을 중지하고, 애니메이션을 특정 값으로 설정하는 등 
+모션을 커스터마이징 할 수 있습니다.
 
-### How do I add a simple fade-in animation?
+### 간단한 fade-in 애니메이션을 추가하는 방법은?
 
-In the React Native example below, an animated component, `FadeInView` is
-created using the Animated API. The initial opacity state, final state, and the
-duration over which the transition occurs are defined. The animation component
-is added inside the `Animated` component, the opacity state `fadeAnim` is mapped
-to the opacity of the Text component that we want to animate, and then,
-`start()` is called to start the animation.
+아래 React Native 예제에서는 Animated API를 사용하여 
+애니메이션 컴포넌트 `FadeInView`를 생성했습니다.
+초기 불투명 상태, 최종 상태 및 전환이 발생하는 기간를 정의합니다. 
+애니메이션 컴포넌트가 `Animated` 컴포넌트 내부에 추가되고, 
+불투명 상태 `fadeAnim`이 움직이게 하고 싶은 Text 컴포넌트의 불투명도에 매핑 된 다음, `start()`를 
+호출하여 애니메이션을 시작합니다.
 
 ```js
 // React Native
@@ -2307,36 +2303,33 @@ class FadeInView extends React.Component {
     ...
 ```
 
-To create the same animation in Flutter, create an
-[`AnimationController`]({{site.api}}/flutter/animation/AnimationController-class.html)
-object named `controller` and specify the duration. By default, an
-`AnimationController` linearly produces values that range from 0.0 to 1.0,
-during a given duration. The animation controller generates a new value
-whenever the device running your app is ready to display a new frame.
-Typically, this rate is around 60 values per second.
+Flutter에서 같은 애니메이션을 생성하기 위해, `controller`라는 
+[`AnimationController`]({{site.api}}/flutter/animation/AnimationController-class.html) 
+객체를 만들고 기간을 지정하세요.
+기본적으로, `AnimationController`는 특정 기간 동안 0.0 ~ 1.0 범위에서 값이 선형적으로 증가합니다.
+이 애니메이션 컨트롤러는 앱이 실행되는 기기에서 새로운 프레임을 보여줄 준비가 됐을 때마다 새로운 값을 생성합니다.
+일반적으로, 초당 약 60번을 생성하는 비율을 가집니다.  
 
-When defining an `AnimationController`, you must pass in a `vsync` object. The
-presence of `vsync` prevents offscreen animations from consuming unnecessary
-resources. You can use your stateful object as the `vsync` by adding
-`TickerProviderStateMixin` to the class definition. An `AnimationController`
-needs a TickerProvider, which is configured using the `vsync` argument on the
-constructor.
+`AnimationController`를 정의할 때, `vsync` 객체를 넘겨야만 합니다.
+`vsync`가 있으면 화면이 꺼져 있을 때 애니메이션에 불필요한 리소스를 소비하지 않습니다.
+상태가 있는 객체를 사용할 수도 있습니다. 
+클래스 정의에 `TickerProviderStateMixin`을 추가하여 상태 저장 객체를 `vsync`로 사용할 수 있습니다.
+`AnimationController`에는 생성자에 `vsync` 인수를 사용하여 만들어진 TickerProvider가 필요합니다.
 
-A [`Tween`]({{site.api}}/flutter/animation/Tween-class.html)
-describes the interpolation between a beginning and ending value
-or the mapping from an input range to an output range. To use a `Tween` object
-with an animation, call the `Tween` object's `animate` method and pass it the
-`Animation` object that you want to modify.
+[`Tween`]({{site.api}}/flutter/animation/Tween-class.html)은 
+시작 값과 끝 값 사이의 보간(interpolation) 또는 입력 범위에서 출력 범위까지의 매핑을 표현합니다.
+애니메이션과 함께 `Tween` 객체를 사용하기 위해, 
+`Tween` 객체의 `animate` 매세드를 호출한 뒤 수정하고 싶은 `Animation` 객체로 넘기세요.
 
-For this example, a
+이 예제에서는 
 [`FadeTransition`]({{site.api}}/flutter/widgets/FadeTransition-class.html)
-widget is used and the `opacity` property is mapped to the `animation` object.
+위젯이 사용되고, `opacity` 속성은 `animation` 객체에 매핑됩니다.
 
-To start the animation, use `controller.forward()`. Other operations can also be
-performed using the controller such as `fling()` or `repeat()`. For this
-example, the
+애니메이션을 시작하기 위해, `controller.forward()`를 사용하세요. 
+`fling()`이나 `repeat()`을 사용하여 다른 동작도 수행할 수 있습니다.  
+이 예제에서는
 [`FlutterLogo`]({{site.api}}/flutter/material/FlutterLogo-class.html)
-widget is used inside the `FadeTransition` widget.
+위젯이 `FadeTransition` 위젯 안에 사용됩니다.
 
 <!-- skip -->
 ```dart
@@ -2386,14 +2379,14 @@ class _LogoFadeState extends State<LogoFade> with TickerProviderStateMixin {
 
 {% include android-ios-figure-pair.md image="react-native/flutter-fade.gif" alt="Flutter fade" class="border" %}
 
-### How do I add swipe animation to cards?
+### 카드에 스와이프 애니메이션을 추가하는 방법은?
 
-In React Native, either the `PanResponder` or third-party libraries are used for
-swipe animation.
+React Native에서는 `PanResponder` 혹은 서드파티 라이브러리를 사용하여 
+스와이프 애니메이션을 만듭니다.
 
-In Flutter, to add a swipe animation, use the
+Flutter에서는 스와이프 애니메이션을 추가하기 위해, 
 [`Dismissible`]({{site.api}}/flutter/widgets/Dismissible-class.html)
-widget and nest the child widgets.
+위젯을 사용하여 자식 위젯을 감쌉니다.
 
 <!-- skip -->
 ```dart
@@ -2410,81 +2403,81 @@ child: Dismissible(
 
 {% include android-ios-figure-pair.md image="react-native/card-swipe.gif" alt="Card swipe" class="border" %}
 
-## React Native and Flutter widget equivalent components
+## React Native 및 Flutter 위젯 상응 컴포넌트
 
-The following table lists commonly-used React Native components mapped to the
-corresponding Flutter widget and common widget properties.
+아래 표 목록은 일반적으로 사용되는 React Native 컴포넌트와 상응하는 Flutter 위젯, 
+그리고 공통 위젯 속성을 보여줍니다. 
 
 <div class="table-wrapper" markdown="1">
-| React Native Component                                                                    | Flutter Widget                                                                                             | Description                                                                                                                            |
+| React Native 컴포넌트                                                                       | Flutter 위젯                                                                                                | 설명                                                                                                                                    |
 | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| [Button](https://facebook.github.io/react-native/docs/button.html)                        | [Raised Button]({{site.api}}/flutter/material/RaisedButton-class.html)                           | A basic raised button.                                                                              |
-|                                                                                           |  onPressed [required]                                                                                        | The callback when the button is tapped or otherwise activated.                                                          |
-|                                                                                           | Child                                                                              | The button's label.                                                                                                      |
+| [Button](https://facebook.github.io/react-native/docs/button.html)                        | [Raised Button]({{site.api}}/flutter/material/RaisedButton-class.html)                           | 기본 양각 버튼(raised button).                                                                              |
+|                                                                                           |  onPressed [required]                                                                                        | 버튼을 누르거나 활성화할 때 호출되는 콜백.                                                          |
+|                                                                                           | Child                                                                              | 버튼의 라벨.                                                                                                      |
 |                                                                                           |                                                                                                            |                                                                                                                                        |
-| [Button](https://facebook.github.io/react-native/docs/button.html)                        | [Flat Button]({{site.api}}/flutter/material/FlatButton-class.html)                               | A basic flat button.                                                                                                         |
-|                                                                                           |  onPressed [required]                                                                                        | The callback when the button is tapped or otherwise activated.                                                            |
-|                                                                                           | Child                                                                              | The button's label.                                                                                                      |
+| [Button](https://facebook.github.io/react-native/docs/button.html)                        | [Flat Button]({{site.api}}/flutter/material/FlatButton-class.html)                               | 기본 평평한 버튼(flat button).                                                                                                         |
+|                                                                                           |  onPressed [required]                                                                                        | 버튼을 누르거나 활성화할 때 호출되는 콜백.                                                            |
+|                                                                                           | Child                                                                              | 버튼의 라벨.                                                                                                      |
 |                                                                                           |                                                                                                            |                                                                                                                                        |
-| [ScrollView](https://facebook.github.io/react-native/docs/scrollview.html)                | [ListView]({{site.api}}/flutter/widgets/ListView-class.html)                                    | A scrollable list of widgets arranged linearly.|
-||        children                                                                              | 	( <Widget\> [ ])  List of child widgets to display.
-||controller |[ [Scroll Controller]({{site.api}}/flutter/widgets/ScrollController-class.html) ] An object that can be used to control a scrollable widget.
-||itemExtent|[ double ] If non-null, forces the children to have the given extent in the scroll direction.
-||scroll Direction|[ [Axis]({{site.api}}/flutter/painting/Axis-class.html) ] The axis along which the scroll view scrolls.
+| [ScrollView](https://facebook.github.io/react-native/docs/scrollview.html)                | [ListView]({{site.api}}/flutter/widgets/ListView-class.html)                                    | 선형으로 배열된 스크롤 가능한 위젯 목록.     |
+||        children                                                                              | 	( <Widget\> [ ])  표시할 하위 위젯의 목록.
+||controller |[ [Scroll Controller]({{site.api}}/flutter/widgets/ScrollController-class.html) ] 스크롤 가능한 위젯을 제어하는 데 사용할 수 있는 객체.
+||itemExtent|[ double ] Null이 아닐 경우, 스크롤 방향으로 지정된 크기를 갖도록 한다.   
+||scroll Direction|[ [Axis]({{site.api}}/flutter/painting/Axis-class.html) ] 스크롤 뷰가 스크롤되는 축.
 ||                                                                                                            |                                                                                                                                        |
-| [FlatList](https://facebook.github.io/react-native/docs/flatlist.html)                    | [ListView. builder()]({{site.api}}/flutter/widgets/ListView/ListView.builder.html)               | The constructor for a linear array of widgets that are created on demand.
-||itemBuilder [required] |[[ Indexed Widget Builder]({{site.api}}/flutter/widgets/IndexedWidgetBuilder.html)] helps in building the children on demand. This callback is called only with indices greater than or equal to zero and less than the itemCount.
-||itemCount |[ int ] improves the ability of the ListView to estimate the maximum scroll extent.
+| [FlatList](https://facebook.github.io/react-native/docs/flatlist.html)                    | [ListView. builder()]({{site.api}}/flutter/widgets/ListView/ListView.builder.html)               | 온디맨드 방식의 선형으로 배열된 위젯 목록 생성자.
+||itemBuilder [required] |[[ Indexed Widget Builder]({{site.api}}/flutter/widgets/IndexedWidgetBuilder.html)] 온디맨드 방식으로 자식들을 생성. 이 콜백은 0보다 크거나 같고 itemCount보다 작은 인덱스로만 호출됩니다.      
+||itemCount |[ int ] 최대 스크롤 범위를 추정하는 ListView의 기능을 향상시킴.   
 |                                                                                           |                                                                                                            |                                                                                                                                        |
-| [Image]({{site.api}}/flutter/widgets/Image-class.html)                         | [Image](https://facebook.github.io/react-native/docs/image.html)                                           | A widget that displays an image.                                                                                                       |
-|                                                                                           |  image [required]                                                                                          | The image to display.                                                                                                                  |
-|                                                                                           | Image. asset                                                                                                | Several constructors are provided for the various ways that an image can be specified.                                                 |
-|                                                                                           | width, height, color, alignment                                                                            | The style and layout for the image.                                                                                                         |
-|                                                                                           | fit                                                                                                        | Inscribing the image into the space allocated during layout.                                                                           |
+| [Image]({{site.api}}/flutter/widgets/Image-class.html)                         | [Image](https://facebook.github.io/react-native/docs/image.html)                                           | 이미지를 보여주는 위젯.                                                                                                             |
+|                                                                                           |  image [required]                                                                                          | 보여질 이미지.                                                                                                                  |
+|                                                                                           | Image. asset                                                                                                | 이미지를 다양한 방법으로 지정할 수 있게 하기 위해 여러 생성자가 제공됨.                                                 |
+|                                                                                           | width, height, color, alignment                                                                            | 이미지의 스타일 및 레이아웃.                                                                                                         |
+|                                                                                           | fit                                                                                                        | 레이아웃에서 설정된 공간에 이미지를 위치시킴.                                                                               |
 |                                                                                           |                                                                                                            |                                                                                                                                        |
-| [Modal](https://facebook.github.io/react-native/docs/modal.html)                          | [ModalRoute]({{site.api}}/flutter/widgets/ModalRoute-class.html)                                | A route that blocks interaction with previous routes.                                                                                  |
-|                                                                                           | animation                                                                                                  | The animation that drives the route's transition and the previous route's forward transition.                                          |
+| [Modal](https://facebook.github.io/react-native/docs/modal.html)                          | [ModalRoute]({{site.api}}/flutter/widgets/ModalRoute-class.html)                                | 이전 경로와의 상호 작용이 차단된 경로.                                                                                  |
+|                                                                                           | animation                                                                                                  | 경로가 변화할 때 애니메이션 및 이전 경로에서 앞으로 갈 때 애니메이션.                                            |
 |                                                                                           |                                                                                                            |                                                                                                                                        |
-|  [Activity Indicator](https://facebook.github.io/react-native/docs/activityindicator.html) | [Circular Progress Indicator]({{site.api}}/flutter/material/CircularProgressIndicator-class.html) | A widget that shows progress along a circle.                                                                                           |
-|                                                                                           | strokeWidth                                                                                                | The width of the line used to draw the circle.                                                                                         |
-|                                                                                           | backgroundColor                                                                                            | The progress indicator's background color. The current theme's `ThemeData.backgroundColor` by default.                                   |
+|  [Activity Indicator](https://facebook.github.io/react-native/docs/activityindicator.html) | [Circular Progress Indicator]({{site.api}}/flutter/material/CircularProgressIndicator-class.html) | 원을 따라 진행 상황을 보여주는 위젯.                                                                                           |
+|                                                                                           | strokeWidth                                                                                                | 원을 그리는 데 사용되는 선의 너비.                                                                                         |
+|                                                                                           | backgroundColor                                                                                            | 진행 표시자의 배경 색. 현재 테마의 `ThemeData.backgroundColor`가 기본.                                   |
 |                                                                                           |                                                                                                            |                                                                                                                                        |
-|  [Activity Indicator](https://facebook.github.io/react-native/docs/activityindicator.html) | [Linear Progress Indicator]({{site.api}}/flutter/material/LinearProgressIndicator-class.html)     | A widget that shows progress along a circle.                                                                                           |
-|                                                                                           | value                                                                                                      | The value of this progress indicator.                                                                                                   |
+|  [Activity Indicator](https://facebook.github.io/react-native/docs/activityindicator.html) | [Linear Progress Indicator]({{site.api}}/flutter/material/LinearProgressIndicator-class.html)     | 원을 따라 진행 상황을 보여주는 위젯.                                                                                             |
+|                                                                                           | value                                                                                                      | 진행 표시자의 값.                                                                                                   |
 |                                                                                           |                                                                                                            |                                                                                                                                        |
-| [Refresh Control](https://facebook.github.io/react-native/docs/refreshcontrol.html)        | [Refresh Indicator]({{site.api}}/flutter/material/RefreshIndicator-class.html)                   | A widget that supports the Material "swipe to refresh" idiom.                                                                          |
-|                                                                                           | color                                                                                                      | The progress indicator's foreground color.                                                                                             |
-|                                                                                           | onRefresh                                                                                                  | A function that's called when a user drags the refresh indicator far enough to demonstrate that they want the app to refresh.  |
+| [Refresh Control](https://facebook.github.io/react-native/docs/refreshcontrol.html)        | [Refresh Indicator]({{site.api}}/flutter/material/RefreshIndicator-class.html)                   |  "스와이프하여 새로 고침"을 지원하는 위젯.                                                                          |
+|                                                                                           | color                                                                                                      | 진행 표시기의 전경색.                                                                                             |
+|                                                                                           | onRefresh                                                                                                  | 사용자가 앱을 새로고침 하기를 원하여 새로 고침 표시를 충분히 드래그 할 때 호출되는 함수입니다.      |
 |                                                                                           |                                                                                                            |                                                                                                                                        |
-| [View](https://facebook.github.io/react-native/docs/view.html)                            | [Container]({{site.api}}/flutter/widgets/Container-class.html)                                  | A widget that surrounds a child widget.                                                                                                                |
+| [View](https://facebook.github.io/react-native/docs/view.html)                            | [Container]({{site.api}}/flutter/widgets/Container-class.html)                                  | 자식 위젯을 둘러싼 위젯.                                                                                                                |
 |                                                                                           |                                                                                                            |                                                                                                                                        |
-| [View](https://facebook.github.io/react-native/docs/view.html)                            | [Column]({{site.api}}/flutter/widgets/Column-class.html)                                        | A widget that displays its children in a vertical array.                                                                                              |
+| [View](https://facebook.github.io/react-native/docs/view.html)                            | [Column]({{site.api}}/flutter/widgets/Column-class.html)                                        | 자식들을 수직 배열로 배치하는 위젯.                                                                                              |
 |                                                                                           |                                                                                                            |                                                                                                                                        |
-| [View](https://facebook.github.io/react-native/docs/view.html)                            | [Row]({{site.api}}/flutter/widgets/Row-class.html)                                              | A widget that displays its children in a horizontal array.                                                                                            |
+| [View](https://facebook.github.io/react-native/docs/view.html)                            | [Row]({{site.api}}/flutter/widgets/Row-class.html)                                              | 자식들을 수평 배열로 배치하는 위젯.                                                                                            |
 |                                                                                           |                                                                                                            |                                                                                                                                        |
-| [View](https://facebook.github.io/react-native/docs/view.html)                            | [Center]({{site.api}}/flutter/widgets/Center-class.html)                                        | A widget that centers its child within itself.                                                                                                       |
+| [View](https://facebook.github.io/react-native/docs/view.html)                            | [Center]({{site.api}}/flutter/widgets/Center-class.html)                                        | 자식을 중심에 배치하는 위젯.                                                                                                       |
 |                                                                                           |                                                                                                            |                                                                                                                                        |
-| [View](https://facebook.github.io/react-native/docs/view.html)                            | [Padding]({{site.api}}/flutter/widgets/Padding-class.html)                                      | A widget that insets its child by the given padding.                                                                                                 |
-|                                                                                           | padding [required]                                                                                         | [ EdgeInsets ] The amount of space to inset the child.
+| [View](https://facebook.github.io/react-native/docs/view.html)                            | [Padding]({{site.api}}/flutter/widgets/Padding-class.html)                                      | 주어진 여백과 함께 자식을 삽입하는 위젯.                                                                                                 |
+|                                                                                           | padding [required]                                                                                         | [ EdgeInsets ] 일정 공간과 함께 자식을 삽입하는 위젯.
 |||
-| [Touchable Opacity](https://facebook.github.io/react-native/docs/touchableopacity.html)    | [Gesture Detector]({{site.api}}/flutter/widgets/GestureDetector-class.html)                      | A widget that detects gestures.                                                                                                                       |
-|                                                                                           | onTap                                                                                                      | A callback when a tap occurs.                                                                                                               |
-|                                                                                           | onDoubleTap                                                                                                | A callback when a tap occurs at the same location twice in quick succession.
+| [Touchable Opacity](https://facebook.github.io/react-native/docs/touchableopacity.html)    | [Gesture Detector]({{site.api}}/flutter/widgets/GestureDetector-class.html)                      | 제스처를 감지하는 위젯.                                                                                                                       |
+|                                                                                           | onTap                                                                                                      | 탭이 발생할 때의 콜백.                                                                                                               |
+|                                                                                           | onDoubleTap                                                                                                | 탭이 동일한 위치에서 두 번 연속해서 빠르게 발생할 때의 콜백입니다.
 |||
-| [Text Input]({{site.api}}/flutter/services/TextInput-class.html)                | [Text Input](https://facebook.github.io/react-native/docs/textinput.html)                                   | The interface to the system's text input control.                                                                                           |
-|                                                                                           | controller                                                                                                 | [ [Text Editing Controller]({{site.api}}/flutter/widgets/TextEditingController-class.html) ] used to access and modify text.
+| [Text Input]({{site.api}}/flutter/services/TextInput-class.html)                | [Text Input](https://facebook.github.io/react-native/docs/textinput.html)                                   | 시스템의 텍스트 입력 제어에 대한 인터페이스.                                                                                           |
+|                                                                                           | controller                                                                                                 | [ [Text Editing Controller]({{site.api}}/flutter/widgets/TextEditingController-class.html) ] 텍스트를 액세스하고 수정하는 데 사용.
 |||
-| [Text](https://facebook.github.io/react-native/docs/text.html)                          | [Text]({{site.api}}/flutter/widgets/Text-class.html)                                            | The Text widget that displays a string of text with a single style.                                                                                                                                                                           |
-|                                                                                         | data                                                                                                      | [ String ] The text to display.                                                                                                                                                                              |
-|                                                                                         | textDirection                                                                                             | [ [Text Align]({{site.api}}/flutter/dart-ui/TextAlign-class.html) ] The direction in which the text flows.                                                                                     |
+| [Text](https://facebook.github.io/react-native/docs/text.html)                          | [Text]({{site.api}}/flutter/widgets/Text-class.html)                                            | 단일 스타일로 텍스트 문자열을 표시하는 텍스트 위젯.                                                                                                                                                                              |
+|                                                                                         | data                                                                                                      | [ String ] 보여줄 텍스트.                                                                                                                                                                                 |
+|                                                                                         | textDirection                                                                                             | [ [Text Align]({{site.api}}/flutter/dart-ui/TextAlign-class.html) ] 텍스트가 흘러가는 방향.                                                                                     |
 |                                                                                         |                                                                                                           |                                                                                                                                                                                                              |
-| [Switch](https://facebook.github.io/react-native/docs/switch.html)                      | [Switch]({{site.api}}/flutter/material/Switch-class.html)                                      | A material design switch.                                                                                                                                                                                    |
-|                                                                                         | value [required]                                                                                          | [ boolean ] Whether this switch is on or off.                                                                                                                                                                 |
-|                                                                                         | onChanged [required]                                                                                      | [ callback ] Called when the user toggles the switch on or off.                                                                                                                                               |
+| [Switch](https://facebook.github.io/react-native/docs/switch.html)                      | [Switch]({{site.api}}/flutter/material/Switch-class.html)                                      | 머티리얼 디자인 스위치.                                                                                                                                                                                    |
+|                                                                                         | value [required]                                                                                          | [ boolean ] 스위치가 켜져 있는지 꺼져 있는지 여부.                                                                                                                                                                 |
+|                                                                                         | onChanged [required]                                                                                      | [ callback ] 사용자가 스위치를 켜거나 끌 때 호출됨.                                                                                                                                               |
 |                                                                                         |                                                                                                           |                                                                                                                                                                                                              |
-| [Slider](https://facebook.github.io/react-native/docs/slider.html)                      | [Slider]({{site.api}}/flutter/material/Slider-class.html)                                      | Used to select from a range of values.                                                                                                                                                                       |
-|                                                                                         | value [required]                                                                                          | [ double ] The current value of the slider.                                                                                                                                                                           |
-|                                                                                         | onChanged [required]                                                                                      | Called when the user selects a new value for the slider.                                                                                                                                                      |
+| [Slider](https://facebook.github.io/react-native/docs/slider.html)                      | [Slider]({{site.api}}/flutter/material/Slider-class.html)                                      | 값 범위에서 선택해야 할 때 사용됨.                                                                                                                                                                       |
+|                                                                                         | value [required]                                                                                          | [ double ] 슬라이더의 현재 값.                                                                                                                                                                           |
+|                                                                                         | onChanged [required]                                                                                      | 사용자가 슬라이더의 새 값을 선택할 때 호출됨.                                                                                                                                                      |
 {:.table.table-striped}
 </div>
 
