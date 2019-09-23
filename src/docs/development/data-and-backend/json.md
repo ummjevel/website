@@ -438,4 +438,4 @@ For more information, see [explicitToJson][] in the
 [JsonCodec]: {{site.dart.api}}/{{site.dart.sdk.channel}}/dart-convert/JsonCodec-class.html
 [리플렉션]: https://ko.wikipedia.org/wiki/%EB%B0%98%EC%98%81_(%EC%BB%B4%ED%93%A8%ED%84%B0_%EA%B3%BC%ED%95%99)
 [Tree shaking]: https://en.wikipedia.org/wiki/Tree_shaking
-[the pubspec file]: https://raw.githubusercontent.com/dart-lang/json_serializable/master/example/pubspec.yaml
+[pubspec 파일]: https://raw.githubusercontent.com/dart-lang/json_serializable/master/example/pubspec.yaml
