@@ -7,7 +7,7 @@ title: 튜토리얼
 
 아래 튜토리얼에서 선택하세요.
 
-* [레이아웃 만들기 튜토리얼](/docs/development/ui/layout/tutorial)
+* [레이아웃 만들기](/docs/development/ui/layout/tutorial)
 : Flutter의 레이아웃 구조를 이용해 레이아웃을 만들어 보세요. 기본 원리를 배우면 샘플 스크린샷 같은
   레이아웃을 만들 수 있어요.
 

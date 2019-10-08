@@ -31,9 +31,11 @@ Flutter를 설치하고 실행하기 위해서는
 
 {% include_relative _get-sdk.md %}
 
-{% include_relative _path-mac-linux.md %}
+{% include_relative _path-linux-chromeos.md %}
 
 {% include_relative _android-setup.md %}
+
+{% include_relative _web-setup.md %}
 
 ## 다음 단계
 

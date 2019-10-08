@@ -4,18 +4,26 @@ title: 기술 개요
 
 ## Flutter란?
 
-Flutter는 고성능, 고품질의 iOS, Android 앱을 단일 코드 베이스로 개발할 수 있는 모바일 앱 SDK입니다.
+Flutter는 고성능, 고품질의 iOS, Android, 웹([tech preview][]) 
+앱을 단일 코드 베이스로 개발할 수 있는 모바일 앱 SDK입니다.
 
 스크롤 동작, 글씨, 아이콘과 같이 플랫폼 별로 달라지는 부분들을 아울러서 서로 다른 플랫폼에서도 자연스럽게 동작하는 고성능의 앱을 개발할 수 있게 하는 것이 Flutter의 목표입니다.
 
 <object type="image/svg+xml" data="/images/whatisflutter/hero-shrine.svg" style="width: 100%; height: 100%;"></object>
 
-지금 보시는 앱은 Flutter 설치 및 환경 구축 후 직접 돌려볼 수 있는 데모 앱입니다. 
-그 외 다른 Flutter 샘플 앱들은 [Gallery]({{site.github}}/flutter/flutter/tree/master/examples/flutter_gallery/lib/demo)에서 확인할 수 있습니다.
-Shrine은 고품질의 이미지 스크롤, 대화형 카드, 버튼, 드롭다운 리스트 그리고 쇼핑 카트 페이지를 갖고 있습니다. 
-이 앱의 단일 코드 베이스 혹은 더 많은 예제들을 보고 싶다면, [GitHub 저장소를 방문하세요]({{site.github}}/flutter/flutter/tree/master/examples).
+지금 보시는 앱은 Flutter 설치 및 환경 구축 후 
+직접 돌려볼 수 있는 데모 앱입니다. 
+그 외 다른 Flutter 샘플 앱들은 [Flutter Gallery]()에서 확인할 수 있습니다.
+Shrine은 고품질의 이미지 스크롤, 대화형 카드, 버튼, 
+드롭다운 리스트 그리고 쇼핑 카트 페이지를 갖고 있습니다. 
+이 앱의 단일 코드 베이스 혹은 더 많은 예제들을 보고 싶다면, [GitHub 저장소를 방문하세요]().
 
-Flutter 앱 개발을 시작하기 위해 모바일 개발 경험이 반드시 필요하지는 않습니다. 앱은 [Dart]({{site.dart-site}})로 작성되는데, 만약 자바나 자바스크립트와 같은 언어를 사용해본 경험이 있다면 익숙할 수 있습니다. 객체지향 언어에 대한 경험은 분명 도움이 되겠지만, 프로그래머가 아닌 사람도 Flutter 앱을 만들었습니다!
+Flutter 앱 개발을 시작하기 위해 모바일 개발 경험이 반드시 필요하지는 않습니다. 
+앱은 [Dart]()로 작성되는데, 
+만약 자바나 자바스크립트와 같은 언어를 사용해본 
+경험이 있다면 익숙할 수 있습니다. 
+객체지향 언어에 대한 경험은 분명 도움이 되겠지만, 
+프로그래머가 아닌 사람도 Flutter 앱을 만들었습니다!
 
 ## 왜 Flutter를 사용해야 할까요?
 
@@ -25,7 +33,7 @@ Flutter의 장점은 무엇일까요:
     *   단일 코드베이스로 iOS와 Android 개발할 수 있습니다.
     *   모던하고 표현적인 언어 그리고 선언적 접근법을 통해 단일 OS에서 더 적은 코드로 더 많은 것을 할 수 있습니다.
     *   쉽게 프로토타입을 제작하고 반복할 수 있습니다.
-        *   앱 실행 중에 코드를 바꾸고 리로드하여 개발을 할 수 있습니다. (hot reload)
+        *   앱 실행 중에 코드를 바꾸고 리로드하여 개발을 할 수 있습니다. ( hot reload)
         *   앱이 중단된 지점에서 문제를 수정하고 디버깅을 이어나갈 수 있습니다.
 *   아름답고, 고도로 커스터마이징된 UX를 만들 수 있습니다.
     *   Flutter의 자체 프레임워크를 사용하여 머티리얼 디자인과 쿠퍼티노 (iOS) 스타일의 풍부한 위젯들을 만들 수 있습니다.
@@ -60,13 +68,10 @@ Flutter는 현대적인 react-style 프레임워크, 2D 렌더링 엔진, 바로
 
 위젯은 종종 강력한 효과를 내기 위해 단일 목적의 여러 작은 위젯들로 구성됩니다. 예를 들어, 
 일반적으로 사용되는 
-[Container]({{site.github}}/flutter/flutter/blob/master/packages/flutter/lib/src/widgets/container.dart) 위젯은 painting, positioning, sizing과 같은 레이아웃 관련 위젯들로 구성됩니다. 
-좀더 구체적으로 [LimitedBox]({{site.api}}/flutter/widgets/LimitedBox-class.html),
-[ConstrainedBox]({{site.api}}/flutter/widgets/ConstrainedBox-class.html),
-[Align]({{site.api}}/flutter/widgets/Align-class.html),
-[Padding]({{site.api}}/flutter/widgets/Padding-class.html),
-[DecoratedBox]({{site.api}}/flutter/widgets/DecoratedBox-class.html),
-[Transform]({{site.api}}/flutter/widgets/Transform-class.html) 
+[Container]() 위젯은 painting, positioning, sizing과 같은 레이아웃 관련 위젯들로 구성됩니다. 
+좀더 구체적으로 `Container`는 [LimitedBox](),
+[ConstrainedBox](), [Align](), [Padding](),
+[DecoratedBox](), [Transform]() 
 위젯들로 구성됩니다. 커스터마이징을 위해 Container의 서브 클래스를 만들기 보다는 앞서 
 언급한 위젯들 혹은 그외 다른 간단한 위젯들을 참신한 방법으로 조합할 수 있습니다.
 
@@ -75,7 +80,7 @@ Flutter는 현대적인 react-style 프레임워크, 2D 렌더링 엔진, 바로
 <object type="image/svg+xml" data="/images/whatisflutter/diagram-widgetclass.svg" style="width: 100%; height: 100%;"></object>
 
 다른 위젯들과 함께 구성하는 방식으로 위젯의 *레이아웃*을 조작할 수 있습니다. 
-예를 들어, 위젯을 가운데로 위치시키려면 그 위젯을 Center 위젯으로 감싸면 됩니다. 
+예를 들어, 위젯을 가운데로 위치시키려면 그 위젯을 `Center` 위젯으로 감싸면 됩니다. 
 패딩, 정렬, 행, 열, 그리드와 같은 여러 레이아웃 위젯들이 있는데, 이러한 
 레이아웃 위젯들은 그 자체로 시각적 표현을 갖고 있지는 않습니다. 이들의 유일한 
 목적은 다른 위젯의 레이아웃을 제어하는 것이기 때문입니다. 만약 어떤 위젯이 
@@ -87,7 +92,9 @@ Flutter 프레임워크는 각각의 층이 이전 층에 의해 빌드되는 �
 
 <object type="image/svg+xml" data="/images/whatisflutter/diagram-layercake.svg" style="width: 85%; height: 85%"></object>
 
-프레임워크의 상위 레이어로 갈수록 하위 레이어보다 더 빈번히 사용됩니다. Flutter의 계층화된 프레임워크를 구성하는 전체 라이브러리 셋은 [API 문서]({{site.api}})에서 확인할 수 있습니다.
+프레임워크의 상위 레이어로 갈수록 하위 레이어보다 더 빈번히 사용됩니다. 
+Flutter의 계층화된 프레임워크를 구성하는 전체 
+라이브러리는 [API 문서]()에서 확인할 수 있습니다.
 
 이러한 설계의 목표는 개발자로 하여금 더 적은 코드로 더 많은 일을 할 수 있게 하는 것입니다. 예를 들어, 머티리얼 계층은 위젯 계층의 기본적인 위젯들을 조합하여 만들어지고, 위젯 계층은 렌더링 계층의 하위 레벨 오브젝트들의 조합으로 만들어집니다.
 
@@ -97,8 +104,15 @@ Flutter 프레임워크는 각각의 층이 이전 층에 의해 빌드되는 �
 
 ### 위젯 만들기
 
-위젯의 트리 (혹은 계층 구조)를 반환하는 [build]({{site.api}}/flutter/widgets/StatelessWidget/build.html) 함수를 구현하여 위젯의 고유한 특성을 정의할 수 있습니다. 반환된 트리 (계층 구조)는 위젯의 UI 부분을 좀더 구체적으로 나타냅니다. 예를 들어, 툴바 위젯의 build 함수는 약간의 [텍스트]({{site.api}}/flutter/widgets/Text-class.html)와 [다양한]({{site.api}}/flutter/material/IconButton-class.html)
-[버튼들]({{site.api}}/flutter/material/PopupMenuButton-class.html)로 구성된 [horizontal layout]({{site.api}}/flutter/widgets/Row-class.html)를 반환할 것입니다. 프레임워크는 각 위젯들이 [완전히 구체적인 위젯]({{site.api}}/flutter/widgets/RenderObjectWidget-class.html)으로 처리될 때까지 재귀적으로 처리할 것입니다. 그리고 그 결과 위젯은 트리로 결합됩니다.
+위젯의 트리 (혹은 계층 구조)를 반환하는 [`build()`]() 함수를 
+구현하여 위젯의 고유한 특성을 정의할 수 있습니다. 
+반환된 트리 (계층 구조)는 위젯의 UI 부분을 좀더 구체적으로 나타냅니다. 
+예를 들어, 툴바 위젯의 build 함수는 약간의 [텍스트]()와 
+[다양한]() [버튼들]()로 구성된 
+[horizontal layout]()를 반환할 것입니다. 
+프레임워크는 각 위젯들이 [완전히 구체적인(concrete) 위젯]()으로 
+처리될 때까지 재귀적으로 처리할 것입니다. 
+그리고 그 결과 위젯은 트리로 결합됩니다.
 
 위젯의 build 함수는 부수 효과가 없어야 합니다. 매번 위젯이 새로 빌드될 때마다, 이전에 반환한 것과 관계없이 항상 새로운 트리를 반환해야 합니다. 프레임워크는 현재 빌드와 이전 빌드를 계속 비교하여 UI를 그리기 위해 어떤 수정이 필요한지 결정합니다.
 
@@ -106,42 +120,100 @@ Flutter 프레임워크는 각각의 층이 이전 층에 의해 빌드되는 �
 
 ### UI 다루기
 
-만약 위젯 고유의 특성이 사용자 상호작용이나 기타 다른 요소에 의해 변경될 필요가 있다면 위젯은 *stateful*이라고 말할 수 있습니다. 예를 들어, 만약 사용자가 버튼을 누를 때마다 1씩 증가하는 카운터 위젯이 있다고 하면, 그 카운터의 값은 위젯의 상태입니다. 값이 변할 때마다, 위젯은 UI를 업데이트하기 위해 다시 빌드되어야 합니다.
+만약 위젯 고유의 특성이 사용자 상호작용이나 
+기타 다른 요소에 의해 변경될 필요가 있다면 
+위젯은 *stateful*이라고 말할 수 있습니다. 
+예를 들어, 만약 사용자가 버튼을 누를 때마다 
+1씩 증가하는 카운터 위젯이 있다고 하면, 
+그 카운터의 값은 위젯의 상태입니다. 
+값이 변할 때마다, 위젯은 UI를 업데이트하기 위해 다시 빌드되어야 합니다.
 
-이러한 위젯은 [StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html)
-[StatelessWidget]({{site.api}}/flutter/widgets/StatelessWidget-class.html)과는 다른)의 서브 클래스이며 변경 가능한 상태를 서브 클래스의 [State]({{site.api}}/flutter/widgets/State-class.html)에 저장합니다.
+이러한 위젯은 [StatefulWidget]()([StatelessWidget]()과는 다른)의 
+서브 클래스이며 변경 가능한 상태를 
+서브 클래스의 [State]()에 저장합니다.
 
 <object type="image/svg+xml" data="/images/whatisflutter/diagram-state.svg" style="width: 85%; height: 85%"></object>
 
-State 오브젝트의 값이 변경될 때마다 (예를 들어 카운터 증가), [setState]({{site.api}}/flutter/widgets/State/setState.html)()를 호출해야 합니다. 그렇게 해야 프레임워크가 State의 빌드 메서드를 다시 호출하여 UI를 업데이트하게 됩니다. 상태 관리 예제는 [MyApp
-template]({{site.github}}/flutter/flutter/blob/master/packages/flutter_tools/templates/app/lib/main.dart.tmpl)에서 확인할 수 있습니다.
+`State` 오브젝트의 값이 변경될 때마다 
+(예를 들어 카운터 증가), [`setState()`]()()를 호출해야 합니다. 
+그렇게 해야 프레임워크가 `State`의 빌드 메서드를 다시 호출하여 
+UI를 업데이트하게 됩니다. 
+상태 관리 예제는 [MyApp template]()에서 확인할 수 있습니다.
 
 상태와 위젯 객체를 분리시키면 다른 위젯들이 상태 손실에 대한 걱정없이 stateless 위젯과 stateful 위젯을 동일하게 처리하게 할 수 있습니다. 상태를 유지하기 위해 자식을 붙잡고 있을 필요 없이, 자식의 상태를 잃지 않고도 자유롭게 새로운 자식 인스턴스를 만들 수 있습니다. 프레임워크는 기존 상태 객체를 찾고 재사용하는 모든 작업을 적절한 때에 수행합니다.
 
 ## 해보세요!
 
-이제 Flutter 프레임워크의 기본 구조와 원리, 앱이 어떻게 만들어지고 상호작용하는지 이해했으므로, 개발할 준비가 되었습니다.
+이제 Flutter 프레임워크의 기본 구조와 원리, 
+앱이 어떻게 만들어지고 상호작용하는지 이해했으므로, 
+개발할 준비가 되었습니다.
 
 다음 과정:
 
-1.  [Flutter 시작하기 가이드 따라하기](/docs/get-started).
-1.  [레이아웃 만들기 튜토리얼](/docs/development/ui/layout/tutorial)과 [Flutter 앱에 상호작용 추가하기](/docs/development/ui/interactive)를 해보세요.
-1.  [위젯 프레임워크 둘러보기](/docs/development/ui/widgets-intro)에 있는 상세한 예제들을 따라해보세요.
+1. Try the [layout codelab][].
+   (It doesn't require downloading Flutter or Dart!)
+1. [Install Flutter][].
+1. Check out the Flutter [cookbook][].
+1. Check out the Flutter [examples][].
+1. Try another of the Flutter [codelabs][].
+1. [Flutter 튜토리얼][] 해보기.
+1. [위젯 프레임워크 둘러보기][]에 있는 상세한 예제들을 따라해보세요.
+1. Check out Flutter's [technical videos][].
 
 ## 도움 받기
 
-Flutter 프로젝트에 관심을 갖고 다양한 방식으로 커뮤니티에 참여하세요. 
-Flutter는 오픈 소스이며 당신의 피드백을 환영합니다.
+Track the Flutter project and join the conversation in a variety of ways.
+Flutter is open source and encourages dialog, so long as it follows
+Flutter's [code of conduct][].
 
-- [특정 솔루션들로 답변될 수 있는 HOWTO 질문들은 여기에 물어봐주세요][so]
-- [Flutter 엔지니어들과 사용자들 간의 실시간 채팅][gitter]
-- [Flutter 관련 논의, 모범 사례, 앱 디자인 그 외 기타 등등을 위한 메일링 리스트][mailinglist]
-- [버그 리포팅, 기능과 문서에 대한 요구 사항][issues]
-- [Twitter 구독: @flutterdev](https://twitter.com/flutterdev/)
+* Ask how-to questions that can be answered with specific solutions
+  on [Stack Overflow][].
+* Live chat with Flutter engineers and users on [Discord][] (preferred)
+  or [gitter][].
+* Discuss Flutter, best practices, app design,
+  and more on the [flutter-dev][] mailing list.
+* Subscribe to the [flutter-announce][] mailing list
+  to be notified of changes to the framework.
+* Report bugs, request features and docs on [GitHub][].
+* Follow us on Twitter [@flutterdev][].
 
 
-[issues]: {{site.github}}/flutter/flutter/issues
-[apidocs]: {{site.api}}
-[so]: {{site.so}}/tags/flutter
-[mailinglist]: {{site.groups}}/d/forum/flutter-dev
+[`Align`]: {{site.api}}/flutter/widgets/Align-class.html
+[API 문서]: {{site.api}}
+[`build()`]: {{site.api}}/flutter/widgets/StatelessWidget/build.html
+[버튼들]: {{site.api}}/flutter/material/PopupMenuButton-class.html
+[code of conduct]: {{site.github}}/flutter/blob/master/CODE_OF_CONDUCT
+[codelabs]: /docs/codelabs
+[`ConstrainedBox`]: {{site.api}}/flutter/widgets/ConstrainedBox-class.html
+[`Container`]: {{site.api}}/flutter/widgets/Container-class.html
+[cookbook]: /docs/cookbook
+[Dart]: {{site.dart-site}}
+[`DecoratedBox`]: {{site.api}}/flutter/widgets/DecoratedBox-class.html
+[Discord]: https://discord.gg/N7Yshp4
+[tech preview]: /web
+[examples]: {{site.github}}/flutter/samples/blob/master/INDEX.md
+[@flutterdev]: https://twitter.com/flutterdev
+[완전히 구체적인(concrete) 위젯]: {{site.api}}/flutter/widgets/RenderObjectWidget-class.html
+[Flutter 튜토리얼]: /docs/reference/tutorials
+[Flutter Gallery]: {{site.github}}/flutter/flutter/tree/master/examples/flutter_gallery/lib/demo
+[flutter-announce]: {{site.groups}}/forum/#!forum/flutter-announce
+[flutter-dev]: {{site.groups}}/d/forum/flutter-dev
+[GitHub]: {{site.github}}/flutter/flutter/issues
 [gitter]: https://gitter.im/flutter/flutter
+[horizontal layout]: {{site.api}}/flutter/widgets/Row-class.html
+[Install Flutter]: /docs/get-started/install
+[layout codelab]: /docs/codelabs/layout-basics
+[`LimitedBox`]: {{site.api}}/flutter/widgets/LimitedBox-class.html
+[`Padding`]: {{site.api}}/flutter/widgets/Padding-class.html
+[MyApp template]: {{site.github}}/flutter/flutter/blob/master/packages/flutter_tools/templates/app/lib/main.dart.tmpl
+[`setState()`]: {{site.api}}/flutter/widgets/State/setState.html
+[Stack Overflow]: {{site.so}}/tags/flutter
+[`State`]: {{site.api}}/flutter/widgets/State-class.html
+[`StatefulWidget`]: {{site.api}}/flutter/widgets/StatefulWidget-class.html
+[`StatelessWidget`]: {{site.api}}/flutter/widgets/StatelessWidget-class.html
+[technical videos]: /docs/resources/videos
+[텍스트]: {{site.api}}/flutter/widgets/Text-class.html
+[위젯 프레임워크 둘러보기]: /docs/development/ui/widgets-intro
+[`Transform`]: {{site.api}}/flutter/widgets/Transform-class.html
+[다양한]: {{site.api}}/flutter/material/IconButton-class.html
+[visit our GitHub repository]: {{site.github}}/flutter/flutter/tree/master/examples

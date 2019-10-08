@@ -579,9 +579,9 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 
     let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
     let batteryChannel = FlutterMethodChannel(name: "samples.flutter.dev/battery",
-                                              binaryMessenger: controller)
+                                              binaryMessenger: controller.bynaryMessenger)
     batteryChannel.setMethodCallHandler({
-      (call: FlutterMethodCall, result: FlutterResult) -> Void in
+      (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
       // Note: this method is invoked on the UI thread.
       // 배터리 메시지를 처리
     })

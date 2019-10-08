@@ -28,6 +28,8 @@
           permalink: /docs/get-started/flutter-for/declarative
     - title: "다트 언어 개요"
       permalink: https://www.dart.dev/guides/language
+    - title: "Building a web app"
+      permalink: /docs/get-started/web
 
 - title: 예제 & 튜토리얼
   children:
@@ -57,6 +59,8 @@
               match-page-url-exactly: true
             - title: 튜토리얼
               permalink: /docs/development/ui/layout/tutorial
+            - title: Creating responsive apps
+              permalink: /docs/development/ui/layout/responsive
             - title: Box constraints
               permalink: /docs/development/ui/layout/box-constraints
         - title: 상호작용 추가하기
@@ -121,7 +125,8 @@
     - title: 플랫폼 통합
       permalink: /docs/development/platform-integration
       children:
-        - title: 다른 앱에 Flutter 뷰 집어넣기
+        - title: Web FAQ
+          permalink: /docs/development/platform-integration/web
         - title: 플랫폼별 코드 작성
           permalink: /docs/development/platform-integration/platform-channels
     - title: 패키지 & 플러그인
@@ -206,6 +211,8 @@
       permalink: /docs/deployment/android
     - title: iOS 빌드와 배포
       permalink: /docs/deployment/ios
+    - title: Build and release a web app
+      permalink: /docs/deployment/web
     - title: Continuous deployment
       permalink: /docs/deployment/cd
 

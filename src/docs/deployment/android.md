@@ -184,6 +184,7 @@ Code]({{site.github}}/flutter/flutter/wiki/Obfuscating-Dart-Code)를 참조하�
 -keep class io.flutter.view.**  { *; }
 -keep class io.flutter.**  { *; }
 -keep class io.flutter.plugins.**  { *; }
+-dontwarn io.flutter.embedding.**
 ```
 
 이 설정은 Flutter 엔진 라이브러리를 보호합니다. </br>

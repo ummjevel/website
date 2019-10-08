@@ -1,6 +1,8 @@
 <div class="tab-pane" id="terminal" role="tabpanel" aria-labelledby="terminal-tab" markdown="1">
 
-## 앱 생성
+## 앱 생성  {#create-app}
+
+{% include_relative _web-app.md  %}
 
 새로운 프로젝트를 생성하기 위해 `flutter create` 명령을 실행하세요:
 

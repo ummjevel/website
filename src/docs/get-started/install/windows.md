@@ -29,6 +29,8 @@ Flutter를 설치하고 실행하기 위해서는
 
 {% include_relative _android-setup.md %}
 
+{% include_relative _web-setup.md %}
+
 ## 다음 단계
 
 적합한 에디터를 설정하세요.

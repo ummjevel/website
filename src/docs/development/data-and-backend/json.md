@@ -104,8 +104,9 @@ Flutter에서 기본적인 JSON 인코딩은 매우 간단합니다. Flutter는 
 
 ### 인라인에서 JSON 직렬화
 
-[dart:convert][dart:convert]의 문서를 보게 되면,
-JSON 문자열을 인자에 넣고 `jsonDecode()` 함수를 호출하여 JSON을 디코드할 수 있다는 걸 알 수 있습니다.
+[dart:convert][]의 문서를 보게 되면,
+JSON 문자열을 인자에 넣고
+`jsonDecode()` 함수를 호출하여 JSON을 디코드할 수 있다는 걸 알 수 있습니다.
 
 <!-- skip -->
 ```dart
@@ -204,7 +205,7 @@ String json = jsonEncode(user);
 간단히 말하자면,  _개발 의존성_ 은 앱 소스 코드에 포함되지 않고 오직 개발 환경에서만 사용되는 의존성입니다.
 
 필요한 의존성들의 최신 버전은 JSON 직렬화 예제의
-[pubspec 파일](https://raw.githubusercontent.com/dart-lang/json_serializable/master/example/pubspec.yaml)에서 찾아볼 수 있습니다.
+[pubspec 파일]()에서 찾아볼 수 있습니다.
 
 **pubspec.yaml**
 
@@ -321,6 +322,109 @@ String json = jsonEncode(user);
 더는 직렬화가 동작하는지 검증하기 위해 자동화된 테스트를 작성하지 않아도 됩니다.
 &mdash; 이제 직렬화가 제대로 동작하는지 확인하는 것은 _라이브러리의 책임_ 입니다.
 
+## Generating code for nested classes
+
+You might have code that has nested classes within a class.
+If that is the case, and you have tried to pass the class in JSON format
+as an argument to a service (such as Firebase, for example),
+you might have experienced an`Invalid argument` error.
+
+Consider the following `Address` class:
+
+```dart
+import 'package:json_annotation/json_annotation.dart';
+part 'address.g.dart';
+
+@JsonSerializable()
+class Address {
+  String street;
+  String city;
+  
+  Address(this.street, this.city);
+  
+  factory Address.fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);
+  Map<String, dynamic> toJson() => _$AddressToJson(this); 
+}
+```
+
+The Address class is nested inside the `User` class:
+
+```dart
+import 'address.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'user.g.dart';
+
+@JsonSerializable()
+class User {
+  String firstName;  
+  Address address;
+  
+  User(this.firstName, this.address);
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  Map<String, dynamic> toJson() => _$UserToJson(this);
+}
+```
+
+Running `flutter pub run build_runner build` in the terminal creates
+the `*.g.dart` file, but the private `_$UserToJson()` function
+looks something like the following:
+
+```dart
+(
+Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{      
+  'firstName': instance.firstName,
+  'address': instance.address,      
+};
+```
+
+All looks fine now, but if you do a print() on the user object:
+
+```dart
+Address address = Address("My st.", "New York");
+User user = User("John", address);
+print(user.toJson());
+```
+
+The result is: 
+
+```json
+{name: John, address: Instance of 'address'}
+```
+
+When what you probably want is output like the following:
+
+```json
+{name: John, address: {street: My st., city: New York}}
+```
+
+To make this work, pass `explicitToJson: true` in the `@JsonSerializable()`
+annotation over the class declaration. The `User` class now looks as follows:
+
+``` dart
+import 'address.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'user.g.dart';
+
+@JsonSerializable(explicitToJson: true)
+class User {
+  String firstName;  
+  Address address;
+  
+  User(this.firstName, this.address);
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  Map<String, dynamic> toJson() => _$UserToJson(this);
+}
+```
+
+For more information, see [explicitToJson][] in the 
+[JsonSerializable][] class for the [json_annotation][] package.
+
+[explicitToJson]: {{site.pub}}/documentation/json_annotation/latest/json_annotation/JsonSerializable/explicitToJson.html
+[JsonSerializable]: {{site.pub}}/documentation/json_annotation/latest/json_annotation/JsonSerializable-class.html
+[json_annotation]: {{site.pub}}/packages/json_annotation
+
 ## 더 많은 참고 자료
 
 더 많은 자료를 위해서는 다음의 자료들을 확인해보세요:
@@ -334,3 +438,4 @@ String json = jsonEncode(user);
 [JsonCodec]: {{site.dart.api}}/{{site.dart.sdk.channel}}/dart-convert/JsonCodec-class.html
 [리플렉션]: https://ko.wikipedia.org/wiki/%EB%B0%98%EC%98%81_(%EC%BB%B4%ED%93%A8%ED%84%B0_%EA%B3%BC%ED%95%99)
 [Tree shaking]: https://en.wikipedia.org/wiki/Tree_shaking
+[pubspec 파일]: https://raw.githubusercontent.com/dart-lang/json_serializable/master/example/pubspec.yaml

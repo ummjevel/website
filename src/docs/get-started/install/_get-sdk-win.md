@@ -10,25 +10,21 @@
  1. zip 파일의 압축을 풀고 `flutter`를 원하는 설치 위치에 놓으세요.
     (예시. `C:\src\flutter`) (`C:\Program Files\`와 같은 권한이 
     필요한 위치에 설치하지 마세요.)
- 1. `flutter` 디렉토리에서 `flutter_console.bat`
-    파일을 찾은 후 더블클릭하세요.
 
 이제 Flutter 콘솔에서 Flutter 명령을 실행할 수 있습니다.
-
-기존 Flutter의 버전을 업데이트하고 싶다면, 
-[Flutter 업그레이드](/docs/development/tools/sdk/upgrading)를 확인하세요.
 
 ### Path 추가
 
 일반 윈도우 콘솔에서 Flutter 명령을 실행하고 싶다면, 아래 단계를 
 수행해여 `Path` 환경 변수에 Flutter를 추가하세요.
 
-* From the Start search bar, type 'env' and select **Edit environment
-  variables for your account**.
+* From the Start search bar, enter 'env'
+  and select **Edit environment variables for your account**.
 * Under **User variables** check if there is an entry called **Path**:
-  * If the entry does exist, append the full path to `flutter\bin` using `;` as
-    a separator from existing values.
-  * If the entry does not exist, create a new user variable named `Path` with
+  * If the entry exists, append the full path to `flutter\bin` using
+    `;` as a separator from existing values.
+  * If the entry doesn't exist,
+    create a new user variable named `Path` with
     the full path to `flutter\bin` as its value.
 
 이러한 변경 내용을 적용하려면 
@@ -64,3 +60,6 @@ C:\src\flutter>flutter doctor
 모든 설정이 올바른지 확인할 수 있습니다.
 
 {% include_relative _analytics.md %}
+
+
+[Flutter 업그레이드]: /docs/development/tools/sdk/upgrading

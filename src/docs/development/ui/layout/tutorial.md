@@ -1,5 +1,5 @@
 ---
-title: 레이아웃 튜토리얼
+title: 레이아웃 만들기
 short-title: 튜토리얼
 description: 레이아웃을 만드는 방법을 배웁니다.
 diff2html: true

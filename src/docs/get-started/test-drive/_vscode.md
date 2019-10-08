@@ -1,6 +1,8 @@
 <div class="tab-pane" id="vscode" role="tabpanel" aria-labelledby="vscode-tab" markdown="1">
 
-## 앱 생성
+## 앱 생성 {#create-app}
+
+{% include_relative _web-app.md  %}
 
   1. **View > Command Palette**를 호출하세요.
   1. "flutter"를 입력한 후, **Flutter: New Project**를 선택하세요.
@@ -8,7 +10,10 @@
   1. 새 프로젝트를 위한 디렉토리를 생성하거나 선택하세요.
   1. 프로젝트가 생성되어 `main.dart` 파일이 나타날 때까지 기다리세요. 
 
-위 명령은 [머티리얼 컴포넌트][]를 사용한 간단한 예시 앱이 들어있는 Flutter 프로젝트 디렉토리 `myapp`을 생성합니다.
+위 명령은 [머티리얼 컴포넌트][]를 사용한 간단한 예시 앱이 들어있는 
+Flutter 프로젝트 디렉토리 `myapp`을 생성합니다.
+
+{% include_relative _package-name.md  %}
 
 {% include_relative _main-code-note.md  %}
 
@@ -21,6 +26,7 @@
       **No Devices**를 클릭하여 시뮬레이터를 실행하세요.
     - 실제 기기를 설정하기 위해,
       [설치][] 페이지에서 OS를 선택하고 해당 페이지의 기기별 지침을 따르세요. 
+ 1. Press the **Settings button** - a cog icon <i class="material-icons align-bottom">gear</i> on the top right (now marked with a red or orange indicator) next to the DEBUG text box that reads No Configuration. Select flutter. And choose the debug configuration: To create your emulator if it is closed or to run the emulator or device that is now connected.        
  1. **Debug > Start Debugging**을 호출하거나 <kbd>F5</kbd>를 누르세요.
  1. 앱이 실행될 때까지 기다리세요 - **Debug Console**에 진행 상태가 표시됩니다.
 

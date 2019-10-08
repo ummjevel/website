@@ -35,7 +35,7 @@ next:
 파일 시스템 경로에 접근하도록 지원합니다:
 
   * *임시 디렉토리:* 시스템이 언제든지 삭제할 수 있는 임시 디렉토리 (캐시). iOS에서는 
-    [`NSTemporaryDirectory()`](https://developer.apple.com/reference/foundation/1409211-nstemporarydirectory),
+    [`NSCachesDirectory`](https://developer.apple.com/documentation/foundation/nssearchpathdirectory/nscachesdirectory),
     Android에서는 [`getCacheDir()`]({{site.android-dev}}/reference/android/content/Context#getCacheDir())에
     해당합니다.
   * *문서 디렉토리:* 파일을 저장하기 위해 해당 앱에서만 유일하게 접근할 수 있는 디렉토리.

@@ -4,7 +4,7 @@ description: "Flutter를 빠르게 시작할 수 있는 코드랩"
 ---
 
 
-#### [기본 Flutter 레이아웃](/docs/codelabs/layout-basics)
+#### [Flutter 레이아웃 기본 개념](/docs/codelabs/layout-basics)
 
 DartPad를 사용하여 브라우저에서 (Flutter와 Dart를 다운받지 않아도 됩니다!)
 기본적인 Flutter 레이아웃을 만드는 방법을 배우세요.

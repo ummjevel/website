@@ -72,7 +72,7 @@ Deployment Info 설정에서
 
 General 탭에서의 설정은 다음과 유사해야 합니다.
 
-![Xcode Project Settings](/images/releaseguide/xcode_settings.png)
+![Xcode Project Settings](/images/releaseguide/xcode_settings.png){:width="100%"}
 
 앱 서명에 대한 자세한 내용은 [인증서 생성, 내보내기, 삭제][appsigning]를 참조하세요.
 

@@ -20,8 +20,9 @@ diff2html: true
 <style>pre .highlight { background-color: #dfd; }</style>
 
 첫 Flutter 앱을 만드는 방법을 안내합니다.
-변수, 반복문, 조건문 등 기본 프로그래밍 개념과 객체지향에 친숙하다면, 이 튜토리얼을 완료할 수 있습니다.
-Dart 경험이나 모바일 프로그래밍 경험이 없어도 상관없습니다.
+변수, 반복문, 조건문 등 기본 프로그래밍 개념과 객체지향에 친숙하다면, 
+이 튜토리얼을 완료할 수 있습니다.
+Dart 경험이나 모바일, 웹 프로그래밍 경험이 없어도 상관없습니다.
 
 이 가이드는 코드랩 2부 중 1부입니다.
 [2부]({{site.codelabs}}/codelabs/first-flutter-app-pt2)는
@@ -43,7 +44,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 {{site.alert.secondary}}
   <h4 class="no_toc">1부에서 무엇을 배우는가</h4>
 
-  * iOS와 Android 모두에서 자연스럽게 보이는 Flutter 앱을 작성하는 방법.
+  * iOS와 Android 그리고 웹에서 자연스럽게 보이는 Flutter 앱을 작성하는 방법.
   * Flutter 앱의 기본 구조.
   * 패키지를 찾고 패키지를 사용하여 기능을 확장하기.
   * 더 빠른 개발 사이클을 위한 hot reload 사용.
@@ -51,7 +52,9 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
   * Lazy하게 로드하는 무한 리스트를 만드는 방법.
 
   코드랩 [2부]({{site.codelabs}}/codelabs/first-flutter-app-pt2)에서는
-  상호작용을 추가하고, 앱 테마를 수정하며, 새 화면으로 이동하는 기능(Flutter에서 _route_ 라고 불립니다)을 추가합니다.
+  상호작용을 추가하고, 앱 테마를 수정하며, 
+  새 화면으로 이동하는 기능
+  (Flutter에서 _route_ 라고 불립니다)을 추가합니다.
 {{site.alert.end}}
 
 {{site.alert.secondary}}
@@ -68,6 +71,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
     또는 [iOS](install/macos#deploy-to-ios-devices)).
   * [iOS 시뮬레이터](install/macos#set-up-the-ios-simulator).
   * [Android 에뮬레이터](install/macos#set-up-the-android-emulator).
+  * A browser (currently Chrome is preferred).
 {{site.alert.end}}
 
 ## 1단계: Starter Flutter app 만들기 

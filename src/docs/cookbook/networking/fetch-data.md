@@ -31,7 +31,10 @@ dependencies:
   http: <latest_version>
 ```
 
-## 2. `http` 패키지를 사용하여 네트워크 요청 생성하기
+Import the http package.
+```import 'package:http/http.dart' as http;```
+
+## 2. 네트워크 요청하기 
 
 본 예제에서는, [http.get()]({{site.pub-api}}/http/latest/http/get.html) 메서드를
 사용하여 [JSONPlaceholder](https://jsonplaceholder.typicode.com/)

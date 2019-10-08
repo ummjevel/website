@@ -2,10 +2,10 @@
 
 ### Xcode 설치
 
-iOS용 Flutter 앱을 개발하기 위해서는 Xcode 9.0 이상 버전이 설치된 맥이 필요합니다.
+iOS용 Flutter 앱을 개발하기 위해서는 Xcode가 설치된 맥이 필요합니다.
 
- 1. Xcode 9.0 이상을 설치하세요([웹에서 다운로드](https://developer.apple.com/xcode/) 혹은
-    [맥 앱스토어](https://itunes.apple.com/us/app/xcode/id497799835)에서).
+ 1. 최신 안정 버전의 Xcode를 설치하세요([웹에서 다운로드](https://developer.apple.com/xcode/) 혹은
+    [맥 앱스토어](https://itunes.apple.com/us/app/xcode/id497799835)를 통하여).
  1. 아래 명령을 실행하여 새롭게 설치된 버전을 사용하도록 Xcode 커멘드라인 도구를 설정하세요
 
     ```terminal
@@ -18,6 +18,10 @@ iOS용 Flutter 앱을 개발하기 위해서는 Xcode 9.0 이상 버전이 설�
  1. Xcode를 한 번 열어 확인을 선택하거나 
     커멘드라인에서 `sudo xcodebuild -license`를 입력하여 
     Xcode 라이센스 계약이 서명되었는지 확인하세요.  
+
+최신 안정 버전보다 오래된 버전도 동작할 순 있지만,
+Flutter 개발에 권장되지는 않습니다.
+대상 비트 코드 이전 버전의 Xcode를 사용하는 것은 지원되지 않으며 동작하지 않을 수 있습니다.
 
 Xcode를 사용하여 iOS 기기 또는 시뮬레이터에서 Flutter 앱을 실행할 수 있습니다.
 
@@ -61,36 +65,15 @@ iOS 시뮬레이터에서 Flutter 앱을 실행하고 테스트하기 위해서,
 ### iOS 기기에 배포
 
 Flutter 앱을 실제 iOS 기기에 배포하려면 
-몇 가지 추가적인 도구와 Apple 계정이 필요합니다.
-또한 실제 기기 배포 설정을 해야합니다.
+서드 파티 CocoaPods 의존성 관리자와 Apple 개발자 계정이 필요합니다.
+또한, Xcode에서 실제 기기 배포 설정을 해야합니다.
 
- 1. [homebrew](https://brew.sh)를 설치하세요.
- 1. homebrew가 최신인지 확인하세요:
-
-    ```terminal
-    $ brew update
-    ```
-
- 1. 다음 명령을 입력하여 Flutter 앱을 iOS 기기에 배포하기 위한 도구를 설치하세요:
+ 1. 아래 명령어로 CocoaPods을 설치하고 설정하세요:
 
     ```terminal
-    $ brew install --HEAD usbmuxd
-    $ brew link usbmuxd
-    $ brew install --HEAD libimobiledevice
-    $ brew install ideviceinstaller ios-deploy cocoapods
+    $ sudo gem install cocoapods
     $ pod setup
     ```
-
-    {{site.alert.note}}
-      위 명령 중 처음 두 명령은 libusbmuxd의 다음 릴리즈까지 
-      일시적으로 문제를 해결하기 위해 필요합니다.
-      [libusbmuxd 이슈 #46][]과 [Flutter 이슈 #22595][] 참고.
-
-      [libusbmuxd 이슈 #46]: {{site.github}}/libimobiledevice/libusbmuxd/issues/46#issuecomment-445502733
-      [Flutter 이슈 #22595]: {{site.github}}/flutter/flutter/issues/22595
-    {{site.alert.end}}
-
-    명령이 실패하는 경우에는 `brew doctor`를 실행하고 지시에 따라 문제를 해결하세요.
 
  1. Xcode 서명 흐름에 따라 프로젝트를 프로비저닝하세요:
 
@@ -98,13 +81,19 @@ Flutter 앱을 실제 iOS 기기에 배포하려면
      1. Flutter 프로젝트 디렉토리에서 
         터미널로 `open ios/Runner.xcworkspace` 명령을 실행하여 
         기본 Xcode 워크스페이스를 여세요.
-     1. Xcode 왼쪽 내비게이션 패널에서 `Runner` 프로젝트를 선택하세요  
-     1. `Runner` target 설정 페이지에서, **General > Signing > Team**에 개발 팀이 선택되어 있는지 확인하세요.
-        팀을 선택하면, 
-        Xcode는 개발 인증서를 생성 및 다운로드 하고, 
-        기기를 계정에 등록하고, 
-        프로비저닝 프로파일을 생성 및 다운로드합니다(필요한 경우에).
-
+     1. 실행 버튼 옆 기기 선택 메뉴에서 배포하고 싶은 기기를 선택하세요.  
+     1. Xcode 왼쪽 내비게이션 패널에서 `Runner` 프로젝트를 선택하세요
+     1. `Runner` target 설정 페이지에서, 
+        개발팀이 잘 선택 됐는지 확인하세요.
+        Xcode버전에 따라 UI가 조금씩 다릅니다.
+        * Xcode 9 & 10에서는 **General > Signing > Team** 아래에 있습니다. 
+        * Xcode 11 이상에서는, **Signing & Capabilities > Team** 아래에 있습니다.
+        
+        팀을 선택하면,
+        Xcode가 개발 인증서를 생성하고 다운로드한 후,
+        계정에 기기를 등록하고,
+        프로비저닝 프로파일을 생성 및 다운로드합니다 (필요할 경우).
+        
         * 처음 iOS 개발 프로젝트를 시작하기 위해,
           애플 ID로 Xcode에 로그인해야 할 수도 있습니다. ![Xcode account add][]{:.mw-100}
           모든 애플 ID가 개발 및 테스트에 사용 가능합니다.
@@ -112,7 +101,8 @@ Flutter 앱을 실제 iOS 기기에 배포하려면
           맴버십 유형에 관한 자세한 내용은
           [맴버십 선택][]을 참고하세요.
 
-        * iOS 개발을 위해 실제 기기를 처음 연결하면, 맥과 개발 인증서를 모두 신뢰해야 합니다.
+        * iOS 개발을 위해 실제 기기를 처음 연결하면, 
+          맥과 개발 인증서를 모두 신뢰해야 합니다.
           iOS 기기를 맥에 처음 연결할 때 대화 상자에서 `Trust`를 선택하세요.  
 
           ![Trust Mac][]{:.mw-100}

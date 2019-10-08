@@ -1,8 +1,8 @@
 ---
 title: Animate the properties of a container
 prev:
-  title: Animate a page route transition
-  path: /docs/cookbook/animation/page-route-animation
+  title: Animate a widget using a physics simulation
+  path: /docs/cookbook/animation/physics-simulation
 next:
   title: Fade a widget in and out
   path: /docs/cookbook/animation/opacity-animation
