@@ -1,110 +1,93 @@
 ---
-title: Flutter for iOS developers
-description: Learn how to apply iOS developer knowledge when building Flutter apps.
+title: iOS 개발자를 위한 Flutter
+description: Flutter 앱을 만들 때 iOS 개발 지식을 활용하는 방법을 배워보세요.
 ---
 
-This document is for iOS developers looking to apply their existing iOS
-knowledge to build mobile apps with Flutter. If you understand the
-fundamentals of the iOS framework then you can use this document as a
-way to get started learning Flutter development.
+Flutter로 모바일 앱을 만들 때 자신의 iOS 지식을 활용하려는 개발자들을 위한 문서입니다.
+iOS 프레임워크의 기초를 이해하고 있다면, 이 문서를 통해 Flutter 개발 학습을 시작할 수 있습니다.
 
-Before diving into this doc, you might want to watch a 15-minute video from
-the [Flutter Youtube channel](https://www.youtube.com/flutterdev) about
-the Cupertino package.
+본격적으로 뛰어들기 전에 [Flutter Youtube 채널](https://www.youtube.com/flutterdev)에서
+15분 분량의 Cupertino 패키지에 대한 비디오를 시청해보세요.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3PdUaidHc-E?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Your iOS knowledge and skill set are highly valuable when building with
-Flutter, because Flutter relies on the mobile operating system for numerous
-capabilities and configurations. Flutter is a new way to build UIs for mobile,
-but it has a plugin system to communicate with iOS (and Android) for non-UI
-tasks. If you're an expert in iOS development, you don't have to relearn
-everything to use Flutter.
+Flutter는 다양한 기능과 구성을 위해 모바일 운영 체재를 사용하므로, iOS 지식과 스킬 셋은
+Flutter 앱을 만들 때 많은 도움이 됩니다. Flutter는 모바일을 위한 UI 새로운 제작 방법이지만,
+iOS(그리고 안드로이드)의 UI가 아닌 작업들과 통신하기 위한 플러그인 시스템도 가지고 있습니다.
+당신이 iOS 개발 전문가라면, Flutter를 사용하기 위해 모든 걸 다시 배울 필요는 없습니다.
 
-Flutter also already makes a number of adaptations in the framework for you 
-when running on iOS. For a list, see [Platform adaptations](/docs/resources/platform-adaptations).
+Flutter는 이미 iOS에 동작시키기 위한 수 많은 어댑터(Adaptation)들을 만들었습니다. 목록은
+[플랫폼 어댑터](/docs/resources/platform-adaptations)에서 확인하세요.
 
-This document can be used as a cookbook by jumping around and finding questions
-that are most relevant to your needs.
+이 문서는 필요한 질문을 찾거나 훑어보는 용도의 설명서로 사용될 수 있습니다.
 
-## Views
+## View
 
-### What is the equivalent of a UIView in Flutter?
+### Flutter의 UIView는 어떤 것 일까요?
 
 {{site.alert.secondary}}
-How is react-style, or _declarative_, programming different than the
-traditional imperative style?
-For a comparison, see [Introduction to declarative
-UI](/docs/get-started/flutter-for/declarative).
+react-style 혹은 _선언형_ 프로그래밍과 기존 명령형 프로그래밍은 어떤 차이가 있을까요?
+비교를 위해 [명령형 UI 프로그래밍 소개](/docs/get-started/flutter-for/declarative)
+살펴보세요.
 {{site.alert.end}}
 
-On iOS, most of what you create in the UI is done using view objects, which are
-instances of the `UIView` class. These can act as containers for other `UIView`
-classes, which form your layout.
+iOS에서, UI를 만드는 것의 대부분은 `UIView` 클래스의 인스턴스인 뷰 개체를 사용합니다.
+다른 `UIView`의 컨테이너 역할을 할 수 있고, 레이아웃을 구성합니다.
 
-In Flutter, the rough equivalent to a `UIView` is a `Widget`. Widgets don't map
-exactly to iOS views, but while you're getting acquainted with how Flutter works
-you can think of them as "the way you declare and construct UI".
+Flutter 에서는 `위젯(Widget)`이 `UIView`와 유사합니다. 위젯이 정확하게 iOS 뷰와
+같지는 않지만, Flutter가 어떻게 동작하는지 익히는 동안 위젯을 "UI를 선언하고 구성하는 방법"으로
+여길 수 있습니다.
 
-However, these have a few differences to a `UIView`. To start, widgets have a
-different lifespan: they are immutable and only exist until they need to be
-changed. Whenever widgets or their state change, Flutter’s framework creates
-a new tree of widget instances. In comparison, an iOS view is not recreated when
-it changes, but rather it's a mutable entity that is drawn once and doesn't
-redraw until it is invalidated using `setNeedsDisplay()`.
+그러나, `UIView`와는 몇가지 다른 점들이 있습니다. 우선, 위젯은 다른 수명을 가지고 있습니다. 위젯은
+불변이며 변화가 생기기 전까지만 존재합니다. 위젯 혹은 위젯의 상태가 변하면, Flutter 프레임워크가
+새로운 위젯 인스턴트 트리를 생성합니다. 비교해보자면, iOS 뷰는 상태가 변해도 재생성 되지 않습니다.
+더 자세히 말하자면, iOS 뷰는 변할 수 있는 개체(mutable entity)이고, 한 번 그려진 뒤,
+`setNeedsDisplay()`를 사용하여 무효화 하는 방식으로 다시 그릴 수 있습니다.
 
-Furthermore, unlike `UIView`, Flutter’s widgets are lightweight, in part due
-to their immutability. Because they aren't views themselves, and aren't directly
-drawing anything, but rather are a description of the UI and its semantics
-that get "inflated" into actual view objects under the hood.
+더 나아가 `UIView`와 다르게, Flutter의 위젯은 불변성 덕분에 가볍습니다. 왜냐하면 위젯 스스로는
+뷰가 아니고, 직접적으로 그리는 것도 없습니다. 다만 위젯은 UI의 설명이자 문법이고, 내부적으로 실제 뷰에
+"부풀어 오르게" 됩니다.
 
-Flutter includes the [Material Components]({{site.material}}/develop/flutter/)
-library. These are widgets that implement the
-[Material Design guidelines]({{site.material}}/design/). Material Design is a
-flexible design system [optimized for all
-platforms]({{site.material}}/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines),
-including iOS.
+Flutter는 [Material 컴포넌트]({{site.material}}/develop/flutter/)라이브러리를
+포함하고 있습니다. 이 위젯들은 [Material 디자인 가이드라인]({{site.material}}/design/)
+대로 구현되었습니다. Material Design은 유연한 디자인 시스템이고 iOS를 포함한
+[모든 플랫폼에 최적화]({{site.material}}/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines),
+되어있습니다.
 
-But Flutter is flexible and expressive enough to implement any design language.
-On iOS, you can use the [Cupertino widgets](/docs/development/ui/widgets/cupertino)
-to produce an interface that looks like
-[Apple's iOS design language](https://developer.apple.com/design/resources).
+Flutter는 다른 디자인을 구현하기에도 충분히 유연하고 표현력있습니다. iOS 에서,
+[Cupertino 위젯](/docs/development/ui/widgets/cupertino)을 사용하여
+[애플의 iOS 디자인 가이드](https://developer.apple.com/design/resources)에서 소개하는
+것처럼 보이도록 인터페이스를 구성할 수 있습니다.
 
-### How do I update widgets?
+### 위젯 업데이트 하기
 
-To update your views on iOS, you directly mutate them.
-In Flutter, widgets are immutable and not updated directly.
-Instead, you have to manipulate the widget’s state.
+iOS에서 뷰를 업데이트 하기 위해서는 뷰를 직접 다뤄야 합니다. Flutter에서는 위젯이 불변이고
+직접 수정할 수 없습니다. 대신, 위젯의 상태를 다뤄 수정할 수 있습니다.
 
-This is where the concept of Stateful vs Stateless widgets
-comes in. A `StatelessWidget` is just what it sounds
-like&mdash;a widget with no state attached.
+이 지점에서 Stateful과 Stateless 위젯 컨셉이 필요합니다. `StatelessWidget`은 마치
+상태가 없는 위젯 처럼 들리죠.
 
-`StatelessWidgets` are useful when the part of the user interface you are
-describing does not depend on anything other than the initial configuration
-information in the widget.
+`StatelessWidgets`은 위젯의 초기 설정 정보 이외의 것과는 무관한 유저 인터페이스를 묘사하는데
+용이합니다.
 
-For example, in iOS, this is similar to placing a `UIImageView` with
-your logo as the `image`. If the logo is not changing during runtime,
-use a `StatelessWidget` in Flutter.
+예를 들어, iOS 에서는, `image`로 로고가 들어간 `UIImageView`이 비슷합니다. 실행하는 동안
+로고가 변하지 않는다면, Flutter에서는 `StatelessWidget`를 사용하면 됩니다. 
 
-If you want to dynamically change the UI based on data received after making an
-HTTP call, use a `StatefulWidget`. After the HTTP call has
-completed, tell the Flutter framework that the widget’s `State` is
-updated, so it can update the UI.
+HTTP 호출를 통해 받은 데이터로 UI를 동적으로 변경하고 싶다면, `StatefulWidget`를 사용하세요.
+HTTP 호출이 완료된 후, 위젯의 `State`가 업데이트 되었음을 Flutter 프레임워크에게 알리면,
+UI가 업데이트 됩니다.
 
-The important difference between stateless and
-stateful widgets is that `StatefulWidget`s have a `State` object that stores
-state data and carries it over across tree rebuilds, so it's not lost.
+Stateless와 Stateful 위젯 간의 중요한 차이는, `StatefulWidget`는 상태 데이터를 저장하고
+재구성되는 위젯 트리를 가진 `State`가 있기 떄문에 상태가 손실되지 않는다는 점입니다.
 
-If you are in doubt, remember this rule: if a widget changes outside of
-the `build` method (because of runtime user interactions, for example), it’s stateful.
-If the widget never changes, once built, it's stateless.
-However, even if a widget is stateful, the containing parent widget can still
-be stateless if it isn’t itself reacting to those changes (or other inputs).
+이해가 잘 안된다면, 이 규칙을 기억하세요: 위젯이 `build` 메소드 외부에서 변경되면(예, 런타임
+유저 상호작용의 경우) Stateful 입니다.
+상태가 한번 구성되고 더 이상 변하지 않는다면 Stateless 입니다.
+그런데, `StatefulWidget`일 지라도, 다른 변화(혹은 입력)에 반응하지 않는다면 이것을 가지고
+있는 부모 위젯은 `StatelessWidget`일 수도 있습니다.
 
-The following example shows how to use a `StatelessWidget`. A common
-`StatelessWidget` is the `Text` widget. If you look at the implementation of
-the `Text` widget you'll find it subclasses `StatelessWidget`.
+아래 예제를 보고 `StatelessWidget`을 어떻게 사용하는지 살펴보세요. 일반적인
+`StatelessWidget`인 `Text` 위젯 입니다. `Text` 위젯의 구현을 살펴보면
+`StatelessWidget`의 자식클래스임을 찾을 수 있습니다.
 
 {% prettify dart %}
 Text(
@@ -113,17 +96,15 @@ Text(
 );
 {% endprettify %}
 
-If you look at the code above, you might notice that the `Text` widget
-carries no explicit state with it. It renders what is passed in its
-constructors and nothing more.
+위 코드를 살펴보면, `Text` 위젯이 아무 명시적인 상태도 전달하지 않는다는 것을 확인
+할 수 있습니다. 생성자에 전달된 값으로만 만들어질 뿐입니다. 
 
-But, what if you want to make "I Like Flutter" change dynamically,
-for example when clicking a `FloatingActionButton`?
+하지만, `FloatingActionButton`를 눌렀을 때 "I Like Flutter"가 동적으로 변경되게 하고 싶으면
+어떻게 해야할까요?
 
-To achieve this, wrap the `Text` widget in a `StatefulWidget` and
-update it when the user clicks the button.
+`Text` 위젯을 `StatefulWidget`으로 감싸고 유저가 버튼을 눌렀을 때 갱신하면 됩니다.
 
-For example:
+예시:
 
 {% prettify dart %}
 class SampleApp extends StatelessWidget {
@@ -173,14 +154,12 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### How do I lay out my widgets? Where is my Storyboard?
+### 어떻게 위젯의 레이아웃을 구성할까요? 스토리보드는 어디있죠?
 
-In iOS, you might use a Storyboard file to organize your views and set
-constraints, or you might set your constraints programmatically in your view
-controllers. In Flutter, declare your layout in code by composing
-a widget tree.
+iOS에서, 뷰를 구성하고 제약사항을 설정하는 데 아마도 스토리보드를 사용할 겁니다. 아니면, 그냥 코드로
+작성했을 수도 있죠. Flutter에서는 코드상에 위젯 트리를 구성하여 레이아웃을 정의합니다.
 
-The following example shows how to display a simple widget with padding:
+아래는 padding을 포함하는 간단한 위젯의 예시입니다:
 
 {% prettify dart %}
 @override
@@ -202,22 +181,20 @@ Widget build(BuildContext context) {
 }
 {% endprettify %}
 
-You can add padding to any widget, which mimics the functionality of
-constraints in iOS.
+어떤 위젯에나 padding을 넣어 iOS에서의 뷰 제약을 흉내낼 수 있습니다.
 
-You can view the layouts that Flutter has to offer in the [widget
-catalog](/docs/development/ui/widgets/layout).
+Flutter가 제안하는 레이아웃들을 [위젯 카탈로그](/docs/development/ui/widgets/layout)
+에서 살펴보세요.
 
-### How do I add or remove a component from my layout?
+### 레이아웃에 컴포넌트를 추가하고 제거하기
 
-In iOS, you call `addSubview()` on the parent, or `removeFromSuperview()`
-on a child view to dynamically add or remove child views. In Flutter, because
-widgets are immutable there is no direct equivalent to `addSubview()`.
-Instead, you can pass a function to the parent that returns a widget, and
-control that child's creation with a boolean flag.
+iOS 에서는 부모 뷰에서 `addSubview()`를 호출하거나 자식 뷰에서 `removeFromSuperview()`를
+호출하여 자식 뷰를 동적으로 추가하고 제거할 수 있습니다. Flutter 에서 위젯은 불변이기 때문에
+`addSubview()`와 동일한 방법은 없습니다. 대신 위젯을 반환하는 부모에서 함수를 전달할 수 있으며,
+boolean 값에 따라 자식의 생성을 제어할 수 있습니다.
 
-The following example shows how to toggle between two widgets when the
-user clicks the `FloatingActionButton`:
+아래는 유저가 `FloatingActionButton`을 클릭할 때, 두 위젯이 토글되는 것을 
+보여주는 예제입니다:
 
 {% prettify dart %}
 class SampleApp extends StatelessWidget {
@@ -280,30 +257,28 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### How do I animate a widget?
+### 어떻게 위젯에 애니메이션을 적용하나요?
 
-In iOS, you create an animation by calling the
-`animate(withDuration:animations:)` method on a view. In Flutter,
-use the animation library to wrap widgets inside an animated widget.
+iOS 에서는 UIView의 `animate(withDuration:animations:)`를 호출해 애니메이션을
+만듭니다. Flutter에서는 애니메이션 라이브러리를 이용해 애니메이션 위젯(animated widget)
+안에 다른 위젯들을 감싸 사용합니다.
 
-In Flutter, use an `AnimationController`, which is an `Animation<double>`
-that can pause, seek, stop, and reverse the animation. It requires a `Ticker`
-that signals when vsync happens and produces a linear interpolation between
-0 and 1 on each frame while it's running. You then create one or more
-`Animation`s and attach them to the controller.
+Flutter에서는 `AnimationController`를 사용합니다. `AnimationController`는
+애니메이션의 일시정지, 탐색, 정지, 역재생이 가능한 `Animation<double>`입니다. 이것은
+`Ticker`를 필요로 하는데, `Ticker`는 수직동기화(vsync)가 발생할 때 신호를 보내고,
+애니메이션 실행 중 각 프레임에서 0과 1사이의 선형보간(linear interpolation)된 값을
+생성합니다. 그런 다음 하나 이상의 `Animation`을 만들고 컨트롤러에 연결합니다.
 
-For example, you might use `CurvedAnimation` to implement an animation
-along an interpolated curve. In this sense, the controller
-is the "master" source of the animation progress and the `CurvedAnimation`
-computes the curve that replaces the controller's default linear motion.
-Like widgets, animations in Flutter work with composition.
+예를 들어, `CurvedAnimation`을 사용하여 보간된 커브를 따라 애니메이션을 구현할 수
+있습니다. 이 경우, 컨트롤러는 애니메이션 진행의 "마스터" 소스이고,
+`CurvedAnimation`은 커브를 계산하여, 컨트롤러의 기본 선형 모션을 대체합니다.
+위젯과 마찬가지로, Flutter의 애니메이션은 통합되어 작동합니다.
 
-When building the widget tree you assign the `Animation` to an animated
-property of a widget, such as the opacity of a `FadeTransition`, and tell the
-controller to start the animation.
+`FadeTransition`의 불투명도 같은 애니메이션 속성에, `Animation`을 할당할 수
+있습니다. 이런 위젯 트리를 만들 때, 컨트롤러에 애니메이션을 시작하라고 명령하세요.
 
-The following example shows how to write a `FadeTransition` that
-fades the widget into a logo when you press the `FloatingActionButton`:
+아래는 `FloatingActionButton`을 누를 때 로고가 서서히 나타나도록 해주는
+`FadeTransition`을 활용한 예제입니다:
 
 {% prettify dart %}
 class SampleApp extends StatelessWidget {
@@ -373,19 +348,18 @@ class _MyFadeTest extends State<MyFadeTest> with TickerProviderStateMixin {
 }
 {% endprettify %}
 
-For more information, see
-[Animation & Motion widgets](/docs/development/ui/widgets/animation),
-the [Animations tutorial](/docs/development/ui/animations/tutorial),
-and the [Animations overview](/docs/development/ui/animations).
+더 많은 정보는
+[애니메이션과 모션 위젯](/docs/development/ui/widgets/animation),
+[애니메이션 튜토리얼](/docs/development/ui/animations/tutorial),
+[애니메이션 살펴보기](/docs/development/ui/animations)를 참고하세요.
 
-### How do I draw to the screen?
+### 화면을 그리는 방법
 
-On iOS, you use `CoreGraphics` to draw lines and shapes to the
-screen. Flutter has a different API based on the `Canvas` class, with two
-other classes that help you draw: `CustomPaint` and `CustomPainter`, the
-latter of which implements your algorithm to draw to the canvas.
+iOS에서는 `CoreGraphics`를 사용해 선과 도형들을 그립니다. Flutter 에서는 그리기에 사용되는
+`Canvas` 클래스 기반의 다른 두가지 API가 있습니다. `CustomPaint`와 `CustomPainter`
+입니다. 이중 `CustomPainter`가 당신의 알고리즘이 캔버스에 그려지도록 하는 일을 구현합니다.
 
-To learn how to implement a signature painter in Flutter, see Collin's answer on
+Flutter의 중요한 그리기 도구를 구현하는 방법을 배우시려면, 아래 Collin씨의 답변을 살펴보세요.
 [StackOverflow][].
 
 [StackOverflow]: {{site.so}}/questions/46241071/create-signature-area-for-mobile-app-in-dart-flutter
