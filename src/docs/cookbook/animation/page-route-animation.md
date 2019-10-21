@@ -117,7 +117,7 @@ Flutter에는 애니메이션 값이 변경 될 때 다시 빌드되는
 [AnimatedWidget]({{site.api}}/flutter/widgets/AnimatedWidget-class.html)을 
 확장한 여러 위젯 셋이 있습니다. 
 예를 들어 SlideTransition은 `Animation<Offset>`을 가져와서 
-애니메이션 값이 변경 될 때마다 자식을 변환합니다(FractionalTranslation 위젯을 사용).
+애니메이션 값이 변경될 때마다 자식을 변환합니다(FractionalTranslation 위젯을 사용).
 
 AnimatedWidget은 `Animation<Offset>`과 자식 위젯을 사용하여  
 [SlideTransition]({{site.api}}/flutter/widgets/SlideTransition-class.html)을 
