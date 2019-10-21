@@ -172,7 +172,7 @@ var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 ```
 
 그런 다음 트윈을 `animation.drive()`에 전달하여 사용하세요.
-이렇게하면 `SlideTransition` 위젯에 전달할 수 있는 새로운 `Animation<Offset>`이 생성됩니다:
+이렇게 하면 `SlideTransition` 위젯에 전달할 수 있는 새로운 `Animation<Offset>`이 생성됩니다:
 
 ```dart
 return SlideTransition(
