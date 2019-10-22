@@ -90,7 +90,9 @@ Flutter는 현대적인 react-style 프레임워크, 2D 렌더링 엔진, 바로
 
 Flutter 프레임워크는 각각의 층이 이전 층에 의해 빌드되는 일련의 층으로 구성되어 있습니다.
 
-<object type="image/svg+xml" data="/images/whatisflutter/diagram-layercake.svg" style="width: 85%; height: 85%"></object>
+{% asset resources/diagram-layercake.png
+   alt="Flutter framework layer cake"
+   class="mw-100" %}
 
 프레임워크의 상위 레이어로 갈수록 하위 레이어보다 더 빈번히 사용됩니다. 
 Flutter의 계층화된 프레임워크를 구성하는 전체 

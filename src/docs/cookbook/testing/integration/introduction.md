@@ -186,11 +186,12 @@ instrument 앱이 준비되었으므로, 테스트 코드를 작성할 수 있�
 진행됩니다:
 
   1. 특정 위젯을 위치시키기 위해 
-  [`SeralizableFinders`]({{site.api}}/flutter/flutter_driver/CommonFinders-class.html)
+  [`SerializableFinders`]({{site.api}}/flutter/flutter_driver/CommonFinders-class.html)
   를 생성합니다.
   2. 테스트를 실행하기 전에, `setUpAll()` 함수에서 앱과 연결하세요.
   3. 중요한 시나리오를 테스트합니다.
   4. 테스트가 완료되면, `teardownAll()` 함수에서 앱 연결을 끊습니다.
+  1. Create
 
 ```dart
 // Flutter Driver API를 import 합니다.

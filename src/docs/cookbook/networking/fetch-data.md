@@ -24,7 +24,7 @@ next:
 
 `http`패키지를 설치하기 위해서, `pubspec.yaml`의 의존성 부분에 추가해줘야 합니다.
 최신 버전의 [http 패키지]({{site.pub}}/packages/http#-installing-tab-)는 
-Pub 사이트에서 확인할 수 있습니다.
+pub.dev에서 확인할 수 있습니다.
 
 ```yaml
 dependencies:
@@ -120,74 +120,21 @@ Future<Post> fetchPost() async {
 
 와우! 이제 인터넷에서 Post를 가져올 수 있는 함수가 생겼습니다.
 
-## 4. 가져온 데이터를 Flutter에 보여주기
+## 4. 데이터 가져오기
 
-데이터를 가져오고 화면에 보여주기 위한 목적으로, 
-[`FutureBuilder`]({{site.api}}/flutter/widgets/FutureBuilder-class.html)
-위젯을 사용할 수 있습니다. `FutureBuilder` 위젯은 Flutter에 기본적으로 
-제공되는 위젯으로 비동기 데이터 처리를 쉽게 해줍니다.
+fetch 메서드를 
+[`initState()`]({{site.api}}/flutter/widgets/State/initState.html) 혹은 
+[`didChangeDependencies()`]({{site.api}}/flutter/widgets/State/didChangeDependencies.html)
+메서드 안에서 호출하세요.
 
-두 가지 파라미터를 제공해야 합니다:
-
-  1. `Future` 객체. 여기서는 `fetchPost()` 함수를 그대로 넘겨줍니다.
-  2. `Futer`의 상태(로딩, 성공 혹은 에러)에 따라 Flutter에게 무엇을 랜더링해야 할지 
-     알려줄 `builder` 함수
-
-<!-- skip -->
-```dart
-FutureBuilder<Post>(
-  future: fetchPost(),
-  builder: (context, snapshot) {
-    if (snapshot.hasData) {
-      return Text(snapshot.data.title);
-    } else if (snapshot.hasError) {
-      return Text("${snapshot.error}");
-    }
-
-    // 기본적으로 로딩 Spinner를 보여줍니다.
-    return CircularProgressIndicator();
-  },
-);
-```
-
-## 5. 네트워크 요청 호출을 `build()` 바깥으로 옮기세요
-
-편리하겠지만, API 요청 코드를 `build()` 메서드 안에 위치시키는 것은 바람직하지
-않습니다.
-
-Flutter는 무언가 변경될 때마다 `build()` 메서드를 호출하는데, 이 호출은 놀랄 
-만큼 자주 일어납니다. 만약 네트워크 요청 코드를 `build()` 메서드에 그대로 남겨둔다면,
-불필요한 API 요청이 아주 많이 발생하고 앱이 느려질 수 있습니다.
-
-페이지가 최초 로드될 때 한번 API를 호출하게 하는 좀 더 나은 방법이 있습니다.
-
-### `StatelessWidget`에 넘기세요
-
-이 방법을 사용하면, 부모 위젯은 fetch 메서드를 호출하고 그 결과를 저장하고 위젯에 
-전달하게 됩니다.
-
-<!-- skip -->
-```dart
-class MyApp extends StatelessWidget {
-  final Future<Post> post;
-
-  MyApp({Key key, this.post}) : super(key: key);
-```
-
-아래 완성된 예제에서 이에 대한 작동 예제를 확인할 수 있습니다.
-
-### `StatefulWidget`의 state의 생명주기 안에서 호출하세요
-
-만약 위젯이 stateful이라면, fetch 메서드를 [`initState()`]({{site.api}}/flutter/widgets/State/initState.html) 혹은
-[`didChangeDependencies()`]({{site.api}}/flutter/widgets/State/didChangeDependencies.html) 
-메서드에서 호출할 수 있습니다.
-
-`initState()` 메서드는 정확히 한번만 호출됩니다.
-만약 
-[`InheritedWidget`]({{site.api}}/flutter/widgets/InheritedWidget-class.html) 변경 시
-API를 다시 호출해야 하는 상황이라면 `didChangeDependencies()` 메서드 안에서 호출하세요.
-더 자세한 내용을 위해 
-[`State`]({{site.api}}/flutter/widgets/State-class.html) 문서를 참고하세요.
+`initState()` 메서드는 딱 1번만 실행되고 절대 다시는 실행되지 않습니다.
+API를 응답에 따라 다시 로드하고 싶다면 
+[`InheritedWidget`]({{site.api}}/flutter/widgets/InheritedWidget-class.html)의 
+변경에 대한 응답으로 API를 다시 로드하고 싶다면 
+`didChangeDependencies()` 메서드 안에 호출을 넣으십시오.
+더 많은 정보를 원하시면
+[`State`]({{site.api}}/flutter/widgets/State-class.html)를
+참조하세요.
 
 <!-- skip -->
 ```dart
@@ -201,7 +148,48 @@ class _MyAppState extends State<MyApp> {
   }
 ```
 
-## 테스팅
+이 Future를 다음 단계에서 활용합니다.
+
+## 5. 데이터 보여주기 
+
+데이터를 화면에 보여주기 위한 목적으로, 
+[`FutureBuilder`]({{site.api}}/flutter/widgets/FutureBuilder-class.html)
+위젯을 사용할 수 있습니다. `FutureBuilder` 위젯은 Flutter에 기본적으로 
+제공되는 위젯으로 비동기 데이터 처리를 쉽게 해줍니다.
+
+두 가지 파라미터를 넣어야 합니다:
+
+  1. 원하는 `Future`를 넣습니다. 여기서는 `fetchPost()` 함수에서 반환된 future를 넣습니다.
+  2. `Future`의 상태(로딩, 성공 혹은 에러)에 따라 Flutter에게 무엇을 랜더링해야 할지 
+     알려줄 `builder` 함수를 넣습니다.
+
+<!-- skip -->
+```dart
+FutureBuilder<Post>(
+  future: post,
+  builder: (context, snapshot) {
+    if (snapshot.hasData) {
+      return Text(snapshot.data.title);
+    } else if (snapshot.hasError) {
+      return Text("${snapshot.error}");
+    }
+
+    // 기본적으로 로딩 Spinner를 보여줍니다.
+    return CircularProgressIndicator();
+  },
+);
+```
+
+## 5. fetchPost()를 initState()에서 호출하는 이유는?
+
+편리하겠지만, API 요청 코드를 `build()` 메서드 안에 위치시키는 것은 바람직하지
+않습니다.
+
+Flutter는 무언가 변경될 때마다 `build()` 메서드를 호출하는데, 이 호출은 놀랄 
+만큼 자주 일어납니다. 만약 네트워크 요청 코드를 `build()` 메서드에 그대로 남겨둔다면,
+불필요한 API 요청이 아주 많이 발생하고 앱이 느려질 수 있습니다.
+
+## Testing
 
 이 기능을 테스트하는 방법에 대해 더 자세히 알고 싶다면,
 아래 문서를 확인하세요:
@@ -209,7 +197,7 @@ class _MyAppState extends State<MyApp> {
   * [단위 테스트 소개](/docs/cookbook/testing/unit/introduction)
   * [Mockito를 사용한 Mock 의존성](/docs/cookbook/testing/unit/mocking)
 
-## 완성된 예제
+## 전체 예제
 
 ```dart
 import 'dart:async';
@@ -249,12 +237,23 @@ class Post {
   }
 }
 
-void main() => runApp(MyApp(post: fetchPost()));
+void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
-  final Future<Post> post;
+class MyApp extends StatefulWidget {
+  MyApp({Key key}) : super(key: key);
 
-  MyApp({Key key, this.post}) : super(key: key);
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+Future<Post> post;
+
+  @override
+  void initState() {
+    super.initState();
+    post = fetchPost();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -78,7 +78,8 @@ Release mode for a web app means that:
 IDE는 이 모드를 지원합니다. 예를 들어 Android Studio는 
 **Run > Run...** 메뉴를 제공하고, 프로젝트 페이지에 있는 
 작은 삼각형의 초록색 아이콘을 통해서도 실행할 수 있습니다.
-`flutter build --release` 명령어로 릴리즈 모드 컴파일을 할 수 있습니다.
+`flutter build <target>` 명령어를 사용하여 특정 모드로 컴파일을 할 수 있습니다.
+`flutter help build`로 지원되는 target 목록을 확인하실 수 있습니다.
 
 더 많은 정보를 원하시면,
 [iOS][]와 [Android][] 앱 출시에 관한 문서를 참조하세요.

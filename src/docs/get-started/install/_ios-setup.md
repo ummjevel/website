@@ -4,12 +4,14 @@
 
 iOS용 Flutter 앱을 개발하기 위해서는 Xcode가 설치된 맥이 필요합니다.
 
- 1. 최신 안정 버전의 Xcode를 설치하세요([웹에서 다운로드](https://developer.apple.com/xcode/) 혹은
-    [맥 앱스토어](https://itunes.apple.com/us/app/xcode/id497799835)를 통하여).
- 1. 아래 명령을 실행하여 새롭게 설치된 버전을 사용하도록 Xcode 커멘드라인 도구를 설정하세요
+ 1. 최신 안정 버전의 Xcode를 설치하세요
+    ([웹에서 다운로드][] 혹은 [맥 앱스토어][]).
+ 1. 아래 명령을 실행하여 새롭게 설치된 버전을 사용하도록 
+    Xcode 커멘드라인 도구를 설정하세요
 
     ```terminal
     $ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+    $ sudo xcodebuild -runFirstLaunch
     ```
 
     최신 버전 Xcode를 사용하고자 할 때, 보통은 이 경로가 올바른 경로입니다.
@@ -119,5 +121,7 @@ Flutter 앱을 실제 iOS 기기에 배포하려면
 
 [Check the app's Bundle ID]: /images/setup/xcode-unique-bundle-id.png
 [맴버십 선택]: https://developer.apple.com/support/compare-memberships
+[맥 앱스토어]: https://itunes.apple.com/kr/app/xcode/id497799835
 [Trust Mac]: /images/setup/trust-computer.png
+[웹에서 다운로드]: https://developer.apple.com/xcode/
 [Xcode account add]: /images/setup/xcode-account.png

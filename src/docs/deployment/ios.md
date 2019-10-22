@@ -138,6 +138,17 @@ TestFlight를 통해 내부나 외부 테스터에게 자신의 앱을 푸시할
 
 자세한 내용은 [앱스토어를 통해 앱 배포하기][distributionguide_submit]를 참조하세요.
 
+Now that you’ve created your app, attract more users with Google Ads. App campaigns use machine learning to drive more installs and make the most of your budget. 
+
+Get your campaign running in a few steps
+1. Create your ad - we’ll help create your ad from your app information
+2. Choose your budget - set your target cost-per-install (tCPI) and daily budget cap 
+3. Select your location - let us know where you’d like your ads to run
+4. Decide what action you want users to take - choose installs, in-app actions, or target return on ad spend (ROAS) 
+
+<a href = "https://ads.google.com/lp/appcampaigns/?modal_active=none&subid=ww-ww-et-aw-a-flutter1!o2#?modal_active=none">Get $75 app advertising credit when you spend $25</a>
+
+
 ## 문제해결
 
 [앱 배포하기][distributionguide]에서는 앱 스토어에 앱을 배포하는 단계에 대한 자세한 내용을 제공합니다.

@@ -8,6 +8,11 @@ description: >
   구글의 아름다운 UI 툴킷입니다.
   Flutter는 기존 코드와 함께 동작하고, 전세계 개발자와 조직에 쓰이고 있으며,
   무료 오픈 소스입니다.
+js:
+- url: /assets/dash/js/detect_safari.js
+  defer: true
+- url: /assets/dash/js/dartpad_picker_main.dart.js
+  defer: true
 ---
 
 <section class="homepage__hero text-center carousel slide" data-ride="carousel" data-interval=6500 data-pause="false">
@@ -37,7 +42,7 @@ description: >
             {% asset homepage/carousel/slide_4-bg.jpg class='homepage__hero__image homepage__hero__image--layer-1' %}
             {% asset homepage/carousel/slide_4-layer_2.png class='homepage__hero__image homepage__hero__image--layer-2' %}
             {% asset homepage/carousel/slide_4-layer_1.png class='homepage__hero__image homepage__hero__image--layer-3' %}
-            <h1 class="homepage__hero__text"><span class="color-white">iOS & Android</span> 앱을 제작하세요</h1>
+            <h1 class="homepage__hero__text"><span class="color-white">모바일, 웹, & 데스크톱</span> 앱을 제작하세요</h1>
             {% asset homepage/carousel/phone_bezel.png class='homepage__hero__phone-bezel' %}
         </div>
     </div>
@@ -112,6 +117,19 @@ description: >
                 </p>
             </div>
 
+        </div>
+    </div>
+</section>
+
+<!-- Do not show DartPad on Safari -->
+<section id="dartpad-landing-page" class="landing-page__cta card text-center">
+    <div class="card-body">
+        <div class="dash-dartpad">
+            <a name="try-dart"></a>
+            <h2>브라우저에서 Flutter를 사용해보세요</h2>
+            <select id="dartpad-select"></select>
+            <div id="dartpad-host"></div>
+            <h3>더 연습하고 싶나요? <a href="/codelabs">코드랩을 해보세요</a>.</h3>
         </div>
     </div>
 </section>
@@ -272,7 +290,7 @@ description: >
 
 <section class="landing-page__cta card text-center">
     <div class="card-body">
-        <h2 class="landing-page__cta__headline">오늘 Flutter를 시작하세요.</h2>
+        <h2 class="landing-page__cta__headline">오늘 Flutter를 설치하세요.</h2>
         <p class="landing-page__cta__body">무료이고 오픈 소스입니다.</p>
         <a class="landing-page__cta__button btn btn-primary btn-cta" href="/docs/get-started/install">시작하기</a>
     </div>

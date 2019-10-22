@@ -169,10 +169,10 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 
 이 단계에서는 
 가장 많이 사용되는 영어 단어 수천 개와 몇 가지 유틸리티 기능이 포함되어 있는
-오픈 소스 패키지인 [english_words]({{site.pub}}/packages/english_words)를 이용할 것입니다.
+오픈 소스 패키지인 [english_words][]를 이용할 것입니다.
 
 다른 오픈 소스 패키지와 마찬가지로, 
-[the Package site]({{site.pub}}/flutter)에서
+[the Package site][]에서
 `english_words` 패키지를 찾을 수 있습니다.
 
  1. Flutter 앱에서 의존성 및 asset 관리는 pubspec 파일이 담당합니다. 
@@ -572,3 +572,5 @@ iOS와 Android 모두에서 작동하는 인터랙티브한 Flutter 앱을 작�
 
 
 [DevTools]: /docs/development/tools/devtools
+[english_words]: {{site.pub}}/packages/english_words
+[pub.dev]: {{site.pub}}

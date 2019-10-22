@@ -746,12 +746,12 @@ import 'package:flutter/cupertino.dart';
 ```
 
 더 많은 정보를 원하시면, 
-[패키지 사용하기](/docs/development/packages-and-plugins/using-packages)와
-[패키지 & 플러그인 개발](/docs/development/packages-and-plugins/developing-packages)를
+[패키지 사용하기][]와
+[패키지 & 플러그인 개발][]를
 참조하세요.
 
-[Pub site]({{site.pub}})의 
-[Flutter Packages]({{site.pub}}/flutter/) 섹션에서
+[Pub site][]의 
+[Flutter Packages][] 섹션에서
 Flutter 개발자들이 공유한 많은 패키지를 만날 수 있습니다.
 
 ## Flutter 위젯
@@ -2482,6 +2482,10 @@ child: Dismissible(
 </div>
 
 
-[DevTools]: /docs/development/tools/devtools
-[State management]: /docs/development/data-and-backend/state-mgmt
 [async와 await]: {{site.dart-site}}/guides/language/language-tour#asynchrony-support
+[패키지 & 플러그인 개발]: /docs/development/packages-and-plugins/developing-packages
+[DevTools]: /docs/development/tools/devtools
+[Flutter packages]: {{site.pub}}/flutter/
+[pub.dev]: {{site.pub}}
+[State management]: /docs/development/data-and-backend/state-mgmt
+[패키지 사용하기]: /docs/development/packages-and-plugins/using-packages

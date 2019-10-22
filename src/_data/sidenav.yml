@@ -125,6 +125,8 @@
     - title: 플랫폼 통합
       permalink: /docs/development/platform-integration
       children:
+        - title: C and C++ interop
+          permalink: /docs/development/platform-integration/c-interop
         - title: Web FAQ
           permalink: /docs/development/platform-integration/web
         - title: 플랫폼별 코드 작성
@@ -181,6 +183,8 @@
           permalink: /docs/development/tools/hot-reload
         - title: 코드 정렬
           permalink: /docs/development/tools/formatting
+    - title: AndroidX migration
+      permalink: /docs/development/androidx-migration
 
 - title: 테스트 & 최적화
   permalink: /docs/testing

@@ -1,6 +1,6 @@
 ---
 title: Codelabs
-description: "Flutter를 빠르게 시작할 수 있는 코드랩"
+description: "Codelabs help you quickly get started programming Flutter."
 ---
 
 
@@ -46,7 +46,7 @@ part 2에서는 part 1에서 만든 앱을 발전시켜 봅니다.
 Shrine 쇼핑 앱(머티리얼 디자인 코드랩에서 했던)을 
 쿠퍼티노 페키지를 사용하여 iOS 스타일로 만들어봅니다.
 여러 탭과 네비게이션을 만들 것입니다.
-[provider](https://pub.dev/packages/provider) 패키지를 사용하여
+[provider]({{site.pub}}/packages/provider) 패키지를 사용하여
 화면 사이에 상태를 관리합니다.
 
 

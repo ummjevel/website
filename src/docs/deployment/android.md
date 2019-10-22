@@ -30,8 +30,7 @@ When you're ready to prepare a *release* version for Android, for example to
 
 새로 생성된 Flutter 앱의 아이콘은 기본 런처 아이콘으로 설정되어있습니다. 
 런처 아이콘을 원하는 아이콘으로 변경하고 싶다면, 
-[flutter_launcher_icons]({{site.pub}}/packages/flutter_launcher_icons) 
-package를 확인해보세요.
+[flutter_launcher_icons][] package를 확인해보세요.
 
 package를 사용하지 않고, 런처 아이콘을 바꾸려면 아래 지시사항을 따르세요.
 
@@ -60,29 +59,34 @@ Google Play 스토어에 출시하기 위해서는 반드시 앱에 디지털 �
 그렇지 않다면, 아래 명령줄 코드를 통해 keystore를 생성하세요:
 
 맥/리눅스에서는 아래 명령어를 사용하세요:
-```
+```terminal
 keytool -genkey -v -keystore ~/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key
 ```
+
 윈도우에서는 아래 명령어를 사용하세요:
-```
+```terminal
 keytool -genkey -v -keystore c:/Users/USER_NAME/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key
 ```
 
-{{site.alert.note}}
+{{site.alert.warning}}
   이 파일은 항상 개인적으로 보관하세요; 
   절대 공개된 저장소에 올리지 마세요.
 {{site.alert.end}}
 
 {{site.alert.note}}
-  `keytool` 은 프로젝트 경로에 존재하지 않을 수 있습니다. 
-  해당 파일은 Android 스튜디오와 함께 설치되는 Java JDK에 포함되는 파일입니다. 
-  해당 파일에 대한 구체적인 경로는 명령줄에 
-  `flutter doctor -v` 을 입력한 후 표시되는 
-  'Java binary at:' 다음에 나타나는 경로에서 
-  `java`를 포함하고 있는 디렉토리의 `keytool` 파일을 통해 확인할 수 있습니다.
-  `Program Files`처럼 공백이 있는 경로라면,
-  따옴표를 사용하여 감싸주세요.
-  예: `/"Program Files"/`
+  * `keytool` 은 프로젝트 경로에 존재하지 않을 수 있습니다. 
+    해당 파일은 Android 스튜디오와 함께 설치되는 Java JDK에 포함되는 파일입니다. 
+    해당 파일에 대한 구체적인 경로는 명령줄에 
+    `flutter doctor -v` 을 입력한 후 표시되는 
+    'Java binary at:' 다음에 나타나는 경로에서 
+    `java`를 포함하고 있는 디렉토리의 `keytool` 파일을 통해 확인할 수 있습니다.
+    `Program Files`처럼 공백이 있는 경로라면,
+    따옴표를 사용하여 감싸주세요.
+    예: `/"Program Files"/`
+
+  * `-storetype JKS` 태그는 자바 9 이후 버전에서만 사용 가능합니다.
+    자바 9 릴리스부터 
+    키 저장소 유형의 기본값은 PKS12입니다. 
 {{site.alert.end}}
 
 ### 앱으로부터 keystore 참조하기
@@ -97,7 +101,7 @@ keyAlias=key
 storeFile=<key store 파일 위치, 예) /Users/<user name>/key.jks>
 ```
 
-{{site.alert.note}}
+{{site.alert.note.warning}}
   이 파일은 항상 개인적으로 보관하세요; 
   절대 공개된 저장소에 업로드 하지 마세요.
 {{site.alert.end}}
@@ -168,8 +172,7 @@ storeFile=<key store 파일 위치, 예) /Users/<user name>/key.jks>
 서드파티 자바 라이브러리나 Android 라이브러리를 사용한다면 Proguard 적용을 통해 APK의 크기를 줄이고 리버스 엔지니어링으로부터 코드를 보호할 수 있습니다.
 
 Dart 코드 난독화에 대한 정보를 얻기 위해서는 
-[Flutter wiki]({{site.github}}/flutter/flutter/wiki)의 [Obfuscating Dart
-Code]({{site.github}}/flutter/flutter/wiki/Obfuscating-Dart-Code)를 참조하세요.
+[Flutter wiki][]의 [Obfuscating Dart Code][]를 참조하세요.
 
 ### Step 1 - Proguard 구성하기
 
@@ -276,6 +279,17 @@ android {
 위 단락의 서명하기를 완료했다면, 
 release 번들이 서명될 것입니다.
 
+{{site.alert.warning}}
+  Recently, the Flutter team has received several reports
+  from developers indicating they are experiencing app
+  crashes on certain devices on Android 6.0 when building
+  an app bundle.
+  While the Android team is working to identify a feasible
+  solution, you might try splitting the APK as a temporary
+  workaround. For more information, see
+  [Issue 36822]({{site.github}}/flutter/flutter/issues/36822).
+{{site.alert.end}}
+
 커멘드 라인에서:
 
 1. `cd <app dir>`를 입력하세요<br>
@@ -353,6 +367,17 @@ APK가 서명될 것입니다.
 Google Play 스토어 앱 출시에 대한 자세한 내용은 
 [Google Play 출시 문서][play]에서 확인하세요.
 
+Now that you’ve created your app, attract more users with Google Ads. App campaigns use machine learning to drive more installs and make the most of your budget. 
+
+Get your campaign running in a few steps
+1. Create your ad - we’ll help create your ad from your app information
+2. Choose your budget - set your target cost-per-install (tCPI) and daily budget cap 
+3. Select your location - let us know where you’d like your ads to run
+4. Decide what action you want users to take - choose installs, in-app actions, or target return on ad spend (ROAS) 
+
+<a href = "https://ads.google.com/lp/appcampaigns/?modal_active=none&subid=ww-ww-et-aw-a-flutter1!o1#?modal_active=none"> Get $75 app advertising credit when you spend $25 </a>
+
+
 ## Android 출시 관련 자주 묻는 질문
 
 안드로이드 앱 배포에 관해 공통적으로 자주 묻는 질문이 있습니다.
@@ -405,25 +430,27 @@ Android Studio에서 앱 폴더 아래에 있는 `android/` 폴더를 여세요.
 ### Are there any special considerations with add-to-app?
 {% endcomment %}
 
-[manifest]: {{site.android-dev}}/guide/topics/manifest/manifest-intro
-[manifesttag]: {{site.android-dev}}/guide/topics/manifest/manifest-element
-[appid]: {{site.android-dev}}/studio/build/application-id
-[permissiontag]: {{site.android-dev}}/guide/topics/manifest/uses-permission-element
-[applicationtag]: {{site.android-dev}}/guide/topics/manifest/application-element
-[gradlebuild]: {{site.android-dev}}/studio/build/#module-level
-[versions]: {{site.android-dev}}/studio/publish/versioning
-[launchericons]: {{site.material}}/design/iconography/
-[configuration qualifiers]: {{site.android-dev}}/guide/topics/resources/providing-resources#AlternativeResources
-[play]: {{site.android-dev}}/distribute/googleplay/start
-[bundle]: {{site.android-dev}}/platform/technology/app-bundle
-[bundle2]: {{site.android-dev}}/guide/app-bundle
-[upload-bundle]: {{site.android-dev}}/studio/publish/upload-bundle
-[GitHub 저장소]: {{site.github}}/google/bundletool/releases/latest
 [APK 세트 생성하기]: {{site.android-dev}}/studio/command-line/bundletool#generate_apks
 [APK 배포하기]: {{site.android-dev}}/studio/command-line/bundletool#deploy_with_bundletool
-[armeabi-v7a]: {{site.android-dev}}/ndk/guides/abis#v7a
+[appid]: {{site.android-dev}}/studio/build/application-id
+[applicationtag]: {{site.android-dev}}/guide/topics/manifest/application-element
 [arm64-v8a]: {{site.android-dev}}/ndk/guides/abis#arm64-v8a
-[Fat APK]: https://en.wikipedia.org/wiki/Fat_binary
+[armeabi-v7a]: {{site.android-dev}}/ndk/guides/abis#v7a
+[bundle]: {{site.android-dev}}/platform/technology/app-bundle
+[bundle2]: {{site.android-dev}}/guide/app-bundle
+[configuration qualifiers]: {{site.android-dev}}/guide/topics/resources/providing-resources#AlternativeResources
+[fat APK]: https://en.wikipedia.org/wiki/Fat_binary
+[Flutter wiki]: {{site.github}}/flutter/flutter/wiki
+[flutter_launcher_icons]: {{site.pub}}/packages/flutter_launcher_icons
+[GitHub 저장소]: {{site.github}}/google/bundletool/releases/latest
+[gradlebuild]: {{site.android-dev}}/studio/build/#module-level
 [Issue 9253]: {{site.github}}/flutter/flutter/issues/9253
 [Issue 18494]: {{site.github}}/flutter/flutter/issues/18494
-
+[launchericons]: {{site.material}}/design/iconography/
+[manifest]: {{site.android-dev}}/guide/topics/manifest/manifest-intro
+[manifesttag]: {{site.android-dev}}/guide/topics/manifest/manifest-element
+[Obfuscating Dart Code]: {{site.github}}/flutter/flutter/wiki/Obfuscating-Dart-Code
+[permissiontag]: {{site.android-dev}}/guide/topics/manifest/uses-permission-element
+[play]: {{site.android-dev}}/distribute/googleplay/start
+[upload-bundle]: {{site.android-dev}}/studio/publish/upload-bundle
+[versions]: {{site.android-dev}}/studio/publish/versioning

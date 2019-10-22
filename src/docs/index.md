@@ -21,6 +21,7 @@ description: Flutter 문서의 랜딩 페이지
   {% endif %}
 {% endfor -%}
 
+<a name="latest-release"></a>
 ## 사이트 개편 내역
 
 To stay on top of Flutter announcements,
@@ -47,11 +48,16 @@ Flutter 1.9 is live!
 
 이 사이트의 새롭게 개편된 문서는 아래의 업데이트를 포함합니다:  
 
+* We've revamped the [Showcase](/showcase) page.
 * The Flutter layout codelab has been rewritten and
-  uses the updated DartPad, the browser-based tool for running
-  Dart code. DartPad now supports Flutter!
+  uses the updated DartPad, the browser-based tool for
+  running Dart code. DartPad now supports Flutter!
   [Try it out](/docs/codelabs/layout-basics)
   and let us know what you think.
+* A new page on [using the dart:ffi
+  library](/docs/development/platform-integration/c-interop)
+  to bind your app to native code (a feature currently under
+  development).
 * The Performance view tool, which allows you to record
   and profile a session from your Dart/Flutter application,
   has been enabled in DevTools. For more information,
@@ -79,6 +85,15 @@ Other relevant docs:
   you how to migrate to the flutter package:
   [Upgrading from package:flutter_web to the Flutter
   SDK](https://github.com/flutter/flutter/wiki/Upgrading-from-package:flutter_web-to-the-Flutter-SDK).
+* A new [ToggleButtons]({{site.api}}/flutter/material/ToggleButtons-class.html)
+  widget, described in the API docs.
+  [ToggleButtons demo]({{site.github}}/csells/flutter_toggle_buttons)
+* A new [ColorFiltered]({{site.api}}/flutter/widgets/ColorFiltered-class.html)
+  widget, also described in the API docs.
+  [ColorFiltered demo]({{site.github}}/csells/flutter_color_filter)
+* New behavior for the
+  [SelectableText]({{site.api}}/flutter/material/SelectableText-class.html)
+  widget.
 
 Happy Fluttering!
 
@@ -113,6 +128,12 @@ Happy Fluttering!
 도움이 될만한 영상을 [Flutter 유튜브 채널]()을 통해 제공합니다!
 특히 Flutter in Focus 시리즈를 보고, 
 비디오 페이지에서 다른 시리즈를 통해 배워보세요.
+
+First up, why use Flutter? What makes it different than other
+app frameworks?
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l-YO9CmaSUM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+How is Flutter different for app development?
 
 <iframe style="max-width: 100%" width="560" height="315" src="https://www.youtube.com/embed/wgTBLj7rMPM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 Flutter in Focus: Learn Flutter features in 10 minutes or less.<br>
