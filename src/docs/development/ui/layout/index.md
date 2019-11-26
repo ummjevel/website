@@ -160,11 +160,11 @@ class MyApp extends StatelessWidget {
 ```
 
 {{site.alert.note}}
-  The [Material library][] implements widgets that follow [Material Design][] principles.
-  When designing your UI, you can exclusively use widgets from the standard [widgets library][],
-  or you can use widgets from the Material library.
-  You can mix widgets from both libraries, you can customize existing widgets,
-  or you can build your own set of custom widgets.
+  [Material 라이브러리][]는 [Material 디자인][]의 원칙을 따르는 위젯을 구현합니다.
+  UI를 디자인할 때, 표준 [위젯 라이브러리][]에 있는 위젯을 단독으로 사용하거나,
+  Material 라이브러리에 있는 위젯들을 사용할 수 있습니다.
+  두 라이브러리에 있는 위젯을 혼합할 수 있고, 기존 위젯을 커스터마이징할 수 있으며,
+  당신만의 커스텀 위젯 모음을 만들 수 있습니다.
 {{site.alert.end}}
 
 #### Non-Material 앱
