@@ -75,14 +75,14 @@ Flutter에서 화면에 텍스트, 아이콘, 이미지를 표시하기 위해�
 
 ### 1. 레이아웃 위젯 선택하기
 
-Choose from a variety of [layout widgets][] based on how you want to align or constrain the visible widget,
-as these characteristics are typically passed on to the contained widget.
+보이는 위젯을 정렬하거나 제한하려는 방법에 따라 다양한 [레이아웃 위젯들][] 중에 선택하면,
+일반적으로 포함되어 있는 위젯에 이런 특성이 전달됩니다. 
 
-This example uses [Center][] which centers its content horizontally and vertically.
+이 예제는 컨텐츠를 중앙에 맞추는 [Center][]를 사용합니다.
 
 ### 2. 보이는 위젯 만들기
 
-For example, create a [Text][] widget:
+예를들어, [Text][] 위젯을 생성하면:
 
 <?code-excerpt "layout/base/lib/main.dart (text)" replace="/child: //g"?>
 ```dart
