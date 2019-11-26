@@ -89,7 +89,7 @@ Flutter에서 화면에 텍스트, 아이콘, 이미지를 표시하기 위해�
 Text('Hello World'),
 ```
 
-Create an [Image][] widget:
+[Image][] 위젯을 생성하면:
 
 <?code-excerpt "layout/lakes/step5/lib/main.dart (Image-asset)" remove="/width|height/"?>
 ```dart
@@ -99,7 +99,7 @@ Image.asset(
 ),
 ```
 
-Create an [Icon][] widget:
+[Icon][] 위젯을 생성하면:
 
 <?code-excerpt "layout/lakes/step5/lib/main.dart (Icon)"?>
 ```dart
