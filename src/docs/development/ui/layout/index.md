@@ -129,15 +129,14 @@ Center(
 
 ### 4. 페이지에 레이아웃 위젯 추가하기
 
-A Flutter app is itself a widget, and most widgets have a [build()][] method.
-Instantiating and returning a widget in the app's `build()` method displays the widget.
+Flutter 앱은 그 자체로 위젯이고, 대부분의 위젯들은 [build()][] 메서드를 가지는데요.
+앱의 `build()` 메서드에서 위젯을 인스턴스화하고 반환하면 해당 위젯이 표시됩니다.
 
 #### Material 앱
 
-For a `Material` app, you can use a [Scaffold][] widget;
-it provides a default banner, background color,
-and has API for adding drawers, snack bars, and bottom sheets.
-Then you can add the `Center` widget directly to the `body` property for the home page.
+`Material`의 경우, [Scaffold][] 위젯을 사용할 수 있는데요.
+이 위젯은 기본 배너, 배경색을 제공하고 drawer, snack bar, bottom sheet를 추가하기 위한 API를 가집니다.
+그러면 홈페이지의 `body` 속성에 직접 `Center` 위젯을 추가할 수 있습니다.
 
 <?code-excerpt path-base="layout/base"?>
 <?code-excerpt "lib/main.dart (MyApp)" title?>
@@ -170,7 +169,7 @@ class MyApp extends StatelessWidget {
 
 #### Non-Material 앱
 
-For a non-Material app, you can add the `Center` widget to the app's `build()` method:
+Non-Material 앱의 경우 앱의 `build()` 메서드에 `Center` 위젯을 추가할 수 있는데:
 
 <?code-excerpt path-base="layout/non_material"?>
 <?code-excerpt "lib/main.dart (MyApp)" title?>
