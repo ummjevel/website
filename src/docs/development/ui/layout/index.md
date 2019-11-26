@@ -82,14 +82,14 @@ Flutter에서 화면에 텍스트, 아이콘, 이미지를 표시하기 위해�
 
 ### 2. 보이는 위젯 만들기
 
-예를들어, [Text][] 위젯을 생성하면:
+예를 들어, [Text][] 위젯을 생성해보면:
 
 <?code-excerpt "layout/base/lib/main.dart (text)" replace="/child: //g"?>
 ```dart
 Text('Hello World'),
 ```
 
-[Image][] 위젯을 생성하면:
+[Image][] 위젯을 생성해보면:
 
 <?code-excerpt "layout/lakes/step5/lib/main.dart (Image-asset)" remove="/width|height/"?>
 ```dart
@@ -99,7 +99,7 @@ Image.asset(
 ),
 ```
 
-[Icon][] 위젯을 생성하면:
+[Icon][] 위젯을 생성해보면:
 
 <?code-excerpt "layout/lakes/step5/lib/main.dart (Icon)"?>
 ```dart
@@ -113,13 +113,12 @@ Icon(
 
 <?code-excerpt path-base="layout/base"?>
 
-All layout widgets have either of the following:
+모든 레이아웃 위젯들은 다음 중 하나를 가지는데:
 
-- A `child` property if they take a single child -- for example, `Center` or `Container`
-- A `children` property if they take a list of widgets
-  -- for example, `Row`, `Column`, `ListView`, or `Stack`.
+- 단일 자식을 가지는 경우 `child` 속성 -- 예시로 `Center` 또는 `Container`
+- 위젯 목록을 가지는 경우 `children` 속성 -- 예시로 `Row`, `Column`, `ListView`, `Stack`
 
-Add the `Text` widget to the `Center` widget:
+`Center` 위젯에 `Text` 위젯을 추가하면:
 
 <?code-excerpt "lib/main.dart (centered-text)" replace="/body: //g"?>
 ```dart
