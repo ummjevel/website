@@ -54,7 +54,7 @@
         - title: 레이아웃 만들기
           permalink: /docs/development/ui/layout
           children:
-            - title: Flutter에서 레이아웃
+            - title: Flutter의 레이아웃
               permalink: /docs/development/ui/layout
               match-page-url-exactly: true
             - title: 튜토리얼

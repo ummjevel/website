@@ -65,14 +65,13 @@ Flutter 앱 내에서 볼 수 있는 이미지, 아이콘, 글자 모두 위젯�
 Column과 Row에는 자식들을 세로 혹은 가로로 정렬하는 방법과
 자식들이 차지해야 하는 공간을 지정할 수 있는 속성이 있습니다.
 
-## Lay out a widget
+## 위젯 배치하기
 
-How do you layout a single widget in Flutter? This section shows you how to
-create and display a simple widget. It also shows the entire code for a simple
-Hello World app.
+Flutter에서 단일 위젯을 어떻게 배치하시나요?
+이 섹션에서는 간단한 위젯을 작성하고 표시하는 방법을 보여줍니다.
+또 간단한 Hello World 앱에 대한 전체 코드도 보여줍니다.
 
-In Flutter, it takes only a few steps to put text, an icon, or an image on the
-screen.
+Flutter에서 화면에 텍스트, 아이콘, 이미지를 표시하기 위해서는 몇 단계만 거치면 됩니다.
 
 ### 1. Select a layout widget
 
