@@ -65,35 +65,31 @@ Flutter 앱 내에서 볼 수 있는 이미지, 아이콘, 글자 모두 위젯�
 Column과 Row에는 자식들을 세로 혹은 가로로 정렬하는 방법과
 자식들이 차지해야 하는 공간을 지정할 수 있는 속성이 있습니다.
 
-## Lay out a widget
+## 위젯 배치하기
 
-How do you layout a single widget in Flutter? This section shows you how to
-create and display a simple widget. It also shows the entire code for a simple
-Hello World app.
+Flutter에서 단일 위젯을 어떻게 배치하시나요?
+이 섹션에서는 간단한 위젯을 작성하고 표시하는 방법을 보여줍니다.
+또 간단한 Hello World 앱에 대한 전체 코드도 보여줍니다.
 
-In Flutter, it takes only a few steps to put text, an icon, or an image on the
-screen.
+Flutter에서 화면에 텍스트, 아이콘, 이미지를 표시하기 위해서는 몇 단계만 거치면 됩니다.
 
-### 1. Select a layout widget
+### 1. 레이아웃 위젯 선택하기
 
-Choose from a variety of [layout widgets][] based
-on how you want to align or constrain the visible widget,
-as these characteristics are typically passed on to the
-contained widget.
+보이는 위젯을 정렬하거나 제한하려는 방법에 따라 다양한 [레이아웃 위젯들][] 중에 선택하면,
+일반적으로 포함되어 있는 위젯에 이런 특성이 전달됩니다. 
 
-This example uses [Center][] which centers its content
-horizontally and vertically.
+이 예제는 컨텐츠를 중앙에 맞추는 [Center][]를 사용합니다.
 
-### 2. Create a visible widget
+### 2. 보이는 위젯 만들기
 
-For example, create a [Text][] widget:
+예를 들어, [Text][] 위젯을 생성해보면:
 
 <?code-excerpt "layout/base/lib/main.dart (text)" replace="/child: //g"?>
 ```dart
 Text('Hello World'),
 ```
 
-Create an [Image][] widget:
+[Image][] 위젯을 생성해보면:
 
 <?code-excerpt "layout/lakes/step5/lib/main.dart (Image-asset)" remove="/width|height/"?>
 ```dart
@@ -103,7 +99,7 @@ Image.asset(
 ),
 ```
 
-Create an [Icon][] widget:
+[Icon][] 위젯을 생성해보면:
 
 <?code-excerpt "layout/lakes/step5/lib/main.dart (Icon)"?>
 ```dart
@@ -113,18 +109,16 @@ Icon(
 ),
 ```
 
-### 3. Add the visible widget to the layout widget
+### 3. 레이아웃 위젯에 보이는 위젯 추가하기
 
 <?code-excerpt path-base="layout/base"?>
 
-All layout widgets have either of the following:
+모든 레이아웃 위젯들은 다음 중 하나를 가지는데:
 
-- A `child` property if they take a single child -- for example, `Center` or
-  `Container`
-- A `children` property if they take a list of widgets -- for example, `Row`,
-  `Column`, `ListView`, or `Stack`.
+- 단일 자식을 가지는 경우 `child` 속성 -- 예시로 `Center` 또는 `Container`
+- 위젯 목록을 가지는 경우 `children` 속성 -- 예시로 `Row`, `Column`, `ListView`, `Stack`
 
-Add the `Text` widget to the `Center` widget:
+`Center` 위젯에 `Text` 위젯을 추가하면:
 
 <?code-excerpt "lib/main.dart (centered-text)" replace="/body: //g"?>
 ```dart
@@ -133,18 +127,16 @@ Center(
 ),
 ```
 
-### 4. Add the layout widget to the page
+### 4. 페이지에 레이아웃 위젯 추가하기
 
-A Flutter app is itself a widget, and most widgets have a [build()][]
-method. Instantiating and returning a widget in the app's `build()` method
-displays the widget.
+Flutter 앱은 그 자체로 위젯이고, 대부분의 위젯들은 [build()][] 메서드를 가지는데요.
+앱의 `build()` 메서드에서 위젯을 인스턴스화하고 반환하면 해당 위젯이 표시됩니다.
 
-#### Material apps
+#### Material 앱
 
-For a `Material` app, you can use a [Scaffold][] widget; it provides a default
-banner, background color, and has API for adding drawers, snack bars, and bottom
-sheets. Then you can add the `Center` widget directly to the `body` property for
-the home page.
+`Material`의 경우, [Scaffold][] 위젯을 사용할 수 있는데요.
+이 위젯은 기본 배너, 배경색을 제공하고 drawer, snack bar, bottom sheet를 추가하기 위한 API를 가집니다.
+그러면 홈페이지의 `body` 속성에 직접 `Center` 위젯을 추가할 수 있습니다.
 
 <?code-excerpt path-base="layout/base"?>
 <?code-excerpt "lib/main.dart (MyApp)" title?>
@@ -168,18 +160,16 @@ class MyApp extends StatelessWidget {
 ```
 
 {{site.alert.note}}
-  The [Material library][] implements widgets that follow [Material
-  Design][] principles. When designing your UI, you can exclusively use
-  widgets from the standard [widgets library][], or you can use widgets from
-  the Material library. You can mix widgets from both libraries, you can
-  customize existing widgets, or you can build your own set of custom
-  widgets.
+  [Material 라이브러리][]는 [Material 디자인][]의 원칙을 따르는 위젯을 구현합니다.
+  UI를 디자인할 때, 표준 [위젯 라이브러리][]에 있는 위젯을 단독으로 사용하거나,
+  Material 라이브러리에 있는 위젯들을 사용할 수 있습니다.
+  두 라이브러리에 있는 위젯을 혼합할 수 있고, 기존 위젯을 커스터마이징할 수 있으며,
+  당신만의 커스텀 위젯 모음을 만들 수 있습니다.
 {{site.alert.end}}
 
-#### Non-Material apps
+#### Non-Material 앱
 
-For a non-Material app, you can add the `Center` widget to the app's
-`build()` method:
+Non-Material 앱의 경우 앱의 `build()` 메서드에 `Center` 위젯을 추가할 수 있는데:
 
 <?code-excerpt path-base="layout/non_material"?>
 <?code-excerpt "lib/main.dart (MyApp)" title?>
@@ -204,18 +194,17 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-By default a non-Material app doesn't include an `AppBar`, title, or background
-color. If you want these features in a non-Material app, you have to build them
-yourself. This app changes the background color to white and the text to dark
-grey to mimic a Material app.
+기본적으로 non-Material 앱은 `AppBar`, 제목, 배경색을 포함하지 않습니다.
+이런 기능들을 non-Material 앱에서 원한다면 직접 구축해야 하는데요.
+이 앱은 Material app을 흉내내기 위해 배경색은 흰색 그리고 글자는 짙은 회색으로 변경합니다.
 
 <div class="row">
 <div class="col-md-6" markdown="1">
-  That's it! When you run the app, you should see _Hello World_.
+  그게 전부입니다! 앱을 실행하면, _Hello World_를 보실 겁니다.
 
-  App source code:
-  - [Material app]({{examples}}/layout/base)
-  - [Non-Material app]({{examples}}/layout/non_material)
+  앱 소스 코드:
+  - [Material 앱]({{examples}}/layout/base)
+  - [Non-Material 앱]({{examples}}/layout/non_material)
 </div>
 <div class="col-md-6">
   {% include app-figure.md img-class="site-mobile-screenshot border w-75"

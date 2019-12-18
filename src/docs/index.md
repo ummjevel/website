@@ -111,7 +111,7 @@ Happy Fluttering!
 [Android][], [iOS][], [웹][], [React Native][],
 [Xamarin.Forms][]
 
-[Flutter에서 레이아웃]()
+[Flutter의 레이아웃]()
 : 레이아웃을 만드는 방법을 배워보세요. Flutter에서는 모든 게 위젯입니다.
 
 [Flutter 앱에 상호작용 추가하기][]
