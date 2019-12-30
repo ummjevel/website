@@ -6,15 +6,17 @@ prev:
 next:
   title: 새로운 화면으로 데이터 전달하기
   path: /docs/cookbook/navigation/passing-data
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
 새로운 화면으로부터 이전 화면으로 데이터를 반환해야하는 경우가 있습니다. 예를 들어,
 사용자에게 두 가지 옵션을 보여주는 화면이 있다고 합시다. 사용자가 한 옵션을 선택했을 때
 그것을 첫 번째 화면에 알려주면 그에 맞는 동작을 할 수 있을 것입니다!
 
-어떻게 구현할 수 있을까요?
-[`Navigator.pop()`]({{site.api}}/flutter/widgets/Navigator/pop.html)을 
-사용하여 아래 순서로 진행하세요:
+You can do this with the [`Navigator.pop()`][]
+method using the following steps:
 
   1. 홈 화면을 정의합니다.
   2. 선택 창을 띄우는 버튼을 추가합니다.
@@ -124,10 +126,11 @@ class SelectionScreen extends StatelessWidget {
 
 ## 4. 하나의 버튼을 클릭하면 선택 창을 닫습니다.
 
-이제 앞서 만든 두 개 버튼의 `onPressed()` 콜백을 수정할 차례입니다. 첫 번째 화면으로
-데이터를 반환하기 위해, [`Navigator.pop()`]({{site.api}}/flutter/widgets/Navigator/pop.html)
-메서드를 사용할 것입니다. 이 메서드 2번째 인자 `result`에 
-`Future`로 반환되는 SelectionButton의 결과를 추가합니다.
+Now, update the `onPressed()` callback for both of the buttons.
+To return data to the first screen,
+use the [`Navigator.pop()`][] method,
+which accepts an optional second argument called `result`.
+Any result is returned to the `Future` in the SelectionButton.
 
 `Navigator.pop`는 `result`라고 명시된 두 번째 인자를 선택적으로 받습니다. 만약
 결과 값을 인자로 제공한다면, SelectionButton의 `Future`에 실려 반환될 것입니다.
@@ -182,9 +185,9 @@ _navigateAndDisplaySelection(BuildContext context) async {
 }
 ```
 
-## 완성된 예제
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/material.dart';
 
 void main() {
@@ -273,4 +276,9 @@ class SelectionScreen extends StatelessWidget {
 }
 ```
 
-![Returning data demo](/images/cookbook/returning-data.gif){:.site-mobile-screenshot}
+<noscript>
+  <img src="/images/cookbook/returning-data.gif" alt="Returning data demo" class="site-mobile-screenshot" />
+</noscript>
+
+
+[`Navigator.pop()`]: {{site.api}}/flutter/widgets/Navigator/pop.html

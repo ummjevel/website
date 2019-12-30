@@ -3,11 +3,14 @@ title: Use themes to share colors and font styles
 short-title: Themes
 description: How to share colors and font styles throughout an app using Themes.
 prev:
-  title: Update the UI based on orientation
-  path: /docs/cookbook/design/orientation
-next:
   title: Use custom fonts
   path: /docs/cookbook/design/fonts
+next:
+  title: Work with tabs
+  path: /docs/cookbook/design/tabs
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
 To share colors and font styles throughout an app, use themes.
@@ -15,7 +18,7 @@ You can either define app-wide themes, or use `Theme` widgets
 that define the colors and font styles for a particular part
 of the application. In fact,
 app-wide themes are just `Theme` widgets created at
-the root of an apps by the `MaterialApp`.
+the root of an app by the `MaterialApp`.
 
 After defining a Theme, use it within your own widgets. Flutter's
 Material widgets also use your Theme to set the background
@@ -24,8 +27,7 @@ colors and font styles for AppBars, Buttons, Checkboxes, and more.
 ## Creating an app theme
 
 To share a Theme across an entire app, provide a
-[`ThemeData`]({{site.api}}/flutter/material/ThemeData-class.html)
-to the `MaterialApp` constructor.
+[`ThemeData`][] to the `MaterialApp` constructor.
 
 If no `theme` is provided, Flutter creates a default theme for you.
 
@@ -38,10 +40,10 @@ MaterialApp(
     brightness: Brightness.dark,
     primaryColor: Colors.lightBlue[800],
     accentColor: Colors.cyan[600],
-    
+
     // Define the default font family.
-    fontFamily: 'Montserrat',
-    
+    fontFamily: 'Georgia',
+
     // Define the default TextTheme. Use this to specify the default
     // text styling for headlines, titles, bodies of text, and more.
     textTheme: TextTheme(
@@ -53,8 +55,8 @@ MaterialApp(
 );
 ```
 
-See the [ThemeData]({{site.api}}/flutter/material/ThemeData-class.html)
-documentation to see all of the colors and fonts you can define.
+See the [`ThemeData`][] documentation to see all of
+the colors and fonts you can define.
 
 ## Themes for part of an application
 
@@ -86,9 +88,7 @@ Theme(
 ### Extending the parent theme
 
 Rather than overriding everything, it often makes sense to extend the parent
-theme. You can handle this by using the
-[`copyWith()`]({{site.api}}/flutter/material/ThemeData/copyWith.html)
-method.
+theme. You can handle this by using the [`copyWith()`][] method.
 
 <!-- skip -->
 ```dart
@@ -127,9 +127,9 @@ Container(
 );
 ```
 
-## Complete example
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -151,7 +151,7 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.cyan[600],
 
         // Define the default font family.
-        fontFamily: 'Montserrat',
+        fontFamily: 'Georgia',
 
         // Define the default TextTheme. Use this to specify the default
         // text styling for headlines, titles, bodies of text, and more.
@@ -203,4 +203,10 @@ class MyHomePage extends StatelessWidget {
 }
 ```
 
-![Themes Demo](/images/cookbook/themes.png){:.site-mobile-screenshot}
+<noscript>
+  <img src="/images/cookbook/themes.png" alt="Themes Demo" class="site-mobile-screenshot" />
+</noscript>
+
+
+[`copyWith()`]: {{site.api}}/flutter/material/ThemeData/copyWith.html
+[`ThemeData`]: {{site.api}}/flutter/material/ThemeData-class.html

@@ -8,16 +8,16 @@ next:
   path: /docs/cookbook/plugins/play-video
 ---
 
-상대적으로 적은 양의 키-값 데이터를 저장하려고 한다면, 
-[shared_preferences]({{site.pub}}/packages/shared_preferences) 플러그인을 
-사용하세요.
+If you have a relatively small collection of key-values
+to save, you can use the [shared_preferences][] plugin.
 
-일반적으로 iOS와 Android 두 플랫폼 모두에 데이터를 저장하기 위한 
-네이티브 플랫폼 통합 코드를 작성해야 합니다. 다행히도 
-[shared_preferences]({{site.pub-pkg}}/shared_preferences) 플러그인을
-사용하면 키-값 데이터를 디스크에 저장할 수 있습니다. 간단한 데이터 저장 기능을 제공하는
-shared preferences 플러그인은 iOS의 `NSUserDefaults`와 Android의 
-`SharedPreferences`를 감싸고 있습니다.
+Normally,
+you would have to write native platform integrations for storing
+data on both iOS and Android. Fortunately,
+the [shared_preferences][] plugin can be used to persist
+key-value data on disk. The shared preferences plugin
+wraps `NSUserDefaults` on iOS and `SharedPreferences` on Android,
+providing a persistent store for simple data.
 
 여기서는 아래와 같은 단계로 진행합니다:
 
@@ -28,9 +28,8 @@ shared preferences 플러그인은 iOS의 `NSUserDefaults`와 Android의
 
 ## 1. 의존성 추가하기
 
-시작하기 전에 `pubspec.yaml` 파일에 
-[shared_preferences]({{site.pub-pkg}}/shared_preferences) 
-플러그인을 추가하세요:
+Before starting, add the [shared_preferences][]
+plugin to the `pubspec.yaml` file:
 
 ```yaml
 dependencies:
@@ -89,9 +88,9 @@ prefs.remove('counter');
 * 오직 원시 타입만 사용 가능합니다: `int`, `double`, `bool`, `string`, `stringList`
 * 대용량 데이터 저장을 위해 설계되지 않았습니다.
 
-Android의 Shared Preferences에 대해 더 자세히 알고 싶다면, Android 개발자 사이트의
-[Shared preferences 문서]({{site.android-dev}}/guide/topics/data/data-storage#pref)를
-참고하세요.
+For more information about shared preferences on Android,
+see the [shared preferences documentation][]
+on the Android developers website.
 
 ## 테스팅 지원
 
@@ -198,3 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 ```
+
+
+[shared_preferences]: {{site.pub}}/packages/shared_preferences
+[shared preferences documentation]: {{site.android-dev}}/guide/topics/data/data-storage#pref

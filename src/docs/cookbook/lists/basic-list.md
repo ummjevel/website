@@ -6,18 +6,20 @@ prev:
 next:
   title: Create a horizontal list
   path: /docs/cookbook/lists/horizontal-list
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
 Displaying lists of data is a fundamental pattern for mobile apps.
-Flutter includes the
-[`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)
+Flutter includes the [`ListView`][]
 widget to make working with lists a breeze.
 
 ## Create a ListView
 
-Using the standard `ListView` constructor is perfect for lists that
-contain only a few items. The built-in
-[`ListTile`]({{site.api}}/flutter/material/ListTile-class.html)
+Using the standard `ListView` constructor is
+perfect for lists that contain only a few items.
+The built-in [`ListTile`][]
 widget is a way to give items a visual structure.
 
 <!-- skip -->
@@ -40,9 +42,9 @@ ListView(
 );
 ```
 
-## Complete example
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -80,4 +82,10 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-![Basic List Demo](/images/cookbook/basic-list.png){:.site-mobile-screenshot}
+<noscript>
+  <img src="/images/cookbook/basic-list.png" alt="Basic List Demo" class="site-mobile-screenshot" /> 
+</noscript>
+
+
+[`ListTile`]: {{site.api}}/flutter/material/ListTile-class.html
+[`ListView`]: {{site.api}}/flutter/widgets/ListView-class.html

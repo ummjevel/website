@@ -12,10 +12,8 @@ next:
 관리하거나 나중에 오프라인 모드에서 사용하기 위한 목적으로 인터넷에서 파일을
 다운로드 받을 수도 있습니다.
 
-파일을 디스크에 저장하려면,
-[`dart:io`]({{site.api}}/flutter/dart-io/dart-io-library.html) 라이브러리와
-함께 [`path_provider` plugin]({{site.pub-pkg}}/path_provider)을 조합하여
-사용하세요.
+To save files to disk, combine the [`path_provider`][]
+plugin with the [`dart:io`][] library.
 
 여기서는 아래와 같은 순서로 진행합니다:
 
@@ -30,17 +28,23 @@ next:
 쓰고 앱이 로드되었을 때 다시 읽을 수 있습니다.
 데이터를 어디에 저장해야 할까요?
 
-[`path_provider`]({{site.pub-pkg}}/path_provider) 플러그인은 기기의 파일 시스템에서
-사용되는 일반적인 경로에 접근하기 위해 플랫폼에 무관한 방법을 제공합니다. 현재 두 개의 
-파일 시스템 경로에 접근하도록 지원합니다:
+The [`path_provider`][] plugin
+provides a platform-agnostic way to access commonly used locations on the
+device's file system. The plugin currently supports access to
+two file system locations:
 
-  * *임시 디렉토리:* 시스템이 언제든지 삭제할 수 있는 임시 디렉토리 (캐시). iOS에서는 
-    [`NSCachesDirectory`](https://developer.apple.com/documentation/foundation/nssearchpathdirectory/nscachesdirectory),
-    Android에서는 [`getCacheDir()`]({{site.android-dev}}/reference/android/content/Context#getCacheDir())에
-    해당합니다.
-  * *문서 디렉토리:* 파일을 저장하기 위해 해당 앱에서만 유일하게 접근할 수 있는 디렉토리.
-    시스템은 해당 디렉토리를 앱이 삭제될 때에만 지웁니다. iOS에서는 `NSDocumentDirectory`,
-    Android에서는 `AppData` 디렉토리가 해당됩니다. 
+*Temporary directory*
+: A temporary directory (cache) that the system can
+  clear at any time. On iOS, this corresponds to the
+  [`NSCachesDirectory`][]. On Android, this is the value that
+  [`getCacheDir()`][]) returns.
+
+*Documents directory*
+: A directory for the app to store files that only
+  it can access. The system clears the directory only when the app
+  is deleted.
+  On iOS, this corresponds to the `NSDocumentDirectory`.
+  On Android, this is the `AppData` directory.
 
 본 예제에서는 문서 디렉토리에 정보를 저장할 것이며 해당 경로는 아래 코드를
 통해 찾을 수 있습니다.
@@ -56,10 +60,9 @@ Future<String> get _localPath async {
 
 ## 2. 파일 경로에 대한 참조 값 생성하기
 
-일단 파일이 어디에 저장되는지 파악하고 나서, 파일의 전체 경로에 대한 참조 값을 생성하세요.
-이를 위해 [dart:io]({{site.api}}/flutter/dart-io/dart-io-library.html) 라이브러리에서
-제공하는 [`File`]({{site.api}}/flutter/dart-io/File-class.html) 클래스를 
-사용하면 됩니다.
+Once you know where to store the file, create a reference to the
+file's full location. You can use the [`File`][]
+class from the [`dart:io`][] library to achieve this.
 
 <!-- skip -->
 ```dart
@@ -77,6 +80,11 @@ Future<File> get _localFile async {
 이 counter는 integer이지만 `'$counter'` 문법을 사용하여  
 파일에 string 형태로 저장합니다.
 
+Now that you have a `File` to work with,
+use it to read and write data.
+First, write some data to the file.
+The counter is an integer, but is written to the
+file as a string using the `'$counter'` syntax.
 
 <!-- skip -->
 ```dart
@@ -112,11 +120,11 @@ Future<int> readCounter() async {
 
 ## 테스팅
 
-File과 상호작용하는 코드를 테스트하기 위해서는 
-`MethodChannel`을 Mock 호출 해야 합니다.
-`MethodChannel`은 Flutter가 호스트 플랫폼과 통신하기 위해 사용하는 클래스입니다.
-보안상의 이유로 디바이스의 파일 시스템과 직접적으로 상호작용 할 수는 없습니다.
-그렇기 때문에 테스트 환경의 파일 시스템을 사용 해야 합니다.
+To test code that interacts with files, you need to mock calls to
+the `MethodChannel`&mdash;the class that
+communicates with the host platform. For security reasons,
+you can't directly interact with the file system on a device,
+so you interact with the test environment's file system.
 
 테스트 파일에 메서드 콜 mocking 할 수 있도록 `setupAll()`이라는 함수가 제공됩니다.
 이 함수는 테스트가 시작되기 전에 수행합니다.
@@ -242,3 +250,9 @@ class _FlutterDemoState extends State<FlutterDemo> {
   }
 }
 ```
+
+[`dart:io`]: {{site.api}}/flutter/dart-io/dart-io-library.html
+[`File`]: {{site.api}}/flutter/dart-io/File-class.html
+[`getCacheDir()`]: {{site.android-dev}}/reference/android/content/Context#getCacheDir()
+[`NSCachesDirectory`]: https://developer.apple.com/documentation/foundation/nssearchpathdirectory/nscachesdirectory
+[`path_provider`]: {{site.pub-pkg}}/path_provider

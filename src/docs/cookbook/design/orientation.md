@@ -4,8 +4,11 @@ prev:
   title: Export fonts from a package
   path: /docs/cookbook/design/package-fonts
 next:
-  title: Use themes to share colors and font styles
-  path: /docs/cookbook/design/themes
+  title: Use custom fonts
+  path: /docs/cookbook/design/fonts
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
 In some situations,
@@ -14,8 +17,8 @@ rotates the screen from portrait mode to landscape mode. For example,
 the app might show one item after the next in portrait mode,
 yet put those same items side-by-side in landscape mode.
 
-In Flutter, you can build different layouts depending on a given
-[`Orientation`]({{site.api}}/flutter/widgets/Orientation-class.html).
+In Flutter, you can build different layouts depending
+on a given [`Orientation`][].
 In this example, build a list that displays two columns in
 portrait mode and three columns in landscape mode using the
 following steps:
@@ -39,14 +42,14 @@ GridView.count(
 );
 ```
 
-To learn more about working with `GridViews`, see the
-[Creating a grid list](/docs/cookbook/lists/grid-lists) recipe.
+To learn more about working with `GridViews`,
+see the [Creating a grid list][] recipe.
 
 ## 2. Use an `OrientationBuilder` to change the number of columns
 
 To determine the app's current `Orientation`, use the
-[`OrientationBuilder`]({{site.api}}/flutter/widgets/OrientationBuilder-class.html)
-widget. The `OrientationBuilder` calculates the current `Orientation` by
+[`OrientationBuilder`][] widget.
+The `OrientationBuilder` calculates the current `Orientation` by
 comparing the width and height available to the parent widget,
 and rebuilds when the size of the parent changes.
 
@@ -73,9 +76,9 @@ OrientationBuilder(
   `OrientationBuilder` widget.
 {{site.alert.end}}
 
-## Complete example
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-500px:split-60
 import 'package:flutter/material.dart';
 
 void main() {
@@ -128,4 +131,11 @@ class OrientationList extends StatelessWidget {
 }
 ```
 
-![Orientation Demo](/images/cookbook/orientation.gif){:.site-mobile-screenshot}
+<noscript>
+  <img src="/images/cookbook/orientation.gif" alt="Orientation Demo" class="site-mobile-screenshot" />
+</noscript>
+
+
+[Creating a grid list]: /docs/cookbook/lists/grid-lists
+[`Orientation`]: {{site.api}}/flutter/widgets/Orientation-class.html
+[`OrientationBuilder`]: {{site.api}}/flutter/widgets/OrientationBuilder-class.html

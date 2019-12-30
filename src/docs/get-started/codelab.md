@@ -10,6 +10,14 @@ next:
 diff2html: true
 ---
 
+{{site.alert.tip}}
+  This codelab walks you through writing your first Flutter
+  app on mobile. You might prefer to try
+  [writing your first Flutter app on the web][].
+  **Note that if you have [enabled web][],
+  the completed app just works on all of these devices!**
+{{site.alert.end}}
+
 {% assign code-url = 'https://raw.githubusercontent.com/flutter/codelabs/master' -%}
 
 {% asset get-started/startup-namer-part-1 alt="The app that you'll be building" class='site-image-right' %}
@@ -24,11 +32,11 @@ diff2html: true
 이 튜토리얼을 완료할 수 있습니다.
 Dart 경험이나 모바일, 웹 프로그래밍 경험이 없어도 상관없습니다.
 
-이 가이드는 코드랩 2부 중 1부입니다.
-[2부]({{site.codelabs}}/codelabs/first-flutter-app-pt2)는
-[Google Developers]({{site.codelabs}})에서 보실 수 있습니다.
-[1부]({{site.codelabs}}/codelabs/first-flutter-app-pt1) 또한
-[Google Developers]({{site.codelabs}})에서도 볼 수 있습니다.
+This guide is part 1 of a two-part codelab. You can find
+[part 2]({{site.codelabs}}/codelabs/first-flutter-app-pt2)
+on the [Google Developers]({{site.codelabs}}) site.
+[Part 1]({{site.codelabs}}/codelabs/first-flutter-app-pt1)
+can also be found on [Google Developers]({{site.codelabs}}).
 
 ## 1부에서 무엇을 만드는가
 {:.no_toc}
@@ -125,10 +133,10 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
       코드를 앱에 붙여 넣을 때 들여쓰기가 깨질 수 있습니다.
       Flutter 도구를 활용하여 자동으로 문제를 해결할 수 있습니다.
 
-      * 안드로이드 스튜디오 / IntelliJ IDEA: 코드에서 오른쪽 버튼을 클릭한 후 
-      **Reformat Code with dartfmt**를 선택하세요.
-      * VS Code: 오른쪽 버튼을 클릭한 후 **Format Document**를 선택하세요.
-      * 터미널: `flutter format <파일명>`을 실행하세요.
+      * Android Studio and IntelliJ IDEA: Right-click the code and
+        select **Reformat Code with dartfmt**.
+      * VS Code: Right-click and select **Format Document**.
+      * Terminal: Run `flutter format <filename>`.
     {{site.alert.end}}
 
  2. [IDE에 적합한 방식으로](/docs/get-started/test-drive) 앱을 실행하세요.
@@ -147,36 +155,38 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 ### 관찰
 {:.no_toc}
 
-* 이 예제는 머티리얼 앱을 만듭니다. 
-  [머티리얼]({{site.material}}/guidelines/)은
-  모바일 및 웹에서 표준으로 사용되는 시각 디자인 언어입니다.
-  Flutter는 다양한 머티리얼 위젯을 제공합니다. 
-* `main()` 메서드는 화살표(`=>`) 표기법을 사용합니다.
-  한 줄 함수 또는 메서드에 화살표 표기법을 사용하세요.
-* 앱은 `StatelessWidget`을 상속받아 앱 자체를 위젯으로 만듭니다.
-  Flutter에서는 정렬, 여백, 레이아웃 등 거의 모든것이 위젯입니다.
-* 머티리얼 라이브러리의 `Scaffold` 위젯은
-  홈 스크린의 위젯 트리를 구성하는
-  app bar, title, body 속성을 기본으로 제공합니다.  
-  위젯 하위 트리는 상당히 복잡할 수 있습니다. 
-* 위젯의 주된 임무는 
-  다른 하위 위젯을 어떻게 표현할 지를 설명하는
-  `build()` 메서드를 제공하는 것입니다.  
-* 이 예제는 자식 위젯으로 `Text`을 포함하는 `Center` 위젯으로 구성됩니다. 
-  Center 위젯은 하위 위젯을 화면 중앙에 정렬합니다. 
+* This example creates a Material app.
+  [Material]({{site.material}}/guidelines) is a visual design language
+  that is standard on mobile and the web. Flutter offers a rich set
+  of Material widgets.
+* The `main()` method uses arrow (`=>`) notation.
+  Use arrow notation for one-line functions or methods.
+* The app extends `StatelessWidget` which makes the app itself a
+  widget. In Flutter, almost everything is a widget, including
+  alignment, padding, and layout.
+* The `Scaffold` widget, from the Material library,
+  provides a default app bar, title, and a body property that
+  holds the widget tree for the home screen. The widget subtree
+  can be quite complex.
+* A widget’s main job is to provide a `build()` method
+  that describes how to display the widget in terms of other,
+  lower level widgets.
+* The body for this example consists of a `Center` widget containing
+  a `Text` child widget. The Center widget aligns its widget subtree
+  to the center of the screen.
 
-## 2단계: 외부 패키지 이용하기
+## Step 2: Use an external package
 
-이 단계에서는 
-가장 많이 사용되는 영어 단어 수천 개와 몇 가지 유틸리티 기능이 포함되어 있는
-오픈 소스 패키지인 [english_words][]를 이용할 것입니다.
+In this step, you’ll start using an open-source package named
+[english_words][], which contains a few thousand of the most used
+English words plus some utility functions.
 
-다른 오픈 소스 패키지와 마찬가지로, 
-[the Package site][]에서
-`english_words` 패키지를 찾을 수 있습니다.
+You can find the `english_words` package, as well as many other open source
+packages, on [pub.dev][].
 
- 1. Flutter 앱에서 의존성 및 asset 관리는 pubspec 파일이 담당합니다. 
-    `pubspec.yaml`의 의존성 목록에 `english_words` (3.1.0 이상)를 추가하세요:  
+ 1. The `pubspec.yaml` file manages the assets and dependencies for a Flutter app. In
+    `pubspec.yaml`, add `english_words` (3.1.0 or higher) to the dependencies
+    list:
 
     <?code-excerpt path-base="codelabs/startup_namer"?>
     <?code-excerpt "{step1_base,step2_use_package}/pubspec.yaml" diff-u="4" from="dependencies" to="english"?>
@@ -191,9 +201,9 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
     +  english_words: ^3.1.0
     ```
 
- 2. 안드로이드 스튜디오의 편집기 화면에서 pubspec 파일을 보는 동안 나타나는 **Packages get**를 클릭하세요.
-    이렇게 하면 해당 패키지를 프로젝트로 가져옵니다.
-    아래와 같은 메시지를 콘솔에서 확인할 수 있습니다:  
+ 2. While viewing the `pubspec.yaml` file in Android Studio's editor view,
+    click **Packages get**. This pulls the package into
+    your project. You should see the following in the console:
 
     ```terminal
     $ flutter pub get
@@ -232,8 +242,9 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
          return MaterialApp(
            title: 'Welcome to Flutter',
            home: Scaffold(
-    @@ -16,7 +18,7 @@
-               title: Text('Welcome to Flutter'),
+    @@ -12,7 +14,7 @@
+             appBar: AppBar(
+               title: Text('Welcome to Flutter')
              ),
              body: Center(
     -          child: Text('Hello World'),
@@ -572,5 +583,7 @@ iOS와 Android 모두에서 작동하는 인터랙티브한 Flutter 앱을 작�
 
 
 [DevTools]: /docs/development/tools/devtools
+[enabled web]: /docs/get-started/web
 [english_words]: {{site.pub}}/packages/english_words
 [pub.dev]: {{site.pub}}
+[writing your first Flutter app on the web]: /docs/get-started/codelab-web

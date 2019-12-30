@@ -11,10 +11,10 @@ next:
 일반적인 HTTP 요청 외에도, WebSocket을 사용하여 서버에 연결할 수 있습니다.
 WebSocket은 폴링 방식이 아닌 서버와의 양방향 통신을 지원합니다.
 
-본 예제에서는, [websocket.org에서 제공하는 
-테스트 서버](http://www.websocket.org/echo.html)와 통신할 것입니다. 
-이 테스트 서버는 단순히 클라이언트가 보낸 메세지를 그대로 회신합니다.
-여기서는 아래와 같은 단계를 수행합니다:
+In this example, connect to a
+[test server provided by websocket.org][].
+The server sends back the same message you send to it.
+This recipe uses the following steps:
 
   1. WebSocket 서버에 접속하기.
   2. 서버 메세지 수신하기.
@@ -23,8 +23,8 @@ WebSocket은 폴링 방식이 아닌 서버와의 양방향 통신을 지원합�
 
 ## 1. WebSocket 서버에 접속하기
 
-[web_socket_channel]({{site.pub-pkg}}/web_socket_channel) 패키지는 
-WebSocket 서버에 연결하는데 필요한 도구를 제공합니다.
+The [web_socket_channel][] package provides the
+tools you need to connect to a WebSocket server.
 
 패키지가 제공하는 `WebSocketChannel`을 통해 서버 메세지를 수신하거나 메세지를 서버에
 보낼 수 있습니다.
@@ -42,11 +42,9 @@ final channel = IOWebSocketChannel.connect('ws://echo.websocket.org');
 
 테스트 서버에 메세지를 보내면, 서버는 동일한 메세지를 회신합니다.
 
-어떻게 메세지를 수신하고 화면에 보여줄 수 있을까요? 본 예제에서는 새로운 메세지를
-수신하기 위해
-[`StreamBuilder`]({{site.api}}/flutter/widgets/StreamBuilder-class.html) 위젯을
-사용하고, 그것들을 화면에 보여주기 위한 목적으로 
-[`Text`]({{site.api}}/flutter/widgets/Text-class.html) 위젯을 사용할 것입니다.
+In this example, use a [`StreamBuilder`][]
+widget to listen for new messages, and a
+[`Text`][] widget to display them.
 
 <!-- skip -->
 ```dart
@@ -60,17 +58,16 @@ StreamBuilder(
 
 ### 이 작업이 어떻게 이뤄질까요?
 
-`WebSocketChannel`은 서버로부터 온 메세지의
-[`Stream`]({{site.api}}/flutter/dart-async/Stream-class.html)을
-제공합니다.
+The `WebSocketChannel` provides a
+[`Stream`][] of messages from the server.
 
 `Stream` 클래스는 `dart:async` 패키지의 핵심적인 부분으로 데이터 소스로부터
 비동기 이벤트를 수신하는 방법을 제공합니다. 하나의 비동기 응답을 반환하는 `Future`와 
 다르게, `Stream` 클래스는 시간 흐름에 따라 여러 이벤트들을 전달할 수 있습니다.
 
-[`StreamBuilder`]({{site.api}}/flutter/widgets/StreamBuilder-class.html) 위젯은
-`Stream`과 연결하여 이벤트를 받을 때마다 `builder()` 함수를 통해 Flutter에게 다시 
-빌드하도록 요청합니다.
+The [`StreamBuilder`][] widget connects to a `Stream`
+and asks Flutter to rebuild every time it
+receives an event using the given `builder()` function.
 
 ## 3. 서버에 데이터 보내기
 
@@ -84,9 +81,8 @@ channel.sink.add('Hello!');
 
 ### 이 작업이 어떻게 이뤄질까요?
 
-`WebSocketChannel`은 서버에 메세지를 보낼 수 있도록
-[`StreamSink`]({{site.api}}/flutter/dart-async/StreamSink-class.html)를
-제공합니다.
+The `WebSocketChannel` provides a
+[`StreamSink`][] to push messages to the server.
 
 `StreamSink` 클래스는 동기나 비동기 이벤트를 데이터 소스에 추가할 수 있는 일반적인 
 방법을 제공합니다.
@@ -188,5 +184,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 ```
-
 ![Web sockets demo](/images/cookbook/web-sockets.gif){:.site-mobile-screenshot}
+
+
+[`Stream`]: {{site.api}}/flutter/dart-async/Stream-class.html
+[`StreamBuilder`]: {{site.api}}/flutter/widgets/StreamBuilder-class.html
+[`StreamSink`]: {{site.api}}/flutter/dart-async/StreamSink-class.html
+[test server provided by websocket.org]: http://www.websocket.org/echo.html
+[`Text`]: {{site.api}}/flutter/widgets/Text-class.html
+[web_socket_channel]: {{site.pub-pkg}}/web_socket_channel

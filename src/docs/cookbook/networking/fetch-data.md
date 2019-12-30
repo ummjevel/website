@@ -22,9 +22,12 @@ next:
 [`http`]({{site.pub-pkg}}/http) 패키지를 사용하면 인터넷으로부터
 데이터를 손쉽게 가져올 수 있습니다.
 
-`http`패키지를 설치하기 위해서, `pubspec.yaml`의 의존성 부분에 추가해줘야 합니다.
-최신 버전의 [http 패키지]({{site.pub}}/packages/http#-installing-tab-)는 
-pub.dev에서 확인할 수 있습니다.
+The [`http`][] package provides the
+simplest way to fetch data from the internet.
+
+To install the `http` package, add it to the dependencies section
+of the `pubspec.yaml`. You can find the latest version of the
+[http package][] the pub.dev.
 
 ```yaml
 dependencies:
@@ -32,13 +35,16 @@ dependencies:
 ```
 
 Import the http package.
-```import 'package:http/http.dart' as http;```
+
+<!-- skip -->
+```dart
+import 'package:http/http.dart' as http;
+```
 
 ## 2. 네트워크 요청하기 
 
-본 예제에서는, [http.get()]({{site.pub-api}}/http/latest/http/get.html) 메서드를
-사용하여 [JSONPlaceholder](https://jsonplaceholder.typicode.com/)
-으로부터 샘플 Post를 가져올 것입니다.
+In this example, fetch a sample post from the
+[JSONPlaceholder][] using the [http.get()][] method.
 
 <!-- skip -->
 ```dart
@@ -49,12 +55,11 @@ Future<http.Response> fetchPost() {
 
 `http.get()` 메서드는 `Response`를 포함하고 있는 `Future`를 반환합니다.
 
-  * [`Future`]({{site.api}}/flutter/dart-async/Future-class.html)는
-    비동기 연산에 사용되는 Dart의 핵심 클래스입니다.
-    Future 객체는 미래의 특정 시점에 사용가능한 잠재적인 값이나 에러를 나타내기 위해
-    사용됩니다.
-  * `http.Response` 클래스는 http 요청이 성공했을 때 응답으로 받은 데이터를 
-    갖고 있습니다.
+* [`Future`][] is a core Dart class for working with
+  async operations. A Future object represents a potential
+  value or error that will be available at some time in the future.
+* The `http.Response` class contains the data received from a successful
+  http call.
 
 ## 3. 응답 정보를 커스텀 Dart 객체로 변환하기
 
@@ -63,13 +68,13 @@ Future<http.Response> fetchPost() {
 
 ### `Post` 클래스를 생성하세요
 
-우선 네트워크 요청으로부터 받은 데이터를 지니고 있을 `Post` 클래스를 
-생성하세요. JSON으로부터 `Post`를 생성하는 factory 생성자를 포함할 
-것입니다.
+First, create a `Post` class that contains the data from the
+network request. It includes a factory constructor that
+creates a `Post` from JSON.
 
-JSON을 직접 변환하는 것도 가능합니다. 더 자세한 정보를 원한다면,
-[JSON과 직렬화](/docs/development/data-and-backend/json) 
-문서를 참고해주세요.
+Converting JSON by hand is only one option.
+For more information, see the full article on
+[JSON and serialization][].
 
 <!-- skip -->
 ```dart
@@ -122,20 +127,16 @@ Future<Post> fetchPost() async {
 
 ## 4. 데이터 가져오기
 
-fetch 메서드를 
-[`initState()`]({{site.api}}/flutter/widgets/State/initState.html) 혹은 
-[`didChangeDependencies()`]({{site.api}}/flutter/widgets/State/didChangeDependencies.html)
-메서드 안에서 호출하세요.
+## 4. Fetch the data
 
-`initState()` 메서드는 딱 1번만 실행되고 절대 다시는 실행되지 않습니다.
-API를 응답에 따라 다시 로드하고 싶다면 
-[`InheritedWidget`]({{site.api}}/flutter/widgets/InheritedWidget-class.html)의 
-변경에 대한 응답으로 API를 다시 로드하고 싶다면 
-`didChangeDependencies()` 메서드 안에 호출을 넣으십시오.
-더 많은 정보를 원하시면
-[`State`]({{site.api}}/flutter/widgets/State-class.html)를
-참조하세요.
+Call the fetch method in either the
+[`initState()`][] or [`didChangeDependencies()`][]
+methods.
 
+The `initState()` method is called exactly once and then never again.
+If you want to have the option of reloading the API in response to an
+[`InheritedWidget`][] changing, put the call into the
+`didChangeDependencies()` method. See [`State`][] for more details.  
 <!-- skip -->
 ```dart
 class _MyAppState extends State<MyApp> {
@@ -152,10 +153,11 @@ class _MyAppState extends State<MyApp> {
 
 ## 5. 데이터 보여주기 
 
-데이터를 화면에 보여주기 위한 목적으로, 
-[`FutureBuilder`]({{site.api}}/flutter/widgets/FutureBuilder-class.html)
-위젯을 사용할 수 있습니다. `FutureBuilder` 위젯은 Flutter에 기본적으로 
-제공되는 위젯으로 비동기 데이터 처리를 쉽게 해줍니다.
+## 5. Display the data
+To to display the data on screen, use the
+[`FutureBuilder`][] widget.
+The `FutureBuilder` widget comes with Flutter and
+makes it easy to work with async data sources.
 
 두 가지 파라미터를 넣어야 합니다:
 
@@ -194,8 +196,8 @@ Flutter는 무언가 변경될 때마다 `build()` 메서드를 호출하는데,
 이 기능을 테스트하는 방법에 대해 더 자세히 알고 싶다면,
 아래 문서를 확인하세요:
 
-  * [단위 테스트 소개](/docs/cookbook/testing/unit/introduction)
-  * [Mockito를 사용한 Mock 의존성](/docs/cookbook/testing/unit/mocking)
+  * [Introduction to unit testing][]
+  * [Mock dependencies using Mockito][]
 
 ## 전체 예제
 
@@ -286,3 +288,19 @@ Future<Post> post;
   }
 }
 ```
+
+
+[`didChangeDependencies()`]: {{site.api}}/flutter/widgets/State/didChangeDependencies.html
+[`Future`]: {{site.api}}/flutter/dart-async/Future-class.html
+[`FutureBuilder`]: {{site.api}}/flutter/widgets/FutureBuilder-class.html
+[JSONPlaceholder]: https://jsonplaceholder.typicode.com/
+[`http`]: {{site.pub-pkg}}/http
+[http.get()]: {{site.pub-api}}/http/latest/http/get.html
+[http package]: {{site.pub}}/packages/http#-installing-tab-
+[`InheritedWidget`]: {{site.api}}/flutter/widgets/InheritedWidget-class.html
+[Introduction to unit testing]: /docs/cookbook/testing/unit/introduction
+[`initState()`]: {{site.api}}/flutter/widgets/State/initState.html
+[Mock dependencies using Mockito]: /docs/cookbook/testing/unit/mocking
+[JSON and serialization]: /docs/development/data-and-backend/json
+[`State`]: {{site.api}}/flutter/widgets/State-class.html
+

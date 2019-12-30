@@ -6,18 +6,20 @@ prev:
 next:
   title: Create lists with different types of items
   path: /docs/cookbook/lists/mixed-list
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
 In some cases, you might want to display your items as a grid rather than
-a normal list of items that come one after the next. For this task, use
-the [`GridView`]({{site.api}}/flutter/widgets/GridView-class.html) widget.
+a normal list of items that come one after the next.
+For this task, use the [`GridView`][] widget.
 
 The simplest way to get started using grids is by using the
-[`GridView.count()`]({{site.api}}/flutter/widgets/GridView/GridView.count.html)
-constructor,
+[`GridView.count()`][] constructor,
 because it allows you to specify how many rows or columns you'd like.
 
-To visualize how `GridView` works, 
+To visualize how `GridView` works,
 generate a list of 100 widgets that display their index in the list.
 
 <!-- skip -->
@@ -38,9 +40,9 @@ GridView.count(
 );
 ```
 
-## Complete example
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/material.dart';
 
 void main() {
@@ -77,3 +79,10 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+
+<noscript>
+  <img src="/images/cookbook/grid-list.gif" alt="Grid List Demo" class="site-mobile-screenshot" />
+</noscript>
+
+[`GridView`]: {{site.api}}/flutter/widgets/GridView-class.html
+[`GridView.count()`]: {{site.api}}/flutter/widgets/GridView/GridView.count.html

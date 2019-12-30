@@ -14,16 +14,19 @@ iOS용 Flutter 앱을 개발하기 위해서는 Xcode가 설치된 맥이 필요
     $ sudo xcodebuild -runFirstLaunch
     ```
 
-    최신 버전 Xcode를 사용하고자 할 때, 보통은 이 경로가 올바른 경로입니다.
-    다른 버전을 사용하기를 원한다면, 다른 경로를 지정해주세요.
-    
- 1. Xcode를 한 번 열어 확인을 선택하거나 
-    커멘드라인에서 `sudo xcodebuild -license`를 입력하여 
-    Xcode 라이센스 계약이 서명되었는지 확인하세요.  
+    This is the correct path for most cases,
+    when you want to use the latest version of Xcode.
+    If you need to use a different version,
+    specify that path instead.
 
-최신 안정 버전보다 오래된 버전도 동작할 순 있지만,
-Flutter 개발에 권장되지는 않습니다.
-대상 비트 코드 이전 버전의 Xcode를 사용하는 것은 지원되지 않으며 동작하지 않을 수 있습니다.
+ 1. Make sure the Xcode license agreement is signed by
+    either opening Xcode once and confirming or running
+    `sudo xcodebuild -license` from the command line.
+
+Versions older than the latest stable version may still work,
+but are not recommended for Flutter development.
+Using old versions of Xcode to target bitcode is not
+supported, and is likely not to work.
 
 Xcode를 사용하여 iOS 기기 또는 시뮬레이터에서 Flutter 앱을 실행할 수 있습니다.
 
@@ -46,19 +49,22 @@ iOS 시뮬레이터에서 Flutter 앱을 실행하고 테스트하기 위해서,
 
 첫번째 Flutter 앱을 만들고 설정이 잘 되는지 확인하기 위해, 아래 단계를 수행하세요:
 
- 1. 커멘드라인에서 아래 명령을 실행하여 새로운 Flutter 앱을 만듭니다:
- 
+ 1. Create a new Flutter app by running the following from the
+    command line:
+
     ```terminal
     $ flutter create my_app
     ```
 
- 2. Flutter's starter 앱이 들어있는 `my_app` 디렉토리가 생성됩니다. 해당 디렉토리로 이동하세요:
- 
+ 2. A `my_app` directory is created, containing Flutter's starter app.
+    Enter this directory:
+
     ```terminal
     $ cd my_app
     ```
- 
- 3. 시뮬레이터에서 앱을 실행하기 위해, 시뮬레이터가 실행중인지 확인한 후 다음을 입력하세요:
+
+ 3. To launch the app in the Simulator,
+    ensure that the Simulator is running and enter:
 
     ```terminal
     $ flutter run
@@ -80,32 +86,38 @@ Flutter 앱을 실제 iOS 기기에 배포하려면
  1. Xcode 서명 흐름에 따라 프로젝트를 프로비저닝하세요:
 
      {: type="a"}
-     1. Flutter 프로젝트 디렉토리에서 
-        터미널로 `open ios/Runner.xcworkspace` 명령을 실행하여 
-        기본 Xcode 워크스페이스를 여세요.
-     1. 실행 버튼 옆 기기 선택 메뉴에서 배포하고 싶은 기기를 선택하세요.  
-     1. Xcode 왼쪽 내비게이션 패널에서 `Runner` 프로젝트를 선택하세요
-     1. `Runner` target 설정 페이지에서, 
-        개발팀이 잘 선택 됐는지 확인하세요.
-        Xcode버전에 따라 UI가 조금씩 다릅니다.
-        * Xcode 9 & 10에서는 **General > Signing > Team** 아래에 있습니다. 
-        * Xcode 11 이상에서는, **Signing & Capabilities > Team** 아래에 있습니다.
-        
-        팀을 선택하면,
-        Xcode가 개발 인증서를 생성하고 다운로드한 후,
-        계정에 기기를 등록하고,
-        프로비저닝 프로파일을 생성 및 다운로드합니다 (필요할 경우).
-        
-        * 처음 iOS 개발 프로젝트를 시작하기 위해,
-          애플 ID로 Xcode에 로그인해야 할 수도 있습니다. ![Xcode account add][]{:.mw-100}
-          모든 애플 ID가 개발 및 테스트에 사용 가능합니다.
-          앱 스토어에 앱을 배포하려면 애플 개발자 프로그램에 등록해야 합니다.
-          맴버십 유형에 관한 자세한 내용은
-          [맴버십 선택][]을 참고하세요.
+     1. Open the default Xcode workspace in your project by
+        running `open ios/Runner.xcworkspace` in a terminal
+        window from your Flutter project directory.
+     1. Select the device you intend to deploy to in the device
+        drop-down menu next to the run button.
+     1. Select the `Runner` project in the left navigation panel.
+     1. In the `Runner` target settings page,
+        make sure your Development Team is selected.
+        The UI varies depending on your version of Xcode.
+        * For Xcode 10, look under **General > Signing > Team**.
+        * For Xcode 11 and newer, look under
+        **Signing & Capabilities > Team**.
 
-        * iOS 개발을 위해 실제 기기를 처음 연결하면, 
-          맥과 개발 인증서를 모두 신뢰해야 합니다.
-          iOS 기기를 맥에 처음 연결할 때 대화 상자에서 `Trust`를 선택하세요.  
+        When you select a team,
+        Xcode creates and downloads a Development Certificate,
+        registers your device with your account,
+        and creates and downloads a provisioning profile (if needed).
+
+        * To start your first iOS development project,
+          you might need to sign into
+          Xcode with your Apple ID. ![Xcode account add][]{:.mw-100}
+          Development and testing is supported for any Apple ID.
+          Enrolling in the Apple Developer Program is required to
+          distribute your app to the App Store.
+          For details about membership types,
+          see [Choosing a Membership][].
+
+        * The first time you use an attached physical device for iOS
+          development, you need to trust both your Mac and the
+          Development Certificate on that device.
+          Select `Trust` in the dialog prompt when
+          first connecting the iOS device to your Mac.
 
           ![Trust Mac][]{:.mw-100}
 

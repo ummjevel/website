@@ -6,6 +6,9 @@ prev:
 next:
   title: 인터넷에서 데이터 받기
   path: /docs/cookbook/networking/fetch-data
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
 종종 새로운 화면으로 단순히 이동하는 것 뿐만 아니라 
@@ -13,11 +16,11 @@ next:
 예를 들어, 사용자가 선택한 아이템에 대한 정보를 
 같이 넘겨주고 싶은 경우가 있습니다.
 
-기억하세요: 화면은 단지 위젯입니다. 
-이 예제에서 Todo 리스트를 만들 것입니다.
-Todo를 선택하면 새로운 화면(위젯)으로 이동하면서 선택한 todo에 대한 정보를
-보여줄 것입니다.
-여기서는 아래와 같은 단계로 진행합니다:
+Remember: Screens are just widgets.
+In this example, create a list of todos.
+When a todo is tapped, navigate to a new screen (widget) that
+displays information about the todo.
+This recipe uses the following steps:
 
   1. Todo 클래스를 정의합니다.
   2. Todo 리스트를 보여줍니다.
@@ -41,10 +44,10 @@ class Todo {
 
 ## 2. Todo 리스트를 보여줍니다.
 
-두 번째로, Todo 리스트를 보여줄 것입니다. 이 예제에서는 20개의 todo를 생성하고 ListView를
-사용하여 보여줄 것입니다. List에 대한 더 자세한 정보는 
-[Use lists](/docs/cookbook/lists/basic-list)에서
-확인할 수 있습니다.
+Second, display a list of todos. In this example, generate
+20 todos and show them using a ListView.
+For more information on working with lists,
+see the [Use lists][] recipe.
 
 ### Todo 리스트 생성하기
 
@@ -116,10 +119,9 @@ class DetailScreen extends StatelessWidget {
 `DetailsScreen`으로 화면 전환하도록 할 것입니다.
 그와 동시에 `DetailsScreen`에 Todo를 전달할 것입니다.
 
-사용자의 탭 동작을 감지하기 위해, `ListTile` 위젯에
-[`onTap`]({{site.api}}/flutter/material/ListTile/onTap.html) 콜백을 작성할 것입니다.
-`onTap` 콜백 내에서 다시 한 번 [`Navigator.push`]({{site.api}}/flutter/widgets/Navigator/push.html)
-메서드를 사용할 것입니다.
+To capture the user's tap, write an [`onTap()`][]
+callback for the `ListTile` widget. Within the `onTap()` callback,
+use the [`Navigator.push()`][] method.
 
 <!-- skip -->
 ```dart
@@ -144,9 +146,9 @@ ListView.builder(
 );
 ```
 
-## 완성된 예제
+### Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -229,4 +231,156 @@ class DetailScreen extends StatelessWidget {
 }
 ```
 
-![Passing Data Demo](/images/cookbook/passing-data.gif){:.site-mobile-screenshot}
+## Alternatively, pass the arguments using RouteSettings
+
+Repeat the first two steps.
+
+### Create a detail screen to extract the arguments
+
+Next, create a detail screen that extracts and displays the title and description from the `Todo`. To access the `Todo`, use the `ModalRoute.of()` method. This method returns the current route with the arguments.
+
+```dart
+class DetailScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final Todo todo = ModalRoute.of(context).settings.arguments;
+
+    // Use the Todo to create the UI.
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(todo.title),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Text(todo.description),
+      ),
+    );
+  }
+}
+```
+
+### Navigate and pass the arguments to the detail screen
+
+Finally, navigate to the `DetailScreen` when a user taps a `ListTile` widget using `Navigator.push()`. Pass the arguments as part of the `RouteSettings`. The `DetailScreen` extracts these arguments.
+
+```dart
+ListView.builder(                                                    
+  itemCount: todos.length,                                           
+  itemBuilder: (context, index) {                                    
+    return ListTile(                                                 
+      title: Text(todos[index].title),                               
+      // When a user taps the ListTile, navigate to the DetailScreen.
+      // Notice that you're not only creating a DetailScreen, you're 
+      // also passing the current todo through to it.                
+      onTap: () {                                                    
+        Navigator.push(                                              
+          context,                                                   
+          MaterialPageRoute(                                         
+            builder: (context) => DetailScreen(),                    
+            // Pass the arguments as part of the RouteSettings. The  
+            // DetailScreen reads the arguments from these settings. 
+            settings: RouteSettings(                                 
+              arguments: todos[index],                               
+            ),                                                        
+          ),                                                          
+        );                                                           
+      },                                                             
+    );                                                                
+  },                                                                 
+),                                                                                                                           
+```
+
+### Complete example
+
+```dart
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+class Todo {
+  final String title;
+  final String description;
+
+  Todo(this.title, this.description);
+}
+
+void main() {
+  runApp(MaterialApp(
+    title: 'Passing Data',
+    home: TodosScreen(
+      todos: List.generate(
+        20,
+        (i) => Todo(
+          'Todo $i',
+          'A description of what needs to be done for Todo $i',
+        ),
+      ),
+    ),
+  ));
+}
+
+class TodosScreen extends StatelessWidget {
+  final List<Todo> todos;
+
+  TodosScreen({Key key, @required this.todos}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Todos'),
+      ),
+      body: ListView.builder(
+        itemCount: todos.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(todos[index].title),
+            // When a user taps the ListTile, navigate to the DetailScreen.
+            // Notice that you're not only creating a DetailScreen, you're
+            // also passing the current todo through to it.
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailScreen(),
+                  // Pass the arguments as part of the RouteSettings. The
+                  // DetailScreen reads the arguments from these settings.
+                  settings: RouteSettings(
+                    arguments: todos[index],
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class DetailScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final Todo todo = ModalRoute.of(context).settings.arguments;
+
+    // Use the Todo to create the UI.
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(todo.title),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Text(todo.description),
+      ),
+    );
+  }
+}
+```
+
+<noscript>
+  <img src="/images/cookbook/passing-data.gif" alt="Passing Data Demo" class="site-mobile-screenshot" />
+</noscript>
+
+
+[`Navigator.push()`]: {{site.api}}/flutter/widgets/Navigator/push.html
+[`onTap()`]: {{site.api}}/flutter/material/ListTile/onTap.html
+[Use lists]: /docs/cookbook/lists/basic-list

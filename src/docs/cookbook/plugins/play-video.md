@@ -8,16 +8,15 @@ next:
   path: /docs/cookbook/plugins/picture-using-camera
 ---
 
-앱 개발에 있어 영상 재생은 일반적인 작업으로 Flutter에서도 예외는 아닙니다. 영상을
-재생하기 위해 Flutter는 
-[`video_player`]({{site.pub-pkg}}/video_player) 플러그인을
-제공하고 있습니다. `video_player` 플러그인을 통해 파일 시스템에 저장된 영상이나
-인터넷의 영상을 재생할 수 있습니다.
+Playing videos is a common task in app development,
+and Flutter apps are no exception. To play videos,
+the Flutter team provides the [`video_player`][] plugin.
+You can use the `video_player` plugin to play videos
+stored on the file system, as an asset, or from the internet.
 
-iOS의 경우 `video_player` 플러그인은
-[`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer)를
-사용하여 영상을 재생합니다. Android의 경우는 
-[`ExoPlayer`](https://google.github.io/ExoPlayer/)를 사용합니다.
+On iOS, the `video_player` plugin makes use of
+[`AVPlayer`][] to handle playback. On Android,
+it uses [`ExoPlayer`][].
 
 본 예제에서는 `video_player` 패키지를 사용하여 인터넷 영상을 스트리밍하고
 재생 및 일시 정지와 같은 기본적인 컨트롤을 아래와 같은 순서로 해볼 것입니다.
@@ -55,7 +54,7 @@ dependencies:
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application ...>
-        
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -64,7 +63,8 @@ dependencies:
 
 ### iOS
 
-iOS는 아래 내용을 `<project root>/ios/Runner/Info.plist`에 파일에 추가하세요.
+For iOS, add the following to the `Info.plist` file found at
+`<project root>/ios/Runner/Info.plist`.
 
 <!-- skip -->
 ```xml
@@ -91,13 +91,13 @@ iOS는 아래 내용을 `<project root>/ios/Runner/Info.plist`에 파일에 추�
 
 `VideoPlayerController`를 생성하고 초기화하기 위해 아래와 같이 진행하세요:
 
-  1. `StatefulWidget`과 `State` 클래스를 생성하세요.
-  2. `State` 클래스에 `VideoPlayerController`를 저장하기 위한 변수를 추가하세요.
-  3. `State` 클래스에 `VideoPlayerController.initialize`로부터 반환되는 `Future`를
-  저장하기 위한 변수를 추가하세요.
-  4. `initState` 메서드에서 controller를 생성하고 초기화하세요.
-  5. `dispose` 메서드에서 controller를 dispose 시키세요.
-  
+  1. Create a `StatefulWidget` with a companion `State` class
+  2. Add a variable to the `State` class to store the `VideoPlayerController`
+  3. Add a variable to the `State` class to store the `Future` returned from
+  `VideoPlayerController.initialize`
+  4. Create and initialize the controller in the `initState` method
+  5. Dispose of the controller in the `dispose` method
+
 <!-- skip -->
 ```dart
 class VideoPlayerScreen extends StatefulWidget {
@@ -141,15 +141,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
 ## 4. video player 화면에 보여주기
 
-이제 영상을 보여주세요. `video_player` 플러그인은 `VideoPlayerController`에
-의해 초기화된 영상을 보여주기 위해
-[`VideoPlayer`]({{site.pub-api}}/video_player/latest/video_player/VideoPlayer-class.html)
-위젯을 제공합니다. 기본적으로 `VideoPlayer` 위젯은 가능한한 넓은 면적을 차지하려고 합니다.
-이러한 점은 종종 영상들이 16x9나 4x3과 같이 특정 종횡비로 표시되기 때문에 이상적이지는 않습니다.
+Now, display the video. The `video_player` plugin provides the
+[`VideoPlayer`][] widget to display the video initialized by
+the `VideoPlayerController`.
+By default, the `VideoPlayer` widget takes up as much space as possible.
+This often isn't ideal for videos because they are meant
+to be displayed in a specific aspect ratio, such as 16x9 or 4x3.
 
-영상이 제대로된 비율로 보여지도록 `VideoPlayer` 위젯을 
-[`AspectRatio`]({{site.api}}/flutter/widgets/AspectRatio-class.html)
-위젯으로 감싸주세요.
+Therefore, wrap the `VideoPlayer` widget in an [`AspectRatio`][]
+widget to ensure that the video has the correct proportions.
 
 추가로 `_initializeVideoPlayerFuture()`가 완료된 후에 `VideoPlayer`를 보여줘야 합니다.
 `FutureBuilder`를 사용하여 초기화가 진행되는 동안 로딩 스피너를 보여줄 수 있습니다. 참고:
@@ -181,16 +181,16 @@ FutureBuilder(
 
 ## 5. 영상을 재생 및 일시 중지하기
 
-기본적으로 영상은 일시 중지 상태로 시작합니다. 재생을 시작하려면 `VideoPlayerController`가
-제공하는 
-[`play()`]({{site.pub-api}}/video_player/latest/video_player/VideoPlayerController/play.html)
-메서드를 호출하세요. 재생을 일시 중지 시키려면 
-[`pause()`]({{site.pub-api}}/video_player/latest/video_player/VideoPlayerController/pause.html)
-메서드를 호출하면 됩니다.
+By default, the video starts in a paused state. To begin playback,
+call the [`play()`][] method provided by the `VideoPlayerController`.
+To pause playback, call the [`pause()`][] method.
 
-본 예제에서는 상황에 따라 재생 혹은 일시 중지 아이콘을 보여주기 위해
-`FloatingActionButton`을 추가하였습니다. 사용자가 이 버튼을 눌렀을 때, 영상이 일시 중지
-상태였다면 재생할 것이고, 재생 중이었다면 일시 중지시킬 것입니다.
+For this example,
+add a `FloatingActionButton` to your app that displays a play
+or pause icon depending on the situation.
+When the user taps the button,
+play the video if it's currently paused,
+or pause the video if it's playing.
 
 <!-- skip -->
 ```dart
@@ -213,9 +213,9 @@ FloatingActionButton(
     _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
   ),
 )
-``` 
- 
-## 완성된 예제
+```
+
+## Complete example
 
 ```dart
 import 'dart:async';
@@ -320,3 +320,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   }
 }
 ```
+
+
+[`AspectRatio`]: {{site.api}}/flutter/widgets/AspectRatio-class.html
+[`AVPlayer`]: https://developer.apple.com/documentation/avfoundation/avplayer
+[`ExoPlayer`]: https://google.github.io/ExoPlayer/
+[`pause()`]: {{site.pub-api}}/video_player/latest/video_player/VideoPlayerController/pause.html
+[`play()`]: {{site.pub-api}}/video_player/latest/video_player/VideoPlayerController/play.html
+[`video_player`]: {{site.pub-pkg}}/video_player
+[`VideoPlayer`]: {{site.pub-api}}/video_player/latest/video_player/VideoPlayer-class.html

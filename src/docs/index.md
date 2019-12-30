@@ -28,76 +28,67 @@ To stay on top of Flutter announcements,
 including breaking changes, join the
 [flutter-announce][] Google group.
 
-**Sept 10, 2019**
+**Dec 11, 2019, Flutter Interact Edition**
 
-Flutter 1.9 is live!
+Flutter 1.12 is live!
 
-더 많은 정보를 원하시면, [Flutter news from GDD China: uniting Flutter on web and mobile, and introducing Flutter
-1.9](https://developers.googleblog.com/2019/09/flutter-news-from-gdd-china-flutter1.9.html?m=1)와
-[1.9.1 release notes]({{site.github}}/flutter/flutter/wiki/Release-Notes-Flutter-1.9.1)를
-참조하세요.
+For more information, see
+[Flutter: the first UI platform designed for ambient computing][],
+[Announcing Flutter 1.12: What a year!][] and
+the [Flutter 1.12.13][] release notes.
 
-1.9 버전에선, Flutter의 웹 지원이 
-메인 저장소로 통합(merged, unforked)됐습니다.
-**웹 지원은 아직 베타 전 단계이고, 
-프로덕션에 사용되기에는 아직 준비가 덜 됐습니다.**
-원래는 Flutter 모바일 앱만을 개발하기 위해 만들어진 이 웹사이트에도 
-웹과 데스크탑 지원 (곧 나올) 관련 내용이 반영될 것입니다.
-일부 웹사이트 업데이트는 지금도 이용할 수 있지만 (아래 목록에 있는),
-앞으로 더 많은 것들이 나올 것입니다.
+Docs added and updated since the last announcement include:
 
-이 사이트의 새롭게 개편된 문서는 아래의 업데이트를 포함합니다:  
+* To accompany an updated implementation of add-to-app,
+  we have added documentation on how to
+  [add Flutter to an existing app][] for both iOS and Android.
+* If you own plugin code, we encourage you to update to the
+  new plugin APIs for Android. For more information, see
+  [Migrating your plugin to the new Android APIs][].
+* Web support has moved to the beta channel. For more information,
+  see [Web support for Flutter][] and
+  [Web support for Flutter goes beta][] on the Medium publication.
+  Also, the [building a web app with Flutter][] page is updated.
+* A new [write your first Flutter app on the web][] codelab
+  is added to the [Get started][] docs, and includes
+  instructions on setting breakpoints in DevTools!
+* A new [implicit animations][] codelab is available
+  featuring DartPad.
+  (To run it, you don't need to download any software!)
+* Alpha support for MacOS (desktop) is now available in
+  release 1.13 on the master and dev channels.
+  For more information, see [Desktop support for Flutter][].
+* The iOS section of the [app size][] page is updated to reflect
+  the inclusion of bitcode.
+* An alpha release of Flutter Layout Explorer, a new feature
+  (and part of the Flutter inspector) that allows you to
+  explore a visual representation of your layout is available.
+  For more information, see the [Flutter Layout Explorer][] docs.
 
-* We've revamped the [Showcase](/showcase) page.
-* The Flutter layout codelab has been rewritten and
-  uses the updated DartPad, the browser-based tool for
-  running Dart code. DartPad now supports Flutter!
-  [Try it out](/docs/codelabs/layout-basics)
-  and let us know what you think.
-* A new page on [using the dart:ffi
-  library](/docs/development/platform-integration/c-interop)
-  to bind your app to native code (a feature currently under
-  development).
-* The Performance view tool, which allows you to record
-  and profile a session from your Dart/Flutter application,
-  has been enabled in DevTools. For more information,
-  see the [Performance
-  view](/docs/development/tools/devtools/performance)
-  page.
-* A new page on
-  [building a web application](/docs/get-started/web).
-* A new page on [creating responsive
-  apps](/docs/development/ui/layout/responsive)
-  in Flutter.
-* A new page on
-  [preparing a web app for release](/docs/deployment/web).
-* A new [web FAQ](/docs/development/platform-integration/web).
-* The [Flutter for web](/web) page is updated.
+Other newness:
 
-Other relevant docs:
-
-* Error messages have been improved in SDK 1.9.
-  For more information, read [Improving Flutter's
-  Error Messages](https://medium.com/flutter/improving-flutters-error-messages-e098513cecf9)
-  on the [Flutter Medium publication](https://medium.com/flutter).
-* If you already have a web app that depends on the
-  flutter_web package, the following instructions tell
-  you how to migrate to the flutter package:
-  [Upgrading from package:flutter_web to the Flutter
-  SDK](https://github.com/flutter/flutter/wiki/Upgrading-from-package:flutter_web-to-the-Flutter-SDK).
-* A new [ToggleButtons]({{site.api}}/flutter/material/ToggleButtons-class.html)
-  widget, described in the API docs.
-  [ToggleButtons demo]({{site.github}}/csells/flutter_toggle_buttons)
-* A new [ColorFiltered]({{site.api}}/flutter/widgets/ColorFiltered-class.html)
-  widget, also described in the API docs.
-  [ColorFiltered demo]({{site.github}}/csells/flutter_color_filter)
-* New behavior for the
-  [SelectableText]({{site.api}}/flutter/material/SelectableText-class.html)
-  widget.
+* A brand new version of [Flutter Gallery][]. There's a 
+  link to the runnable sample in the side nav under
+  **Samples & Tutorials**.
 
 Happy Fluttering!
 
-[What's new archive][]
+[add Flutter to an existing app]: /docs/development/add-to-app
+[Announcing Flutter 1.12: What a year!]: https://medium.com/flutter/announcing-flutter-1-12-what-a-year-22c256ba525d
+[app size]: /docs/perf/app-size#ios
+[building a web app with Flutter]: /docs/get-started/web
+[Desktop support for Flutter]: /desktop
+[Flutter: the first UI platform designed for ambient computing]: https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html?m=1
+[Flutter 1.12.13]: /docs/development/tools/sdk/release-notes/release-notes-1.12.13
+[Flutter Gallery]: https://flutter.github.io/samples/#/
+[Flutter Layout Explorer]: https://flutter.dev/docs/development/tools/devtools/inspector#flutter-layout-explorer
+[Flutter Medium publication]: https://medium.com/flutter
+[Migrating your plugin to the new Android APIs]: /docs/development/packages-and-plugins/plugin-api-migration
+[implicit animations]: /docs/codelabs/implicit-animations
+[Web support for Flutter]: /web
+[Web support for Flutter goes beta]: https://medium.com/flutter/web-support-for-flutter-goes-beta-35b64a1217c0
+[write your first Flutter app on the web]: /docs/get-started/codelab-web
+[Get started]: /docs/get-started/install
 
 ## Flutter가 처음인가요?
 
@@ -107,8 +98,8 @@ Happy Fluttering!
 
 ### 문서
 
-다른 플랫폼 경험이 있으신가요? 아래 문서를 확인해보세요:
-[Android][], [iOS][], [웹][], [React Native][],
+Coming from another platform? Check out:
+[Android][], [iOS][], [Web][], [React Native][],
 [Xamarin.Forms][]
 
 [Flutter의 레이아웃]()

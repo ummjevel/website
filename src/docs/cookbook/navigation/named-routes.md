@@ -6,21 +6,23 @@ prev:
 next:
   title: 인자를 named route로 전달하기
   path: /docs/cookbook/navigation/navigate-with-arguments
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
-[새로운 화면으로 이동하고, 되돌아오기](/docs/cookbook/navigation/navigation-basics/)
-예제에서는 Route를 생성하고,
-[`Navigator`]({{site.api}}/flutter/widgets/Navigator-class.html)
-에 전달하여 새로운 화면으로 전환하는 방법을 배웠습니다.
+In the [Navigate to a new screen and back][] recipe,
+you learned how to navigate to a new screen by creating a new route and
+pushing it to the [`Navigator`][].
 
 하지만 만약 앱의 다른 많은 부분들에서 동일한 화면으로 이동하고자 한다면, 중복된 코드가
 생기게 됩니다. 이러한 경우 _named route_ 를 정의하여 화면 전환에 사용하는 방법이 해결책이
 될 수 있습니다.
 
-Named route를 사용하기 위해 
-[`Navigator.pushNamed`]({{site.api}}/flutter/widgets/Navigator/pushNamed.html)
-함수를 사용할 수 있습니다. 이 예제에서는 named route를 사용하는 방법을 보여주기 위해
-기존 예제의 기능을 사용하고, 아래와 같은 순서로 진행합니다:
+To work with named routes,
+use the [`Navigator.pushNamed()`][] function.
+This example replicates the functionality from the original recipe,
+demonstrating how to use named routes using the following steps:
 
   1. 두 개의 화면 만들기.
   2. Route 정의하기.
@@ -75,8 +77,9 @@ class SecondScreen extends StatelessWidget {
 
 ## 2. Route 정의하기
 
-다음으로, [`MaterialApp`]({{site.api}}/flutter/material/MaterialApp-class.html) 생성자에 
-`initialRoute`와 `routes` 이름의 추가 프로퍼티를 제공하여 route를 정의하겠습니다. 
+Next, define the routes by providing additional properties
+to the [`MaterialApp`][] constructor: the `initialRoute`
+and the `routes` themselves.
 
 `initialRoute` 프로퍼티는 앱의 시작점을 나타내는 route를 정의하고, `routes` 프로퍼티는 이용가능한 
 named route와 해당 route로 이동했을 때 빌드될 위젯을 정의합니다.
@@ -101,11 +104,10 @@ MaterialApp(
 
 ## 3. 두 번째 화면으로 전환하기
 
-위젯과 route를 정의했다면,  
-[`Navigator.pushNamed()`]({{site.api}}/flutter/widgets/Navigator/pushNamed.html)
-메서드로 화면 전환을 호출하세요.
-이 함수는 Flutter에게 앞서 `routes` 테이블에 정의한 위젯을 생성하고 
-그 화면을 시작하도록 요청합니다.
+With the widgets and routes in place, trigger navigation by using the
+[`Navigator.pushNamed()`][] method.
+This tells Flutter to build the widget defined in the
+`routes` table and launch the screen.
 
 `FirstScreen` 위젯의 `build()` 메서드에 `onPressed()` 콜백을 다음과 같이 수정하세요:
 
@@ -120,9 +122,8 @@ onPressed: () {
 
 ## 4. 첫 번째 화면으로 돌아가기
 
-첫 번째 페이지로 되돌아가기 위해
-[`Navigator.pop()`]({{site.api}}/flutter/widgets/Navigator/pop.html)
-함수를 사용합니다.
+To navigate back to the first screen, use the
+[`Navigator.pop()`][] function.
 
 <!-- skip -->
 ```dart
@@ -133,9 +134,9 @@ onPressed: () {
 }
 ```
 
-## 완성된 예제
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/material.dart';
 
 void main() {
@@ -195,4 +196,13 @@ class SecondScreen extends StatelessWidget {
 }
 ```
 
-![Navigation Basics Demo](/images/cookbook/navigation-basics.gif){:.site-mobile-screenshot}
+<noscript>
+  <img src="/images/cookbook/navigation-basics.gif" alt="Navigation Basics Demo" class="site-mobile-screenshot" />
+</noscript>
+
+
+[`MaterialApp`]: {{site.api}}/flutter/material/MaterialApp-class.html
+[Navigate to a new screen and back]: /docs/cookbook/navigation/navigation-basics
+[`Navigator`]: {{site.api}}/flutter/widgets/Navigator-class.html
+[`Navigator.pop()`]: {{site.api}}/flutter/widgets/Navigator/pop.html
+[`Navigator.pushNamed()`]: {{site.api}}/flutter/widgets/Navigator/pushNamed.html

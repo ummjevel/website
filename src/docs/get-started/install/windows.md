@@ -1,7 +1,6 @@
 ---
-title: 윈도우에서 설치
-short-title: 윈도우
-# js: [{defer: true, url: /assets/archive.js}]
+title: Windows install
+short-title: Windows
 next:
   title: 에디터 설정
   path: /docs/get-started/editor
@@ -36,4 +35,4 @@ Flutter를 설치하고 실행하기 위해서는
 적합한 에디터를 설정하세요.
 
 [Git for Windows]: https://git-scm.com/download/win
-[윈도우 파워셸 5.0]: https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-windows-powershell
+[Windows PowerShell 5.0]: https://docs.microsoft.com/en-us/powershell/scripting/install/installing-windows-powershell

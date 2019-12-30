@@ -23,9 +23,9 @@ next:
 "mock" 으로 대체할 수 있습니다. Mock은 상용 서비스나 데이터베이스를 흉내낼 수 
 있으며, 상황에 따라 특정 결과 값을 반환하도록 할 수 있습니다.
 
-일반적으로 실제 클래스를 대체할 모의 클래스를 만들어 mock 객체로 활용할 수 있습니다.
-이러한 대체 클래스는 직접 구현할 수도 있지만, [Mockito 패키지]({{site.pub-pkg}}/mockito)를
-사용하여 손쉽게 만들 수 있습니다.
+Generally speaking, you can mock dependencies by creating an alternative
+implementation of a class. Write these alternative implementations by
+hand or make use of the [Mockito package][] as a shortcut.
 
 본 예제에서는 Mockito 패키지를 사용하여 Mock 객체를 생성하는 기본적인 방법을 
 아래와 같은 순서로 소개할 것입니다. 
@@ -39,7 +39,7 @@ next:
 더 자세한 내용은 [Mockito 패키지 문서]({{site.pub-pkg}}/mockito)를
 참고하시기 바랍니다.
 
-## 1. `mockito` 의존성 추가하기
+For more information, see the [Mockito package][] documentation.
 
 `mockito` 패키지를 사용하기 위해, `pubspec.yaml` 
 파일의 `dev_dependencies` 영역에
@@ -58,9 +58,9 @@ dev_dependencies:
 
 ## 2. 테스트할 함수 생성하기
 
-본 예제에서는 [인터넷에서 데이터 가져오기](/docs/cookbook/networking/fetch-data/) 
-예제의 `fetchPost` 함수를 단위 테스트할 것입니다. 이 함수를 테스트하기 위해 
-두 가지 변경이 필요합니다:
+In this example, unit test the `fetchPost` function from the
+[Fetch data from the internet][] recipe.
+To test this function, make two changes:
 
   1. 함수에 `http.Client`를 제공하세요. 상황에 따라 적당한 `http.Client`를 제공해줄 
      것입니다. Flutter와 서버-사이드 프로젝트에서는 `http.IOClient`를 제공할 수 있습니다.
@@ -73,6 +73,11 @@ dev_dependencies:
 
 <!-- skip -->
 ```dart
+class Post {
+  dynamic data;
+  Post.fromJson(this.data);
+}
+
 Future<Post> fetchPost(http.Client client) async {
   final response =
       await client.get('https://jsonplaceholder.typicode.com/posts/1');
@@ -89,9 +94,9 @@ Future<Post> fetchPost(http.Client client) async {
 
 ## 3. `http.Client` Mock 객체와 함께 테스트 파일 생성하기
 
-이제 `MockClient` 클래스와 함께 테스트 파일을 만들 차례입니다.
-[단위 테스트 소개](/docs/cookbook/testing/unit/introduction)
-예제를 따라, 최상위 `test` 폴더 안에 `fetch_post_test.dart` 파일을 만드세요.
+Next, create a test file along with a `MockClient` class.
+Following the advice in the [Introduction to unit testing][] recipe,
+create a file called `fetch_post_test.dart` in the root `test` folder.
 
 `MockClient` 클래스는 `http.Client` 클래스를 구현할 것입니다. 이를 통해 
 `MockClient`를 `fetchPost` 함수에 전달할 수 있게 되며, 각 테스트마다
@@ -161,12 +166,17 @@ main() {
 $ dart test/fetch_post_test.dart
 ```
 
-[단위 테스트 소개](/docs/cookbook/testing/unit/introduction#run-tests-using-intellij-or-vscode)
-예제에 있는 가이드에 따라 선호하는 에디터에서도 테스트를 수행할 수 있습니다.
+You can also run tests inside your favorite editor by following the
+instructions in the [Introduction to unit testing][] recipe.
 
 ### 요약
 
-본 예제에서는 웹 서비스나 데이터베이스에 의존하는 함수나 클래스를 테스트하기 위해 
-Mockito를 사용하는 방법을 배웠습니다. 이 예제는 Mockito 라이브러리와 mock 컨셉에 
-대한 간단한 소개에 불과합니다. 더 자세한 정보를 원한다면 
-[Mockito 패키지]({{site.pub-pkg}}/mockito)에서 제공하는 문서를 참고하세요.
+In this example, you've learned how to use Mockito to test functions or classes
+that depend on web services or databases. This is only a short introduction to
+the Mockito library and the concept of mocking. For more information,
+see the documentation provided by the [Mockito package][].
+
+
+[Fetch data from the internet]: /docs/cookbook/networking/fetch-data
+[Introduction to unit testing]: /docs/cookbook/testing/unit/introduction
+[Mockito package]: {{site.pub-pkg}}/mockito

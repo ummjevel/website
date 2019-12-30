@@ -362,7 +362,8 @@ Flutter는 캔버스에 그리는 일을 도와주는 2개의 클래스를 가�
 `CustomPaint`와 `CustomPainter`입니다. 
 `CustomPainter`는 캔버스에 어떻게 그릴지 알고리즘을 구현합니다.
 
-Flutter에 서명 그림 그리기를 구현하는 방법은 [StackOverflow][]에 있는 Collin의 답변을 참고하세요.
+To learn how to implement a signature painter in Flutter,
+see Collin's answer on [Custom Paint][].
 
 {% prettify dart %}
 import 'package:flutter/material.dart';
@@ -2159,26 +2160,24 @@ DevTools은 프로파일링, 힙 검사, 위젯트리 조사, 로깅 진단,
 안드로이드에서는 앱에 푸시 알림을 설정하기 위하여 
 Firebase Cloud Messaging을 사용합니다.
 
-Flutter에서는 
-[Firebase_Messaging][] 플러그인을
-활용하여 이 기능에 접근합니다.
-Firebase Cloud Messaging API에 대한 저 자세한 정보는
-[`firebase_messaging`][]
-플러그인 문서를 참조하세요.
+In Flutter, access this functionality using the
+[Firebase Messaging][] plugin.
+For more information on using the Firebase Cloud Messaging API,
+see the [firebase_messaging][] plugin documentation.
 
-[DevTools]: /docs/development/tools/devtools
-[Firebase Messaging]: {{site.github}}/flutter/plugins/tree/master/packages/firebase_messaging
-[firebase_messaging]: {{site.pub}}/packages/firebase_messaging
-[선언적 UI 소개]: /docs/get-started/flutter-for/declarative
-[머티리얼 컴포넌트]: {{site.material}}/develop/flutter
-[머티리얼 디자인 가이드라인]: {{site.material}}/design
-[쿠퍼티노(Cupertino) 위젯]: /docs/development/ui/widgets/cupertino
-[모든 플랫폼에 최적화된]: {{site.material}}/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines
-[애플의 iOS 디자인 언어]: https://developer.apple.com/design/resources/
-[StackOverflow]: {{site.so}}/questions/46241071/create-signature-area-for-mobile-app-in-dart-flutter
+[`AppLifecycleStatus` documentation]: {{site.api}}/flutter/dart-ui/AppLifecycleState-class.html
+[Apple's iOS design language]: https://developer.apple.com/design/resources/
 [composing]: /docs/resources/technical-overview#everythings-a-widget
-[패키지 및 플러그인 개발]: /docs/development/packages-and-plugins/developing-packages
+[Cupertino widgets]: /docs/development/ui/widgets/cupertino
+[Custom Paint]: {{site.so}}/questions/46241071/create-signature-area-for-mobile-app-in-dart-flutter
+[Developing packages and plugins]: /docs/development/packages-and-plugins/developing-packages
 [devicePixelRatio]: {{site.api}}/flutter/dart-ui/Window/devicePixelRatio.html
-[`AppLifecycleStatus` 문서]: {{site.api}}/flutter/dart-ui/AppLifecycleState-class.html
-[안드로이드 개발자를 위한 Flutter : Flutter에서 LinearLayout을 어떻게 디자인 하는가?]: {{site.medium}}/@burhanrashid52/flutter-for-android-developers-how-to-design-linearlayout-in-flutter-5d819c0ddf1a
+[DevTools]: /docs/development/tools/devtools
+[Firebase Messaging]: {{site.github}}/FirebaseExtended/flutterfire/tree/master/packages/firebase_messaging
+[firebase_messaging]: {{site.pub}}/packages/firebase_messaging
+[Flutter For Android Developers : How to design LinearLayout in Flutter?]: {{site.medium}}/@burhanrashid52/flutter-for-android-developers-how-to-design-linearlayout-in-flutter-5d819c0ddf1a
+[Introduction to declarative UI]: /docs/get-started/flutter-for/declarative
+[Material Components]: {{site.material}}/develop/flutter
+[Material Design guidelines]: {{site.material}}/design
+[optimized for all platforms]: {{site.material}}/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines
 [StackOverflow]: {{site.so}}/questions/44396075/equivalent-of-relativelayout-in-flutter

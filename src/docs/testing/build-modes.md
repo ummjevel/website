@@ -37,7 +37,7 @@ _디버그 모드_ 에서는 물리적 기기 혹은 에뮬레이터, 시뮬레�
 
 Debug mode for a web app means that:
 
-* The build is _not_ minified and tree shaking has _not_ been 
+* The build is _not_ minified and tree shaking has _not_ been
   performed.
 * The app is compiled with the [dartdevc][] compiler for
   easier debugging.
@@ -74,12 +74,13 @@ Release mode for a web app means that:
 * The app is compiled with the [dart2js][] compiler for
   best performance.
 
-`flutter run --release` 명령은 릴리즈 모드로 컴파일합니다.
-IDE는 이 모드를 지원합니다. 예를 들어 Android Studio는 
-**Run > Run...** 메뉴를 제공하고, 프로젝트 페이지에 있는 
-작은 삼각형의 초록색 아이콘을 통해서도 실행할 수 있습니다.
-`flutter build <target>` 명령어를 사용하여 특정 모드로 컴파일을 할 수 있습니다.
-`flutter help build`로 지원되는 target 목록을 확인하실 수 있습니다.
+The command `flutter run --release` compiles to release mode.
+Your IDE supports this mode. Android Studio, for example,
+provides a **Run > Run...** menu option, as well as a triangular
+green run button icon on the project page.
+You can compile to release mode for a specific target
+with `flutter build <target>`. For a list of supported targets,
+use `flutter help build`.
 
 더 많은 정보를 원하시면,
 [iOS][]와 [Android][] 앱 출시에 관한 문서를 참조하세요.

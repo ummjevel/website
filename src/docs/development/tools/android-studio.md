@@ -1,11 +1,11 @@
 ---
-title: Android Studio / IntelliJ
+title: Android Studio and IntelliJ
 description: How to develop Flutter apps in Android Studio or other IntelliJ products.
 ---
 
 <ul class="nav nav-tabs" id="ide" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" role="tab" aria-selected="true">Android Studio / IntelliJ</a>
+    <a class="nav-link active" role="tab" aria-selected="true">Android Studio and IntelliJ</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/docs/development/tools/vs-code" role="tab" aria-selected="false">Visual Studio Code</a>
@@ -221,7 +221,7 @@ the spinning icons also display in the code pane to help you
 visualize which rebuilds are happening.
 
 Note that numerous rebuilds doesn't necessarily indicate a problem.
-Typically you should only worry about excessive rebuilds if you have 
+Typically you should only worry about excessive rebuilds if you have
 already run the app in profile mode and verified that the performance
 is not what you want.
 

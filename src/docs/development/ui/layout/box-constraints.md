@@ -73,24 +73,27 @@ Flutter에 있는 많은 박스들 중 하나의 자식만을 가지는 박스�
 
 ## Flex
 
-플렉스 박스 자체([`Row`]()
-및 [`Column`]())는
-제한된 constraint가 있는지 지정된 방향으로 
-제한되지 않는지에 따라 다르게 동작하는데요.
+Flex boxes themselves ([`Row`][] and [`Column`][])
+behave differently based on whether they are in
+bounded constraints or unbounded constraints in
+their given direction.
 
-제한된 constraint의 경우, 
-지정된 방향으로 가능한 만큼 커지게 됩니다.
+In bounded constraints,
+they try to be as big as possible in that direction.
 
-제한되지 않은 constraint의 경우, 해당 방향으로 자식 요소들을 딱 맞추려 하는데요.
-이 경우, 자식 요소에 `flex`를 0(기본값) 이외의 다른 것으로 설정할 수 없습니다.
-위젯 라이브러리에서, 이는 플렉스 박스가 또다른 플렉스 박스나 스크롤 박스 안에 있을 때
-[`Expanded`]()를 
-사용할 수 없다는 걸 의미하는데요.
-만약 그렇게 하면, 이 문서를 가르키는 예외 메세지가 나타날 겁니다.
+In unbounded constraints,
+they try to fit their children in that direction.
+In this case, you cannot set `flex` on the children to
+anything other than 0 (the default).
+In the widget library, this means that you cannot use
+[`Expanded`][] when the flex box is inside
+another flex box or inside a scrollable. If you do,
+you'll get an exception message pointing you at this document.
 
-_교차_ 방향, 즉 [`Column`]()의
-너비(vertical flex)와 [`Row`]()의
-높이(horizontal flex)는 제한되면 안되며, 아닐 경우 자식 요소들을 제대로 정렬할 수 없습니다.
+In the _cross_ direction, for example, in the width for
+[`Column`][] (vertical flex) or in the height for
+[`Row`][] (horizontal flex), they must never be unbounded,
+otherwise they would not be able to reasonably align their children.
 
 [`Center`]: {{site.api}}/flutter/widgets/Center-class.html
 [`Column`]: {{site.api}}/flutter/widgets/Column-class.html

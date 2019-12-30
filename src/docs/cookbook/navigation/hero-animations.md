@@ -6,15 +6,18 @@ prev:
 next:
   title: 새로운 화면으로 이동하고, 되돌아오기
   path: /docs/cookbook/navigation/navigation-basics
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
 한 화면에서 다른 화면으로 넘어갈 때, 사용자에게 어떠한 가이드를 주는 것은 종종 도움이 됩니다.
 앱에서 사용할 수 있는 일반적인 기술은 다음 화면으로 전환할 때 위젯에 애니메이션 효과를 주는 것입니다.
 이러한 방법은 두 화면을 이어주는 시각적 연결 고리를 만들어 줍니다.
 
-한 화면에서 다음 화면으로 전환할 떄 애니메이션 효과를 주기 위해 
-[`Hero`]({{site.api}}/flutter/widgets/Hero-class.html) 위젯을 사용하세요.
-여기서는 아래와 같은 단계로 진행합니다:
+Use the [`Hero`][] widget
+to animate a widget from one screen to the next.
+This recipe uses the following steps:
 
   1. 같은 이미지를 보여주는 2개의 화면을 만듭니다.
   2. 첫 번째 화면에 `Hero` 위젯을 추가합니다.
@@ -28,9 +31,9 @@ next:
 애니메이션은 다음 단계에서 다루겠습니다.
 
 {{site.alert.note}}
-  이 예제는 
-  [새로운 화면으로 이동하고, 되돌아오기](/docs/cookbook/navigation/navigation-basics)
-  와 [탭 다루기](/docs/cookbook/gestures/handling-taps) 예제를 기반으로 합니다.
+  This example builds upon the
+  [Navigate to a new screen and back][]
+  and [Handle taps][] recipes.
 {{site.alert.end}}
 
 
@@ -123,10 +126,10 @@ Hero(
   코드를 반복하기보다는 재사용 가능한 위젯을 만들어 사용하는 게 모범 사례입니다.
   이 예제에서는 단순화하기 위해 동일 코드를 양쪽 위젯에서 사용합니다.
 {{site.alert.end}}
-  
-## 완성된 예제
 
-```dart
+## Interactive example
+
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/material.dart';
 
 void main() => runApp(HeroApp());
@@ -187,4 +190,11 @@ class DetailScreen extends StatelessWidget {
 }
 ```
 
-![Hero demo](/images/cookbook/hero.gif){:.site-mobile-screenshot}
+<noscript>
+  <img src="/images/cookbook/hero.gif" alt="Hero demo" class="site-mobile-screenshot" />
+</noscript>
+
+
+[Handle taps]: /docs/cookbook/gestures/handling-taps
+[`Hero`]: {{site.api}}/flutter/widgets/Hero-class.html
+[Navigate to a new screen and back]: /docs/cookbook/navigation/navigation-basics

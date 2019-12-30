@@ -19,18 +19,20 @@ Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고,
 * 앱의 Flutter 부분은 플랫폼 채널을 통해서 iOS나 Android가 될 수 있는 
   *호스트* 에게 메시지를 보냅니다.
 
-* *호스트* 는 플랫폼 채널에서 메시지를 받습니다. 
-  그리고 플랫폼 네이티브 언어를 사용해서
-  몇 개의 플랫폼 별 APIs 를 호출하고, 
-  Flutter 부분인 *클라이언트* 에게 응답을 보냅니다.
- 
-{{site.alert.note}} 
-이 가이드에서는 Java/Kotlin/Objective-C/Swift 플랫폼의 API 또는 라이브러리를 사용해야하는 경우 
-플랫폼 채널 메커니즘을 사용합니다.
-하지만 [defaultTargetPlatform]({{site.api}}/flutter/foundation/defaultTargetPlatform.html) 속성을 
-사용하여 플랫폼별 Dart 코드를 작성할 수도 있습니다.
-[platform-specific adaptations](/docs/resources/platform-adaptations)
-목록은 Flutter가 프레임워크에서 알아서 플랫폼별 적응을 처리해주는 부분에 대한 목록입니다.
+* The *host* listens on the platform channel, and receives the message.
+  It then calls into any number of platform-specific APIs&mdash;using
+  the native programming language&mdash;and sends a response back to the
+  *client*, the Flutter portion of the app.
+
+{{site.alert.note}}
+  This guide addresses using the platform channel mechanism if you need
+  to use the platform's APIs or libraries in Java/Kotlin/Objective-C or Swift.
+  But you can also write platform-specific Dart code in your Flutter app
+  by inspecting the
+  [defaultTargetPlatform]({{site.api}}/flutter/foundation/defaultTargetPlatform.html)
+  property. [Platform adaptations](/docs/resources/platform-adaptations)
+  lists some platform-specific adaptations that Flutter automatically does
+  for you in the framework.
 {{site.alert.end}}
 
 ## 아키텍쳐 훝어 보기: 플랫폼 채널 {#architecture}
@@ -43,11 +45,11 @@ Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고,
 메시지와 응답은 반응성 좋은 사용자 인터페이스를 위해 
 비동기적으로 전달됩니다.
 
-{{site.alert.note}} 
-  Flutter가 Dart와 메시지를 비동기로 주고 받음에도 불구하고,
-  채널 메서드를 호출할 때, 메서드를 플랫폼의 메인 스레드에서 호출해야 합니다.
-  더 자세한 사항은 [section on threading](#channels-and-platform-threading)를
-  참조하세요.
+{{site.alert.note}}
+  Even though Flutter sends messages to and from Dart asynchronously,
+  whenever you invoke a channel method, you must invoke that method on the
+  platform's main thread. See the
+  [section on threading](#channels-and-platform-threading) for more information.
 {{site.alert.end}}
 
 클라이언트 단에서는, `MethodChannel` ([API][MethodChannel])이 메시지를 그에 상응하는
@@ -115,9 +117,10 @@ Swift 와 iOS에 대한 예제는 다음을 참고하세요.
 기본적으로 Android는 Java, iOS는 Objective-C를 사용해서 작성하는 템플릿으로 지원됩니다. Kotlin 이나 Swift를
 사용하려면 `-i` 혹은 `-a` 플래그를 사용하세요.
 
-* 터미널에서 실행: `flutter create -i swift -a kotlin batterylevel`
+By default our template supports writing Android code using Kotlin, or iOS code
+using Swift. To use Java or Objective-C, use the `-i` and/or `-a` flags:
 
-### 2단계: Flutter 플랫폼 클라이언트 생성 {#example-client}
+* In a terminal run: `flutter create -i objc -a java batterylevel`
 
 앱의 `State` 클래스가 현재 앱 상태를 저장합니다. 
 현재 배터리 상태를 저장하려면 이를 상속해야 합니다.
@@ -132,6 +135,7 @@ Swift 와 iOS에 대한 예제는 다음을 참고하세요.
 예) `samples.flutter.io/battery`
 
 <!-- skip -->
+<?code-excerpt "main.dart" title?>
 ```dart
 import 'dart:async';
 
@@ -155,6 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
 반환된 결과를 `setState` 함수 안에서 사용해서 `_batteryLevel` 변수가 들고있는 UI 상태를 업데이트 하세요.
 
 <!-- skip -->
+<?code-excerpt "main.dart" title?>
 ```dart
   // 배터리 레벨을 가져옵니다.
   String _batteryLevel = 'Unknown battery level.';
@@ -179,32 +184,32 @@ class _MyHomePageState extends State<MyHomePage> {
 기존 템플릿의 `build` 메소드를 수정하세요.
 
 <!-- skip -->
+<?code-excerpt "main.dart" title?>
 ```dart
-@override
-Widget build(BuildContext context) {
-  return Material(
-    child: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          RaisedButton(
-            child: Text('Get Battery Level'),
-            onPressed: _getBatteryLevel,
-          ),
-          Text(_batteryLevel),
-        ],
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            RaisedButton(
+              child: Text('Get Battery Level'),
+              onPressed: _getBatteryLevel,
+            ),
+            Text(_batteryLevel),
+          ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 ```
 
+### Step 3: Add an Android platform-specific implementation
 
-### 3a단계 : Java를 이용한 Android 플랫폼 구현 {#example-java}
-
-*참고*: 해당 단계는 Java를 사용합니다. 코틀린을 선호한다면, 3b단계 로 넘어가세요.
-
-Android 스튜디오에서 Android 부분을 열어서 시작하세요:
+{% samplecode android-channel %}
+{% sample Java %}
+Start by opening the Android host portion of your Flutter app in Android Studio:
 
 1. Android 스튜디오 실행
 
@@ -220,31 +225,28 @@ Android 스튜디오에서 Android 부분을 열어서 시작하세요:
 `MethodCallHandler` 를 설정합니다.
 Flutter 클라이언트 측과 같은 채널 이름이 사용되었는지 확인해주세요.
 
+<?code-excerpt "MainActivity.java" title?>
 ```java
-import io.flutter.app.FlutterActivity;
-import io.flutter.plugin.common.MethodCall;
+import androidx.annotation.NonNull;
+import io.flutter.embedding.android.FlutterActivity;
+import io.flutter.embedding.engine.FlutterEngine;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
-import io.flutter.plugin.common.MethodChannel.Result;
+import io.flutter.plugins.GeneratedPluginRegistrant;
 
 public class MainActivity extends FlutterActivity {
-    private static final String CHANNEL = "samples.flutter.dev/battery";
+  private static final String CHANNEL = "samples.flutter.dev/battery";
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        GeneratedPluginRegistrant.registerWith(this);
-
-        new MethodChannel(getFlutterView(), CHANNEL).setMethodCallHandler(
-                new MethodCallHandler() {
-                    @Override
-                    public void onMethodCall(MethodCall call, Result result) {
-                        // Note: this method is invoked on the main thread.
-                        // TODO
-                    }
-                });
-    }
+  @Override
+  public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
+    GeneratedPluginRegistrant.registerWith(flutterEngine);
+    new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), CHANNEL)
+        .setMethodCallHandler(
+          (call, result) -> {
+            // Note: this method is invoked on the main thread.
+            // TODO
+          }
+        );
+  }
 }
 ```
 
@@ -255,6 +257,7 @@ public class MainActivity extends FlutterActivity {
 
 첫번째로, 필요한 import 들을 파일 상단에 추가해주세요.
 
+<?code-excerpt "MainActivity.java" title?>
 ```java
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -265,26 +268,34 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 ```
 
-그리고 아래 코드를 액티비티 클래스의 `onCreate()` 
-메서드 아래에 새로운 메서드로 작성해주세요.
+Then add the following as a new method in the activity class,
+below the `configureFlutterEngine()` method:
 
+<?code-excerpt "MainActivity.java" title?>
 ```java
-private int getBatteryLevel() {
-  int batteryLevel = -1;
-  if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-    BatteryManager batteryManager = (BatteryManager) getSystemService(BATTERY_SERVICE);
-    batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
-  } else {
-    Intent intent = new ContextWrapper(getApplicationContext()).
-        registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-    batteryLevel = (intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) * 100) /
-        intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-  }
+  private int getBatteryLevel() {
+    int batteryLevel = -1;
+    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+      BatteryManager batteryManager = (BatteryManager) getSystemService(BATTERY_SERVICE);
+      batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+    } else {
+      Intent intent = new ContextWrapper(getApplicationContext()).
+          registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+      batteryLevel = (intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) * 100) /
+          intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+    }
 
-  return batteryLevel;
-}
+    return batteryLevel;
+  }
 ```
 
+Finally, complete the `setMethodCallHandler()` method added earlier.
+You need to handle a single platform method, `getBatteryLevel()`,
+so test for that in the `call` argument. The implementation of
+this platform method calls the Android code written
+in the previous step, and returns a response for both
+the success and error cases using the `response` argument.
+If an unknown method is called, report that instead.
 
 마지막으로, 먼저 추가한 `onMethodCall()` 메서드를 완성합니다. 
 사용할 플랫폼 메서드는 `getBatteryLevel()`이며, 
@@ -297,44 +308,35 @@ private int getBatteryLevel() {
 
 아래 코드를:
 
+<?code-excerpt "MainActivity.java" title?>
 ```java
-public void onMethodCall(MethodCall call, Result result) {
-    // TODO
-}
+          (call, result) -> {
+            // Note: this method is invoked on the main thread.
+            // TODO
+          }
 ```
 
 이렇게 변경하세요:
 
+<?code-excerpt "MainActivity.java" title?>
 ```java
-@Override
-public void onMethodCall(MethodCall call, Result result) {
-    // Note: this method is invoked on the main thread.
-    if (call.method.equals("getBatteryLevel")) {
-        int batteryLevel = getBatteryLevel();
+          (call, result) -> {
+            // Note: this method is invoked on the main thread.
+            if (call.method.equals("getBatteryLevel")) {
+              int batteryLevel = getBatteryLevel();
 
-        if (batteryLevel != -1) {
-            result.success(batteryLevel);
-        } else {
-            result.error("UNAVAILABLE", "Battery level not available.", null);
-        }
-    } else {
-        result.notImplemented();
-    }
-}
+              if (batteryLevel != -1) {
+                result.success(batteryLevel);
+              } else {
+                result.error("UNAVAILABLE", "Battery level not available.", null);
+              }
+            } else {
+              result.notImplemented();
+            }
+          }
 ```
-
-
-이제 Android에서 앱을 실행하는 것이 가능합니다. 
-만약 Android 에뮬레이터를 사용하고 있다면, 툴바의 **...** 
-버튼을 눌러 제어판을 통해 배터리 레벨을 설정할 수 있습니다.
-
-
-### 3b단계: Kotlin을 사용해서 Android 플랫폼 구현 추가 {#example-kotlin}
-
-*참고*: 이 단계는 Java 말고 Kotlin을 사용하는 것 외엔 3a와 비슷합니다.
-
-이 과정은 [1단계](#example-project)로 프로젝트를 생성할 때 `-a kotlin` 옵션을 사용했다고
-가정합니다.
+{% sample Kotlin %}
+Start by opening the Android host portion of your Flutter app in Android Studio:
 
 안드로이드 스튜디오에서 Flutter 앱의 안드로이드 부분을 열어서 시작하세요:
 
@@ -354,19 +356,21 @@ public void onMethodCall(MethodCall call, Result result) {
 `setMethodCallHandler` 를 호출하세요.
 Flutter 클라이언트 쪽에서 사용한 것과 같은 채널 이름을 사용했는지 확인해주세요.
 
+<?code-excerpt "MyActivity.kt" title?>
 ```kotlin
-import android.os.Bundle
-import io.flutter.app.FlutterActivity
+import androidx.annotation.NonNull
+import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
+import io.flutter.plugins.GeneratedPluginRegistrant
 
-class MainActivity() : FlutterActivity() {
+class MainActivity: FlutterActivity() {
   private val CHANNEL = "samples.flutter.dev/battery"
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-
-    GeneratedPluginRegistrant.registerWith(this)
-    MethodChannel(flutterView, CHANNEL).setMethodCallHandler { call, result ->
+  override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+    GeneratedPluginRegistrant.registerWith(flutterEngine)
+    MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
+      call, result ->
       // Note: this method is invoked on the main thread.
       // TODO
     }
@@ -380,6 +384,7 @@ class MainActivity() : FlutterActivity() {
 
 첫 번째로, 필요한 import 들을 파일 상단에 추가해주세요.
 
+<?code-excerpt "MyActivity.kt" title?>
 ```kotlin
 import android.content.Context
 import android.content.ContextWrapper
@@ -390,10 +395,10 @@ import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 ```
 
-그리고 아래 코드를 액티비티 클래스의 
-`onCreate()` 메서드 아래에 새로운 메서드로 작성해주세요.
+Next, add the following method in the `MainActivity` class,
+below the `configureFlutterEngine()` method:
 
-
+<?code-excerpt "MyActivity.kt" title?>
 ```kotlin
   private fun getBatteryLevel(): Int {
     val batteryLevel: Int
@@ -409,6 +414,12 @@ import android.os.Build.VERSION_CODES
   }
 ```
 
+Finally, complete the `setMethodCallHandler()` method added earlier. You need to
+handle a single platform method, `getBatteryLevel()`, so test for that in the
+`call` argument. The implementation of this platform method calls the
+Android code written in the previous step, and returns a response for both
+the success and error cases using the `response` argument.
+If an unknown method is called, report that instead.
 
 마지막으로, 먼저 추가한 `onMethodCall()` 메서드를 완성합니다. 
 사용할 플랫폼 메서드는 `getBatteryLevel()` 이며, 
@@ -419,17 +430,22 @@ import android.os.Build.VERSION_CODES
 
 아래 코드를:
 
+<?code-excerpt "MyActivity.kt" title?>
 ```kotlin
-    MethodChannel(flutterView, CHANNEL).setMethodCallHandler { call, result ->
+    MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
+      call, result ->
+      // Note: this method is invoked on the main thread.
       // TODO
     }
 ```
 
 이렇게 변경하세요:
 
+<?code-excerpt "MyActivity.kt" title?>
 ```kotlin
-    MethodChannel(flutterView, CHANNEL).setMethodCallHandler { call, result ->
+    MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
       // Note: this method is invoked on the main thread.
+      call, result ->
       if (call.method == "getBatteryLevel") {
         val batteryLevel = getBatteryLevel()
 
@@ -443,19 +459,17 @@ import android.os.Build.VERSION_CODES
       }
     }
 ```
+{% endsamplecode %}
 
-이제 안드로이드에서 앱을 실행하는것이 가능합니다. 
-만약 안드로이드 에뮬레이터를 사용하고 있다면, 툴바의 **...**
-버튼에서 **제어판**을 열어서 배터리 레벨을 설정할 수 있습니다.
+You should now be able to run the app on Android. If using the Android
+Emulator, set the battery level in the Extended Controls panel
+accessible from the **...** button in the toolbar.
 
+### Step 4: Add an iOS platform-specific implementation
 
-### 4a단계 : Objective-C를 이용해서 iOS 플랫폼 특화 구현 추가 {#example-objc}
-
-*참고*: 해당 단계는 Objective-C 를 사용합니다. Swift를 선호한다면, 4b단계로 건너뛰세요.
-
-Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
-
-1. Xcode 실행
+{% samplecode ios-channel %}
+{% sample Objective-C %}
+Start by opening the iOS host portion of the Flutter app in Xcode:
 
 1. 메뉴에서 **File > Open...** 선택
 
@@ -472,6 +486,7 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 핸들러를 추가해주세요. Flutter 클라이언트 단과 같은 채널 이름이 사용되었는지 확인해주세요.
 
 
+<?code-excerpt "AppDelegate.m" title?>
 ```objectivec
 #import <Flutter/Flutter.h>
 #import "GeneratedPluginRegistrant.h"
@@ -500,6 +515,7 @@ iOS ObjectiveC 코드를 추가합니다. 해당 코드는
 
 `AppDelegate` 클래스에서 `@end` 바로 전에 아래 코드를 새로운 메서드로 추가해주세요.
 
+<?code-excerpt "AppDelegate.m" title?>
 ```objectivec
 - (int)getBatteryLevel {
   UIDevice* device = UIDevice.currentDevice;
@@ -519,8 +535,9 @@ iOS ObjectiveC 코드를 추가합니다. 해당 코드는
 그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 
 만약 알수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
 
+<?code-excerpt "AppDelegate.m" title?>
 ```objectivec
-__weak typeof(self) weakSelf = self
+__weak typeof(self) weakSelf = self;
 [batteryChannel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
   // Note: this method is invoked on the UI thread.
   if ([@"getBatteryLevel" isEqualToString:call.method]) {
@@ -538,19 +555,8 @@ __weak typeof(self) weakSelf = self
   }
 }];
 ```
-
-이제 iOS 에서 앱을 실행하는 것이 가능합니다. 만약 iOS 시뮬레이터를 사용하고 있다면, 
-배터리 API 가 지원되지 않음을 알아두세요. 
-앱에서는 'battery info unavailable' 이라는 메시지를 보여줄 것입니다.
-
-### 4b단계: Add an iOS platform-specific implementation using Swift {#example-swift}
-
-*참고*: 아래 단계는 Objective-C 말고 Swift를 사용한다는 외에는 4a단계 와 비슷합니다. 
-
-이 과정은 [1단계](#example-project)로 프로젝트를 생성할 때 `-i swift` 옵션을 사용했다고
-가정합니다.
-
-Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
+{% sample Swift %}
+Start by opening the iOS host portion of your Flutter app in Xcode:
 
 1. Xcode 실행
 
@@ -570,6 +576,7 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 `samples.flutter.dev/battery` 를 채널 이름으로 사용하는 
 `FlutterMethodChannel` 를 생성하세요. 
 
+<?code-excerpt "AppDelegate.swift" title?>
 ```swift
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -598,6 +605,7 @@ iOS의 Swift 코드를 추가합니다. 해당 코드는
 
 아래 코드를 `AppDelegate.swift`  맨 밑에 새로운 메서드로 추가하세요.
 
+<?code-excerpt "AppDelegate.swift" title?>
 ```swift
 private func receiveBatteryLevel(result: FlutterResult) {
   let device = UIDevice.current
@@ -618,6 +626,7 @@ private func receiveBatteryLevel(result: FlutterResult) {
 그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 
 만약 알수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
 
+<?code-excerpt "AppDelegate.swift" title?>
 ```swift
 batteryChannel.setMethodCallHandler({
   [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
@@ -629,10 +638,11 @@ batteryChannel.setMethodCallHandler({
   self?.receiveBatteryLevel(result: result)
 })
 ```
+{% endsamplecode %}
 
-이제 iOS 에서 앱을 실행하는것이 가능합니다. 
-만약 iOS 시뮬레이터를 사용하고 있다면, 배터리 API 가 지원되지 않음을 알아두세요. 
-앱에서는 'battery info unavailable' 이라는 메시지를 보여줄 것입니다.
+You should now be able to run the app on iOS. If using the iOS Simulator,
+note that it does not support battery APIs,
+and the app displays 'battery info unavailable'.
 
 ## 플랫폼 별 코드를 UI 코드에서 분리하기 {#separate}
 

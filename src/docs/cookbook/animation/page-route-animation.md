@@ -3,35 +3,34 @@ title: 페이지 route 전환 애니메이션
 next:
   title: 물리 시뮬레이션을 사용한 위젯 애니메이션
   path: /docs/cookbook/animation/physics-simulation
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
-머티리얼과 같은 디자인 언어는 routes (또는 스크린) 간 전환을 할 때  
-일반적인 행동을 정의합니다. 그럼에도 가끔은 화면 전환을 커스터마이징해서 더 유니크한 
-앱을 만들 수 있습니다. 이를 돕기 위해  
-[PageRouteBuilder]({{site.api}}/flutter/widgets/PageRouteBuilder-class.html)가
-[Animation]({{site.api}}/flutter/animation/Animation-class.html) 객체를
-제공합니다. 이 `Animation`은 
-[Tween]({{site.api}}/flutter/animation/Tween-class.html),
-[Curve]({{site.api}}/flutter/animation/Curve-class.html) 객체와 함께 쓰일 수 있고,
-이를 통해 전환 애니메이션을 커스터마이징 할 수 있습니다.
-이 문서는 화면 아래부터 새로운 route로 진입하는 애니메이션을 사용하여 
-routes 간 전환을 하는 방법을 보여줍니다.
+A design language, such as Material, defines standard behaviors when
+transitioning between routes (or screens). Sometimes, though, a custom
+transition between screens can make an app more unique. To help,
+[`PageRouteBuilder`][] provides an [`Animation`] object.
+This `Animation` can be used with [`Tween`][] and
+[`Curve`][] objects to customize the transition animation.
+This recipe shows how to transition between
+routes by animating the new route into view from
+the bottom of the screen.
 
-커스텀 화면 전환을 만들기 위해, 이 문서는 아래와 같은 단계를 따릅니다:
+To create a custom page route transition, this recipe uses the following steps:
 
-1. PageRouteBuilder 설정
-2. `Tween` 생성
-3. `AnimatedWidget` 추가 
-4. `CurveTween` 사용
-5. 두 개의 `Tween` 조합
+1. Set up a PageRouteBuilder
+2. Create a `Tween`
+3. Add an `AnimatedWidget`
+4. Use a `CurveTween`
+5. Combine the two `Tween`s
 
-## 1. PageRouteBuilder 설정
+## 1. Set up a PageRouteBuilder
 
-먼저, 
-[PageRouteBuilder]({{site.api}}/flutter/widgets/PageRouteBuilder-class.html)를 사용하여
-[Route]({{site.api}}/flutter/widgets/Route-class.html)를 생성하세요.
-`PageRouteBuilder`에는 2개의 콜백이 있는데, 하나는 route에 콘텐츠를 빌드하기 위해 사용하고(`pageBuilder`), 
-다른 하나는 route의 전환을 빌드하기 위해 사용합니다(`transitionsBuilder`).
+To start, use a [`PageRouteBuilder`][] to create a [`Route`][].
+`PageRouteBuilder` has two callbacks, one to build the content of the route
+(`pageBuilder`), and one to build the route's transition (`transitionsBuilder`).
 
 {{site.alert.note}}
   pageBuilder에서 만들어진 위젯이 transitionsBuilder의 `child` 매개 변수로 전달됩니다. 
@@ -91,11 +90,12 @@ class Page2 extends StatelessWidget {
 
 ## 2. Tween 생성
 
-새 페이지를 아래에서 올라오는 애니메이션으로 만들고 싶다면, 
-`Offset(0, 1)`에서 `Offset(0, 0)`(일반적으로`Offset.zero` 생성자를 사용하여 정의)으로 
-애니메이션해야합니다. 이 경우, offset은 
-[FractionalTranslation]({{site.api}}/flutter/widgets/FractionalTranslation-class.html) 위젯의 2D 벡터입니다.
-`dy` 인자를 1로 설정하여 페이지 전체 높이의 수직 변환을 표현할 수 있습니다.
+To make the new page animate in from the bottom, it should animate from
+`Offset(0,1)` to `Offset(0, 0)` (usually defined using the `Offset.zero`
+constructor). In this case, the Offset is a 2D vector for the
+['FractionalTranslation'][] widget.
+Setting the `dy` argument to 1 represents a vertical translation one
+full height of the page.
 
 `transitionsBuilder` 콜백에는 `animation` 매개 변수가 있습니다.
 이 매개 변수는 0에서 1 사이의 값을 생성하는 `Animation<double>`입니다. 
@@ -113,15 +113,13 @@ transitionsBuilder: (context, animation, secondaryAnimation, child) {
 
 ## 3. AnimatedWidget 사용
 
-Flutter에는 애니메이션 값이 변경 될 때 다시 빌드되는 
-[AnimatedWidget]({{site.api}}/flutter/widgets/AnimatedWidget-class.html)을 
-확장한 여러 위젯 모음이 있습니다. 
-예를 들어 SlideTransition은 `Animation<Offset>`을 가져와서 
-애니메이션 값이 변경될 때마다 자식을 변환합니다(FractionalTranslation 위젯을 사용).
+Flutter has a set of widgets extending [`AnimatedWidget`][]
+that rebuild themselves when the value of the animation changes. For instance,
+SlideTransition takes an `Animation<Offset>` and translates its child (using a
+FractionalTranslation widget) whenever the value of the animation changes.
 
-AnimatedWidget은 `Animation<Offset>`과 자식 위젯을 사용하여  
-[SlideTransition]({{site.api}}/flutter/widgets/SlideTransition-class.html)을 
-반환합니다.
+AnimatedWidget Return a [`SlideTransition`][]
+with the `Animation<Offset>` and the child widget:
 
 ```dart
 transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -139,16 +137,15 @@ transitionsBuilder: (context, animation, secondaryAnimation, child) {
 
 ## 4. CurveTween 사용
 
-Flutter는 시간 경과에 따른 애니메이션 비율을 조정하는 
-다양한 easing curve을 제공합니다. 
-[Curves]({{site.api}}/flutter/animation/Curves-class.html) 클래스에는  
-많이 사용되는 curve가 미리 정의되어 있습니다. 
-예를 들어, `Curves.easeOut`은
-애니메이션이 빠르게 시작됐다가 천천히 끝나는 효과를 만듭니다.
+Flutter provides a selection of easing curves that
+adjust the rate of the animation over time.
+The [`Curves`][] class
+provides a predefined set of commonly used curves.
+For example, `Curves.easeOut`
+makes the animation start quickly and end slowly.
 
-Curve를 사용하려면 새로운 
-[CurveTween]({{site.api}}/flutter/animation/CurveTween-class.html)을 
-만들어 Curve에 전달하세요:
+To use a Curve, create a new [`CurveTween`][]
+and pass it a Curve:
 
 ```dart
 var curve = Curves.ease;
@@ -160,8 +157,8 @@ var curveTween = CurveTween(curve: curve);
 
 ## 5. 두 개의 Tween 조합
 
-여러 tween을 조합하기 위해, 
-[chain()]({{site.api}}/flutter/animation/Animatable/chain.html)을 사용하세요:
+To combine the tweens,
+use [`chain()`][]:
 
 ```dart
 var begin = Offset(0.0, 1.0);
@@ -196,10 +193,10 @@ easing curve로 `Animation<Offset>`을 만드는 또 다른 방법은
 
 ```dart
 transitionsBuilder: (context, animation, secondaryAnimation, child) {
-  var begin = Offset(0.0, 1.0); 
+  var begin = Offset(0.0, 1.0);
   var end = Offset.zero;
   var curve = Curves.ease;
-  
+
   var tween = Tween(begin: begin, end: end);
   var curvedAnimation = CurvedAnimation(
    parent: animation,
@@ -213,9 +210,9 @@ transitionsBuilder: (context, animation, secondaryAnimation, child) {
 }
 ```
 
-## 전체 예제
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/material.dart';
 
 main() {
@@ -269,5 +266,19 @@ class Page2 extends StatelessWidget {
   }
 }
 ```
+<noscript>
+  <img src="/images/cookbook/page-route-animation.gif" alt="Demo showing a custom page route transition animating up from the bottom of the screen" class="site-mobile-screenshot" />
+</noscript>
 
-![Demo showing a custom page route transition animating up from the bottom of the screen](/images/cookbook/page-route-animation.gif){:.site-mobile-screenshot}
+
+[`AnimatedWidget`]: {{site.api}}/flutter/widgets/AnimatedWidget-class.html
+[`Animation`]: {{site.api}}/flutter/animation/Animation-class.html
+[`chain()`]: {{site.api}}/flutter/animation/Animatable/chain.html
+[`Curve`]: {{site.api}}/flutter/animation/Curve-class.html
+[`Curves`]: {{site.api}}/flutter/animation/Curves-class.html
+[`CurveTween`]: {{site.api}}/flutter/animation/CurveTween-class.html
+['FractionalTranslation']: {{site.api}}/flutter/widgets/FractionalTranslation-class.html
+[`PageRouteBuilder`]: {{site.api}}/flutter/widgets/PageRouteBuilder-class.html
+[`Route`]: {{site.api}}/flutter/widgets/Route-class.html
+[`SlideTransition`]: {{site.api}}/flutter/widgets/SlideTransition-class.html
+[`Tween`]: {{site.api}}/flutter/animation/Tween-class.html

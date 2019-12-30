@@ -6,6 +6,9 @@ prev:
 next:
   title: Add Material touch ripples
   path: /docs/cookbook/gestures/ripples
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
 When a text field is selected and accepting input,
@@ -38,7 +41,7 @@ TextField(
 ```
 
 For more information on handling input and creating text fields,
-see the [Forms](/docs/cookbook#forms) section of the cookbook.
+see the [Forms][] section of the cookbook.
 
 ## Focus a text field when a button is tapped
 
@@ -55,8 +58,7 @@ presses a button using the following steps:
 
 ### 1. Create a `FocusNode`
 
-First, create a
-[`FocusNode`]({{site.api}}/flutter/widgets/FocusNode-class.html).
+First, create a [`FocusNode`][].
 Use the `FocusNode` to identify a specific `TextField` in Flutter's
 "focus tree." This allows you to give focus to the `TextField`
 in the next steps.
@@ -137,9 +139,9 @@ FloatingActionButton(
 );
 ```
 
-## Complete example
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -216,8 +218,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
 }
 ```
 
-![Text Field Focus Demo](/images/cookbook/focus.gif){:.site-mobile-screenshot}
+<noscript>
+  <img src="/images/cookbook/focus.gif" alt="Text Field Focus Demo" class="site-mobile-screenshot" />
+</noscript>
 
-
-
+[`FocusNode`]: {{site.api}}/flutter/widgets/FocusNode-class.html
+[Forms]: /docs/cookbook#forms
 [`requestFocus()`]: {{site.api}}/flutter/widgets/FocusNode/requestFocus.html

@@ -11,7 +11,15 @@
     (예시. `C:\src\flutter`) (`C:\Program Files\`와 같은 권한이 
     필요한 위치에 설치하지 마세요.)
 
-이제 Flutter 콘솔에서 Flutter 명령을 실행할 수 있습니다.
+Steps 1 and 2 can be replaced. If you don't want to install a fixed version of the installation bundle.
+The Flutter SDK is free and open source, so you can get the source code from the [Flutter repo](https://github.com/flutter/flutter) on GitHub,
+and change branches or tags as needed.
+
+```terminal
+$ git clone https://github.com/flutter/flutter.git
+```
+
+You are now ready to run Flutter commands in the Flutter Console!
 
 ### Path 추가
 

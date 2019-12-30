@@ -1,6 +1,6 @@
 ---
 title: "Binding to native code using dart:ffi"
-description: "To use C code in your Flutter program, use the dart:ffi library (currently in preview)."
+description: "To use C code in your Flutter program, use the dart:ffi library (currently in beta)."
 ---
 
 Flutter mobile can use the [dart:ffi][] library
@@ -23,9 +23,8 @@ that implements 32-bit addition and then
 exposes it through a Dart plugin named "native_add".
 
 {{ site.alert.note }}
-  The dart:ffi library is [in active development][ffi issue]
-  and isn't complete yet. Note that the API is likely to have
-  breaking changes between now and its completion.
+  The dart:ffi library is [in beta][ffi issue],
+  and breaking API changes might still happen.
 
   Using the feature requires a Flutter 1.10.x
   dev channel build. To switch to the dev channel and
@@ -99,8 +98,9 @@ during link-time optimization.
 
 For example,
 to create a C++ file named `ios/Classes/native_add.cpp`,
-use the following instructions. Start from the root
-directory of your project:
+use the following instructions. (Note that the template
+has already created this file for you.) Start from the
+root directory of your project:
 
 ```bash
 cat > ios/Classes/native_add.cpp << EOF
@@ -113,9 +113,11 @@ int32_t native_add(int32_t x, int32_t y) {
 EOF
 ```
 
-The podspec fle (`ios/native_add.podspec`) automatically
-includes all C/C++ files in `ios/Classes`, and they are
-compiled within the Xcode build system.
+On iOS, you need to tell xcode to statically link the file:
+
+ 1. In Xcode, open `Runner.xcworkspace`.
+ 2. Add the C/C++/Objective-C/Swift
+    source files to the Xcode project.
 
 On Android, you need to create a `CMakeLists.txt` file
 to define how the sources should be compiled and point
@@ -169,7 +171,7 @@ import 'dart:io';   // For Platform.isX
 final DynamicLibrary nativeAddLib =
   Platform.isAndroid
     ? DynamicLibrary.open("libnative_add.so")
-    : DynamicLibrary.open("native_add.framework/native_add");
+    : DynamicLibrary.process();
 ```
 
 Note that on Android the native library is named
@@ -218,7 +220,7 @@ can be resolved using [`DynamicLibrary.executable`][] or
 To link against a platform library,
 use the following instructions:
 
-1. In Xcode, open `Runner.xcodeproj`.
+1. In Xcode, open `Runner.xcworkspace`.
 1. Select the target platform.
 1. Click **+** in the **Linked Frameworks and Libraries**
    section.
@@ -236,7 +238,7 @@ archives as well, but it requires testing.
 To link directly to source code,
 use the following instructions:
 
- 1. In Xcode, open `Runner.xcodeproj`.
+ 1. In Xcode, open `Runner.xcworkspace`.
  2. Add the C/C++/Objective-C/Swift
     source files to the Xcode project.
  3. Add the following prefix to the
@@ -261,8 +263,8 @@ To link to a compiled dynamic library,
 use the following instructions:
 
 1. If a properly signed `Framework` file is present,
-   open `Runner.xcodeproj`.
-1. Add the framework file to to the **Embedded Binaries**
+   open `Runner.xcworkspace`.
+1. Add the framework file to the **Embedded Binaries**
    section.
 1. Also add it to the **Linked Frameworks & Libraries**
    section of the target in Xcode.

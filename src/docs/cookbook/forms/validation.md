@@ -6,6 +6,9 @@ prev:
 next:
   title: Create and style a text field
   path: /docs/cookbook/forms/text-input
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
 Apps often require users to enter information into a text field.
@@ -27,13 +30,11 @@ a single text field using the following steps:
 
 ## 1. Create a `Form` with a `GlobalKey`
 
-First, create a
-[`Form`]({{site.api}}/flutter/widgets/Form-class.html).
+First, create a [`Form`][].
 The `Form` widget acts as a container for grouping
 and validating multiple form fields.
 
-When creating the form, provide a
-[`GlobalKey`]({{site.api}}/flutter/widgets/GlobalKey-class.html).
+When creating the form, provide a [`GlobalKey`][].
 This uniquely identifies the `Form`,
 and allows validation of the form in a later step.
 
@@ -70,8 +71,8 @@ class MyCustomFormState extends State<MyCustomForm> {
 
 {{site.alert.tip}}
   Using a `GlobalKey` is the recommended way to access a form.
-  However, if you have a more complex widget tree, you can use the
-  [`Form.of()`]({{site.api}}/flutter/widgets/Form/of.html) method to
+  However, if you have a more complex widget tree,
+  you can use the [`Form.of()`][] method to
   access the form within nested widgets.
 {{site.alert.end}}
 
@@ -79,8 +80,7 @@ class MyCustomFormState extends State<MyCustomForm> {
 
 Although the `Form` is in place,
 it doesn't have a way for users to enter text.
-That's the job of a
-[`TextFormField`]({{site.api}}/flutter/material/TextFormField-class.html).
+That's the job of a [`TextFormField`][].
 The `TextFormField` widget renders a material design text field
 and can display validation errors when they occur.
 
@@ -137,8 +137,8 @@ RaisedButton(
 ### How does this work?
 
 To validate the form, use the `_formKey` created in
-step 1. You can use the `_formKey.currentState()` method to access the
-[`FormState`]({{site.api}}/flutter/widgets/FormState-class.html),
+step 1. You can use the `_formKey.currentState()`
+method to access the [`FormState`][],
 which is automatically created by Flutter when building a `Form`.
 
 The `FormState` class contains the `validate()` method.
@@ -148,9 +148,9 @@ If everything looks good, the `validate()` method returns `true`.
 If any text field contains errors, the `validate()` method
 rebuilds the form to display any error messages and returns `false`.
 
-## Complete example
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -228,4 +228,13 @@ class MyCustomFormState extends State<MyCustomForm> {
 }
 ```
 
-![Form Validation Demo](/images/cookbook/form-validation.gif){:.site-mobile-screenshot}
+<noscript>
+  <img src="/images/cookbook/form-validation.gif" alt="Form Validation Demo" class="site-mobile-screenshot" />
+</noscript>
+
+
+[`Form`]: {{site.api}}/flutter/widgets/Form-class.html
+[`Form.of()`]: {{site.api}}/flutter/widgets/Form/of.html
+[`FormState`]: {{site.api}}/flutter/widgets/FormState-class.html
+[`GlobalKey`]: {{site.api}}/flutter/widgets/GlobalKey-class.html
+[`TextFormField`]: {{site.api}}/flutter/material/TextFormField-class.html

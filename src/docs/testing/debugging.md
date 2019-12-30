@@ -1,6 +1,6 @@
 ---
-title: Flutter 앱 디버깅하기
-description: DevTools suite를 사용하여 앱을 디버깅하는 방법 소개.
+title: Debugging Flutter apps
+description: How to debug your app using the DevTools suite.
 ---
 
 Flutter 어플리케이션을 디버깅하기 위해 다양한 도구와 기능이 준비되어있습니다. 그 중에서 몇 가지를 소개합니다.
@@ -76,10 +76,10 @@ The Dart Analyzer는 문제를 추적하기 위해 여러분이 코드에 넣어
 
 ## Logging
 
-로깅도 유용한 디버깅 도구입니다.
-[프로그래밍 방식으로][logging] 로깅을 설정하고
-DevTools의 [logging view][]나, 콘솔에서
-출력을 확인할 수 있습니다.
+Another useful debugging tool is logging.
+You set logging up [programmatically][logging]
+then view the output in the DevTools
+[logging view][], or in the console.
 
 ## Debugging application layers
 
@@ -240,8 +240,8 @@ You might find the following docs useful:
 [breakpoints]: /docs/testing/code-debugging#setting-breakpoints
 [logging]: /docs/testing/code-debugging#logging
 [Flutter's modes]: /docs/testing/build-modes
-[Flutter performance profiling]: /docs/testing/ui-performance
-[Performance best practices]: /docs/testing/best-practices
+[Flutter performance profiling]: /docs/perf/rendering/ui-performance
+[Performance best practices]: /docs/perf/rendering/best-practices
 [Using an OEM debugger]: /docs/testing/oem-debuggers
 
 [The Layer Cake]: https://medium.com/flutter-community/the-layer-cake-widgets-elements-renderobjects-7644c3142401
@@ -256,9 +256,9 @@ You might find the following docs useful:
 [Flutter inspector]: /docs/development/tools/devtools/inspector
 [DevTools debugger]: /docs/development/tools/devtools/debugger
 [logging view]: /docs/development/tools/devtools/logging
-[Timeline 뷰]: /docs/development/tools/devtools/timeline
-[The performance overlay]: /docs/testing/ui-performance#the-performance-overlay
-[Flutter performance profiling]: /docs/testing/ui-performance
+[Timeline view]: /docs/development/tools/devtools/timeline
+[The performance overlay]: /docs/perf/rendering/ui-performance#the-performance-overlay
+[Flutter performance profiling]: /docs/perf/rendering/ui-performance
 [overlay]: /docs/testing/code-debugging#performance-overlay
 [debug mode]: /docs/testing/build-modes#debug
 [profile mode]: /docs/testing/build-modes#profile

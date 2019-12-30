@@ -6,13 +6,15 @@ prev:
 next:
   title: Report errors to a service
   path: /docs/cookbook/maintenance/error-reporting
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
-The standard [`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)
-constructor works well for small lists. To work with lists that contain
+The standard [`ListView`][] constructor works well
+for small lists. To work with lists that contain
 a large number of items, it's best to use the
-[`ListView.builder`]({{site.api}}/flutter/widgets/ListView/ListView.builder.html)
-constructor.
+[`ListView.builder`][] constructor.
 
 In contrast to the default `ListView` constructor, which requires
 creating all items at once, the `ListView.builder()` constructor
@@ -25,8 +27,7 @@ might be a list of messages, search results, or products in a store.
 Most of the time, this data comes from the internet or a database.
 
 For this example, generate a list of 10,000 Strings using the
-[`List.generate`]({{site.api}}/flutter/dart-core/List/List.generate.html)
-constructor.
+[`List.generate`][] constructor.
 
 <!-- skip -->
 ```dart
@@ -51,9 +52,9 @@ ListView.builder(
 );
 ```
 
-## Complete example
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -92,4 +93,12 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-![Long Lists Demo](/images/cookbook/long-lists.gif){:.site-mobile-screenshot}
+<noscript>
+  <img src="/images/cookbook/long-lists.gif" alt="Long Lists Demo" class="site-mobile-screenshot" />
+</noscript>
+
+
+
+[`List.generate`]: lh({{site.api}}/flutter/dart-core/List/List.generate.html)
+[`ListView`]: {{site.api}}/flutter/widgets/ListView-class.html
+[`ListView.builder`]: {{site.api}}/flutter/widgets/ListView/ListView.builder.html

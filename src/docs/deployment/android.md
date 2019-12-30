@@ -1,5 +1,6 @@
 ---
-title: Android 앱 출시 준비하기
+title: Build and release an Android app
+description: How to prepare for and release an Android app to the Play store.
 short-title: Android
 ---
 
@@ -11,11 +12,15 @@ Flutter는 기본적으로 앱의 _debug_ 버전을 빌드합니다.
 When you're ready to prepare a *release* version for Android, for example to
 [publish to the Google Play Store][play], follow the steps on this page.
 
-앱의 _release_ 버전을 출시할 준비가 됐을 때,
-[Google Play 출시][play]에 있는 예시를 참조하면
-도움이 될 것입니다. 출시하기 직전에
-마지막 작업이 앱에 필요할 것입니다.
-이 페이지는 아래와 같은 주제를 다룹니다.
+* [Adding a launcher icon](#adding-a-launcher-icon)
+* [Signing the app](#signing-the-app)
+* [Enabling Proguard](#enabling-proguard)
+* [Reviewing the app manifest](#reviewing-the-app-manifest)
+* [Reviewing the build configuration](#reviewing-the-build-configuration)
+* [Building the app for release](#building-the-app-for-release)
+* [Publishing to the Google Play Store](#publishing-to-the-google-play-store)
+* [Updating the app's version number](#updating-the-apps-version-number)
+* [Android release FAQ](#android-release-faq)
 
 * [런처 아이콘 추가하기](#런처-아이콘-추가하기)
 * [앱 서명하기](#앱-서명하기)
@@ -74,19 +79,19 @@ keytool -genkey -v -keystore c:/Users/USER_NAME/key.jks -keyalg RSA -keysize 204
 {{site.alert.end}}
 
 {{site.alert.note}}
-  * `keytool` 은 프로젝트 경로에 존재하지 않을 수 있습니다. 
-    해당 파일은 Android 스튜디오와 함께 설치되는 Java JDK에 포함되는 파일입니다. 
-    해당 파일에 대한 구체적인 경로는 명령줄에 
-    `flutter doctor -v` 을 입력한 후 표시되는 
-    'Java binary at:' 다음에 나타나는 경로에서 
-    `java`를 포함하고 있는 디렉토리의 `keytool` 파일을 통해 확인할 수 있습니다.
-    `Program Files`처럼 공백이 있는 경로라면,
-    따옴표를 사용하여 감싸주세요.
-    예: `/"Program Files"/`
+* The `keytool` command might not be in your path&mdash;it's
+  part of Java, which is installed as part of
+  Android Studio.  For the concrete path,
+  run `flutter doctor -v` and locate the path printed after
+  'Java binary at:'. Then use that fully qualified path
+  replacing `java` (at the end) with `keytool`.
+  If your path includes space-separated names,
+  such as `Program Files`, place quotes around the
+  space-separated names. For example: `/"Program Files"/`
 
-  * `-storetype JKS` 태그는 자바 9 이후 버전에서만 사용 가능합니다.
-    자바 9 릴리스부터 
-    키 저장소 유형의 기본값은 PKS12입니다. 
+* The `-storetype JKS` tag is only required for Java 9
+  or newer. As of the Java 9 release,
+  the keystore type defaults to PKS12.
 {{site.alert.end}}
 
 ### 앱으로부터 keystore 참조하기
@@ -229,35 +234,44 @@ android {
 
 ## 앱 매니페스트 검토하기
 
-올바른 앱 설정을 위하여 `<app dir>/android/app/src/main`에 있는 기본 
-[앱 매니페스트][manifest] 파일인 `AndroidManifest.xml`을 검토하고 
-올바른 값들을 포함하는지 확인하세요. 특히:
+Review the default [App Manifest][manifest] file,
+`AndroidManifest.xml`,
+located in `<app dir>/android/app/src/main` and verify that the values
+are correct, especially the following:
 
-* `application`: 앱의 최종 이름을 반영하기 위해 [`application`][applicationtag]에 있는 
-  `android:label`을 수정하세요.
+`application`
+: Edit the `android:label` in the
+  [`application`][applicationtag] tag to reflect
+  the final name of the app.
 
-* `uses-permission`: 앱 내에서 인터넷 접근이 필요하지 않다면 
-  `android.permission.INTERNET` [permission][permissiontag]을 제거하세요. 
-   기본 템플릿에서는 Flutter 도구와 실행 중인 앱의 커뮤니케이션을 위해 해당 권한을 포함합니다.
+`uses-permission`
+: Add the `android.permission.INTERNET`
+  [permission][permissiontag] if your application code needs Internet
+  access. The standard template does not include this tag but allows
+  Internet access during development to enable communication between
+  Flutter tools and a running app.
 
 ## 빌드 구성 검토하기
 
-올바른 빌드 구성을 위하여 `<app dir>/android/app`에 있는 
-기본 [Gradle build file][gradlebuild] 파일인 `build.gradle`을 검토하고 
-올바른 값들을 포함하는지 확인하세요. 특히:
+Review the default [Gradle build file][gradlebuild] file,
+`build.gradle`, located in `<app dir>/android/app` and
+verify the values are correct, especially the following
+values in the `defaultConfig` block:
 
-* `defaultConfig`:
+`applicationId`
+: Specify the final, unique (Application Id)[appid]
 
-  * `applicationId`: 고유한 최종 (Application Id)[appid]를 지정하세요.
+`versionCode` & `versionName`
+: Specify the internal app version number,
+  and the version number display string. You can do this by setting
+  the `version` property in the pubspec.yaml file. Consult the version
+  information guidance in the [versions documentation][versions].
 
-  * `versionCode` & `versionName`: 내부 앱 버전 번호를 지정하고, 
-     문자열 형태로 명시하세요. pubspec.yaml 파일에 `version` 속성을 설정하여 
-     내부 앱 버전 번호를 문자열 형태로 지정할 수 있습니다. 
-     버전 정보 지침에 대해서는 [버전 문서][versions]를 참조하세요.
-
-  * `minSdkVersion` & `targetSdkVersion`: 최소 API 레벨과 
-     개발 대상 버전으로 지정한 지정 API 레벨을 명시하세요. 
-     자세한 내용은 [버전 문서][versions]의 API 레벨 영역을 참조하세요.
+`minSdkVersion` & `targetSdkVersion`
+: Specify the minimum API level,
+  and the API level on which the app is designed to run.
+  Consult the API level section in the [versions documentation][versions]
+  for details.
 
 ## release 앱 번들 빌드하기
 
@@ -286,8 +300,7 @@ release 번들이 서명될 것입니다.
   an app bundle.
   While the Android team is working to identify a feasible
   solution, you might try splitting the APK as a temporary
-  workaround. For more information, see
-  [Issue 36822]({{site.github}}/flutter/flutter/issues/36822).
+  workaround. For more information, see [Issue 36822][].
 {{site.alert.end}}
 
 커멘드 라인에서:
@@ -367,16 +380,40 @@ APK가 서명될 것입니다.
 Google Play 스토어 앱 출시에 대한 자세한 내용은 
 [Google Play 출시 문서][play]에서 확인하세요.
 
-Now that you’ve created your app, attract more users with Google Ads. App campaigns use machine learning to drive more installs and make the most of your budget. 
+Now that you’ve created your app, attract more users with Google Ads.
+App campaigns use machine learning to drive more installs and
+make the most of your budget.
 
-Get your campaign running in a few steps
-1. Create your ad - we’ll help create your ad from your app information
-2. Choose your budget - set your target cost-per-install (tCPI) and daily budget cap 
-3. Select your location - let us know where you’d like your ads to run
-4. Decide what action you want users to take - choose installs, in-app actions, or target return on ad spend (ROAS) 
+Get your campaign running in a few steps:
 
-<a href = "https://ads.google.com/lp/appcampaigns/?modal_active=none&subid=ww-ww-et-aw-a-flutter1!o1#?modal_active=none"> Get $75 app advertising credit when you spend $25 </a>
+1. Create your ad&mdash;we’ll help create your ad from your app
+   information
+1. Choose your budget&mdash;set your target cost-per-install (tCPI)
+   and daily budget cap
+1. Select your location&mdash;let us know where you’d like your ads to run
+1. Decide what action you want users to take&mdash;choose installs,
+   in-app actions, or target return on ad spend (ROAS)
 
+[Get $75 app advertising credit when you spend $25.][]
+
+## Updating the app's version number
+
+The default version number of the app is `1.0.0`.
+To update it, navigate to the `pubspec.yaml` file
+and update the following line:
+
+`version: 1.0.0+1`
+
+The version number is three numbers separated by dots,
+such as `1.0.0` in the example above, followed by an optional
+build number such as `1` in the example above, separated by a `+`.
+
+Both the version and the build number may be overridden in Flutter's
+build by specifying `--build-name` and `--build-number`, respectively.
+
+In Android, `build-name` is used as `versionName` while
+`build-number` used as `versionCode`. For more information,
+see [Version your app][] in the Android documentation.
 
 ## Android 출시 관련 자주 묻는 질문
 
@@ -430,8 +467,8 @@ Android Studio에서 앱 폴더 아래에 있는 `android/` 폴더를 여세요.
 ### Are there any special considerations with add-to-app?
 {% endcomment %}
 
-[APK 세트 생성하기]: {{site.android-dev}}/studio/command-line/bundletool#generate_apks
-[APK 배포하기]: {{site.android-dev}}/studio/command-line/bundletool#deploy_with_bundletool
+[apk-deploy]: {{site.android-dev}}/studio/command-line/bundletool#deploy_with_bundletool
+[apk-set]: {{site.android-dev}}/studio/command-line/bundletool#generate_apks
 [appid]: {{site.android-dev}}/studio/build/application-id
 [applicationtag]: {{site.android-dev}}/guide/topics/manifest/application-element
 [arm64-v8a]: {{site.android-dev}}/ndk/guides/abis#arm64-v8a
@@ -442,10 +479,12 @@ Android Studio에서 앱 폴더 아래에 있는 `android/` 폴더를 여세요.
 [fat APK]: https://en.wikipedia.org/wiki/Fat_binary
 [Flutter wiki]: {{site.github}}/flutter/flutter/wiki
 [flutter_launcher_icons]: {{site.pub}}/packages/flutter_launcher_icons
-[GitHub 저장소]: {{site.github}}/google/bundletool/releases/latest
+[Get $75 app advertising credit when you spend $25.]: https://ads.google.com/lp/appcampaigns/?modal_active=none&subid=ww-ww-et-aw-a-flutter1!o1#?modal_active=none
+[GitHub repository]: {{site.github}}/google/bundletool/releases/latest
 [gradlebuild]: {{site.android-dev}}/studio/build/#module-level
 [Issue 9253]: {{site.github}}/flutter/flutter/issues/9253
 [Issue 18494]: {{site.github}}/flutter/flutter/issues/18494
+[Issue 36822]: {{site.github}}/flutter/flutter/issues/36822
 [launchericons]: {{site.material}}/design/iconography/
 [manifest]: {{site.android-dev}}/guide/topics/manifest/manifest-intro
 [manifesttag]: {{site.android-dev}}/guide/topics/manifest/manifest-element
@@ -453,4 +492,5 @@ Android Studio에서 앱 폴더 아래에 있는 `android/` 폴더를 여세요.
 [permissiontag]: {{site.android-dev}}/guide/topics/manifest/uses-permission-element
 [play]: {{site.android-dev}}/distribute/googleplay/start
 [upload-bundle]: {{site.android-dev}}/studio/publish/upload-bundle
+[Version your app]: {{site.android-dev}}/studio/publish/versioning
 [versions]: {{site.android-dev}}/studio/publish/versioning

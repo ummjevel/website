@@ -8,22 +8,26 @@ next:
   path: /docs/cookbook/navigation/hero-animations
 ---
 
-버그로부터 자유로운 앱을 만들기 위해 항상 노력하지만, 
-완전히 자유로울 수 없습니다.
-버그가 많은 앱은 사용자 불만을 야기하기 때문에, 앱의 사용자들이 버그를 얼마나 자주, 
-주로 어디서 발생하는지 이해하는 것은 매우 중요한 일입니다. 그렇게 해서, 
-버그의 우선 순위를 정하고 그것들을 수정해나갈 수 있습니다.
+While one always tries to create apps that are free of bugs,
+they're sure to crop up from time to time.
+Since buggy apps lead to unhappy users and customers,
+it's important to understand how often your users
+experience bugs and where those bugs occur.
+That way, you can prioritize the bugs with the
+highest impact and work to fix them.
 
-사용자가 얼마나 자주 버그를 경험하는지 어떻게 알 수 있을까요? 에러가 발생하면 
-에러와 stacktrace로 구성된 보고서를 만들어 Sentry, Fabric 혹은 [Rollbar](https://rollbar.com/)와 같은 
-에러 추적 서비스에 보내세요.
+How can you determine how often your users experiences bugs?
+Whenever an error occurs, create a report containing the
+error that occurred and the associated stacktrace.
+You can then send the report to an error tracking
+service, such as Sentry, Fabric, or [Rollbar][].
 
 에러 추적 서비스는 사용자가 경험한 모든 에러들을 모아 그룹화합니다. 
 이를 통해 얼마나 자주 에러가 발생하고 어디서 사용자가 어려움을 겪는지 알 수 있게 됩니다.
 
-이 페이지에서는 에러 리포팅 서비스인
-[Sentry](https://sentry.io/welcome/)에 에러를 리포팅하는 방법에 대해 다룹니다.
-아래와 같은 단계로 진행합니다:
+In this recipe, learn how to report errors to the
+[Sentry][] crash reporting service using
+the following steps:
 
 ## 진행 단계
 
@@ -39,17 +43,19 @@ next:
 Sentry에 에러 리포팅을 하기 전에 Sentry.io 서비스에서 
 여러분의 앱을 식별할 수 있는 "DSN"이 필요합니다.
 
-DSN을 얻기 위해 다음 단계를 진행하세요:
+  1. [Create an account with Sentry][].
+  2. Log in to the account.
+  3. Create a new app.
+  4. Copy the DSN.
 
   1. [Sentry 계정 생성](https://sentry.io/signup/).
   2. 생성한 계정으로 로그인.
   3. 새로운 앱 생성.
   4. DSN 복사.
 
-## 2. Sentry 패키지 Import
-
-[`Sentry`]({{site.pub-pkg}}/sentry) 패키지를 앱에 import 하세요.
-Sentry 패키지를 사용하면 에러 리포트를 더 쉽게 Sentry 에러 추적 서비스에 보낼 수 있습니다.
+Import the [`sentry`][] package into the app.
+The sentry package makes it easier to send
+error reports to the Sentry error tracking service.
 
 ```yaml
 dependencies:
@@ -110,11 +116,11 @@ Future<void> _reportError(dynamic error, dynamic stackTrace) async {
 
 개발 환경에 따라 에러 리포팅하는 함수를 작성했으니 이제 Dart 에러를 catch할 방법이 필요합니다.
 
-이 작업을 진행하기 위해, 커스텀 
-[`Zone`]({{site.api}}/flutter/dart-async/Zone-class.html)에서 앱을 실행하세요.
-Zone은 코드가 수행될 컨텍스트를 설정합니다. 
-`onError()` 함수를 제공하여 컨텍스트 내에서 발생하는 
-모든 에러를 편리하게 잡을 수 있게 해줍니다.
+For this task, run your app inside a custom [`Zone`][].
+Zones establish an execution context for the code.
+This provides a convenient way to capture all errors
+that occur within that context by providing an `onError()`
+function.
 
 아래 코드에서는 앱을 새로운 `Zone`에서 실행하고 
 `onError()` 콜백을 통해 모든 에러를 잡습니다.
@@ -136,9 +142,12 @@ Dart 에러 뿐만 아니라, Flutter도 native 코드를
 호출할 때 발생할 수 있는 플랫폼 예외와 같은 에러들을 던질 수 있는데,
 이러한 유형의 에러들 역시 반드시 리포팅해야 합니다.
 
-Flutter 에러를 처리하기 위해서는 [`FlutterError.onError`]({{site.api}}/flutter/foundation/FlutterError/onError.html) 프로퍼티를 오버라이드 하세요.
-만약 디버그 모드라면, Flutter의 편리한 함수를 사용하여 적절한 에러 출력 형식을 지정하세요.
-만약 프로덕션 모드라면, 이전 단계에서 정의한 `onError` 콜백에 에러를 보내세요.
+To capture Flutter errors,
+override the [`FlutterError.onError`][] property.
+If you're in debug mode, use a convenience function
+from Flutter to properly format the error.
+If you're in production mode, send the error to the
+`onError` callback defined in the previous step.
 
 <!-- skip -->
 ```dart
@@ -156,4 +165,14 @@ FlutterError.onError = (FlutterErrorDetails details) {
 
 ## 전체 예제
 
-동작하는 전체 예제 코드는 [Crashy]({{site.github}}/flutter/crashy)에서 확인할 수 있습니다.
+To view a working example,
+see the [Crashy][] example app.
+
+
+[Crashy]: {{site.github}}/flutter/crashy
+[Create an account with Sentry]: https://sentry.io/signup/
+[`FlutterError.onError`]: {{site.api}}/flutter/foundation/FlutterError/onError.html
+[Rollbar]: https://rollbar.com/
+[Sentry]: https://sentry.io/welcome/
+[`sentry`]: {{site.pub-pkg}}/sentry
+[`Zone`]: {{site.api}}/flutter/dart-async/Zone-class.html

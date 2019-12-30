@@ -17,10 +17,9 @@ next:
 통합 테스트는 쌍으로 동작합니다: 먼저 instrument 앱을 실제 기기나 에뮬레이터에 설치한 다음에
 별도의 테스트 모음에서 앱을 "구동"하고, 모든 것이 올바로 동작하는지 확인합니다.
 
-이러한 테스트 쌍을 만들기 위해, 
-[flutter_driver]({{site.api}}/flutter/flutter_driver/flutter_driver-library.html) 
-패키지를 사용할 수 있습니다. 이 패키지는 instrument 앱을 만들고 테스트 모음에서
-구동할 수 있는 도구를 제공합니다.
+To create this test pair, use the [flutter_driver][] package.
+It provides tools to create instrumented apps and drive those apps
+from a test suite.
 
 본 예제에서는 카운터 앱을 테스트하는 방법을 배울 것입니다. 통합 테스트를
 셋업하는 방법, 앱에 특정 문구가 제대로 보이는지 확인하는 방법, 특정 위젯을 탭하는 방법,
@@ -41,10 +40,10 @@ next:
 자동 생성되는 카운터 앱을 테스트하겠습니다. 사용자가 버튼을 누르면 카운터를 증가시키는
 간단한 앱입니다.
 
-더 나아가, `Text`와 `FloatingActionButton` 위젯에
-[`ValueKey`]({{site.api}}/flutter/foundation/ValueKey-class.html)를
-제공해야 하는데, 이를 통해 테스트 모음 내부에서 특정 위젯을 식별하고 상호작용할 수 
-있습니다.
+Furthermore, provide a [`ValueKey`][] to
+the `Text` and `FloatingActionButton` widgets.
+This allows identifying and interacting with these
+specific widgets inside the test suite.
 
 ```dart
 import 'package:flutter/material.dart';
@@ -185,13 +184,12 @@ void main() {
 instrument 앱이 준비되었으므로, 테스트 코드를 작성할 수 있습니다! 이는 다음 네 단계로 
 진행됩니다:
 
-  1. 특정 위젯을 위치시키기 위해 
-  [`SerializableFinders`]({{site.api}}/flutter/flutter_driver/CommonFinders-class.html)
-  를 생성합니다.
-  2. 테스트를 실행하기 전에, `setUpAll()` 함수에서 앱과 연결하세요.
-  3. 중요한 시나리오를 테스트합니다.
-  4. 테스트가 완료되면, `teardownAll()` 함수에서 앱 연결을 끊습니다.
-  1. Create
+  1. Create [`SerializableFinders`][]
+     to locate specific widgets
+  2. Connect to the app before our tests run in the `setUpAll()` function
+  3. Test the important scenarios
+  4. Disconnect from the app in the `teardownAll()` function after the tests
+     complete
 
 ```dart
 // Flutter Driver API를 import 합니다.
@@ -250,6 +248,11 @@ flutter drive --target=test_driver/app.dart
 
 이 명령어는:
 
-  1. `--target` 앱을 빌드하고 에뮬레이터 / 기기에 설치합니다.
-  2. 앱을 시작시킵니다.
-  3. `test_driver/` 폴더에 위치한 `app_test.dart` 테스트 모음을 실행합니다.
+  1. Builds the `--target` app and installs it on the emulator / device.
+  2. Launches the app.
+  3. Runs the `app_test.dart` test suite located in `test_driver/` folder.
+
+
+[flutter_driver]: {{site.api}}/flutter/flutter_driver/flutter_driver-library.html
+[`SerializableFinders`]: {{site.api}}/flutter/flutter_driver/CommonFinders-class.html
+[`ValueKey`]: {{site.api}}/flutter/foundation/ValueKey-class.html

@@ -7,6 +7,9 @@ prev:
 next:
   title: Named-Route로의 화면 전환
   path: /docs/cookbook/navigation/named-routes
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
 대부분의 앱은 여러 종류의 정보를 보여주기 위해 여러 화면을 갖고 있습니다.
@@ -22,9 +25,8 @@ next:
 Route는 Android의 Activity, iOS의 ViewController와 동일합니다.
 Flutter에서는 Route 역시 위젯입니다.
 
-새로운 route로 어떻게 이동할까요? 
-[`Navigator`]({{site.api}}/flutter/widgets/Navigator-class.html)를 사용하세요.
-여기서는 아래와 같은 단계로 진행합니다:
+Navigate to a new route using the [`Navigator`][].
+This recipe uses the following steps:
 
 다음 섹션에서 두 개의 route에서 화면 전환하는 방법을 보여주겠습니다.
 아래 단계를 따라오세요:
@@ -83,14 +85,12 @@ class SecondRoute extends StatelessWidget {
 
 ## 2. Navigator.push()를 사용하여 두 번째 route로 전환합니다.
 
-새로운 route로 전환하기 위해 
-[`Navigator.push()`]({{site.api}}/flutter/widgets/Navigator/push.html)
-메서드를 사용하세요. `push()` 메서드는 `Route`를 Navigator에 의해 관리되는 
-route 스택에 추가합니다. `Route`는 어디서 오는 걸까요?
-직접 생성하거나, 새로운 route로 이동 시 
-플랫폼 특화된 애니메이션을 사용하기 좋은 
-[`MaterialPageRoute`]({{site.api}}/flutter/material/MaterialPageRoute-class.html)의 
-을 사용할 수 있습니다. 
+To switch to a new route, use the [`Navigator.push()`][]
+method. The `push()` method adds a `Route` to the stack of routes managed by
+the `Navigator`. Where does the `Route` come from?
+You can create your own, or use a [`MaterialPageRoute`][],
+which is useful because it transitions to the
+new route using a platform-specific animation.
 
 `FirstRoute` 위젯의 `build()` 메서드에서 
 `onPressed()` 콜백을 수정하세요:
@@ -108,10 +108,10 @@ onPressed: () {
 
 ## 3. Navigator.pop()을 사용하여 첫 번째 route로 되돌아 옵니다.
 
-두 번째 route를 닫고 이전 route로 어떻게 되돌아 갈까요?
-[`Navigator.pop()`]({{site.api}}/flutter/widgets/Navigator/pop.html)
-메서드를 사용하세요. `pop()` 메서드는 Navigator에 의해 관리되는 route 스택에서 
-현재 `Route`를 제거합니다.
+How do you close the second route and return to the first?
+By using the [`Navigator.pop()`][] method.
+The `pop()` method removes the current `Route` from the stack of
+routes managed by the `Navigator`.
 
 이전 route로 되돌아 가기 위해, `SecondRoute` 위젯의 `onPressed()` 콜백을 수정하세요:
 
@@ -123,9 +123,9 @@ onPressed: () {
 }
 ```
 
-## 완성된 예제
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/material.dart';
 
 void main() {
@@ -177,8 +177,12 @@ class SecondRoute extends StatelessWidget {
 }
 ```
 
-{% comment %}
-We need a new GIF that shows "Route" instead of "Screen".
-{% endcomment %}
+<noscript>
+  <img src="/images/cookbook/navigation-basics.gif" alt="Navigation Basics Demo" class="site-mobile-screenshot" />
+</noscript>
 
-![Navigation Basics Demo](/images/cookbook/navigation-basics.gif){:.site-mobile-screenshot}
+
+[`MaterialPageRoute`]: {{site.api}}/flutter/material/MaterialPageRoute-class.html
+[`Navigator`]: {{site.api}}/flutter/widgets/Navigator-class.html
+[`Navigator.pop()`]: {{site.api}}/flutter/widgets/Navigator/pop.html
+[`Navigator.push()`]: {{site.api}}/flutter/widgets/Navigator/push.html

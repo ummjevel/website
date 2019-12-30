@@ -14,8 +14,10 @@ next:
 
 ## Authorization 헤더를 추가하세요
 
-[`http`]({{site.pub-pkg}}/http) 패키지를 통해 요청 객체에 헤더를 쉽게 추가할 수 
-있습니다. 또한 일반적인 `HttpHeaders`를 위해 `dart:io` 패키지를 사용할 수도 있습니다.
+The [`http`][] package provides a
+convenient way to add headers to your requests.
+Alternatively, use the [HttpHeaders][]
+class from the `dart:io` library.
 
 <!-- skip -->
 ```dart
@@ -30,8 +32,8 @@ Future<http.Response> fetchPost() {
 
 ## 완성된 예제
 
-이 예제는 [인터넷에서 데이터 가져오기](/docs/cookbook/networking/fetch-data/) 예제를
-기반으로 합니다.
+This example builds upon the
+[Fetching data from the internet][] recipe.
 
 ```dart
 import 'dart:async';
@@ -68,3 +70,8 @@ class Post {
   }
 }
 ```
+
+
+[Fetching data from the internet]: /docs/cookbook/networking/fetch-data
+[`http`]: {{site.pub-pkg}}/http
+[HttpHeaders]: {{site.dart.api}}/stable/dart-io/HttpHeaders-class.html

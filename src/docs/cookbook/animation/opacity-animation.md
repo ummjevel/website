@@ -6,6 +6,9 @@ prev:
 next:
   title: Add a drawer to a screen
   path: /docs/cookbook/design/drawer
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
 UI developers often need to show and hide elements on screen.
@@ -84,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
 ## 3. Display a button that toggles the visibility
 
 Now that you have some data to determine whether the green box
-should be visible, you need a way update that data.
+should be visible, you need a way to update that data.
 In this example, if the box is visible, hide it.
 If the box is hidden, show it.
 
@@ -94,8 +97,8 @@ Make this change using [`setState()`][],
 which is a method on the `State` class.
 This tells Flutter to rebuild the widget.
 
-For more information on working with user input, see the
-[Gestures](/docs/cookbook#gestures) section of the cookbook.
+For more information on working with user input,
+see the [Gestures][] section of the cookbook.
 
 <!-- skip -->
 ```dart
@@ -140,9 +143,9 @@ AnimatedOpacity(
 );
 ```
 
-## Complete example
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -211,8 +214,11 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 ```
 
-![Fade In and Out Demo](/images/cookbook/fade-in-out.gif){:.site-mobile-screenshot}
+<noscript>
+  <img src="/images/cookbook/fade-in-out.gif" alt="Fade In and Out Demo" class="site-mobile-screenshot" />
+</noscript>
 
 [`AnimatedOpacity`]: {{site.api}}/flutter/widgets/AnimatedOpacity-class.html
+[Gestures]: /docs/cookbook#gestures
 [`StatefulWidget`]: {{site.api}}/flutter/widgets/StatefulWidget-class.html
 [`setState()`]: {{site.api}}/flutter/widgets/State/setState.html

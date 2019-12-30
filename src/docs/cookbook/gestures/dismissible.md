@@ -6,6 +6,9 @@ prev:
 next:
   title: Display images from the internet
   path: /docs/cookbook/images/network-image
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
 The "swipe to dismiss" pattern is common in many mobile apps.  For example,
@@ -13,7 +16,7 @@ when writing an email app, you might want to allow a user to swipe away
 email messages to delete them from a list.
 
 Flutter makes this task easy by providing the
-[`Dismissible`]({{site.api}}/flutter/widgets/Dismissible-class.html) widget.
+[`Dismissible`][] widget.
 Learn how to implement swipe to dismiss with the following steps:
 
   1. Create a list of items.
@@ -23,8 +26,8 @@ Learn how to implement swipe to dismiss with the following steps:
 ## 1. Create a list of items
 
 First, create a list of items. For detailed
-instructions on how to create a list, follow the [Working with long
-lists](/docs/cookbook/lists/long-lists) recipe.
+instructions on how to create a list,
+follow the [Working with long lists][] recipe.
 
 ### Create a data source
 
@@ -56,8 +59,7 @@ ListView.builder(
 
 In this step,
 give users the ability to swipe an item off the list by using the
-[`Dismissible`]({{site.api}}/flutter/widgets/Dismissible-class.html)
-widget.
+[`Dismissible`][] widget.
 
 After the user has swiped away the item,
 remove the item from the list and display a snackbar.
@@ -121,9 +123,9 @@ Dismissible(
 );
 ```
 
-## Complete example
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -191,4 +193,10 @@ class MyAppState extends State<MyApp> {
 }
 ```
 
-![Dismissible Demo](/images/cookbook/dismissible.gif){:.site-mobile-screenshot}
+<noscript>
+  <img src="/images/cookbook/dismissible.gif" alt="Dismissible Demo" class="site-mobile-screenshot" />
+</noscript>
+
+
+[`Dismissible`]: {{site.api}}/flutter/widgets/Dismissible-class.html
+[Working with long lists]: /docs/cookbook/lists/long-lists

@@ -36,7 +36,12 @@ part 2에서는 part 1에서 만든 앱을 발전시켜 봅니다.
 데이터를 지도에 마커로 표시하세요.
 
 
-#### [구글 사진과 Flutter로 사진 공유 앱 만들기]({{site.codelabs}}/codelabs/google-photos-sharing)
+#### [Implicit Animations](/docs/codelabs/implicit-animations)
+
+Use DartPad to learn how to use implicit animations to add motion and create
+visual effects for the widgets in your UI.
+
+#### [Adding Google Maps to a Flutter App]({{site.codelabs}}/codelabs/google-maps-in-flutter)
 
 구성원들끼리 사진을 공유할 수 있는 여행 앱을 만들어요. 
 

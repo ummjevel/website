@@ -105,42 +105,37 @@ Expanded 위젯을 사용해야 합니다.
 <?code-excerpt "lib/main.dart (titleSection)" title?>
 ```dart
 Widget titleSection = Container(
-  padding: const EdgeInsets.all(32),
-  child: Row(
-    children: [
-      Expanded(
-        /*1*/
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            /*2*/
-            Container(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Text(
-                'Oeschinen Lake Campground',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+      padding: const EdgeInsets.all(32),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    'Oeschinen Lake Campground',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
+                Text(
+                  'Kandersteg, Switzerland',
+                  style: TextStyle(color: Colors.grey[500]),
+                )
+              ],
             ),
+          ),
+          Column(children: <Widget>[Icon(Icons.star, color: Colors.red[500])]),
+          Column(children: <Widget>[
             Text(
-              'Kandersteg, Switzerland',
-              style: TextStyle(
-                color: Colors.grey[500],
-              ),
-            ),
-          ],
-        ),
+              '41',
+              style: TextStyle(fontSize: 20.0),
+            )
+          ]),
+        ],
       ),
-      /*3*/
-      Icon(
-        Icons.star,
-        color: Colors.red[500],
-      ),
-      Text('41'),
-    ],
-  ),
-);
+    );
 ```
 
 {:.numbered-code-notes}
@@ -349,6 +344,10 @@ Widget textSection = Container(
   +  assets:
   +    - images/lake.jpg
   ```
+  {{site.alert.tip}}
+    - Note that `pubspec.yaml` is case sensitive. So, you should write `assets: ` and
+      `image address` as above shown format.
+    - For `image address` proper indentation must be there.
 
 이제 코드에서 이미지를 참조할 수 있습니다.
 

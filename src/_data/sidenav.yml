@@ -33,7 +33,9 @@
 
 - title: 예제 & 튜토리얼
   children:
-    - title: 깃허브에 있는 예제 앱
+    - title: Flutter Gallery [NEW]
+      permalink: https://flutter.github.io/samples/#/
+    - title: Sample apps on GitHub
       permalink: https://github.com/flutter/samples/blob/master/INDEX.md
     - title: 해설(Cookbook)
       permalink: /docs/cookbook
@@ -79,7 +81,9 @@
               permalink: /docs/development/ui/animations/overview
             - title: 튜토리얼
               permalink: /docs/development/ui/animations/tutorial
-            - title: Hero 애니메이션
+            - title: Implicit Animations
+              permalink: /docs/development/ui/animations/implicit-animations
+            - title: Hero animations
               permalink: /docs/development/ui/animations/hero-animations
             - title: Staggered 애니메이션
               permalink: /docs/development/ui/animations/staggered-animations
@@ -138,14 +142,46 @@
           permalink: /docs/development/packages-and-plugins/using-packages
         - title: 패키지 & 플러그인 개발
           permalink: /docs/development/packages-and-plugins/developing-packages
-        - title: 백그라운드 작업
+        - title: Flutter Favorites program
+          permalink: /docs/development/packages-and-plugins/favorites
+        - title: Background processes
           permalink: /docs/development/packages-and-plugins/background-processes
-        - title: 패키지 사이트
+        - title: Android plugin upgrade
+          permalink: /docs/development/packages-and-plugins/plugin-api-migration
+        - title: Package site
           permalink: https://pub.dev/flutter
-    - title: 도구 & 기법
+    - title: Add Flutter to existing app
+      permalink: /docs/development/add-to-app
+      children:
+      - title: Introduction
+        permalink: /docs/development/add-to-app
+        match-page-url-exactly: true
+      - title: Adding to an Android app
+        permalink: /docs/development/add-to-app/android
+        children:
+          - title: Project setup
+            permalink: /docs/development/add-to-app/android/project-setup
+          - title: Add a single Flutter screen
+            permalink: /docs/development/add-to-app/android/add-flutter-screen
+          - title: Add a Flutter Fragment
+            permalink: /docs/development/add-to-app/android/add-flutter-fragment
+          - title: Add a Splash Screen
+            permalink: /docs/development/add-to-app/android/add-splash-screen
+      - title: Adding to an iOS app
+        permalink: /docs/development/add-to-app/ios
+        children:
+          - title: Project setup
+            permalink: /docs/development/add-to-app/ios/project-setup
+          - title: Add a single Flutter screen
+            permalink: /docs/development/add-to-app/ios/add-flutter-screen
+      - title: Running, debugging & hot reload
+        permalink: /docs/development/add-to-app/debugging
+      - title: Loading sequence and performance
+        permalink: /docs/development/add-to-app/performance
+    - title: Tools & techniques
       permalink: /docs/development/tools
       children:
-        - title: 안드로이드 스튜디오 / IntelliJ
+        - title: Android Studio & IntelliJ
           permalink: /docs/development/tools/android-studio
         - title: 비주얼 스튜디오 코드
           permalink: /docs/development/tools/vs-code
@@ -154,7 +190,7 @@
           children:
             - title: Overview
               permalink: /docs/development/tools/devtools/overview
-            - title: Android Studio / IntelliJ에서 설치
+            - title: Install from Android Studio & IntelliJ
               permalink: /docs/development/tools/devtools/android-studio
             - title: VS Code에서 설치
               permalink: /docs/development/tools/devtools/vscode
@@ -179,6 +215,19 @@
               permalink: /docs/development/tools/sdk/upgrading
             - title: 릴리스
               permalink: /docs/development/tools/sdk/archive
+            - title: Breaking changes
+              permalink: /docs/release/breaking-changes
+            - title: Release notes
+              permalink: /docs/development/tools/sdk/release-notes
+              children:
+                - title: 1.9.1
+                  permalink: /docs/development/tools/sdk/release-notes/release-notes-1.9.1.md
+                - title: 1.7.8
+                  permalink: /docs/development/tools/sdk/release-notes/release-notes-1.7.8.md
+                - title: 1.5.4
+                  permalink: /docs/development/tools/sdk/release-notes/release-notes-1.5.4.md
+                - title: 1.2.1
+                  permalink: /docs/development/tools/sdk/release-notes/release-notes-1.2.1.md
         - title: Hot reload
           permalink: /docs/development/tools/hot-reload
         - title: 코드 정렬
@@ -186,10 +235,10 @@
     - title: AndroidX migration
       permalink: /docs/development/androidx-migration
 
-- title: 테스트 & 최적화
+- title: Testing & debugging
   permalink: /docs/testing
   children:
-    - title: 디버깅
+    - title: Debugging tools
       permalink: /docs/testing/debugging
     - title: Debugging apps programmatically
       permalink: /docs/testing/code-debugging
@@ -197,15 +246,33 @@
       permalink: /docs/testing/oem-debuggers
     - title: Flutter 빌드 모드
       permalink: /docs/testing/build-modes
-    - title: 테스트
+    - title: Handling errors
+      permalink: /docs/testing/errors
+    - title: Testing
       permalink: /docs/testing
       match-page-url-exactly: true
-    - title: 성능 모범 사례
-      permalink: /docs/testing/best-practices
-    - title: 성능 측정
-      permalink: /docs/testing/ui-performance
-    # We don't have this page yet.
-    # - title: Making your compiled app smaller
+
+- title: Performance & optimization
+  permalink: /docs/perf
+  children:
+    - title: Overview
+      permalink: /docs/perf
+    - title: App size
+      permalink: /docs/perf/app-size
+#    - title: Memory
+#      permalink: /docs/perf/memory
+#    - title: Power usage
+#      permalink: /docs/perf/power
+    - title: Rendering performance
+      permalink: /docs/perf/rendering
+      children:
+      - title: Overview
+        permalink: /docs/perf/rendering
+        match-page-url-exactly: true
+      - title: Performance best practices
+        permalink: /docs/perf/rendering/best-practices
+      - title: Performance profiling
+        permalink: /docs/perf/rendering/ui-performance
 
 - title: 개발
   children:
@@ -224,15 +291,20 @@
   children:
     - title: 다트 자료
       permalink: /docs/resources/bootstrap-into-dart
+    - title: Compatibility policy
+      permalink: /docs/resources/compatibility
     - title: Inside Flutter
       permalink: /docs/resources/inside-flutter
+    - title: Google Fonts package
+      permalink: https://pub.dev/packages/google_fonts
     - title: Platform adaptations
       permalink: /docs/resources/platform-adaptations
     - title: 기술 개요
       permalink: /docs/resources/technical-overview
-    # - title: Flutter best practices # TODO
-    - title: 기술 비디오
+    - title: Technical videos
       permalink: /docs/resources/videos
+    - title: Books
+      permalink: /docs/resources/books
     # - title: Flutter developer communities # TODO
     # - title: Flutter learning resources # TODO
     - title: 자주 묻는 질문

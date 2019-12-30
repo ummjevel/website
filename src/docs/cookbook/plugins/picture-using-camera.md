@@ -8,13 +8,14 @@ next:
   path: /docs/cookbook/testing/integration/introduction
 ---
 
-사진을 찍거나 영상을 촬영하기 위해 디바이스의 카메라를 사용하는 많은 앱들이 있습니다.
-이러한 목적을 위해 Flutter는 [`camera`]({{site.pub-pkg}}/camera) 
-플러그인을 제공합니다. `camera` 플러그인을 통해 이용가능한 카메라 리스트를 얻고, 특정 
-카메라의 프리뷰를 보여주거나 사진, 영상을 촬영을 촬영할 수 있습니다.
+Many apps require working with the device's cameras to
+take photos and videos.  Flutter provides the [`camera`][] plugin
+for this purpose. The `camera` plugin provides tools to get a list of the
+available cameras, display a preview coming from a specific camera,
+and take photos or videos.
 
-본 예제에서는 `camera` 플러그인을 사용하여 프리뷰를 보여주고, 사진을 촬영한 뒤 결과물을 
-사용자에게 보여주는 방법을 아래와 같은 순서로 소개합니다:.
+This recipe demonstrates how to use the `camera` plugin to display a preview,
+take a photo, and display it using the following steps:
 
   1. 필요한 의존성 추가하기.
   2. 이용가능한 카메라 목록 가져오기.
@@ -27,9 +28,14 @@ next:
 
 본 예제를 수행하기 위해, 아래 세 개의 의존성을 추가해야 합니다:
 
-  - [`camera`]({{site.pub-pkg}}/camera) - 디바이스의 카메라를 제어하기 위한 도구를 제공합니다.
-  - [`path_provider`]({{site.pub-pkg}}/path_provider) - 이미지를 저장할 적합한 경로를 찾습니다.
-  - [`path`]({{site.pub-pkg}}/path) - 플랫폼에 상관없이 경로를 생성합니다.
+[`camera`][]
+: Provides tools to work with the cameras on the device.
+
+[`path_provider`][]
+: Finds the correct paths to store images.
+
+[`path`][]
+: Creates paths that work on any platform.
 
 ```yaml
 dependencies:
@@ -39,6 +45,9 @@ dependencies:
   path_provider:
   path:
 ```
+{{site.alert.tip}}
+  - For android, You must have to update `minSdkVersion` to 21 (or higher).
+{{site.alert.end}}
 
 ## 2. 이용가능한 카메라 목록 가져오기
 
@@ -49,8 +58,8 @@ dependencies:
 // 디바이스에서 이용가능한 카메라 목록을 받아옵니다.
 final cameras = await availableCameras();
 
-// 이용가능한 카메라 목록에서 특정 카메라를 얻습니다.
-final firstCamera = cameras.first; 
+// Get a specific camera from the list of available cameras.
+final firstCamera = cameras.first;
 ```
 
 ## 3. `CameraController` 생성하고 초기화하기
@@ -60,13 +69,13 @@ final firstCamera = cameras.first;
 이 과정을 통해 디바이스의 카메라와 연결하여 
 카메라를 제어하고 카메라 피드의 프리뷰를 보여줄 수 있게 됩니다. 
 
-  1. `StatefulWidget`과 그에 상응하는 `State` 클래스를 생성합니다.
-  2. `CameraController`를 저장할 변수를 `State` 클래스에 정의합니다.
-  3. `CameraController.initialize()`가 반환하는 `Future`를 저장할 변수를 `State`에
-     정의합니다.
-  4. `initState()` 메서드에서 컨트롤러를 생성하고 초기화합니다.
-  5. `dispose()` 메서드에서 컨트롤러를 해제합니다.
-  
+  1. Create a `StatefulWidget` with a companion `State` class.
+  2. Add a variable to the `State` class to store the `CameraController`.
+  3. Add a variable to the `State` class to store the `Future`
+     returned from `CameraController.initialize()`.
+  4. Create and initialize the controller in the `initState()` method.
+  5. Dispose of the controller in the `dispose()` method.
+
 <!-- skip -->
 ```dart
 // A screen that takes in a list of cameras and the Directory to store images.
@@ -136,9 +145,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   완료될 때까지 기다려야 합니다.
 {{site.alert.end}}
 
-이를 위해 
-[`FutureBuilder`]({{site.api}}/flutter/widgets/FutureBuilder-class.html)
-사용하세요.
+Use a [`FutureBuilder`][] for exactly this purpose.
 
 <!-- skip -->
 ```dart
@@ -161,19 +168,19 @@ FutureBuilder<void>(
 
 ## 5. `CameraController`를 사용하여 사진 찍기
 
-`CameraController`의 
-[`takePicture()`]({{site.pub-api}}/camera/latest/camera/CameraController/takePicture.html)
-메서드를 사용하면 사진 촬영을 할 수 있습니다. 본 예제에서는 사용자가 눌렀을 때
-`CameraController`를 사용하여 사진 촬영을 하는 `FloatingActionButton`을 
-만들겠습니다.
+You can use the `CameraController` to take pictures using the
+[`takePicture()`][] method. In this example,
+create a `FloatingActionButton` that takes a picture
+using the `CameraController` when a user taps on the button.
 
 촬영한 사진을 저장하기 위해 3 단계가 필요합니다:
 
-  1. 카메라가 초기화되었는지 확인합니다.
-  2. 사진이 저장될 경로를 지정합니다.
-  3. 컨트롤러를 사용하여 사진을 촬영하고 그 결과물을 위에서 지정한 경로에 저장합니다.
-  
-발생할 수 있는 에러에 대처하기 위해 위 수행 단게들을 `try / catch`로 감싸는 것이 좋습니다.
+  1. Ensure the camera is initialized
+  2. Construct a path that defines where the picture should be saved
+  3. Use the controller to take a picture and save the result to the path
+
+It is good practice to wrap these operations in a `try / catch` block in order
+to handle any errors that might occur.
 
 <!-- skip -->
 ```dart
@@ -313,7 +320,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
             // 카메라 초기화가 완료됐는지 확인합니다.
             await _initializeControllerFuture;
 
-            // path 패키지를 사용하여 이미지가 저장될 경로를 지정합니다.
+            // Construct the path where the image should be saved using the
+            // pattern package.
             final path = join(
               // 본 예제에서는 임시 디렉토리에 이미지를 저장합니다. `path_provider`
               // 플러그인을 사용하여 임시 디렉토리를 찾으세요.
@@ -358,3 +366,10 @@ class DisplayPictureScreen extends StatelessWidget {
   }
 }
 ```
+
+
+[`camera`]: {{site.pub-pkg}}/camera
+[`FutureBuilder`]: {{site.api}}/flutter/widgets/FutureBuilder-class.html
+[`path`]: {{site.pub-pkg}}/path
+[`path_provider`]: {{site.pub-pkg}}/path_provider
+[`takePicture()`]: {{site.pub-api}}/camera/latest/camera/CameraController/takePicture.html

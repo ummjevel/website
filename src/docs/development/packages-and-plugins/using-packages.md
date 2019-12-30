@@ -125,8 +125,8 @@ CocoaPods does not currently offer dependency override functionality.
 
 ## 패키지 의존성과 버전 관리
 
-버전 충돌의 위험을 최소화할 수 있도록,
-pubspec 파일의 버전을 지정해주세요.
+To minimize the risk of version collisions,
+specify a version range in the `pubspec.yaml` file.
 
 ### 패키지 버전
 
@@ -141,7 +141,7 @@ pubspec 파일의 버전을 지정해주세요.
 하지만 패키지가 업데이트 되었을 때 앱에서 문제가 발생하지 않도록 하기 위해서, 
 패키지가 사용될 수 있는 버전의 범위를 아래와 같이 명시해 주는 것이 좋습니다:
 
-* 범위 설정 조건: 최소 버전과 최대 버전을 명시. 예시:
+* Range constraints: Specify a minimum and maximum version. For example:
 
   ```yaml
   dependencies:

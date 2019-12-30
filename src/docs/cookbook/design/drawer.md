@@ -6,6 +6,9 @@ prev:
 next:
   title: Display a snackbar
   path: /docs/cookbook/design/snackbars
+js:
+  - defer: true
+    url: https://dartpad.dev/inject_embed.dart.js
 ---
 
 In apps that use Material Design,
@@ -13,11 +16,8 @@ there are two primary options for navigation: tabs and drawers.
 When there is insufficient space to support tabs,
 drawers provide a handy alternative.
 
-In Flutter, use the
-[`Drawer`]({{site.api}}/flutter/material/Drawer-class.html)
-widget in combination with a
-[`Scaffold`]({{site.api}}/flutter/material/Scaffold-class.html)
-to create a layout with a Material Design drawer.
+In Flutter, use the [`Drawer`][] widget in combination with a
+[`Scaffold`][] to create a layout with a Material Design drawer.
 This recipe uses the following steps:
 
   1. Create a `Scaffold`.
@@ -27,9 +27,8 @@ This recipe uses the following steps:
 
 ## 1. Create a `Scaffold`
 
-To add a drawer to the app, wrap it in a
-[Scaffold]({{site.api}}/flutter/material/Scaffold-class.html) widget.
-The Scaffold widget provides a consistent visual structure to apps that
+To add a drawer to the app, wrap it in a [`Scaffold`][] widget.
+The `Scaffold` widget provides a consistent visual structure to apps that
 follow the Material Design Guidelines.
 It also supports special Material Design
 components, such as Drawers, AppBars, and SnackBars.
@@ -47,7 +46,7 @@ Scaffold(
 
 Now add a drawer to the `Scaffold`. A drawer can be any widget,
 but it's often best to use the `Drawer` widget from the
-[material library]({{site.api}}/flutter/material/material-library.html),
+[material library][],
 which adheres to the Material Design spec.
 
 <!-- skip -->
@@ -62,17 +61,16 @@ Scaffold(
 ## 3. Populate the drawer with items
 
 Now that you have a `Drawer` in place, add content to it.
-For this example,
-use a [`ListView`]({{site.api}}/flutter/widgets/ListView-class.html).
-While you could use a `Column` widget, `ListView` is handy
-because it allows users to scroll through the drawer if the
+For this example, use a [`ListView`][].
+While you could use a `Column` widget,
+`ListView` is handy because it allows users to scroll
+through the drawer if the
 content takes more space than the screen supports.
 
-Populate the `ListView` with a
-[`DrawerHeader`]({{site.api}}/flutter/material/DrawerHeader-class.html)
-and two [`ListTile`]({{site.api}}/flutter/material/ListTile-class.html)
-widgets. For more information on working with Lists, see the
-[list recipes](/docs/cookbook#lists).
+Populate the `ListView` with a [`DrawerHeader`][]
+and two [`ListTile`][] widgets.
+For more information on working with Lists,
+see the [list recipes][].
 
 <!-- skip -->
 ```dart
@@ -112,8 +110,7 @@ Drawer(
 ## 4. Close the drawer programmatically
 
 After a user taps an item, you might want to close the drawer.
-You can do this by using the
-[Navigator]({{site.api}}/flutter/widgets/Navigator-class.html).
+You can do this by using the [`Navigator`][].
 
 When a user opens the drawer, Flutter adds the drawer to the navigation
 stack. Therefore, to close the drawer, call `Navigator.pop(context)`.
@@ -131,9 +128,9 @@ ListTile(
 ),
 ```
 
-## Complete example
+## Interactive example
 
-```dart
+```run-dartpad:theme-light:mode-flutter:run-true:width-100%:height-600px:split-60
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -200,4 +197,16 @@ class MyHomePage extends StatelessWidget {
 }
 ```
 
-![Drawer Demo](/images/cookbook/drawer.png){:.site-mobile-screenshot}
+<noscript>
+  <img src="/images/cookbook/drawer.png" alt="Drawer Demo" class="site-mobile-screenshot" />
+</noscript>
+
+
+[`Drawer`]: {{site.api}}/flutter/material/Drawer-class.html
+[`DrawerHeader`]: {{site.api}}/flutter/material/DrawerHeader-class.html
+[list recipes]: /docs/cookbook#lists
+[`ListTile`]: {{site.api}}/flutter/material/ListTile-class.html
+[`ListView`]: {{site.api}}/flutter/widgets/ListView-class.html
+[material library]: {{site.api}}/flutter/material/material-library.html
+[`Navigator`]: {{site.api}}/flutter/widgets/Navigator-class.html
+[`Scaffold`]: {{site.api}}/flutter/material/Scaffold-class.html

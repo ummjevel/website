@@ -17,18 +17,25 @@ Flutter 프로젝트 디렉토리 `myapp`을 생성합니다.
 
 {% include_relative _main-code-note.md  %}
 
-## 앱 실행
+## Run the app
 
- 1. VS Code 상태 표시줄을 찾으세요 (창 하단 파란색 막대):<br> ![status bar][]{:.mw-100}
- 1. **Device Selector** 영역에서 기기를 선택하세요.
-    자세한 사항은, [Flutter 기기간 빠른 전환][]를 참조하세요.
-    - 사용가능한 기기가 없고 기기 시뮬레이터를 사용하고 싶다면,
-      **No Devices**를 클릭하여 시뮬레이터를 실행하세요.
-    - 실제 기기를 설정하기 위해,
-      [설치][] 페이지에서 OS를 선택하고 해당 페이지의 기기별 지침을 따르세요. 
- 1. Press the **Settings button** - a cog icon <i class="material-icons align-bottom">gear</i> on the top right (now marked with a red or orange indicator) next to the DEBUG text box that reads No Configuration. Select flutter. And choose the debug configuration: To create your emulator if it is closed or to run the emulator or device that is now connected.        
- 1. **Debug > Start Debugging**을 호출하거나 <kbd>F5</kbd>를 누르세요.
- 1. 앱이 실행될 때까지 기다리세요 - **Debug Console**에 진행 상태가 표시됩니다.
+ 1. Locate the VS Code status bar (the blue bar at the bottom of the
+    window):<br> ![status bar][]{:.mw-100}
+ 1. Select a device from the **Device Selector** area.
+    For details, see [Quickly switching between Flutter devices][].
+    - If no device is available and you want to use a device simulator,
+      click **No Devices** and launch a simulator.
+    - To setup a real device, follow the device-specific instructions on the
+      [Install][] page for your OS.
+ 1. Press the **Settings button**&mdash;a cog icon gear
+    on the top right (now marked with a red or orange indicator)
+    next to the DEBUG text box that reads **No Configuration**.
+    Select flutter. And choose the debug configuration:
+    To create your emulator if it is closed or to run the
+    emulator or device that is now connected.
+ 1. Invoke **Debug > Start Debugging** or press <kbd>F5</kbd>.
+ 1. Wait for the app to launch &mdash; progress is printed
+    in the **Debug Console** view.
 
 {% capture save_changes -%}
   : invoke **Save All**, or click **Hot Reload**

@@ -1,5 +1,5 @@
 ---
-title: Preparing a web app for release
+title: Build and release a web app
 description: How to prepare for and release a web app.
 short-title: Web
 ---
@@ -14,14 +14,10 @@ of your app.
 
 This page covers the following topics:
 
-* [Adding a launcher icon](#adding-a-launcher-icon)
 * [Obfuscation and minification](#obfuscation-and-minification)
 * [Building the app for release](#building-the-app-for-release)
 * [Deploying to the web](#deploying-to-the-web)
 
-## Adding a launcher icon
-
-TBD
 
 ## Obfuscation and minification
 
@@ -92,7 +88,7 @@ Here are a few possibilities, but there are
 many others:
 
 * [Firebase Hosting][]
-* [Github Pages][]
+* [GitHub Pages][]
 * [Google Cloud Hosting][]
 
 In future, we plan to generate PWA configuration files

@@ -12,11 +12,10 @@ next:
 새로운 기능을 추가하거나 기존 기능을 변경했을 때, 앱이 여전히 제대로 동작한다는 것을
 어떻게 보장할 수 있을까요? 테스트 코드를 작성하세요.
 
-단위 테스트는 하나의 함수, 메서드 혹은 클래스의 동작을 검증하기 위해 아주 유용합니다.
-[`test`]({{site.pub-pkg}}/test) 패키지는 단위 테스트 작성을 위해 핵심 프레임워크를
-제공하며,
-[`flutter_test`]({{site.api}}/flutter/flutter_test/flutter_test-library.html)
-패키지는 위젯 테스트를 위한 추가적인 유틸리티를 제공합니다.
+Unit tests are handy for verifying the behavior of a single function,
+method, or class. The [`test`][] package provides the
+core framework for writing unit tests, and the [`flutter_test`][]
+package provides additional utilities for testing widgets.
 
 본 예제에서는 `test` 패키지가 제공하는 핵심 기능들을 아래와 같은 순서로 살펴볼 것입니다.
 
@@ -27,9 +26,8 @@ next:
   5. 여러 테스트를 `group`으로 결합하기.
   6. 테스트 수행하기.
 
-test 패키지에 대해 좀더 자세한 정보는 
-[test 패키지 문서]({{site.github}}/dart-lang/test/blob/master/README.md)를
-참고하세요.
+For more information about the test package,
+see the [test package documentation][].
 
 ## 1. test 의존성 추가하기
 
@@ -110,8 +108,8 @@ void main() {
 
 ## 5. 여러 테스트를 `group`으로 결합하기
 
-만약 관련있는 다른 테스트 코드들이 있다면, `test` 패키지에서 제공하는 
-`group` 함수를 사용하여 결합할 수 있습니다.
+If you have several tests that are related to one another,
+combine them using the `group` function provided by the `test` package.
 
 <!-- skip -->
 ```dart
@@ -172,3 +170,8 @@ IntelliJ와 VSCode 용 Flutter 플러그인은 테스트 수행을 지원합니�
 ```
 flutter test test/counter_test.dart
 ```
+
+
+[`flutter_test`]: {{site.api}}/flutter/flutter_test/flutter_test-library.html
+[`test`]: {{site.pub-pkg}}/test
+[test package documentation]: {{site.github}}/dart-lang/test/blob/master/README.md

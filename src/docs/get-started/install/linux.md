@@ -1,7 +1,6 @@
 ---
-title: 리눅스 설치
-short-title: 리눅스
-# js: [{defer: true, url: /assets/archive.js}]
+title: Linux install
+short-title: Linux
 next:
   title: 에디터 설정
   path: /docs/get-started/editor

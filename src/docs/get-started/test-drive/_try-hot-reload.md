@@ -6,10 +6,12 @@
 
 ## Hot reload
 
-Flutter는 _Stateful Hot Reload_ 를 통해 빠른 개발 사이클을 지원합니다. 
-재시작하거나 앱 상태 잃어버리지 않고 실행 중인 앱의 코드를 다시 로드합니다. 
-앱 소스를 변경하고, hot reload가 필요하다는 신호를 IDE나 커멘드라인 도구에 보낸 후, 
-시뮬레이터나 에뮬레이터 혹은 기기에서 변화를 확인하세요. 
+Flutter offers a fast development cycle with _Stateful Hot Reload_,
+the ability to reload the code of a live running app without
+restarting or losing app state.
+Make a change to app source,
+tell your IDE or command-line tool that you want to hot reload,
+and see the change in your simulator, emulator, or device.
 
  1. `lib/main.dart` 여세요.
  1. 문자열을 변경하세요

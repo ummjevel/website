@@ -22,12 +22,11 @@
 
  1. Android 스튜디오 기본 툴바를 찾으세요: <br>
     ![Main IntelliJ toolbar][]{:.mw-100}
- 1. **target selector**에서, 앱을 실행할 Android 기기를 선택하세요.
-    리스트에 사용 가능한 기기가 없다면, 
-    **Tools> Android > AVD Manager**를 선택하고 새 기기를 생성하세요.
-    자세한 사항은, [AVD 관리][]를 참조하세요.
- 1. 툴바에서 실행 아이콘을 선택하세요, 
-    또는 메뉴 항목에서 **Run > Run**를 실행하세요.
+ 1. In the **target selector**, select an Android device for running the app.
+    If none are listed as available,
+    select **Tools> Android > AVD Manager** and create one there.
+    For details, see [Managing AVDs][].
+ 1. Click the run icon in the toolbar, or invoke the menu item **Run > Run**.
 
 {% capture save_changes -%}
   : invoke **Save All**, or click **Hot Reload**

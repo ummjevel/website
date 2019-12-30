@@ -9,9 +9,9 @@ description: >
   Flutter는 기존 코드와 함께 동작하고, 전세계 개발자와 조직에 쓰이고 있으며,
   무료 오픈 소스입니다.
 js:
-- url: /assets/dash/js/detect_safari.js
+- url: /assets/js/detect_safari.js
   defer: true
-- url: /assets/dash/js/dartpad_picker_main.dart.js
+- url: /assets/js/dartpad_picker_main.dart.js
   defer: true
 ---
 
@@ -111,25 +111,15 @@ js:
                 <h3>네이티브 수준의 성능</h3>
 
                 <p>
-                Flutter 위젯은 플랫폼별 차이를 통합하여 스크롤,
-                내비게이션, 아이콘, 글꼴 등을 iOS와 안드로이드 모두에서
-                네이티브 수준의 성능으로 제공합니다.
+                Flutter’s widgets incorporate all critical platform
+                differences such as scrolling, navigation, icons and
+                fonts, and your Flutter code is compiled to native ARM
+                machine code using <a href="https://dart.dev/platforms">Dart's native compilers</a>.
+                Thus Flutter gives you full native performance on both
+                iOS and Android.
                 </p>
             </div>
 
-        </div>
-    </div>
-</section>
-
-<!-- Do not show DartPad on Safari -->
-<section id="dartpad-landing-page" class="landing-page__cta card text-center">
-    <div class="card-body">
-        <div class="dash-dartpad">
-            <a name="try-dart"></a>
-            <h2>브라우저에서 Flutter를 사용해보세요</h2>
-            <select id="dartpad-select"></select>
-            <div id="dartpad-host"></div>
-            <h3>더 연습하고 싶나요? <a href="/codelabs">코드랩을 해보세요</a>.</h3>
         </div>
     </div>
 </section>
@@ -271,11 +261,11 @@ js:
 
 <div class="homepage__news card-deck">
     <div class="card">
-        {% asset homepage/news-1.jpg alt='A news item image' class="card-img-top" %}
+        {% asset homepage/news-1.png alt='A news item image' class="card-img-top" %}
         <div class="card-body">
             <p class="card-text"><small class="text-muted">News</small></p>
-            <h3>Announcing Flutter 1.9</h3>
-            <a href="https://developers.googleblog.com/2019/09/flutter-news-from-gdd-china-flutter1.9.html?m=1">Read More</a>
+            <h3>Announcing Flutter 1.12</h3>
+            <a href="https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html">Read More</a>
         </div>
     </div>
     <div class="card">
@@ -287,6 +277,20 @@ js:
         </div>
     </div>
 </div>
+
+
+<!-- Do not show DartPad on Safari -->
+<section id="dartpad-landing-page" class="landing-page__cta card text-center">
+    <div class="card-body">
+        <div class="dash-dartpad">
+            <a name="try-dart"></a>
+            <h2>Try Flutter in your browser</h2>
+            <select id="dartpad-select"></select>
+            <div id="dartpad-host"></div>
+            <h3>Want more practice? <a href="/codelabs">Try a codelab</a>.</h3>
+        </div>
+    </div>
+</section>
 
 <section class="landing-page__cta card text-center">
     <div class="card-body">

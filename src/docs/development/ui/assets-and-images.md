@@ -280,7 +280,7 @@ The `lib/` is implied, so it should not be included in the asset path.
 Flutter assets are readily available to platform code via
 AssetManager on Android and NSBundle on iOS.
 
-### Android
+### Loading Flutter assets in Android
 
 On Android the assets are available via the [AssetManager API][].
 The lookup key used in, for instance [openFd][], is obtained from
@@ -316,7 +316,7 @@ String key = registrar.lookupKeyForAsset("icons/heart.png");
 AssetFileDescriptor fd = assetManager.openFd(key);
 ```
 
-### iOS
+### Loading Flutter assets in iOS
 
 On iOS the assets are available via the [mainBundle][].
 The lookup key used in, for instance [pathForResource:ofType:][],
@@ -339,6 +339,26 @@ NSString* path = [[NSBundle mainBundle] pathForResource:key ofType:nil];
 
 For a more complete example, see the implementation of the
 Flutter [video_player plugin][].
+
+The plugin [ios_platform_images][] on pub.dev wraps up this logic in a
+convenient category.  It allows writing:
+
+**Objective-C:**
+```objective-c
+[UIImage flutterImageWithName:@"icons/heart.png"];
+```
+
+**Swift:**
+```swift
+UIImage.flutterImageNamed("icons/heart.png")
+```
+
+### Loading iOS images in Flutter
+
+When implementing Flutter as
+[Add-to-app](/docs/development/add-to-app/ios/), you might have images hosted in
+iOS which you want to use in Flutter.  For accomplishing that there is a plugin
+available on pub.dev called [ios_platform_images][].
 
 ## Platform assets
 
@@ -367,7 +387,7 @@ as indicated by the [Android Developer Guide][].
 
 {{site.alert.note}}
   If you rename the .png files, you must also update the
-  correspondingname in your `AndroidManifest.xml`'s
+  corresponding name in your `AndroidManifest.xml`'s
   `<application>` tag's `android:icon` attribute.
 {{site.alert.end}}
 
@@ -412,6 +432,8 @@ an example of adding an image to the middle of a white splash
 screen in commented code. You can uncomment it or use other
 [drawables][] to achieve the intended effect.
 
+For more details, see [Adding a splash screen and launch screen to an Android app](/docs/development/add-to-app/android/add-splash-screen).
+
 #### iOS
 
 To add an image to the center of your "splash screen",
@@ -432,28 +454,29 @@ customization using the Interface Builder in
 ![Adding launch icons in Xcode](/images/assets-and-images/ios-launchscreen-xcode.png)
 
 
-[`AssetImage`]: {{site.api}}/flutter/painting/AssetImage-class.html
+
 [`AssetBundle`]: {{site.api}}/flutter/services/AssetBundle-class.html
-[AssetManager API]: {{site.android-dev}}/reference/android/content/res/AssetManager
+[`AssetImage`]: {{site.api}}/flutter/painting/AssetImage-class.html
 [`DefaultAssetBundle`]: {{site.api}}/flutter/widgets/DefaultAssetBundle-class.html
+[`ImageCache`]: {{site.api}}/flutter/painting/ImageCache-class.html
+[`ImageStream`]: {{site.api}}/flutter/painting/ImageStream-class.html
+[`pubspec.yaml`]: {{site.dart-site}}/tools/pub/pubspec
+[`rootBundle`]: {{site.api}}/flutter/services/rootBundle.html
+[`window.onDrawFrame`]: {{site.api}}/flutter/dart-ui/Window/onDrawFrame.html
+[`window.render()`]: {{site.api}}/flutter/dart-ui/Window/render.html
+[Android Developer Guide]: {{site.android-dev}}/training/multiscreen/screendensities
+[AssetManager API]: {{site.android-dev}}/reference/android/content/res/AssetManager
+[device pixel ratio]: {{site.api}}/flutter/dart-ui/Window/devicePixelRatio.html
+[drawables]: {{site.android-dev}}/guide/topics/resources/drawable-resource
 [FlutterPluginRegistrar]: {{site.api}}/objcdoc/Protocols/FlutterPluginRegistrar.html
 [FlutterView]: {{site.api}}/javadoc/io/flutter/view/FlutterView.html
 [FlutterViewController]: {{site.api}}/objcdoc/Classes/FlutterViewController.html
-[`ImageCache`]: {{site.api}}/flutter/painting/ImageCache-class.html
-[`ImageStream`]: {{site.api}}/flutter/painting/ImageStream-class.html
-[PluginRegistry.Registrar]: {{site.api}}/javadoc/io/flutter/plugin/common/PluginRegistry.Registrar.html
-
-[device pixel ratio]: {{site.api}}/flutter/dart-ui/Window/devicePixelRatio.html
-[package]: /docs/development/packages-and-plugins/using-packages
-[openFd]: {{site.android-dev}}/reference/android/content/res/AssetManager#openFd(java.lang.String
-[mainBundle]: https://developer.apple.com/documentation/foundation/nsbundle/1410786-mainbundle
-[pathForResource:ofType:]: https://developer.apple.com/documentation/foundation/nsbundle/1410989-pathforresource
-[video_player plugin]: {{site.pub}}/packages/video_player
-[Android Developer Guide]: {{site.android-dev}}/training/multiscreen/screendensities
 [Human Interface Guidelines]: https://developer.apple.com/ios/human-interface-guidelines/graphics/app-icon
-[`window.render()`]: {{site.api}}/flutter/dart-ui/Window/render.html
-[`window.onDrawFrame`]: {{site.api}}/flutter/dart-ui/Window/onDrawFrame.html
 [layer list drawable]: {{site.android-dev}}/guide/topics/resources/drawable-resource#LayerList
-[drawables]: {{site.android-dev}}/guide/topics/resources/drawable-resource
-[`pubspec.yaml`]: {{site.dart-site}}/tools/pub/pubspec
-[`rootBundle`]: {{site.api}}/flutter/services/rootBundle.html
+[mainBundle]: https://developer.apple.com/documentation/foundation/nsbundle/1410786-mainbundle
+[openFd]: {{site.android-dev}}/reference/android/content/res/AssetManager#openFd(java.lang.String
+[package]: /docs/development/packages-and-plugins/using-packages
+[pathForResource:ofType:]: https://developer.apple.com/documentation/foundation/nsbundle/1410989-pathforresource
+[PluginRegistry.Registrar]: {{site.api}}/javadoc/io/flutter/plugin/common/PluginRegistry.Registrar.html
+[video_player plugin]: {{site.pub}}/packages/video_player
+[ios_platform_images]: {{site.pub}}/packages/ios_platform_images

@@ -30,8 +30,16 @@
     $ cd ~/development
     $ {{unzip}} ~/Downloads/flutter_{{os}}_vX.X.X-{{site.sdk.channel}}{{file_ext}}
     ```
-
- 1. `flutter` 도구를 path에 추가하세요:
+    
+    Steps 1 and 2 can be replaced. If you don't want to install a fixed version of the installation bundle.
+    The Flutter SDK is free and open source, so you can get the source code from the [Flutter repo](https://github.com/flutter/flutter) on GitHub,
+    and change branches or tags as needed.
+    
+    ```terminal
+    $ git clone https://github.com/flutter/flutter.git
+    ```
+    
+ 1. Add the `flutter` tool to your path:
 
     ```terminal
     $ export PATH="$PATH:`pwd`/flutter/bin"

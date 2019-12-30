@@ -94,15 +94,67 @@ Flutter 프레임워크는 각각의 층이 이전 층에 의해 빌드되는 �
    alt="Flutter framework layer cake"
    class="mw-100" %}
 
-프레임워크의 상위 레이어로 갈수록 하위 레이어보다 더 빈번히 사용됩니다. 
-Flutter의 계층화된 프레임워크를 구성하는 전체 
-라이브러리는 [API 문서]()에서 확인할 수 있습니다.
+For example, the Material layer is built by composing basic
+widgets from the widgets layer, and the widgets layer itself
+is built by orchestrating lower-level objects from the rendering layer.
+
+The layers offer many options for building apps.
+Choose a customized approach to unlock the full expressive
+power of the framework, or use building blocks from
+the widgets layer, or mix and match.
+You can compose the ready-made widgets Flutter provides,
+or create your own custom widgets using the same tools and
+techniques that the Flutter team used to build the framework.
+
+Nothing is hidden from you.
+You reap the productivity benefits of a high-level,
+unified widget concept, without sacrificing the ability
+to dive as deeply as you wish into the lower layers.
+
+### Building widgets
+
+You define the unique characteristics of a widget by
+implementing a [`build()`][] function that returns
+a tree (or hierarchy) of widgets. This tree represents
+the widget's part of the user interface in more concrete terms.
+For example, a toolbar widget might have a build function that returns
+a [horizontal layout][] of some [text][] and [various][] [buttons][].
+The framework then recursively asks each of these widgets to build until the
+process bottoms out in [fully concrete widgets][],
+which the framework then stitches together into a tree.
+
+A widget's build function should be free of side effects.
+Whenever it is asked to build, the widget should return a
+new tree of widgets regardless of what the widget previously
+returned. The framework does the heavy lifting of comparing
+the previous build with the current build and determining
+what modifications need to be made to the user interface.
+
+This automated comparison is quite effective,
+enabling high-performance, interactive apps.
+And the design of the build function simplifies your code by
+focusing on declaring what a widget is made of,
+rather than the complexities of updating the user
+interface from one state to another.
+
+### Handling user interaction
+
+If the unique characteristics of a widget need to change
+based on user interaction or other factors,
+that widget is *stateful*. For example, if a widget has
+a counter that increments whenever the user taps a button,
+the value of the counter is the state for that widget.
+When that value changes,
+the widget needs to be rebuilt to update the UI.
+
+These widgets subclass
+[`StatefulWidget`][] (rather than [`StatelessWidget`][])
+and store their mutable state in a subclass of [`State`][].
 
 이러한 설계의 목표는 개발자로 하여금 더 적은 코드로 더 많은 일을 할 수 있게 하는 것입니다. 예를 들어, 머티리얼 계층은 위젯 계층의 기본적인 위젯들을 조합하여 만들어지고, 위젯 계층은 렌더링 계층의 하위 레벨 오브젝트들의 조합으로 만들어집니다.
 
 계층들은 앱을 만드는데 많은 옵션을 제공합니다. 프레임워크의 풍부한 표현력을 활용할 수 있는 커스터마이즈한 접근법을 선택하거나 위젯 계층의 블럭들을 사용하세요, 혹은 이것들을 조화롭게 잘 조합하여 사용하세요. Flutter가 제공하는 자체 위젯들을 사용하거나, Flutter 팀에서 프레임워크 개발할 때 사용한 것과 동일한 도구와 기술들을 갖고 직접 커스텀 위젯도 만들 수 있습니다.
 
-모든 것은 공개되어 있습니다. 프레임워크의 하위 계층을 뜯어보지 않고도 상위 레벨의 위젯 컨셉만으로도 생산성을 높일 수 있습니다.
 
 ### 위젯 만들기
 

@@ -15,8 +15,8 @@ Flutter 앱을 만들 때 많은 도움이 됩니다. Flutter는 모바일을 �
 iOS(그리고 안드로이드)의 UI가 아닌 작업들과 통신하기 위한 플러그인 시스템도 가지고 있습니다.
 당신이 iOS 개발 전문가라면, Flutter를 사용하기 위해 모든 걸 다시 배울 필요는 없습니다.
 
-Flutter는 이미 iOS에 동작시키기 위한 수 많은 어댑터(Adaptation)들을 만들었습니다. 목록은
-[플랫폼 어댑터](/docs/resources/platform-adaptations)에서 확인하세요.
+Flutter also already makes a number of adaptations in the framework for you
+when running on iOS. For a list, see [Platform adaptations](/docs/resources/platform-adaptations).
 
 이 문서는 필요한 질문을 찾거나 훑어보는 용도의 설명서로 사용될 수 있습니다.
 

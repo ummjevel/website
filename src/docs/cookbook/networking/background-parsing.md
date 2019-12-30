@@ -15,11 +15,10 @@ next:
 하지만 아주 큰 JSON 문서를 파싱하는 것과 같은 값 비싼 연산을 해야하는 경우가 있습니다.
 만약 이러한 작업이 16ms 넘게 걸린다면, 사용자는 jank를 경험하게 될 것 입니다.
 
-Jank를 피하기 위해서는, 이러한 값비싼 연산을 백그라운드에서 수행해야 합니다. 
-Android에서는, 다른 스레드에 작업을 스케줄링하는 것을 의미합니다. Flutter에서는,
-별도의 [Isolate]({{site.api}}/flutter/dart-isolate/Isolate-class.html)를 
-사용할 수 있습니다.
-여기서는 아래와 같은 단계로 진행합니다:
+To avoid jank, you need to perform expensive computations like this in the
+background. On Android, this means scheduling work on a different thread.
+In Flutter, you can use a separate [Isolate][].
+This recipe uses the following steps:
 
   1. `http` 패키지 추가하기
   2. `http` 패키지를 사용하여 네트워크 요청 생성하기
@@ -28,9 +27,9 @@ Android에서는, 다른 스레드에 작업을 스케줄링하는 것을 의미
 
 ## 1. `http` 패키지 추가하기
 
-먼저 프로젝트에 [`http`]({{site.pub-pkg}}/http) 패키지를 추가하세요.
-`http` 패키지를 통해 JSON 엔드 포인트로부터 데이터를 받아오는 것과 같은
-네트워크 통신을 쉽게 수행할 수 있습니다.
+First, add the [`http`][] package to your project.
+The `http` package makes it easier to perform network
+requests, such as fetching data from a JSON endpoint.
 
 ```yaml
 dependencies:
@@ -39,10 +38,9 @@ dependencies:
 
 ## 2. 네트워크 요청 생성하기
 
-본 예제에서는 [JSONPlaceholder REST API](https://jsonplaceholder.typicode.com)
-로부터 5000개의 photo 객체가 포함된 아주 큰 사이즈의 JSON 문서를 
-[http.get()]({{site.pub-api}}/http/latest/http/get.html) 메서드를 사용하여
-받아올 것입니다.
+In this example, fetch a JSON large document that contains a list of
+5000 photo objects from the [JSONPlaceholder REST API][],
+using the [http.get()][] method.
 
 <!-- skip -->
 ```dart
@@ -58,9 +56,10 @@ Future<http.Response> fetchPhotos(http.Client client) async {
 
 ## 3. json을 Photo 리스트로 파싱하여 변환하기
 
-다음으로, [Fetch data from the internet](/docs/cookbook/networking/fetch-data)의
-가이드를 따라하세요. `http.Response`를 Dart 객체의 리스트로 변환할 건데 그렇게 데이터를
-변환하고 나면 이후 작업을 더 쉽게 수행할 수 있습니다.
+Next, following the guidance from the
+[Fetch data from the internet][] recipe,
+convert the `http.Response` into a list of Dart objects.
+This makes the data easier to work with in the future.
 
 ### `Photo` 클래스를 정의하세요
 
@@ -117,10 +116,11 @@ Future<List<Photo>> fetchPhotos(http.Client client) async {
 과정에서 버벅대는 것을 느낄 수도 있습니다. 이런 현상을 jank라고 부르는데 이 현상을
 개선해보겠습니다.
 
-[`compute`]({{site.api}}/flutter/foundation/compute.html) 함수를 사용하여
-파싱하고 변환하는 작업을 백그라운드 isolate으로 옮기면 됩니다. `compute()` 함수는
-오래 걸리는 함수를 백그라운드 isolate에서 돌리고 그 결과를 반환합니다. 본 예제에서는
-`parsePhotos()` 함수를 백그라운드에서 수행할 것입니다.
+You can remove the jank by moving the parsing and conversion
+to a background isolate using the [`compute()`][]
+function provided by Flutter. The `compute()` function runs expensive
+functions in a background isolate and returns the result. In this case,
+run the `parsePhotos()` function in the background.
 
 <!-- skip -->
 ```dart
@@ -162,7 +162,7 @@ Future<List<Photo>> fetchPhotos(http.Client client) async {
 
 // 응답 결과를 List<Photo>로 변환하는 함수.
 List<Photo> parsePhotos(String responseBody) {
-  final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+  final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
 
   return parsed.map<Photo>((json) => Photo.fromJson(json)).toList();
 }
@@ -247,3 +247,10 @@ class PhotosList extends StatelessWidget {
 ```
 
 ![Isolate demo](/images/cookbook/isolate.gif){:.site-mobile-screenshot}
+
+[`compute()`]: {{site.api}}/flutter/foundation/compute.html
+[Fetch data from the internet]: /docs/cookbook/networking/fetch-data
+[`http`]: {{site.pub-pkg}}/http
+[http.get()]: {{site.pub-api}}/http/latest/http/get.html
+[Isolate]: {{site.api}}/flutter/dart-isolate/Isolate-class.html
+[JSONPlaceholder REST API]: https://jsonplaceholder.typicode.com
