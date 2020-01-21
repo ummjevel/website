@@ -343,18 +343,17 @@ Flutter에서 행이나 열을 만들기 위해, [Row][] 또는 [Column][] 위�
 </div>
 </div>
 
-### Sizing widgets
+### 위젯 크기 조정
 
-When a layout is too large to fit a device, a yellow and black striped pattern
-appears along the affected edge. Here is an [example][sizing] of a row that is
-too wide:
+레이아웃이 너무 커서 장치에 맞지 않을 때,
+노란색과 검은색 줄무늬 패턴이 영향을 받는 가장 자리를 따라 나타납니다.
+다음은 너무 넓은 행의 [예제][sizing]입니다.
 
 {% asset ui/layout/layout-too-large.png class="mw-100" alt="Overly-wide row" %}
 {:.text-center}
 
-Widgets can be sized to fit within a row or column by using the [Expanded][]
-widget. To fix the previous example where the row of images is too wide for its
-render box, wrap each image with an `Expanded` widget.
+위젯들은 [Expanded][] 위젯을 이용해서 행이나 열에 맞게 크기를 조정할 수 있습니다.
+이미지 행이 렌더 박스에 비해 너무 넓은 이전 예제를 고치기 위해, 각 이미지를 `Expanded` 위젯으로 감쌉니다.
 
 <div class="row">
 <div class="col-lg-8">
@@ -384,10 +383,11 @@ render box, wrap each image with an `Expanded` widget.
 </div>
 </div>
 
-Perhaps you want a widget to occupy twice as much space as its siblings. For
-this, use the `Expanded` widget `flex` property, an integer that determines the
-flex factor for a widget. The default flex factor is 1. The following code sets
-the flex factor of the middle image to 2:
+아마 당신은 한 위젯이 형제 위젯들보다 두 배 많은 공간을 차지하기 원할 것 입니다.
+이를 위해, 위젯의 flex factor를 결정하는 정수인
+`Expanded` 위젯의 `flex` 속성을 사용하세요.
+기본 flex factor 값은 1입니다.
+다음 코드는 중앙 이미지의 flex factor를 2로 설정합니다.
 
 <div class="row">
 <div class="col-lg-8">
