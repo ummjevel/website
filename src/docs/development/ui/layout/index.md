@@ -420,12 +420,11 @@ Flutter에서 행이나 열을 만들기 위해, [Row][] 또는 [Column][] 위�
 
 [sizing]: {{examples}}/layout/sizing
 
-### Packing widgets
+### 위젯 묶기
 
-By default, a row or column occupies as much space along its main axis
-as possible, but if you want to pack the children closely together,
-set its `mainAxisSize` to `MainAxisSize.min`. The following example
-uses this property to pack the star icons together.
+기본적으로, 행이나 열은 주축을 따라 가능한 많은 공간을 차지하지만,
+만약 자식들을 가깝게 묶고 싶다면, `mainAxisSize`를 `MainAxisSize.min`으로 설정하세요.
+다음 예제는 별 아이콘들을 묶기 위해 이 속성을 사용합니다.
 
 <div class="row">
 <div class="col-lg-8">
@@ -451,27 +450,25 @@ uses this property to pack the star icons together.
 </div>
 </div>
 
-### Nesting rows and columns
+### 행과 열 중첩
 
-The layout framework allows you to nest rows and columns inside of rows
-and columns as deeply as you need. Let's look at the code for the outlined
-section of the following layout:
+레이아웃 프레임워크를 사용하면 행과 열 안에 필요한 만큼 깊이 행과 열을 중첩할 수 있습니다.
+다음 레이아웃의 개요 섹션에 대한 코드를 살펴봅시다.
 
 {% asset ui/layout/pavlova-large-annotated.png class="border mw-100"
     alt="Screenshot of the pavlova app, with the ratings and icon rows outlined in red" %}
 {:.text-center}
 
-The outlined section is implemented as two rows. The ratings row contains
-five stars and the number of reviews. The icons row contains three
-columns of icons and text.
+개요 섹션은 두 행으로 구현되어 있습니다.
+등급 행은 별 5개와 리뷰 수가 들어 있습니다.
+아이콘 행에는 아이콘과 텍스트 열 3개가 들어 있습니다.
 
-The widget tree for the ratings row:
+등급 행 위젯 트리:
 
 {% asset ui/layout/widget-tree-pavlova-rating-row.png class="mw-100" alt="Ratings row widget tree" %}
 {:.text-center}
 
-The `ratings` variable creates a row containing a smaller row of 5 star icons,
-and text:
+`ratings` 변수는 더 작은 별 아이콘 5개와 텍스트 행을 가지는 행을 만듭니다.
 
 <?code-excerpt "layout/pavlova/lib/main.dart (ratings)" replace="/ratings/[!$&!]/g"?>
 ```dart
@@ -508,17 +505,16 @@ final [!ratings!] = Container(
 ```
 
 {{site.alert.tip}}
-  To minimize the visual confusion that can result from heavily nested layout
-  code, implement pieces of the UI in variables and functions.
+  중첩된 레이아웃로 인해 발생할 수 있는 시각적 혼란을 최소화하기 위해, 변수와 함수로 UI 일부를 구현하세요.
 {{site.alert.end}}
 
-The icons row, below the ratings row, contains 3 columns; each column contains
-an icon and two lines of text, as you can see in its widget tree:
+등급 행 아래에 있는 아이콘 행은 3개의 열을 포함합니다.
+각 열은 위젯 트리에서 볼 수 있듯이 아이콘과 텍스트 두 줄을 가집니다.
 
 {% asset ui/layout/widget-tree-pavlova-icon-row.png class="mw-100" alt="Icon widget tree" %}
 {:.text-center}
 
-The `iconList` variable defines the icons row:
+`iconList` 변수는 아이콘 행을 정의합니다.
 
 <?code-excerpt "layout/pavlova/lib/main.dart (iconList)" replace="/iconList/[!$&!]/g"?>
 ```dart
@@ -531,8 +527,8 @@ final descTextStyle = TextStyle(
   height: 2,
 );
 
-// DefaultTextStyle.merge() allows you to create a default text
-// style that is inherited by its child and all subsequent children.
+// DefaultTextStyle.merge()를 사용하면 자식과
+// 모든 자손이 상속하는 기본 텍스트 스타일을 만들 수 있습니다.
 final [!iconList!] = DefaultTextStyle.merge(
   style: descTextStyle,
   child: Container(
@@ -567,8 +563,7 @@ final [!iconList!] = DefaultTextStyle.merge(
 );
 ```
 
-The `leftColumn` variable contains the ratings and icons rows, as well as the
-title and text that describes the Pavlova:
+`leftColumn` 변수는 등급 및 아이콘 행, 그리고 Pavlova를 설명하는 제목과 텍스트를 포함합니다.
 
 <?code-excerpt "layout/pavlova/lib/main.dart (leftColumn)" replace="/leftColumn/[!$&!]/g"?>
 ```dart
@@ -585,16 +580,15 @@ final [!leftColumn!] = Container(
 );
 ```
 
-The left column is placed in a `Container` to constrain its width.
-Finally, the UI is constructed with the entire row (containing the
-left column and the image) inside a `Card`.
+왼쪽 열은 너비를 제한하기 위해 `Container` 안에 놓입니다.
+최종적으로, UI는 `Card` 내부에 모든 행(왼쪽 열과 이미지 포함)을 넣어 구성됩니다.
 
-The [Pavlova image][] is from [Pixabay][].
-You can embed an image from the net using `Image.network()` but,
-for this example, the image is saved to an images directory in the project,
-added to the [pubspec file,]({{examples}}/layout/pavlova/pubspec.yaml)
-and accessed using `Images.asset()`. For more information, see
-[Adding assets and images](/docs/development/ui/assets-and-images).
+[Pavlova 이미지][]는 [Pixabay][]에서 가져온 것 입니다.
+`Image.network()`를 사용해 넷에서 가져온 이미지를 삽입할 수 있지만,
+이 예제를 위해, 이 이미지는 프로젝트의 images 폴더에 저장되었으며,
+[pubspec 파일]({{examples}}/layout/pavlova/pubspec.yaml)에 추가하고,
+`Images.asset()`를 사용하여 접근했습니다.
+자세한 정보는, [Adding assets and images](/docs/development/ui/assets-and-images)를 봐주세요.
 
 <?code-excerpt "layout/pavlova/lib/main.dart (body)"?>
 ```dart
@@ -619,12 +613,13 @@ body: Center(
 ```
 
 {{site.alert.tip}}
-  The Pavlova example runs best horizontally on a wide device, such as a tablet.
-  If you are running this example in the iOS simulator, you can select a
-  different device using the **Hardware > Device** menu. For this example, we
-  recommend the iPad Pro. You can change its orientation to landscape mode using
-  **Hardware > Rotate**. You can also change the size of the simulator window
-  (without changing the number of logical pixels) using **Window > Scale**.
+  Pavlova 예제는 태블릿처럼 가로로 넓은 기기에서 가장 잘 작동합니다.
+  이 예제를 iOS 시뮬레이터에서 실행하고 있다면,
+  **Hardware > Device** 메뉴를 사용하여 다른 기기를 선택할 수 있습니다.
+  이 예제를 위해, iPad Pro를 추천합니다.
+  **Hardware > Rotate**를 사용해서 방향을 가로 모드로 변경할 수 있습니다.
+  또한 **Window > Scale**을 사용해서 시뮬레이터의
+  창 크기(논리 픽셀 수는 변경하지 않고)를 변경할 수 있습니다.
 {{site.alert.end}}
 
 **App source:** [pavlova]({{examples}}/layout/pavlova)
