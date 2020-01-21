@@ -214,58 +214,52 @@ class MyApp extends StatelessWidget {
 
 <hr>
 
-## Lay out multiple widgets vertically and horizontally
+## 가로와 세로로 여러 위젯 배치하기
 
 <?code-excerpt path-base=""?>
 
-One of the most common layout patterns is to arrange widgets vertically
-or horizontally. You can use a Row widget to arrange widgets horizontally,
-and a Column widget to arrange widgets vertically.
+가장 일반적인 레이아웃 패턴 중 하나는 위젯을 가로와 세로로 나열하는 것 입니다.
+위젯을 가로로 나열하기 위해 Row, 그리고 세로로 나열하기 위해 Column을 사용할 수 있습니다.
 
 {{site.alert.secondary}}
-  <h4 class="no_toc">What's the point?</h4>
+  <h4 class="no_toc">요점이 뭔가요?</h4>
 
-  * Row and Column are two of the most commonly used layout patterns.
-  * Row and Column each take a list of child widgets.
-  * A child widget can itself be a Row, Column, or other complex widget.
-  * You can specify how a Row or Column aligns its children, both vertically
-    and horizontally.
-  * You can stretch or constrain specific child widgets.
-  * You can specify how child widgets use the Row's or Column's available space.
+  * Row와 Column은 가장 일반적으로 사용되는 두 가지 레이아웃 패턴입니다.
+  * Row와 Column은 각각 자식 위젯 리스트를 가집니다.
+  * 자식 위젯은 Row, Column, 혹은 그 외 다른 복잡한 위젯일 수 있습니다.
+  * Row나 Column이 자식들을 가로나 세로로 정렬하는 방법을 지정할 수 있습니다.
+  * 특정 자식 위젯을 늘리거나 제한할 수 있습니다.
+  * 자식 위젯들이 Row나 Column의 사용 가능한 공간을 사용하는 방법에 대해 지정할 수 있습니다.
 {{site.alert.end}}
 
-To create a row or column in Flutter, you add a list of children widgets to a
-[Row][] or [Column][] widget. In turn, each child can itself be a row or column,
-and so on. The following example shows how it is possible to nest rows or
-columns inside of rows or columns.
+Flutter에서 행이나 열을 만들기 위해, [Row][] 또는 [Column][] 위젯에 자식 위젯 리스트를 추가합니다.
+결국, 각 자식은 행이나 열, 기타 등등이 될 수 있습니다.
+다음 예제는 행이나 열 내부에 행이나 열을 배치할 수 있는 방법을 보여줍니다.
 
-This layout is organized as a Row. The row contains two children:
-a column on the left, and an image on the right:
+이 레이아웃은 행으로 구성되어 있습니다.
+행은 두 자식들, 왼쪽의 열과 오른쪽의 이미지를 가지고 있습니다.
 
 {% asset ui/layout/pavlova-diagram.png class="mw-100"
     alt="Screenshot with callouts showing the row containing two children" %}
 
-The left column's widget tree nests rows and columns.
+왼쪽 열의 위젯 트리는 행과 열들을 중첩하고 있습니다.
 
 {% asset ui/layout/pavlova-left-column-diagram.png class="mw-100"
     alt="Diagram showing a left column broken down to its sub-rows and sub-columns" %}
 
-You'll implement some of Pavlova's layout code in
-[Nesting rows and columns](#nesting-rows-and-columns).
+[Nesting rows and columns](#nesting-rows-and-columns)에 있는 Pavlova의 레이아웃 코드 중 일부를 구현할 겁니다.
 
 {{site.alert.note}}
-  Row and Column are basic primitive widgets for horizontal
-  and vertical layouts&mdash;these low-level widgets allow for maximum
-  customization. Flutter also offers specialized, higher level widgets
-  that might be sufficient for your needs. For example, instead of Row
-  you might prefer
-  [ListTile]({{api}}/material/ListTile-class.html),
-  an easy-to-use widget with properties for leading and trailing icons,
-  and up to 3 lines of text.  Instead of Column, you might prefer
-  [ListView]({{api}}/widgets/ListView-class.html),
-  a column-like layout that automatically scrolls if its content is too long
-  to fit the available space.  For more information,
-  see [Common layout widgets](#common-layout-widgets).
+  행과 열은 가로와 세로 레이아웃을 위한 기본적인 원시 위젯입니다&mdash;
+  이런 저레벨 위젯들은 최대한 사용자 정의를 수용합니다.
+  Flutter는 또한 여러분의 필요에 충분한 전문화되고 더 높은 수준의 위젯들을 제공합니다.
+  예를 들어, Row 대신에 leading과 trailing icon 속성을 제공하고,
+  텍스트가 최대 3줄이여서, 사용하기 쉬운 위젯인
+  [ListTile]({{api}}/material/ListTile-class.html)을 선호할 수 있습니다.  
+  Column 대신에, 사용 가능한 공간에 맞추기 위해 내용이
+  너무 길어지면 자동으로 스크롤하는 column-like 레이아웃인
+  [ListView]({{api}}/widgets/ListView-class.html)를 선호할 수 있습니다.  
+  더 많은 정보는 [Common layout widgets](#common-layout-widgets)을 봐주세요.
 {{site.alert.end}}
 
 ### Aligning widgets
