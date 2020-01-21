@@ -214,12 +214,12 @@ class MyApp extends StatelessWidget {
 
 <hr>
 
-## 가로와 세로로 여러 위젯 배치하기
+## 세로와 가로로 여러 위젯 배치하기
 
 <?code-excerpt path-base=""?>
 
-가장 일반적인 레이아웃 패턴 중 하나는 위젯을 가로와 세로로 나열하는 것 입니다.
-위젯을 가로로 나열하기 위해 Row, 그리고 세로로 나열하기 위해 Column을 사용할 수 있습니다.
+가장 일반적인 레이아웃 패턴 중 하나는 위젯을 세로와 가로로 나열하는 것 입니다.
+위젯을 세로로 나열하기 위해 Row, 그리고 가로로 나열하기 위해 Column을 사용할 수 있습니다.
 
 {{site.alert.secondary}}
   <h4 class="no_toc">요점이 뭔가요?</h4>
@@ -227,7 +227,7 @@ class MyApp extends StatelessWidget {
   * Row와 Column은 가장 일반적으로 사용되는 두 가지 레이아웃 패턴입니다.
   * Row와 Column은 각각 자식 위젯 리스트를 가집니다.
   * 자식 위젯은 Row, Column, 혹은 그 외 다른 복잡한 위젯일 수 있습니다.
-  * Row나 Column이 자식들을 가로나 세로로 정렬하는 방법을 지정할 수 있습니다.
+  * Row나 Column이 자식들을 세로나 가로로 정렬하는 방법을 지정할 수 있습니다.
   * 특정 자식 위젯을 늘리거나 제한할 수 있습니다.
   * 자식 위젯들이 Row나 Column의 사용 가능한 공간을 사용하는 방법에 대해 지정할 수 있습니다.
 {{site.alert.end}}
@@ -262,13 +262,12 @@ Flutter에서 행이나 열을 만들기 위해, [Row][] 또는 [Column][] 위�
   더 많은 정보는 [Common layout widgets](#common-layout-widgets)을 봐주세요.
 {{site.alert.end}}
 
-### Aligning widgets
+### 위젯 정렬
 
-You control how a row or column aligns its children using the
-`mainAxisAlignment` and `crossAxisAlignment` properties.
-For a row, the main axis runs horizontally and the cross axis runs
-vertically. For a column, the main axis runs vertically and the cross
-axis runs horizontally.
+`mainAxisAlignment`과 `crossAxisAlignment`
+속성을 이용해서 행과 열이 자식들을 어떻게 정렬할지 제어합니다.
+행의 경우, 주축은 가로로 교차축은 세로로 수행됩니다.
+열의 경우, 주축은 세로로 교차축은 가로로 수행됩니다.
 
 <div class="mb-2 text-center">
   {% asset ui/layout/row-diagram.png class="mb-2 mw-100"
@@ -277,25 +276,23 @@ axis runs horizontally.
       alt="Diagram showing the main axis and cross axis for a column" %}
 </div>
 
-The [MainAxisAlignment]({{api}}/rendering/MainAxisAlignment-class.html)
-and [CrossAxisAlignment]({{api}}/rendering/CrossAxisAlignment-class.html)
-classes offer a variety of constants for controlling alignment.
+[MainAxisAlignment]({{api}}/rendering/MainAxisAlignment-class.html)와
+[CrossAxisAlignment]({{api}}/rendering/CrossAxisAlignment-class.html)
+클래스는 정렬을 제어하기 위한 다양한 상수를 제공합니다.
 
 {{site.alert.note}}
-  When you add images to your project,
-  you need to update the `pubspec.yaml` file to access them&mdash;this
-  example uses `Image.asset` to display the images.  For more information,
-  see this example's [pubspec.yaml
-  file]({{examples}}/layout/row_column/pubspec.yaml),
-  or [Adding Assets and Images in Flutter](/docs/development/ui/assets-and-images).
-  You don't need to do this if you're referencing online images using
-  `Image.network`.
+  프로젝트에 이미지를 추가할 때, 해당 이미지에 접근하기 위해
+  `pubspec.yaml` 파일을 업데이트 해줘야 합니다&mdash;
+  이 예제는 이미지를 표시하기 위해 `Image.asset`을 사용합니다.  
+  더 많은 정보는 이 예제의 [pubspec.yaml file]({{examples}}/layout/row_column/pubspec.yaml),
+  또는 [Adding Assets and Images in Flutter](/docs/development/ui/assets-and-images)을 봐주세요.
+  만약 `Image.network`를 사용해서 온라인 이미지들을 참조하고 있다면 하실 필요가 없습니다.
 {{site.alert.end}}
 
-In the following example, each of the 3 images is 100 pixels wide.
-The render box (in this case, the entire screen) is more than 300 pixels wide,
-so setting the main axis alignment to `spaceEvenly` divides the free
-horizontal space evenly between, before, and after each image.
+다음 예제에서, 세 이미지의 각각의 너비는 100픽셀입니다.
+렌더 박스(이 경우, 화면 전체)는 300픽셀보다 넓으므로,
+주축 정렬을 `spaceEvenly`로 설정하면 빈 수평 공간이
+각 이미지 사이와 앞뒤에 균일하게 분배합니다.
 
 <div class="row">
 <div class="col-lg-8">
@@ -318,11 +315,11 @@ horizontal space evenly between, before, and after each image.
 </div>
 </div>
 
-Columns work the same way as rows. The following example shows a column
-of 3 images, each is 100 pixels high. The height of the render box
-(in this case, the entire screen) is more than 300 pixels, so
-setting the main axis alignment to `spaceEvenly` divides the free vertical
-space evenly between, above, and below each image.
+열은 행과 같은 방식으로 작동합니다.
+다음 예제는 각 100픽셀의 높이인 세 개의 이미지 열을 보여줍니다.
+렌더 박스의 높이는(이 경우, 화면 전체) 300픽셀보다 크기 때문에,
+주축 정렬을 `spaceEvenly`로 설정하면 빈 수직 공간을
+각 이미지 사이와 앞뒤에 균일하게 분배합니다.
 
 <div class="row">
 <div class="col-lg-8" markdown="1">
