@@ -214,67 +214,60 @@ class MyApp extends StatelessWidget {
 
 <hr>
 
-## Lay out multiple widgets vertically and horizontally
+## 세로와 가로로 여러 위젯 배치하기
 
 <?code-excerpt path-base=""?>
 
-One of the most common layout patterns is to arrange widgets vertically
-or horizontally. You can use a Row widget to arrange widgets horizontally,
-and a Column widget to arrange widgets vertically.
+가장 일반적인 레이아웃 패턴 중 하나는 위젯을 세로와 가로로 나열하는 것 입니다.
+위젯을 세로로 나열하기 위해 Row, 그리고 가로로 나열하기 위해 Column을 사용할 수 있습니다.
 
 {{site.alert.secondary}}
-  <h4 class="no_toc">What's the point?</h4>
+  <h4 class="no_toc">요점이 뭔가요?</h4>
 
-  * Row and Column are two of the most commonly used layout patterns.
-  * Row and Column each take a list of child widgets.
-  * A child widget can itself be a Row, Column, or other complex widget.
-  * You can specify how a Row or Column aligns its children, both vertically
-    and horizontally.
-  * You can stretch or constrain specific child widgets.
-  * You can specify how child widgets use the Row's or Column's available space.
+  * Row와 Column은 가장 일반적으로 사용되는 두 가지 레이아웃 패턴입니다.
+  * Row와 Column은 각각 자식 위젯 리스트를 가집니다.
+  * 자식 위젯은 Row, Column, 혹은 그 외 다른 복잡한 위젯일 수 있습니다.
+  * Row나 Column이 자식들을 세로나 가로로 정렬하는 방법을 지정할 수 있습니다.
+  * 특정 자식 위젯을 늘리거나 제한할 수 있습니다.
+  * 자식 위젯들이 Row나 Column의 사용 가능한 공간을 사용하는 방법에 대해 지정할 수 있습니다.
 {{site.alert.end}}
 
-To create a row or column in Flutter, you add a list of children widgets to a
-[Row][] or [Column][] widget. In turn, each child can itself be a row or column,
-and so on. The following example shows how it is possible to nest rows or
-columns inside of rows or columns.
+Flutter에서 행이나 열을 만들기 위해, [Row][] 또는 [Column][] 위젯에 자식 위젯 리스트를 추가합니다.
+결국, 각 자식은 행이나 열, 기타 등등이 될 수 있습니다.
+다음 예제는 행이나 열 내부에 행이나 열을 배치할 수 있는 방법을 보여줍니다.
 
-This layout is organized as a Row. The row contains two children:
-a column on the left, and an image on the right:
+이 레이아웃은 행으로 구성되어 있습니다.
+행은 두 자식들, 왼쪽의 열과 오른쪽의 이미지를 가지고 있습니다.
 
 {% asset ui/layout/pavlova-diagram.png class="mw-100"
     alt="Screenshot with callouts showing the row containing two children" %}
 
-The left column's widget tree nests rows and columns.
+왼쪽 열의 위젯 트리는 행과 열들을 중첩하고 있습니다.
 
 {% asset ui/layout/pavlova-left-column-diagram.png class="mw-100"
     alt="Diagram showing a left column broken down to its sub-rows and sub-columns" %}
 
-You'll implement some of Pavlova's layout code in
-[Nesting rows and columns](#nesting-rows-and-columns).
+[Nesting rows and columns](#nesting-rows-and-columns)에 있는 Pavlova의 레이아웃 코드 중 일부를 구현할 겁니다.
 
 {{site.alert.note}}
-  Row and Column are basic primitive widgets for horizontal
-  and vertical layouts&mdash;these low-level widgets allow for maximum
-  customization. Flutter also offers specialized, higher level widgets
-  that might be sufficient for your needs. For example, instead of Row
-  you might prefer
-  [ListTile]({{api}}/material/ListTile-class.html),
-  an easy-to-use widget with properties for leading and trailing icons,
-  and up to 3 lines of text.  Instead of Column, you might prefer
-  [ListView]({{api}}/widgets/ListView-class.html),
-  a column-like layout that automatically scrolls if its content is too long
-  to fit the available space.  For more information,
-  see [Common layout widgets](#common-layout-widgets).
+  행과 열은 가로와 세로 레이아웃을 위한 기본적인 원시 위젯입니다&mdash;
+  이런 저레벨 위젯들은 최대한 사용자 정의를 수용합니다.
+  Flutter는 또한 여러분의 필요에 충분한 전문화되고 더 높은 수준의 위젯들을 제공합니다.
+  예를 들어, Row 대신에 leading과 trailing icon 속성을 제공하고,
+  텍스트가 최대 3줄이여서, 사용하기 쉬운 위젯인
+  [ListTile]({{api}}/material/ListTile-class.html)을 선호할 수 있습니다.  
+  Column 대신에, 사용 가능한 공간에 맞추기 위해 내용이
+  너무 길어지면 자동으로 스크롤하는 column-like 레이아웃인
+  [ListView]({{api}}/widgets/ListView-class.html)를 선호할 수 있습니다.  
+  더 많은 정보는 [Common layout widgets](#common-layout-widgets)을 봐주세요.
 {{site.alert.end}}
 
-### Aligning widgets
+### 위젯 정렬
 
-You control how a row or column aligns its children using the
-`mainAxisAlignment` and `crossAxisAlignment` properties.
-For a row, the main axis runs horizontally and the cross axis runs
-vertically. For a column, the main axis runs vertically and the cross
-axis runs horizontally.
+`mainAxisAlignment`과 `crossAxisAlignment`
+속성을 이용해서 행과 열이 자식들을 어떻게 정렬할지 제어합니다.
+행의 경우, 주축은 가로로 교차축은 세로로 수행됩니다.
+열의 경우, 주축은 세로로 교차축은 가로로 수행됩니다.
 
 <div class="mb-2 text-center">
   {% asset ui/layout/row-diagram.png class="mb-2 mw-100"
@@ -283,25 +276,23 @@ axis runs horizontally.
       alt="Diagram showing the main axis and cross axis for a column" %}
 </div>
 
-The [MainAxisAlignment]({{api}}/rendering/MainAxisAlignment-class.html)
-and [CrossAxisAlignment]({{api}}/rendering/CrossAxisAlignment-class.html)
-classes offer a variety of constants for controlling alignment.
+[MainAxisAlignment]({{api}}/rendering/MainAxisAlignment-class.html)와
+[CrossAxisAlignment]({{api}}/rendering/CrossAxisAlignment-class.html)
+클래스는 정렬을 제어하기 위한 다양한 상수를 제공합니다.
 
 {{site.alert.note}}
-  When you add images to your project,
-  you need to update the `pubspec.yaml` file to access them&mdash;this
-  example uses `Image.asset` to display the images.  For more information,
-  see this example's [pubspec.yaml
-  file]({{examples}}/layout/row_column/pubspec.yaml),
-  or [Adding Assets and Images in Flutter](/docs/development/ui/assets-and-images).
-  You don't need to do this if you're referencing online images using
-  `Image.network`.
+  프로젝트에 이미지를 추가할 때, 해당 이미지에 접근하기 위해
+  `pubspec.yaml` 파일을 업데이트 해줘야 합니다&mdash;
+  이 예제는 이미지를 표시하기 위해 `Image.asset`을 사용합니다.  
+  더 많은 정보는 이 예제의 [pubspec.yaml file]({{examples}}/layout/row_column/pubspec.yaml),
+  또는 [Adding Assets and Images in Flutter](/docs/development/ui/assets-and-images)을 봐주세요.
+  만약 `Image.network`를 사용해서 온라인 이미지들을 참조하고 있다면 하실 필요가 없습니다.
 {{site.alert.end}}
 
-In the following example, each of the 3 images is 100 pixels wide.
-The render box (in this case, the entire screen) is more than 300 pixels wide,
-so setting the main axis alignment to `spaceEvenly` divides the free
-horizontal space evenly between, before, and after each image.
+다음 예제에서, 세 이미지의 각각의 너비는 100픽셀입니다.
+렌더 박스(이 경우, 화면 전체)는 300픽셀보다 넓으므로,
+주축 정렬을 `spaceEvenly`로 설정하면 빈 수평 공간이
+각 이미지 사이와 앞뒤에 균일하게 분배합니다.
 
 <div class="row">
 <div class="col-lg-8">
@@ -324,11 +315,11 @@ horizontal space evenly between, before, and after each image.
 </div>
 </div>
 
-Columns work the same way as rows. The following example shows a column
-of 3 images, each is 100 pixels high. The height of the render box
-(in this case, the entire screen) is more than 300 pixels, so
-setting the main axis alignment to `spaceEvenly` divides the free vertical
-space evenly between, above, and below each image.
+열은 행과 같은 방식으로 작동합니다.
+다음 예제는 각 100픽셀의 높이인 세 개의 이미지 열을 보여줍니다.
+렌더 박스의 높이는(이 경우, 화면 전체) 300픽셀보다 크기 때문에,
+주축 정렬을 `spaceEvenly`로 설정하면 빈 수직 공간을
+각 이미지 사이와 앞뒤에 균일하게 분배합니다.
 
 <div class="row">
 <div class="col-lg-8" markdown="1">
@@ -352,18 +343,17 @@ space evenly between, above, and below each image.
 </div>
 </div>
 
-### Sizing widgets
+### 위젯 크기 조정
 
-When a layout is too large to fit a device, a yellow and black striped pattern
-appears along the affected edge. Here is an [example][sizing] of a row that is
-too wide:
+레이아웃이 너무 커서 장치에 맞지 않을 때,
+노란색과 검은색 줄무늬 패턴이 영향을 받는 가장 자리를 따라 나타납니다.
+다음은 너무 넓은 행의 [예제][sizing]입니다.
 
 {% asset ui/layout/layout-too-large.png class="mw-100" alt="Overly-wide row" %}
 {:.text-center}
 
-Widgets can be sized to fit within a row or column by using the [Expanded][]
-widget. To fix the previous example where the row of images is too wide for its
-render box, wrap each image with an `Expanded` widget.
+위젯들은 [Expanded][] 위젯을 이용해서 행이나 열에 맞게 크기를 조정할 수 있습니다.
+이미지 행이 렌더 박스에 비해 너무 넓은 이전 예제를 고치기 위해, 각 이미지를 `Expanded` 위젯으로 감쌉니다.
 
 <div class="row">
 <div class="col-lg-8">
@@ -393,10 +383,11 @@ render box, wrap each image with an `Expanded` widget.
 </div>
 </div>
 
-Perhaps you want a widget to occupy twice as much space as its siblings. For
-this, use the `Expanded` widget `flex` property, an integer that determines the
-flex factor for a widget. The default flex factor is 1. The following code sets
-the flex factor of the middle image to 2:
+아마 당신은 한 위젯이 형제 위젯들보다 두 배 많은 공간을 차지하기 원할 것 입니다.
+이를 위해, 위젯의 flex factor를 결정하는 정수인
+`Expanded` 위젯의 `flex` 속성을 사용하세요.
+기본 flex factor 값은 1입니다.
+다음 코드는 중앙 이미지의 flex factor를 2로 설정합니다.
 
 <div class="row">
 <div class="col-lg-8">
@@ -429,12 +420,11 @@ the flex factor of the middle image to 2:
 
 [sizing]: {{examples}}/layout/sizing
 
-### Packing widgets
+### 위젯 묶기
 
-By default, a row or column occupies as much space along its main axis
-as possible, but if you want to pack the children closely together,
-set its `mainAxisSize` to `MainAxisSize.min`. The following example
-uses this property to pack the star icons together.
+기본적으로, 행이나 열은 주축을 따라 가능한 많은 공간을 차지하지만,
+만약 자식들을 가깝게 묶고 싶다면, `mainAxisSize`를 `MainAxisSize.min`으로 설정하세요.
+다음 예제는 별 아이콘들을 묶기 위해 이 속성을 사용합니다.
 
 <div class="row">
 <div class="col-lg-8">
@@ -460,27 +450,25 @@ uses this property to pack the star icons together.
 </div>
 </div>
 
-### Nesting rows and columns
+### 행과 열 중첩
 
-The layout framework allows you to nest rows and columns inside of rows
-and columns as deeply as you need. Let's look at the code for the outlined
-section of the following layout:
+레이아웃 프레임워크를 사용하면 행과 열 안에 필요한 만큼 깊이 행과 열을 중첩할 수 있습니다.
+다음 레이아웃의 개요 섹션에 대한 코드를 살펴봅시다.
 
 {% asset ui/layout/pavlova-large-annotated.png class="border mw-100"
     alt="Screenshot of the pavlova app, with the ratings and icon rows outlined in red" %}
 {:.text-center}
 
-The outlined section is implemented as two rows. The ratings row contains
-five stars and the number of reviews. The icons row contains three
-columns of icons and text.
+개요 섹션은 두 행으로 구현되어 있습니다.
+등급 행은 별 5개와 리뷰 수가 들어 있습니다.
+아이콘 행에는 아이콘과 텍스트 열 3개가 들어 있습니다.
 
-The widget tree for the ratings row:
+등급 행 위젯 트리:
 
 {% asset ui/layout/widget-tree-pavlova-rating-row.png class="mw-100" alt="Ratings row widget tree" %}
 {:.text-center}
 
-The `ratings` variable creates a row containing a smaller row of 5 star icons,
-and text:
+`ratings` 변수는 더 작은 별 아이콘 5개와 텍스트 행을 가지는 행을 만듭니다.
 
 <?code-excerpt "layout/pavlova/lib/main.dart (ratings)" replace="/ratings/[!$&!]/g"?>
 ```dart
@@ -517,17 +505,16 @@ final [!ratings!] = Container(
 ```
 
 {{site.alert.tip}}
-  To minimize the visual confusion that can result from heavily nested layout
-  code, implement pieces of the UI in variables and functions.
+  중첩된 레이아웃로 인해 발생할 수 있는 시각적 혼란을 최소화하기 위해, 변수와 함수로 UI 일부를 구현하세요.
 {{site.alert.end}}
 
-The icons row, below the ratings row, contains 3 columns; each column contains
-an icon and two lines of text, as you can see in its widget tree:
+등급 행 아래에 있는 아이콘 행은 3개의 열을 포함합니다.
+각 열은 위젯 트리에서 볼 수 있듯이 아이콘과 텍스트 두 줄을 가집니다.
 
 {% asset ui/layout/widget-tree-pavlova-icon-row.png class="mw-100" alt="Icon widget tree" %}
 {:.text-center}
 
-The `iconList` variable defines the icons row:
+`iconList` 변수는 아이콘 행을 정의합니다.
 
 <?code-excerpt "layout/pavlova/lib/main.dart (iconList)" replace="/iconList/[!$&!]/g"?>
 ```dart
@@ -540,8 +527,8 @@ final descTextStyle = TextStyle(
   height: 2,
 );
 
-// DefaultTextStyle.merge() allows you to create a default text
-// style that is inherited by its child and all subsequent children.
+// DefaultTextStyle.merge()를 사용하면 자식과
+// 모든 자손이 상속하는 기본 텍스트 스타일을 만들 수 있습니다.
 final [!iconList!] = DefaultTextStyle.merge(
   style: descTextStyle,
   child: Container(
@@ -576,8 +563,7 @@ final [!iconList!] = DefaultTextStyle.merge(
 );
 ```
 
-The `leftColumn` variable contains the ratings and icons rows, as well as the
-title and text that describes the Pavlova:
+`leftColumn` 변수는 등급 및 아이콘 행, 그리고 Pavlova를 설명하는 제목과 텍스트를 포함합니다.
 
 <?code-excerpt "layout/pavlova/lib/main.dart (leftColumn)" replace="/leftColumn/[!$&!]/g"?>
 ```dart
@@ -594,16 +580,15 @@ final [!leftColumn!] = Container(
 );
 ```
 
-The left column is placed in a `Container` to constrain its width.
-Finally, the UI is constructed with the entire row (containing the
-left column and the image) inside a `Card`.
+왼쪽 열은 너비를 제한하기 위해 `Container` 안에 놓입니다.
+최종적으로, UI는 `Card` 내부에 모든 행(왼쪽 열과 이미지 포함)을 넣어 구성됩니다.
 
-The [Pavlova image][] is from [Pixabay][].
-You can embed an image from the net using `Image.network()` but,
-for this example, the image is saved to an images directory in the project,
-added to the [pubspec file,]({{examples}}/layout/pavlova/pubspec.yaml)
-and accessed using `Images.asset()`. For more information, see
-[Adding assets and images](/docs/development/ui/assets-and-images).
+[Pavlova 이미지][]는 [Pixabay][]에서 가져온 것 입니다.
+`Image.network()`를 사용해 넷에서 가져온 이미지를 삽입할 수 있지만,
+이 예제를 위해, 이 이미지는 프로젝트의 images 폴더에 저장되었으며,
+[pubspec 파일]({{examples}}/layout/pavlova/pubspec.yaml)에 추가하고,
+`Images.asset()`를 사용하여 접근했습니다.
+자세한 정보는, [Adding assets and images](/docs/development/ui/assets-and-images)를 봐주세요.
 
 <?code-excerpt "layout/pavlova/lib/main.dart (body)"?>
 ```dart
@@ -628,12 +613,13 @@ body: Center(
 ```
 
 {{site.alert.tip}}
-  The Pavlova example runs best horizontally on a wide device, such as a tablet.
-  If you are running this example in the iOS simulator, you can select a
-  different device using the **Hardware > Device** menu. For this example, we
-  recommend the iPad Pro. You can change its orientation to landscape mode using
-  **Hardware > Rotate**. You can also change the size of the simulator window
-  (without changing the number of logical pixels) using **Window > Scale**.
+  Pavlova 예제는 태블릿처럼 가로로 넓은 기기에서 가장 잘 작동합니다.
+  이 예제를 iOS 시뮬레이터에서 실행하고 있다면,
+  **Hardware > Device** 메뉴를 사용하여 다른 기기를 선택할 수 있습니다.
+  이 예제를 위해, iPad Pro를 추천합니다.
+  **Hardware > Rotate**를 사용해서 방향을 가로 모드로 변경할 수 있습니다.
+  또한 **Window > Scale**을 사용해서 시뮬레이터의
+  창 크기(논리 픽셀 수는 변경하지 않고)를 변경할 수 있습니다.
 {{site.alert.end}}
 
 **App source:** [pavlova]({{examples}}/layout/pavlova)
