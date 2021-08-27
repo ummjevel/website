@@ -6,17 +6,14 @@ body_class: landing-page community
 
 <section class="community__intro row text-center">
     <div class="col-12">
-        <h1>Welcome to the Flutter community</h1>
+        <h1>Flutter 커뮤니티에 오신 것을 환영합니다</h1>
         <p class="community__intro__description">
-            Below you'll find ways to get involved in the Flutter
-            developer community as well as links to
-            resources that can help answer your questions.
-            We expect all community spaces to be welcoming and respectful,
-            as described in the
-            <a href="https://github.com/flutter/flutter/blob/master/CODE_OF_CONDUCT.md">Flutter code of conduct</a>.
+            아래 링크를 통해 Flutter 개발자 커뮤니티의 참여 할 수 있고 질문에 대한 답변을 도움 받을 수 있어요.
+            우리는 <a href="https://github.com/flutter/flutter/blob/master/CODE_OF_CONDUCT.md">Flutter 행동강령</a>에 설명된대로
+            모든 커뮤니티 공간이 환영받고 존중되기를 기대해요.
         <br><br>
-            If you're in China, read
-            <a href="/community/china">Using Flutter in China</a>.
+            중국에 있다면, 먼저
+            <a href="/community/china">중국에서 Flutter 사용하기</a>를 읽어보세요.
         </p>
     </div>
 </section>
@@ -63,11 +60,10 @@ body_class: landing-page community
     <div class="card-body">
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
-                <h2>Join the conversation</h2>
+                <h2>대화에 참여하세요</h2>
                 <p>
-                    Get answers to your questions and stay up to date
-                    with everything new and exciting happening in the
-                    Flutter community by checking out the links below.
+                    아래 링크에 연결된 Flutter 커뮤니티에서 질문에 대한 대답이나
+                    새롭고 흥미로운 최신정보를 얻으세요.
                 </p>
             </div>
         </div>
@@ -76,7 +72,7 @@ body_class: landing-page community
             {% if case.featured -%}
                 {% continue -%}
             {% endif -%}
-            {% assign learnMoreCta = case.learn_more_cta | default: 'Learn more' -%}
+            {% assign learnMoreCta = case.learn_more_cta | default: '더 알아보기' -%}
 
             {% capture loopCount %}{% increment communityCounter %}{% endcapture -%}
             {% capture modulo3 %}{{ loopCount | modulo:3 }}{% endcapture -%}
@@ -132,10 +128,10 @@ body_class: landing-page community
     <div class="card-body">
         <div class="row">
             <div class="col-lg-4">
-                <h3>Contributing to Flutter</h3>
-                <p>If you are interested in joining us in creating Flutter itself, jump over to
-                <a href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md">our GitHub repository</a>
-                to get started!</p>
+                <h3>Flutter에 기여하기</h3>
+                <p>Flutter를 함께 만들고 싶다면 주저하지 말고
+                <a href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md">우리의 GitHub 저장소</a>
+                로 이동하여 시작하세요!</p>
             </div>
         </div>
     </div>

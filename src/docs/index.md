@@ -22,7 +22,7 @@ description: Get started with Flutter. Widgets, examples, updates, and API docs 
 {% endfor -%}
 
 <a name="latest-release"></a>
-## What's new on this site
+## 사이트 개편 내역
 
 To see changes to the site since our last release,
 see [What's new][].
