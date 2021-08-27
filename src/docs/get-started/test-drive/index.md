@@ -2,7 +2,7 @@
 title: Test drive
 description: How to create a templated Flutter app and use hot reload.
 prev:
-  title: 에디터 설정
+  title: Set up an editor
   path: /docs/get-started/editor
 next:
   title: Write your first Flutter app

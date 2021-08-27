@@ -55,7 +55,7 @@ debug asserts verifying the framework's various invariants
 For more information, see the
 [DevTools][] documentation.
 
-## Breakpoints 설정
+## Setting breakpoints
 
 You can set breakpoints directly in your IDE/editor
 (such as [Android Studio/IntelliJ][] and [VS Code][]),
@@ -124,7 +124,7 @@ down the source of the problem.
 For more information, see [`Assert`][] in the
 [Dart language tour][].
 
- ## 애니메이션 디버깅하기
+## Debugging animations
 
 The easiest way to debug animations is to slow them down.
 The [Flutter inspector][] provides a **Slow Animations** button,
@@ -133,7 +133,7 @@ or you can [slow the animations programmatically][].
 For more information on debugging janky (non-smooth)
 applications, see [Flutter performance profiling][].
 
-## 앱 시작 시간 측정
+## Measuring app startup time
 
 To gather detailed information about the time it takes for your
 Flutter app to start, you can run the `flutter run` command
