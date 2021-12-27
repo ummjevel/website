@@ -385,10 +385,6 @@ Widget textSection = const Padding(
 
 ## Step 6: 마무리
 
-In this final step, arrange all of the elements in a
-`ListView`, rather than a `Column`, because a
-`ListView` supports app body scrolling when the app is run
-on a small device.
 이 마지막 단계에서, `Column` 보다는 `ListView` 안에 있는 모든 요소들을 정렬합니다. 
 왜냐하면 `ListView` 는 앱이 작은 디바이스에서 실행될 때 앱바디의 스크롤링을 지원하기 때문입니다.
 
