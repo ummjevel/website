@@ -1,7 +1,7 @@
 ---
 title: Building layouts
 short-title: Tutorial
-description: Learn how to build a layout.
+description: 레이아웃 쌓는 법을 배웁니다.
 diff2html: true
 ---
 
@@ -13,35 +13,33 @@ diff2html: true
 <style>dl, dd { margin-bottom: 0; }</style>
 
 {{site.alert.secondary}}
-  <h4 class="no_toc">What you’ll learn</h4>
+  <h4 class="no_toc">배우게 될 것</h4>
 
-  * How Flutter's layout mechanism works.
-  * How to lay out widgets vertically and horizontally.
-  * How to build a Flutter layout.
+  * 플러터의 레이아웃 메카니즘이 작동하는 법을 알아봅니다.
+  * 위젯들을 수평과 수직으로 배치시키는 법을 알아봅니다. 
+  * 플러터 레이아웃을 배치시키는 법을 알아봅니다. 
 {{site.alert.end}}
 
-This is a guide to building layouts in Flutter.
-You'll build the layout for the following app:
+이것은 플러터로 레이아웃을 배치하기 위한 가이드입니다.
+당신은 아래 보여지는 앱처럼 레이아웃을 배치시킬 것입니다.
 
 {% include docs/app-figure.md img-class="site-mobile-screenshot border"
     image="ui/layout/lakes.jpg" caption="The finished app" %}
 
-This guide then takes a step back to explain Flutter's
-approach to layout, and shows how to place a single widget
-on the screen. After a discussion of how to lay widgets
-out horizontally and vertically, some of the most common
-layout widgets are covered.
+이 가이드는 한발짝 물러나 플러터의 레이아웃 접근법에 대해 설명하고, 
+스크린에 단일 위젯을 위치시키는 법을 보여줍니다.
+위젯을 수평으로 또는 수직으로 배치시키는지에 대한 논의 후, 가장 일반적인 레이아웃 위젯 일부가 포함됩니다.
 
 If you want a "big picture" understanding of the layout mechanism,
-start with [Flutter's approach to layout][].
+start with 
+만약 큰 그림, 즉 레이아웃 메커니즘에 대한 이해가 필요하다면, [플러터의 레이아웃 접근법][] 에서 시작할 수 있습니다.
 
-## Step 0: Create the app base code
+## 단계 0: 앱의 기반 코드를 작성합니다.
 
-Make sure to [set up][] your environment,
-then do the following:
+[설치][]을 확실히 완료한 다음, 따라하세요:
 
- 1. [Create a basic "Hello World" Flutter app][hello-world].
- 2. Change the app bar title and the app title as follows:
+ 1. [기본적인 "Hello World" 플러터 앱 만들기][hello-world].
+ 2. 앱 바 타이틀과 앱 타이틀을 아래처럼 변경하세요:
 
     <?code-excerpt "layout/base/lib/{main_starter,main}.dart"?>
     ```diff
@@ -62,47 +60,44 @@ then do the following:
                child: Text('Hello World'),
     ```
 
-## Step 1: Diagram the layout
+## Step 1: 레이아웃 다이어그램
 
-The first step is to break the layout down to its basic elements:
+레이아웃을 정복하기 위한 첫번째 걸음은 레이아웃의 기본적인 요소들입니다:
 
-* Identify the rows and columns.
-* Does the layout include a grid?
-* Are there overlapping elements?
-* Does the UI need tabs?
-* Notice areas that require alignment, padding, or borders.
+* 행과 열을 파악합니다.
+* 레이아웃이 그리드를 포함하나요?
+* 요소들이 겹쳐져 있나요?
+* UI에서 탭들이 필요한가요?
+* 영역들에 정렬, 패딩 혹은 경계선들이 필요한지 확인하세요.
 
-First, identify the larger elements. In this example,
-four elements are arranged into a column: an image, two rows, and a block of text.  
+처음으로, 제일 큰 요소를 파악합니다. 예를 들면,
+네 개의 요소들은 하나의 행 안에서 배열됩니다: 그림, 두 개의 행, 그리고 한 문장.
 
 {% include docs/app-figure.md img-class="site-mobile-screenshot border"
     image="ui/layout/lakes-column-elts.png" caption="Column elements (circled in red)" %}
 
-Next, diagram each row. The first row, called the Title
-section, has 3 children: a column of text, a star icon,
-and a number. Its first child, the column, contains 2 lines of text.
-That first column takes a lot of space, so it must be wrapped in an
-Expanded widget.
+그 다음, 각 행을 그리세요. 제목 부분이라고 불리는 첫번째 행은 세 개의 자식을 가지고 있습니다:
+텍스트의 한 컬럼, 별 모양 아이콘, 그리고 숫자.
+첫번째 자식인 컬럼은 텍스트 두 줄을 포함합니다.
+첫번째 컬럼은 많은 공간을 차지하기 때문에, 확장된 위젯으로 감싸져야 합니다.
 
 {% include docs/app-figure.md image="ui/layout/title-section-parts.png" alt="Title section" %}
 
-The second row, called the Button section, also has
-3 children: each child is a column that contains an icon and text.
-
+버튼 영역이라고 불리는 두 번째 행은, 세 개의 자식을 가지고 있습니다:
+각 자식은 아이콘과 텍스트를 포함한 컬럼입니다.
 {% include docs/app-figure.md image="ui/layout/button-section-diagram.png" alt="Button section" %}
 
-Once the layout has been diagrammed, it's easiest to
-take a bottom-up approach to implementing it.
-To minimize the visual confusion of deeply nested layout code,
-place some of the implementation in variables and functions.
+한번 레이아웃이 그려지면, 레이아웃을 구현하기 위한 상향식 접근은 가장 쉬운 방법입니다.
+깊게 중첩된 레이아웃 코드의 시각적 혼란을 최소화하기 위해서,
+변수들과 함수들의 구현 일부에 위치시킵니다.
 
-## Step 2: Implement the title row
+
+## Step 2: 제목 행을 구현합니다.
 
 <?code-excerpt path-base="layout/lakes/step2"?>
 
-First, you'll build the left column in the title section.
-Add the following code at the top of the `build()`
-method of the `MyApp` class:
+먼저, 제목 영역 안의 왼쪽 컬럼부터 배치시킬 것입니다.
+아래의 코드를 `MyApp` 클래스의 `build()` 함수의 위쪽에 추가하세요:
 
 <?code-excerpt "lib/main.dart (titleSection)" title?>
 ```dart
@@ -146,18 +141,15 @@ Widget titleSection = Container(
 ```
 
 {:.numbered-code-notes}
- 1. Putting a `Column` inside an `Expanded` widget stretches
-    the column to use all remaining free space in the row.
-    Setting the `crossAxisAlignment` property to
-    `CrossAxisAlignment.start` positions the column at
-    the start of the row.
- 2. Putting the first row of text inside a `Container`
-    enables you to add padding. The second child in the
-    `Column`, also text, displays as grey.
- 3. The last two items in the title row are a star icon,
-    painted red, and the text "41". The entire row is in
-    a `Container` and padded along each edge by 32 pixels.
-    Add the title section to the app body like this:
+ 1. 해당 행에 여유 공간을 남겨두는 것을 모두 쓰기 위해 늘어나는 `확장되는` 위젯의 내부에
+    `컬럼`을 위치시킵니다.
+    `crossAxisAlignment` 속성을 `CrossAxisAlignment.start` 로 
+    해당 행의 시작 컬럼에 위치시킵니다.
+ 2. `Container` 내부의 텍스트의 첫번째 행을 위치시켜서 패딩을 추가할 수 있도록 합니다.
+    `Column`의 두번째 자식 또한, 텍스트이며 회색으로 보여집니다.
+ 3. 제목 행의 마지막 두 아이템은 붉게 칠해진 별모양 아이콘과 "41"이라는 텍스트입니다.
+    전체 행은 `Container` 내부와 각 가장자리를 따라 32픽셀씩 패딩처리됩니다.
+    제목 영역을 앱 바디에 다음과 같이 추가하세요:
 
 <?code-excerpt path-base="layout/lakes"?>
 <?code-excerpt "{../base,step2}/lib/main.dart" from="return MaterialApp"?>
@@ -183,27 +175,26 @@ Widget titleSection = Container(
 ```
 
 {{site.alert.tip}}
-  * When pasting code into your app, indentation can
-    become skewed. You can fix this in your Flutter editor
-    using the [automatic reformatting support][].
-  * For a faster development experience,
-    try Flutter's [hot reload][] feature.
-  * If you have problems, compare your code to [`lib/main.dart`][].
+  * 앱에 코드를 붙여넣을 때, 들여쓰기가 변형될 수 있습니다. 
+    [자동 리포맷팅 지원][] 을 사용하여 당신의 플러터 에디터로 
+    이것을 고칠 수 있습니다.
+  * 빠른 개발 경험을 위해, 플러터의 [핫 리로드][] 기능을 사용해보세요.
+  * 만약 문제가 있다면, 당신의 코드를 [`lib/main.dart`][] 과 비교해보세요.
 {{site.alert.end}}
 
-## Step 3: Implement the button row
+## Step 3: 버튼 행을 구현합니다.
 
 <?code-excerpt path-base="layout/lakes/step3"?>
 
-The button section contains 3 columns that use the same
-layout&mdash;an icon over a row of text.
-The columns in this row are evenly spaced,
-and the text and icons are painted with the primary color.
+버튼 영역은 동일한 레이아웃(텍스트 행 위의 아이콘)에서 
+사용되는 세 개의 컬럼을 포함합니다.
+이 행 내부에 있는 컬럼들은 균일하게 띄워져 있으며, 
+텍스트와 아이콘들은 기본 색으로 칠해져 있습니다.
 
-Since the code for building each column is almost identical,
-create a private helper method named `buildButtonColumn()`,
-which takes a color, an `Icon` and `Text`,
-and returns a column with its widgets painted in the given color.
+각 칼럼을 구현한 코드가 거의 동일하기 때문에,
+`buildButtonColumn()` 라는 이름의 프라이빗 헬퍼 메소드를 만듭니다.
+`Icon` 과 `Text` 의 색을 지정하고, 
+주어진 색으로 칠해진 해당 위젯으로 이루어진 컬럼을 반환합니다.
 
 <?code-excerpt "lib/main.dart (_buildButtonColumn)" title?>
 ```dart
@@ -238,17 +229,14 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-The function adds the icon directly to the column.
-The text is inside a `Container` with a top-only margin,
-separating the text from the icon.
+이 함수는 아이콘을 직접적으로 컬럼에 추가합니다.
+`Container` 내부의 위쪽만 여백이 있는 텍스트가 있으며,
+해당 텍스트는 아이콘으로부터 분리되어 있습니다.
 
-Build the row containing these columns by calling the
-function and passing the color, `Icon`, and text specific
-to that column. Align the columns along the main axis
-using `MainAxisAlignment.spaceEvenly` to arrange the
-free space evenly before, between, and after each column.
-Add the following code just below the
-`titleSection` declaration inside the `build()` method:
+함수를 호출하고 해당 열에 해당하는 색상, `Icon`과 텍스트를 전달하는 
+이러한 컬럼이 포함된 행을 작성합니다. 컬럼들을 `MainAxisAlignment.spaceEvenly`을 사용하여 남는 공간을 균일하게 각 컬럼의 앞, 사이, 중간에 배열하고 주축에 따라 정렬합니다.
+`titleSection` 정의 내부의 `build()` 메소드 
+바로 아래의 주어진 코드를 추가합니다:
 
 <?code-excerpt "lib/main.dart (buttonSection)" title?>
 ```dart
@@ -264,7 +252,7 @@ Widget buttonSection = Row(
 );
 ```
 
-Add the button section to the body:
+버튼 영역을 바디에 추가합니다:
 
 <?code-excerpt path-base="layout/lakes"?>
 <?code-excerpt "{step2,step3}/lib/main.dart" from="return MaterialApp" to="}"?>
@@ -287,14 +275,13 @@ Add the button section to the body:
    }
 ```
 
-## Step 4: Implement the text section
+## Step 4: 텍스트 영역을 구현합니다.
 
 <?code-excerpt path-base="layout/lakes/step4"?>
 
-Define the text section as a variable. Put the text
-in a `Container` and add padding along each edge.
-Add the following code just below the `buttonSection`
-declaration:
+텍스트 영역을 변수로써 정의합니다. 
+텍스트를 `Container` 안에 넣고, 각 가장자리에 따라 패딩을 추가합니다.
+`buttonSection` 정의 바로 아래 주어진 코드를 추가합니다:
 
 <?code-excerpt "lib/main.dart (textSection)" title?>
 ```dart
@@ -312,10 +299,9 @@ Widget textSection = const Padding(
 );
 ```
 
-By setting `softwrap` to true, text lines will fill the column width before
-wrapping at a word boundary.
+`softwrap` 을 true 로 세팅함으로써, 텍스트 줄들은 단어 영역을 감싸기 전에 컬럼 너비로 채워질 것입니다.
 
-Add the text section to the body:
+텍스트 영역을 바디에 추가합니다:
 
 <?code-excerpt path-base="layout/lakes"?>
 <?code-excerpt "{step3,step4}/lib/main.dart" from="return MaterialApp"?>
@@ -336,22 +322,22 @@ Add the text section to the body:
        ),
 ```
 
-## Step 5: Implement the image section
+## Step 5: 이미지 영역을 구현합니다.
 
-Three of the four column elements are now complete,
-leaving only the image. Add the image file to the example:
+4개의 컬럼 요소들 중 3개는 현재 완성되었고, 이미지만을 남겨두고 있습니다.
+예제에 이미지 파일을 추가합니다: 
 
-* Create an `images` directory at the top of the project.
-* Add [`lake.jpg`][].
+* `images` 폴더를 프로젝트의 최상단에 생성합니다.
+* [`lake.jpg`][] 를 추가합니다.
 
 {{site.alert.info}}
-  Note that `wget` doesn't work for saving this binary file.
-  The original image is [available online][] under a
-  Creative Commons license, but it's large and slow to fetch.
+  `wget` 은 저장되는 해당 바이너리 파일에서는 동작하지 않는 것을 주의하세요.
+  원본 이미지는 [사용가능한 온라인][] 로 크리에이티브 커먼스 라이선스에 속하지만,
+  용량이 크고 가지고 오기 느립니다.
 {{site.alert.end}}
 
-* Update the `pubspec.yaml` file to include an `assets` tag.
-  This makes the image available to your code.
+* `assets` 태그를 포함하기 위해 `pubspec.yaml` 파일을 업데이트 합니다.
+  이것은 당신의 코드에 이미지가 보여질 수 있도록 만듭니다.
 
   <?code-excerpt "{step4,step5}/pubspec.yaml"?>
   ```diff
@@ -365,17 +351,15 @@ leaving only the image. Add the image file to the example:
   +    - images/lake.jpg
   ```
 {{site.alert.tip}}
-  * Note that `pubspec.yaml` is case sensitive,
-    so write `assets:` and the image URL
-    as shown above.
-  * The pubspec file is also sensitive to white
-    space, so use proper indentation.
-  * You might need to restart the running program
-    (either on the simulator or a connected device) for the
-    pubspec changes to take effect.
+  * `pubspec.yaml` 은 대소문자를 구분한다는 것을 주의하면서,
+    `assets:` 을 쓰고 이미지 URL은 위와 같이 보여집니다.
+  * 이 pubspec 파일은 또한 여백에 민감하여, 적절한 들여쓰기를 사용하세요.
+  * pubspec 파일의 변경사항을 적용하려면 당신은 아마도 
+    실행되고 있는 프로그램을 재시작해야할 것입니다.
+    (시뮬레이터에서 혹은 연결된 디바이스에서) 
 {{site.alert.end}}
 
-Now you can reference the image from your code:
+이제 당신은 당신의 코드로부터 이미지를 참조할 수 있습니다:
 
 <?code-excerpt "{step4,step5}/lib/main.dart"?>
 ```diff
@@ -396,15 +380,17 @@ Now you can reference the image from your code:
              textSection,
 ```
 
-`BoxFit.cover` tells the framework that the image should
-be as small as possible but cover its entire render box.
+`BoxFit.cover` 은 이미지가 되도록 작아야 하지만, 해당 렌더 박스 전체를 차지하도록
+해야한다는 것을 프레임워크에게 말해줍니다.
 
-## Step 6: Final touch
+## Step 6: 마무리
 
 In this final step, arrange all of the elements in a
 `ListView`, rather than a `Column`, because a
 `ListView` supports app body scrolling when the app is run
 on a small device.
+이 마지막 단계에서, `Column` 보다는 `ListView` 안에 있는 모든 요소들을 정렬합니다. 
+왜냐하면 `ListView` 는 앱이 작은 디바이스에서 실행될 때 앱바디의 스크롤링을 지원하기 때문입니다.
 
 <?code-excerpt "{step5,step6}/lib/main.dart" diff-u="6" from="return MaterialApp"?>
 ```diff
@@ -431,23 +417,22 @@ on a small device.
 **Image:** [images][]<br>
 **Pubspec:** [`pubspec.yaml`][]<br>
 
-That's it! When you hot reload the app,
-you should see the same app layout as
-the screenshot at the top of this page.
+이겁니다! 만약 앱에 핫 리로드를 할 때, 
+당신은 해당 페이지의 위쪽에 스크린샷으로써 
+같은 앱의 레이아웃을 볼 것입니다.
 
-You can add interactivity to this layout by following
-[Adding Interactivity to Your Flutter App][].
+당신은 이 레이아웃에 [당신의 앱에 상호작용성을 추가하기][] 을 따라함으로써 상호작용성을 추가할 수 있습니다.
 
 
-[Adding Interactivity to Your Flutter App]: {{site.url}}/development/ui/interactive
-[automatic reformatting support]: {{site.url}}/development/tools/formatting
-[available online]: https://images.unsplash.com/photo-1471115853179-bb1d604434e0?dpr=1&amp;auto=format&amp;fit=crop&amp;w=767&amp;h=583&amp;q=80&amp;cs=tinysrgb&amp;crop=
-[Flutter's approach to layout]: {{site.url}}/development/ui/layout
+[당신의 앱에 상호작용성을 추가하기]: {{site.url}}/development/ui/interactive
+[자동 리포맷팅 지원]: {{site.url}}/development/tools/formatting
+[사용가능한 온라인]: https://images.unsplash.com/photo-1471115853179-bb1d604434e0?dpr=1&amp;auto=format&amp;fit=crop&amp;w=767&amp;h=583&amp;q=80&amp;cs=tinysrgb&amp;crop=
+[플러터의 레이아웃 접근법]: {{site.url}}/development/ui/layout
 [hello-world]: {{site.url}}/get-started/codelab#step-1-create-the-starter-flutter-app
 [images]: {{examples}}/layout/lakes/step6/images
 [`lake.jpg`]: {{rawExFile}}/layout/lakes/step5/images/lake.jpg
 [`lib/main.dart`]: {{examples}}/layout/lakes/step2/lib/main.dart
-[hot reload]: {{site.url}}/development/tools/hot-reload
+[핫 리로드]: {{site.url}}/development/tools/hot-reload
 [`main.dart`]: {{examples}}/layout/lakes/step6/lib/main.dart
 [`pubspec.yaml`]: {{examples}}/layout/lakes/step6/pubspec.yaml
-[set up]: {{site.url}}/get-started/install
+[설치]: {{site.url}}/get-started/install
